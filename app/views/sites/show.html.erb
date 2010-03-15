@@ -1,8 +1,6 @@
 <div class="crumbs">
   <%= link_to I18n.t('txt.sites', :default => "Sites"), sites_path %> <span class="arrow">&rarr;</span>
 </div>
-
 <h1><%=h @site.name %></h1>
-
 <% if admin? %><%= link_to I18n.t('txt.edit', :default => "Edit"), edit_site_path(@site) %> |<% end %>
 <%= link_to link_to I18n.t('txt.sites', :default => "Sites"), sites_path %>
