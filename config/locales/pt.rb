@@ -140,14 +140,19 @@
       },
 
       # Localização
+      :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
+      :created_by => "Criado por",
       :moderator => "Moderador",
       :forums => "Fóruns",
       :count_topics => {:one => "1 discussão", :other => "{{count}} discussões"},
       :count_posts => {:one => "1 post", :other => "{{count}} posts"},
+      :my_topics => "Minhas discussões",
+      :new_topic => "Nova discussão",
       :views_forums => {
           :unmoderated => "Este fórum não é moderado."
       },
-      :my_topics => "Minhas discussões"
+      :post_age => "Há {{when}}"
+
     }
   }
 }
