@@ -56,6 +56,10 @@ class Topic < ActiveRecord::Base
     posts_count > Post.per_page
   end
   
+  def self.per_page
+  		2
+  end   
+  
   def last_page
     [(posts_count.to_f / Post.per_page.to_f).ceil.to_i, 1].max
   end
