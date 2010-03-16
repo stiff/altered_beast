@@ -142,11 +142,12 @@
       # Localização
       :moderator => "Moderador",
       :forums => "Fóruns",
-      :count_topics => {:one => "1 tópico", :other => "{{count}} tópicos"},
+      :count_topics => {:one => "1 discussão", :other => "{{count}} discussões"},
       :count_posts => {:one => "1 post", :other => "{{count}} posts"},
       :views_forums => {
           :unmoderated => "Este fórum não é moderado."
-      }
+      },
+      :my_topics => "Minhas discussões"
     }
   }
 }
