@@ -35,7 +35,7 @@
       <% form_tag posts_path, :method => 'get' do -%>
 	    <h2>
 	    	#agile #arquitetura #java
-        	<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box %>
+        	<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box,:onclick=>"if (this.value=='search') this.value=''" %>
         </h2>
       <% end -%>
       </span>
