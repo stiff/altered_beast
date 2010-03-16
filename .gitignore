@@ -9,3 +9,6 @@ db/*.sqlite2
 db/*.sqlite3
 db/*.db
 public/javascripts/beast.js
+.loadpath
+.project
+doc/
