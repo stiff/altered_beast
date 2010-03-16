@@ -34,5 +34,6 @@ ActionController::Routing::Routes.draw do |map|
     map.monitored_posts           'users/:user_id/monitored'
   end
 
-  map.root :controller => 'forums', :action => 'index'
+  map.root :controller => :forums, :action => :show, :id => "arquitetura"
+
 end
