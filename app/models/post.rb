@@ -26,6 +26,10 @@ class Post < ActiveRecord::Base
   def forum_name
     forum.name
   end
+  
+  def self.per_page
+  		2
+  end 
 
   def self.search(query, options = {})
   # had to change the other join string since it conflicts when we bring parents in
