@@ -165,13 +165,16 @@
       },
 
       # Session
+      :cancel               => "Cancelar",
       :login_name           => "Usuário",
       :password             => "Senha",
       :log_in               => "Entrar",
       :remember_me          => "Lembrar de mim",
-      :or_login_with_openid => "ou entre pelo OpenID",
+      :or_login_with_openid => "Entre pelo OpenID",
       :views_users          => {
-          :reset_password => "Esqueci minha senha"
+          :reset_password => "Esqueci minha senha",
+          :email_directions => "Informe seu endereço de email:",
+          :send_email     => "Enviar link por email"
       },
     }
   }
