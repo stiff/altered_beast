@@ -139,11 +139,20 @@
         :click => "click here!"
       },
 
-      # Localização
-      :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
-      :created_by => "Criado por",
-      :moderator => "Moderador",
+      ##### LOCALIZAÇÃO #####
+
+      # Header
       :forums => "Fóruns",
+      :users => "Usuários",
+      :settings => "Preferências",
+      :logout => "Sair",
+      :signup => "Cadastro",
+      :login => "Entrar",
+
+      # Forum
+      :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
+      :created_by => "código criado por",
+      :moderator => "Moderador",
       :count_topics => {:one => "1 discussão", :other => "{{count}} discussões"},
       :count_posts => {:one => "1 post", :other => "{{count}} posts"},
       :my_topics => "Minhas discussões",
@@ -151,8 +160,9 @@
       :views_forums => {
           :unmoderated => "Este fórum não é moderado."
       },
-      :post_age => "Há {{when}}"
-
+      :post_age => "Há {{when}}",
+      :by_user => "por {{user}}",
+      :view => "ler",
     }
   }
 }
