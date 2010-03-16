@@ -19,12 +19,6 @@
   <ul id="nav">
     <li><%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path, :rel => 'home' %></li>
     <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
-    <li id="search">
-      <% form_tag posts_path, :method => 'get' do -%>
-        <%= text_field_tag :q, params[:q], :size => 15, :id => :search_box %>
-      <% end -%>
-    </li>
-    <li><%= link_to_function I18n.t('txt.search', :default => 'Search'), "#", :href => root_path, :id => 'search-link' %></li>
 
     <% if @current_site and logged_in? -%>
     <li class="login"><%=  link_to current_user.display_name, user_path(current_user) %></li>
@@ -37,5 +31,12 @@
   </ul>
   <% name = (site = @current_site || Site.first) && site.name %>
   <h1><%= link_to name || I18n.t('txt.beast_title', :default => 'Altered Beast'), root_path %></h1>
-  <h2>#agile #arquitetura #java</h2>
+  <span>
+      <% form_tag posts_path, :method => 'get' do -%>
+	    <h2>
+	    	#agile #arquitetura #java
+        	<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box %>
+        </h2>
+      <% end -%>
+      </span>
 </div>
