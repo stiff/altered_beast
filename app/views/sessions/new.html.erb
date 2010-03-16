@@ -22,7 +22,7 @@
 
 <p><%= submit_tag I18n.t('txt.log_in', :default => 'Log in') %>
    <%= link_to_function(I18n.t('txt.views_users.reset_password', :default => "reset password"), "$('reset-password').toggle();") %>
-   <a href="#" onclick="LoginForm.setToOpenID()"><%= I18n.t('txt.or_login_with_openid', :default => 'or login with OpenID') %></a>
+   | <a href="#" onclick="LoginForm.setToOpenID()"><%= I18n.t('txt.or_login_with_openid', :default => 'login with OpenID') %></a>
 </p>
 </div>
 
@@ -36,7 +36,7 @@
   <p><%= I18n.t 'txt.views_users.email_directions' %></p>
   <p><%= text_field_tag :email, "", :size => 30 %></p>
   <p><%= submit_tag I18n.t("txt.views_users.send_email", :default => "E-mail me the link") %>
-    or <%= link_to_function(I18n.t("txt.cancel", :default => "cancel"), "$('reset-password').hide()") %></p>
+  | <%= link_to_function(I18n.t("txt.cancel", :default => "cancel"), "$('reset-password').hide()") %></p>
 
 <% end -%>
 
