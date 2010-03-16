@@ -14,6 +14,11 @@ ActionController::Routing::Routes.draw do |map|
     forum.resources :posts
   end
   
+  #map.resources :topics do |topic|
+  #	topic.resources :posts
+  #	topic.resource :monitorship
+  #end
+  
   map.resources :posts, :collection => {:search => :get}
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,

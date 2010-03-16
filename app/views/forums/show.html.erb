@@ -1,7 +1,7 @@
 <% content_for :right do %>
 
 <% unless @forum.description.blank? %>
-<%= @forum.description %>
+<%= @forum.description %> xpto
 <hr />
 <% end %>
 
@@ -19,7 +19,7 @@
 
 <% end %>
 
-<% @page_title = @forum.name %>
+<% @page_title = @forum.name %> 
 
 <div class="crumbs">
 <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
