@@ -20,8 +20,8 @@
     <li><%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path, :rel => 'home' %></li>
     <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
 
-    <% if @current_site and logged_in? -%>
-    <li class="login"><%=  link_to current_user.display_name, user_path(current_user) %></li>
+    <% if logged_in? -%>
+    <li class="login"><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
     <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
     <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
     <% else -%>
