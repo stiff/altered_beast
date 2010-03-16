@@ -142,27 +142,37 @@
       ##### LOCALIZAÇÃO #####
 
       # Header
-      :forums => "Fóruns",
-      :users => "Usuários",
+      :forums   => "Fóruns",
+      :users    => "Usuários",
       :settings => "Preferências",
-      :logout => "Sair",
-      :signup => "Cadastro",
-      :login => "Entrar",
+      :logout   => "Sair",
+      :signup   => "Cadastro",
+      :login    => "Entrar",
 
       # Forum
       :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
-      :created_by => "código criado por",
-      :moderator => "Moderador",
-      :count_topics => {:one => "1 discussão", :other => "{{count}} discussões"},
-      :count_posts => {:one => "1 post", :other => "{{count}} posts"},
-      :my_topics => "Minhas discussões",
-      :new_topic => "Nova discussão",
-      :views_forums => {
-          :unmoderated => "Este fórum não é moderado."
+      :created_by     => "código criado por",
+      :moderator      => "Moderador",
+      :count_topics   => {:one => "1 discussão", :other => "{{count}} discussões"},
+      :count_posts    => {:one => "1 post", :other => "{{count}} posts"},
+      :my_topics      => "Minhas discussões",
+      :new_topic      => "Nova discussão",
+      :post_age       => "Há {{when}}",
+      :by_user        => "por {{user}}",
+      :view           => "ler",
+      :views_forums   => {
+          :unmoderated  => "Este fórum não é moderado."
       },
-      :post_age => "Há {{when}}",
-      :by_user => "por {{user}}",
-      :view => "ler",
+
+      # Session
+      :login_name           => "Usuário",
+      :password             => "Senha",
+      :log_in               => "Entrar",
+      :remember_me          => "Lembrar de mim",
+      :or_login_with_openid => "ou entre pelo OpenID",
+      :views_users          => {
+          :reset_password => "Esqueci minha senha"
+      },
     }
   }
 }
