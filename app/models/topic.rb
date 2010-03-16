@@ -39,6 +39,7 @@ class Topic < ActiveRecord::Base
   
   has_permalink :title, :scope => :forum_id
 
+
   def to_s
     title
   end

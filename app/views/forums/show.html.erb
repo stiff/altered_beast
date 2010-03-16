@@ -70,7 +70,7 @@
     <%= "</strong>" if topic.sticky? %>
     <% if topic.paged? -%>
       <small><%= link_to I18n.t('txt.goto_last_page', :default => 'last'), forum_topic_path(@forum, topic, :page => topic.last_page) %></small>
-    <% end -%>
+    <% end -%> (#java #ruby)
   </td>
   <td class="ca inv stat"><%= topic.posts.size %></td>
   <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>

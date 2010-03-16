@@ -31,6 +31,7 @@ class Forum < ActiveRecord::Base
     find :all, :order => 'position'
   end
   
+
   def to_param
     permalink
   end

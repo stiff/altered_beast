@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   include User::Editable
   
+  
   formats_attributes :body
 
   # author of post
