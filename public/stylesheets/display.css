@@ -445,6 +445,16 @@ p
 	padding-left:1em;
 }
 
+#header h2,
+#header h2 a
+{
+	font-weight:normal;
+	margin:0;
+	color:#fff;
+	border:0;
+	text-decoration:none;
+}
+
 #header ul#nav
 {
 	float:right;
