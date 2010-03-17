@@ -18,6 +18,16 @@ namespace :app do
       say site.errors.full_messages.to_sentence
       debugger
     end
+    
+    forum = Forum.new :site => site, :permalink => "arquitetura", :name => "arquitetura"
+    begin
+      forum.save!
+    rescue ActiveRecord::RecordInvalid
+      say "The forum didn't validate for whatever reason. Fix and call site.save!"
+      say forum.errors.full_messages.to_sentence 
+      debugger
+    end
+    
     say "Site created successfully"
     say site.inspect
     puts
@@ -43,5 +53,4 @@ namespace :app do
     say user.inspect
     puts
   end
-  
 end
