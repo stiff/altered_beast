@@ -1,7 +1,7 @@
-class PostsController < ApplicationController
+class PostsController < SessionsController
   before_filter :find_parents
   before_filter :find_post, :only => [:edit, :update, :destroy]
-
+  prepend_before_filter :login_filter, :only => :create
   # /posts
   # /users/1/posts
   # /forums/1/posts

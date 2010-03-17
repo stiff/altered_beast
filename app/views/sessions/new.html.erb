@@ -11,23 +11,16 @@
 </div>
 
 <div id="password_fields">
-<p><%= label_tag I18n.t('txt.login_name', :default => 'Login') %><br />
-<%= text_field_tag 'login', @login %></p>
-
-<p><%= label_tag I18n.t('txt.password', :default => 'Password') %><br/>
-<%= password_field_tag 'password', nil %></p>
-
-<p><%= label_tag 'remember_me', I18n.t('txt.remember_me', :default => 'Remember me') %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
-
+<%= render :partial => "form"%>
 <p><%= submit_tag I18n.t('txt.log_in', :default => 'Log in') %>
-   <%= link_to_function(I18n.t('txt.views_users.reset_password', :default => "reset password"), "$('reset-password').toggle();") %>
-   | <a href="#" onclick="LoginForm.setToOpenID()"><%= I18n.t('txt.or_login_with_openid', :default => 'login with OpenID') %></a>
 </p>
 </div>
+<%= link_to_function(I18n.t('txt.views_users.reset_password', :default => "reset password"), "$('reset-password').toggle();") %>
+| <a href="#" onclick="LoginForm.setToOpenID()"><%= I18n.t('txt.or_login_with_openid', :default => 'login with OpenID') %></a>
+
+
 
 <% end -%>
-
 <% form_tag users_path, :id => 'reset-password', :style => 'display:none' do -%>
 
   <hr />

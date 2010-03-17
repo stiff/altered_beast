@@ -23,8 +23,12 @@ class ApplicationController < ActionController::Base
     @page ||= params[:page].blank? ? 1 : params[:page].to_i
   end
 
-  private
+  protected
+  def login_filter
+    password_authentication params[:login].downcase, params[:password], false
+  end
 
+  private
   def set_language
     I18n.locale = :en || I18n.default_locale
   end

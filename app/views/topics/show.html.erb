@@ -116,7 +116,7 @@
   </td>
   <td class="body entry-content" id="post-body-<%= post.id %>">
 
-    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in? && @posts.first == post %>
+    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if @posts.first == post %>
 
       <% if post.user.active? %>
         <%= post.body_html %>
@@ -132,7 +132,6 @@
 <%= will_paginate @posts %>
 <% end -%>
 
-<% if logged_in? %>
 <div id="edit"></div>
 <% if @topic.locked? -%>
 <p>
@@ -157,6 +156,9 @@
         <%= render :partial => "posts/formatting" %>
       </td>
     </tr>
+       <div id="login">
+         <%= render :partial => "sessions/form"%>
+       </div>
     <tr>
       <td valign="bottom" style="padding-bottom:15px;">
        <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
@@ -166,7 +168,6 @@
   <% end -%>
 </div>
 </div>
-<% end %>
 <% end %>
 
 <div class="crumbs" style="margin-top:1.1em;">

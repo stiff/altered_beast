@@ -27,11 +27,11 @@ class SessionsController < ApplicationController
 
   protected
   
-  def password_authentication(name, password)
+  def password_authentication(name, password, should_redirect = true)
     if @current_user = current_site.users.authenticate(name, password)
-      successful_login
+      successful_login(should_redirect)
     else
-      failed_login I18n.t('txt.invalid_login', :default => "Invalid login")
+      failed_login I18n.t('txt.invalid_login', :default => "Invalid login"), should_redirect
    end
   end
 
@@ -61,18 +61,18 @@ class SessionsController < ApplicationController
 
 
   private
-  def successful_login
+  def successful_login(should_redirect = true)
     flash[:notice] = I18n.t 'txt.successful_login', :default => "Logged in successfully"
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     session[:user_id] = @current_user.id
-    redirect_back_or_default('/')
+    redirect_back_or_default('/') if should_redirect
   end
 
-  def failed_login(message)
+  def failed_login(message, should_redirect = true)
     @remember_me = params[:remember_me]
     flash[:error] = message
-    render :action => "new"
+    redirect_back_or_default(login_path) if should_redirect
   end
 
 end
