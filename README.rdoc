@@ -30,3 +30,15 @@ Check out the code via git:
     Follow the instructions to create your database and load users.
     Start the application with script/server and visit http://localhost:3000 to 
     visit your new forum.
+    
+    
+=== FAQ
+
+How do I paginate?
+
+* Open post.rb and topic.rb and add the pagination configuration:
+
+def self.per_page
+	5
+end
+
