@@ -156,7 +156,7 @@
       :created_by     => "código criado por",
       :moderator      => "Moderador",
       :count_topics   => {:one => "1 discussão", :other => "{{count}} discussões"},
-      :count_posts    => {:one => "1 post", :other => "{{count}} posts"},
+      :count_posts    => {:one => "1 mensagem", :other => "{{count}} mensagens"},
       :my_topics      => "Minhas discussões",
       :new_topic      => "Nova discussão",
       :post_age       => "Há {{when}}",
@@ -205,15 +205,15 @@
           :formatting_italics     => "_itálico_",
           :formatting_blockquote  => "'bq. <span>(citação)</span>'",
           :formatting_list        => "* ou # <span>(listas)</span>",
-          :delete                 => "Apagar post",
+          :delete                 => "Apagar mensagem",
       },
       :admin        => {
-          :edit_post                 => "Editar post",
+          :edit_post                 => "Editar mensagem",
           :user_is_an_administrator  => "Administrador",
       },
 
       # User
-      :views_users  => {
+      :views_users         => {
           :basics_title              => "Informações Principais",
           :email_title               => "Email",
           :password_title            => "Senha",
@@ -223,7 +223,7 @@
           :change_email_or_password  => "Salvar email e/ou senha",
           :profile                   => "Perfil do Usuário",
           :display_name              => "Nome",
-          :display_name_or_login     => "Nome ou login",
+          :display_name_or_login     => "Nome / Login",
           :openid_url_title          => "OpenID",
           :open_id_field             => "URL da Identidade OpenID",
           :website_title             => "Endereço Web",
@@ -232,7 +232,15 @@
           :update_profile            => "Salvar perfil",
           :avatars_title             => "Avatar",
           :gravatar_notice           => "Para ter seu avatar exibido neste fórum, registre-se no {{gravatar}}.",
+
+          :find_a_user               => "Busca de Usuários",
+          :search_title              => "Procurar",
+          :posts_title               => "Mensagens",
+          :current_status_title      => "Status"
       },
+      :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
+      :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
+      :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
     }
   }
 }

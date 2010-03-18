@@ -3,7 +3,7 @@
 <% form_tag users_path, :method => 'get' do -%>
 <p>
 <label><%= I18n.t 'txt.views_users.display_name_or_login', :default => 'Display name or login' %></label>
-<%= text_field_tag :q, params[:q] %> 
+<%= text_field_tag :q, params[:q] %>
 <%= submit_tag I18n.t('txt.views_users.search_title', :default => "Search") %></p>
 <% end -%>
 
@@ -23,7 +23,7 @@
     <th><%= I18n.t 'txt.views_users.website_title', :default => 'Website' %></th>
     <th width="1%"><%= I18n.t 'txt.views_users.posts_title', :default => 'Posts' %></th>
   </tr>
-<% @users.each do |user|-%>  
+<% @users.each do |user|-%>
   <tr>
     <td><%= link_to h(user.display_name || user.login), user, :class => (user.admin? ? "admin" : nil) %>
       <span style="color:#666">
