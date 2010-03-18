@@ -149,6 +149,7 @@
       :signup   => "Cadastro",
       :login    => "Entrar",
       :or       => " | ",
+      :save     => "Salvar",
 
       # Forum
       :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
@@ -191,9 +192,10 @@
       :edit             => "Editar",
       :delete           => "Apagar",
       :views_topics => {
-          :topic      => "Título",
-          :body       => "Texto",
-          :save_reply => "Responder",
+          :topic        => "Título",
+          :body         => "Texto",
+          :save_reply   => "Responder",
+          :delete_sure  => "Esta discussão será apagada.",
       },
 
       # Posts
@@ -206,7 +208,30 @@
           :delete                 => "Apagar post",
       },
       :admin        => {
-          :edit_post => "Editar post",
+          :edit_post                 => "Editar post",
+          :user_is_an_administrator  => "Administrador",
+      },
+
+      # User
+      :views_users  => {
+          :basics_title              => "Informações Principais",
+          :email_title               => "Email",
+          :password_title            => "Senha",
+          :password_field            => "Digite a nova senha duas vezes. Deixe em branco para não alterar.",
+          :once                      => "senha",
+          :and_again                 => "confirmação",
+          :change_email_or_password  => "Salvar email e/ou senha",
+          :profile                   => "Perfil do Usuário",
+          :display_name              => "Nome",
+          :display_name_or_login     => "Nome ou login",
+          :openid_url_title          => "OpenID",
+          :open_id_field             => "URL da Identidade OpenID",
+          :website_title             => "Endereço Web",
+          :without_http              => "sem http://",
+          :bio_title                 => "Sobre mim",
+          :update_profile            => "Salvar perfil",
+          :avatars_title             => "Avatar",
+          :gravatar_notice           => "Para ter seu avatar exibido neste fórum, registre-se no {{gravatar}}.",
       },
     }
   }
