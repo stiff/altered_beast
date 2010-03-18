@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  def login_filter
+  def login_filter    
     password_authentication params[:login].downcase, params[:password], false
   end
 

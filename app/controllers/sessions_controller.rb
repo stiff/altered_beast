@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     if @current_user = current_site.users.authenticate(name, password)
       successful_login(should_redirect)
     else
-      failed_login I18n.t('txt.invalid_login', :default => "Invalid login"), should_redirect
+      failed_login I18n.t('txt.invalid_login', :default => "Invalid login")
    end
   end
 
@@ -69,10 +69,10 @@ class SessionsController < ApplicationController
     redirect_back_or_default('/') if should_redirect
   end
 
-  def failed_login(message, should_redirect = true)
+  def failed_login(message)
     @remember_me = params[:remember_me]
     flash[:error] = message
-    redirect_back_or_default(login_path) if should_redirect
+    redirect_back_or_default(login_path)
   end
 
 end

@@ -16,6 +16,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    store_location
     respond_to do |format|
       format.html do
         if logged_in?
