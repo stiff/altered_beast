@@ -148,6 +148,7 @@
       :logout   => "Sair",
       :signup   => "Cadastro",
       :login    => "Entrar",
+      :or       => " | ",
 
       # Forum
       :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
@@ -172,9 +173,38 @@
       :remember_me          => "Lembrar de mim",
       :or_login_with_openid => "Entre pelo OpenID",
       :views_users          => {
-          :reset_password => "Esqueci minha senha",
+          :reset_password   => "Esqueci minha senha",
           :email_directions => "Informe seu endereço de email:",
-          :send_email     => "Enviar link por email"
+          :send_email       => "Enviar link por email"
+      },
+
+      # Topics
+      :sticky           => "fixo",
+      :locked           => "trancado",
+      :post_topic       => "Criar discussão",
+      :monitor_topic    => "Monitorar discussão",
+      :monitoring_topic => "Monitorando discussão",
+      :count_voices     => {:one => "1 participante", :other => "{{count}} participantes"},
+      :voices           => "Participantes",
+      :reply_to_topic   => "Responder",
+      :save_changes     => "Salvar alterações",
+      :views_topics => {
+          :topic      => "Título",
+          :body       => "Texto",
+          :save_reply => "Responder",
+      },
+
+      # Posts
+      :views_posts  => {
+          :formatting_help        => "Formatação",
+          :formatting_bold        => "*negrito*",
+          :formatting_italics     => "_itálico_",
+          :formatting_blockquote  => "'bq. <span>(citação)</span>'",
+          :formatting_list        => "* ou # <span>(listas)</span>",
+          :delete                 => "Apagar post",
+      },
+      :admin        => {
+          :edit_post => "Editar post",
       },
     }
   }
