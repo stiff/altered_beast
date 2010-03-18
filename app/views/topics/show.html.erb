@@ -155,16 +155,21 @@
       <td valign="top">
         <%= render :partial => "posts/formatting" %>
       </td>
-    </tr>
-       <div id="login">
-         <%= render :partial => "sessions/form"%>
-       </div>
+    </tr>       
     <tr>
       <td valign="bottom" style="padding-bottom:15px;">
        <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
      </td>
    </tr>
   </table>
+  <div>
+       <div id="login" style="float:left; width:200px;">
+         <%= render :partial => "sessions/form"%>
+       </div>
+       <div id="cadastro" style="float:left;>
+         <%= render :partial => "sessions/form"%>
+       </div>  
+  </div>
   <% end -%>
 </div>
 </div>
