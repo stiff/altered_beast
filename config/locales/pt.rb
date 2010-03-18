@@ -188,6 +188,8 @@
       :voices           => "Participantes",
       :reply_to_topic   => "Responder",
       :save_changes     => "Salvar alterações",
+      :edit             => "Editar",
+      :delete           => "Apagar",
       :views_topics => {
           :topic      => "Título",
           :body       => "Texto",
