@@ -213,6 +213,12 @@
       },
 
       # User
+      :password_confirm    => "Confirmação de Senha",
+      :openid_url          => "URL do OpenID (opcional)",
+      :sign_up             => "Cadastrar",
+      :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
+      :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
+      :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
       :views_users         => {
           :basics_title              => "Informações Principais",
           :email_title               => "Email",
@@ -238,9 +244,6 @@
           :posts_title               => "Mensagens",
           :current_status_title      => "Status"
       },
-      :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
-      :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
-      :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
     }
   }
 }
