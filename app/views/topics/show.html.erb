@@ -167,7 +167,10 @@
          <%= render :partial => "sessions/form"%>
        </div>
        <div id="cadastro" style="float:left;>
-         <%= render :partial => "sessions/form"%>
+        <% fields_for :user do |f| %>
+            <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+        <% end %>       
+        
        </div>  
   </div>
   <% end -%>

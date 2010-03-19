@@ -1,21 +1,7 @@
 <%= error_messages_for :user %>
 <% form_for :user, :url => users_path do |f| -%>
-<p><label for="login"><%= I18n.t 'txt.login_name', :default => 'Login' %></label><br/>
-<%= f.text_field :login %></p>
 
-<p><label for="email"><%= I18n.t 'txt.email', :default => 'Email' %></label><br/>
-<%= f.text_field :email %></p>
-
-<p><label for="password"><%= I18n.t 'txt.password', :default => 'Password' %></label><br/>
-<%= f.password_field :password %></p>
-
-<p><label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label><br/>
-<%= f.password_field :password_confirmation %></p>
-
-<p><label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label><br />
-<%= f.text_field :openid_url %>
-</p>
-
+<%= render :partial => "form_new",:locals=>{:f=>f} %>
 <%#= render :partial => 'captcha' # enable for brainbuster %>
 
 <p><%= submit_tag I18n.t('txt.sign_up', :default => 'Sign up') %></p>
