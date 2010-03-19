@@ -1,7 +1,7 @@
 class Site < ActiveRecord::Base
   class UndefinedError < StandardError; end
 
-  has_many :users, :conditions => {:state => 'active'}
+  has_many :users, :conditions => ["state in ('active', 'pending')"]
   has_many :all_users, :class_name => 'User'
   
   has_many :forums

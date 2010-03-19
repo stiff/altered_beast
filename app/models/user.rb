@@ -81,5 +81,9 @@ class User < ActiveRecord::Base
     options[:except] << :email << :login_key << :login_key_expires_at << :password_hash << :openid_url << :activated << :admin
     super
   end
+  
+  def count_messages
+    return posts.count
+  end
 
 end

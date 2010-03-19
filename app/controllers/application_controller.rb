@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   
   def create_user
     cookies.delete :auth_token
-    @user = current_site.users.build(params[:user])    
+    @user = current_site.users.build(params[:user])
     @user.save if @user.valid?
     @user.register! if @user.valid?
     unless @user.new_record?
