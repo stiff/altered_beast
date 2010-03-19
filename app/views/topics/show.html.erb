@@ -17,11 +17,11 @@
 
 <% form_tag monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do -%>
 <div>
-  <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %> 
+  <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %>
     onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => monitorship_path(@forum, @topic), :method => :delete %>}" />
   <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
   <%= hidden_field_tag '_method', 'delete' if @monitoring %>
-  <%= submit_tag :Set, :id => 'monitor_submit' %>
+  <%= submit_tag I18n.t 'txt.set', :default => "Set", :id => 'monitor_submit' %>
 </div>
 <% end -%>
 
@@ -30,8 +30,8 @@
 
 <div class="crumbs">
   <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
-  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> 
-  <% 
+  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
+  <%
   page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
   if page and page!=1 %>
   <small style="color:#ccc">
@@ -115,7 +115,7 @@
 
   </td>
   <td class="body entry-content" id="post-body-<%= post.id %>">
-    
+
     <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if (@posts.first == post && can_commnet?) %>
       <%= post.body_html %>
   </td>
@@ -123,14 +123,14 @@
 
 <% end %>
 </table>
-       
+
 <%= will_paginate @posts %>
 <% end -%>
 
 <div id="edit"></div>
 <% if @topic.locked? -%>
 <p>
-    <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => I18n.t('txt.views_topics.topic_locked', :default => "Topic locked") %> 
+    <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => I18n.t('txt.views_topics.topic_locked', :default => "Topic locked") %>
     <label>
     <%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
 </p>
@@ -151,7 +151,7 @@
         <td valign="top">
           <%= render :partial => "posts/formatting" %>
         </td>
-      </tr>       
+      </tr>
       <tr>
         <td valign="bottom" style="padding-bottom:15px;">
          <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
@@ -166,9 +166,9 @@
          <div id="cadastro" style="float:left;>
           <% fields_for :user do |f| %>
               <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-          <% end %>       
-        
-         </div>  
+          <% end %>
+
+         </div>
     </div>
     <%end%>
     <% end -%>
