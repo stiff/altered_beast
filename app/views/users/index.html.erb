@@ -31,7 +31,7 @@
       </span>
 	  </td>
 	<% if logged_in? && current_user.admin? -%>
-		<td><%= user.state %></td>
+		<td><%= I18n.t 'txt.user_'+user.state, :default => user.state %></td>
 	<% end -%>
     <td class="la">
       <% unless user.website.blank? %>

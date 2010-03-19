@@ -138,6 +138,7 @@
       :login    => "Entrar",
       :or       => " | ",
       :save     => "Salvar",
+      :home     => "Início",
 
       # Forum
       :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
@@ -208,6 +209,8 @@
       :signup_complete     => "Conta ativada.",
       :user_suspended      => "O usuário está suspenso.",
       :user_unsuspended    => "O usuário não está mais suspenso.",
+      :user_active         => "ativo",
+      :user_pending        => "pendente",
       :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
       :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },

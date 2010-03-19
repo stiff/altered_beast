@@ -17,7 +17,7 @@
 
 <div id="header">
   <ul id="nav">
-    <li><%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path, :rel => 'home' %></li>
+    <li><%= link_to I18n.t('txt.home', :default => 'Home'), root_path, :rel => 'home' %></li>
     <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
 
     <% if logged_in? -%>
