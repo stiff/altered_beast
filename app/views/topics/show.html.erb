@@ -115,14 +115,9 @@
 
   </td>
   <td class="body entry-content" id="post-body-<%= post.id %>">
-
-    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if @posts.first == post %>
-
-      <% if post.user.active? %>
-        <%= post.body_html %>
-      <% else %>
-        <p>(<% I18n.t 'txt.suspended_user_post', :default => 'This post has been removed' %>)</p>
-      <% end %>
+    
+    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if (@posts.first == post && can_commnet?) %>
+      <%= post.body_html %>
   </td>
 </tr>
 
@@ -143,41 +138,43 @@
 
 <p><%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "utility", :id => 'reply-link' %></p>
 
+<% if can_commnet? %>
 <div id="reply" class="editbox">
-<div class="container">
-  <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
-  <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-      <td rowspan="2" width="70%">
-        <%= f.text_area :body, :rows => 8 %>
-      </td>
-      <td valign="top">
-        <%= render :partial => "posts/formatting" %>
-      </td>
-    </tr>       
-    <tr>
-      <td valign="bottom" style="padding-bottom:15px;">
-       <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
-     </td>
-   </tr>
-  </table>
-  <%if !logged_in?%>
-  <div>
-       <div id="login" style="float:left; width:200px;">
-         <%= render :partial => "sessions/form"%>
-       </div>
-       <div id="cadastro" style="float:left;>
-        <% fields_for :user do |f| %>
-            <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-        <% end %>       
+  <div class="container">
+    <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
+    <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td rowspan="2" width="70%">
+          <%= f.text_area :body, :rows => 8 %>
+        </td>
+        <td valign="top">
+          <%= render :partial => "posts/formatting" %>
+        </td>
+      </tr>       
+      <tr>
+        <td valign="bottom" style="padding-bottom:15px;">
+         <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
+       </td>
+     </tr>
+    </table>
+    <%if !logged_in?%>
+    <div>
+         <div id="login" style="float:left; width:200px;">
+           <%= render :partial => "sessions/form"%>
+         </div>
+         <div id="cadastro" style="float:left;>
+          <% fields_for :user do |f| %>
+              <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+          <% end %>       
         
-       </div>  
+         </div>  
+    </div>
+    <%end%>
+    <% end -%>
   </div>
-  <%end%>
-  <% end -%>
 </div>
-</div>
+<% end %>
 <% end %>
 
 <div class="crumbs" style="margin-top:1.1em;">

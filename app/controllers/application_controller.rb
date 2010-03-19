@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   protected
   def login_filter    
     if !logged_in?
-        if params["user[password_confirmation]"]    
+        if params["user[password_confirmation]"].nil? || params["user[password_confirmation]"].empty?
           password_authentication params[:login].downcase, params[:password], false                      
         else
           create_user

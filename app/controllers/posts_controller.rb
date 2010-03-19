@@ -2,6 +2,7 @@ class PostsController < SessionsController
   before_filter :find_parents
   before_filter :find_post, :only => [:edit, :update, :destroy]
   prepend_before_filter :login_filter, :only => :create
+  before_filter :validate_user, :only => [:create, :destroy]
   # /posts
   # /users/1/posts
   # /forums/1/posts
@@ -88,4 +89,14 @@ protected
       raise ActiveRecord::RecordNotFound
     end
   end
+  
+private
+  def validate_user
+    unless current_user.active?
+      flash[:error] = I18n.t 'txt.messages_until_activate', 
+        :default => "You can not post more than 5 messages until you activate your account. Please click the link in your email to activate your account"
+      redirect_back_or_default(forum_topic_path(@forum, @topic))
+    end
+  end
+
 end

@@ -67,7 +67,11 @@ module ApplicationHelper
   def for_moderators_of(record, &block)
     moderator_of?(record) && concat(capture(&block))
   end
-
+  
+  def can_commnet?
+    !logged_in? || current_user.active?
+  end
+  
   # i18n do will_paginate
 
   include WillPaginate::ViewHelpers
@@ -79,5 +83,4 @@ module ApplicationHelper
   alias_method_chain :will_paginate, :i18n
 
   # /i18n
-
 end
