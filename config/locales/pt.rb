@@ -173,11 +173,6 @@
       :log_in               => "Entrar",
       :remember_me          => "Lembrar de mim",
       :or_login_with_openid => "Entre pelo OpenID",
-      :views_users          => {
-          :reset_password   => "Esqueci minha senha",
-          :email_directions => "Informe seu endereço de email:",
-          :send_email       => "Enviar link por email"
-      },
 
       # Topics
       :sticky           => "fixo",
@@ -220,6 +215,9 @@
       :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
       :views_users         => {
+          :reset_password   => "Esqueci minha senha",
+          :email_directions => "Informe seu endereço de email:",
+          :send_email       => "Enviar link por email",
           :basics_title              => "Informações Principais",
           :email_title               => "Email",
           :password_title            => "Senha",
