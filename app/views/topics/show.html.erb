@@ -162,6 +162,7 @@
      </td>
    </tr>
   </table>
+  <%if !logged_in?%>
   <div>
        <div id="login" style="float:left; width:200px;">
          <%= render :partial => "sessions/form"%>
@@ -173,6 +174,7 @@
         
        </div>  
   </div>
+  <%end%>
   <% end -%>
 </div>
 </div>
