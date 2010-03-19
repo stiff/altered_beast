@@ -18,10 +18,12 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
+    store_location
   end
 
   def create
-      create_user
+      @user = create_user
+      p "==========================#{@user.inspect}"
   end
 
   def settings

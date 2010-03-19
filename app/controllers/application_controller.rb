@@ -26,28 +26,31 @@ class ApplicationController < ActionController::Base
   protected
   def login_filter    
     if !logged_in?
-        if params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
-          user = User.new
-          user.login = params[:login]
-          user.password = params[:password]
-        else
+        unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
+          password_authentication( user.login.downcase, user.password.password, false )
+        else
+          password_authentication( params[:login].downcase, params[:password].password, false )
         end
-          password_authentication user.login.downcase, user.password, false                      
     end
   end
   
-  def create_user(sould_redirect = true)
+  def create_user(should_redirect = true)
     cookies.delete :auth_token
     @user = current_site.users.build(params[:user])
     @user.save if @user.valid?
     @user.register! if @user.valid?
     unless @user.new_record?
-      redirect_back_or_default('/login') if sould_redirect
+      redirect_back_or_default(login_path) if should_redirect
       flash[:notice] = I18n.t 'txt.activation_required', 
         :default => "Thanks for signing up! Please click the link in your email to activate your account"
     else
-      render :action => 'new' if sould_redirect
+      flash[:error] = "#{flash[:error]} #{@user.error_messages}"
+      if should_redirect
+        redirect_back_or_default(login_path)
+      else
+        render :action => "new", :controller => "users"
+      end
     end
     @user
   end
