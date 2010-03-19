@@ -180,7 +180,11 @@
       },
 
       # Posts
-      :views_posts  => {
+      :recent_posts       => "Mensagens recentes",
+      :count_posts_found  => {:zero => "nenhuma mensagem", :one => "1 mensagem", :other => "{{count}} mensagens" },
+      :topic              => "Discussão",
+      :forum              => "Fórum",
+      :views_posts        => {
           :formatting_help        => "Formatação",
           :formatting_bold        => "*negrito*",
           :formatting_italics     => "_itálico_",
@@ -188,7 +192,7 @@
           :formatting_list        => "* ou # <span>(listas)</span>",
           :delete                 => "Apagar mensagem",
       },
-      :admin        => {
+      :admin              => {
           :edit_post                 => "Editar mensagem",
           :user_is_an_administrator  => "Administrador",
       },
@@ -197,6 +201,7 @@
       :password_confirm    => "Confirmação de Senha",
       :openid_url          => "URL do OpenID (opcional)",
       :sign_up             => "Cadastrar",
+      :activation_required => "Seu cadastro foi feito. Ative sua conta clicando no link enviado ao seu email.",
       :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
       :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
