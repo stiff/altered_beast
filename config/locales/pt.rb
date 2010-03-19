@@ -58,16 +58,13 @@
     },
 
     # Active Record
-    :active_record => {
-      :error => {
-        :header_message => ["Couldn't save this {{object_name}}: 1 error", "Couldn't save this {{object_name}}: {{count}} errors."],
-        :message => "Please check the following fields:"
-      }
-    },
     :activerecord => {
+      :models     => {
+          :user         => "usuário",
+      },
       :attributes => {
           :user   => {
-              :login    => "Usuário",
+              :login    => "Nome de Usuário",
               :password => "Senha",
               :password_confirmation => "Confirmação de Senha",
           },
@@ -207,6 +204,10 @@
       :openid_url          => "URL do OpenID (opcional)",
       :sign_up             => "Cadastrar",
       :activation_required => "Seu cadastro foi feito. Ative sua conta clicando no link enviado ao seu email.",
+      :account_updated     => "Informações de conta atualizadas com sucesso.",
+      :signup_complete     => "Conta ativada.",
+      :user_suspended      => "O usuário está suspenso.",
+      :user_unsuspended    => "O usuário não está mais suspenso.",
       :count_users         => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
       :count_users_active  => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },

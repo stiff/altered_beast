@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     current_site
     render :action => "edit"
   end
-  
+
   def edit
     @user = find_user
   end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user = admin? ? find_user : current_user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User account was successfully updated.'
+        flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
         format.html { redirect_to(settings_path) }
         format.xml  { head :ok }
       else
@@ -53,20 +53,20 @@ class UsersController < ApplicationController
     self.current_user = params[:activation_code].blank? ? false : current_site.all_users.find_in_state(:first, :pending, :conditions => {:activation_code => params[:activation_code]})
     if logged_in?
       current_user.activate!
-      flash[:notice] = "Signup complete!"
+      flash[:notice] = I18n.t 'txt.signup_complete', :default => "Signup complete!"
     end
     redirect_back_or_default('/')
   end
 
   def suspend
-    @user.suspend! 
-    flash[:notice] = "User was suspended."
+    @user.suspend!
+    flash[:notice] = I18n.t 'txt.user_suspended', :default => "User was suspended."
     redirect_to users_path
   end
 
   def unsuspend
-    @user.unsuspend! 
-    flash[:notice] = "User was unsuspended."
+    @user.unsuspend!
+    flash[:notice] = I18n.t 'txt.user_unsuspended', :default => "User was unsuspended."
     redirect_to users_path
   end
 
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
-  
+
   def make_admin
     redirect_back_or_default('/') and return unless admin?
     @user = find_user
