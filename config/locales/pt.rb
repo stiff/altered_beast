@@ -162,6 +162,8 @@
       :log_in               => "Entrar",
       :remember_me          => "Lembrar de mim",
       :or_login_with_openid => "Entre pelo OpenID",
+      :successful_login     => "Login feito com sucesso",
+      :logged_out           => "Logout feito com sucesso",
 
       # Topics
       :sticky           => "fixo",
