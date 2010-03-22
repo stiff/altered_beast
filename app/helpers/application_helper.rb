@@ -68,7 +68,7 @@ module ApplicationHelper
     moderator_of?(record) && concat(capture(&block))
   end
   
-  def can_commnet?
+  def can_comment?
     !logged_in? || current_user.active?
   end
   

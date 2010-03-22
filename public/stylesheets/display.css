@@ -862,6 +862,12 @@ img.icon
 	background-repeat: no-repeat;
 	vertical-align: bottom;
 }
+.comment { 
+    float:right; 
+    font-weight:normal;
+	color:#c00;
+	font-size:0.8em;
+}
 img.reply { float:right; }
 img.orange { background-color:darkorange; }
 img.grey { background-color:#ccc; }

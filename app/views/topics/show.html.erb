@@ -67,10 +67,10 @@
 <%= will_paginate @posts %>
 
 <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
-
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
 <% for post in @posts do -%>
 <% unless post == @posts.first -%>
+
 <tr class="spacer">
   <td colspan="2">
     <a name="<%= dom_id post %>" id="<%= dom_id post %>">&nbsp;</a>
@@ -114,9 +114,8 @@
 
 
   </td>
-  <td class="body entry-content" id="post-body-<%= post.id %>">
-
-    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if (@posts.first == post && can_commnet?) %>
+  <td class="body entry-content" id="post-body-<%= post.id %>">    
+    <%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "comment", :id => 'reply-link' if (can_comment?) %>
       <%= post.body_html %>
   </td>
 </tr>
@@ -136,9 +135,10 @@
 </p>
 <% else -%>
 
+
 <p><%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "utility", :id => 'reply-link' %></p>
 
-<% if can_commnet? %>
+<% if can_comment? %>
 <div id="reply" class="editbox">
   <div class="container">
     <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
