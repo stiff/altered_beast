@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
           user = create_user false
           password_authentication( user.login.downcase, user.password.password, false )
         else
-          password_authentication( params[:login].downcase, params[:password].password, false )
+          password_authentication( params[:login].downcase, params[:password], false )
         end
     end
   end
