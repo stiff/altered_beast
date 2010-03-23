@@ -33,7 +33,7 @@
 </p>
 
 <% if @topics.total_entries -%>
-<% if logged_in? %>
+<% if can_comment? %>
 <p style="float:right; margin-top:0;"><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
 <% end %>
 <%= will_paginate @topics %>
