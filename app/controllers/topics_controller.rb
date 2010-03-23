@@ -1,7 +1,8 @@
-class TopicsController < ApplicationController
+class TopicsController < SessionsController
   before_filter :find_forum
   before_filter :find_topic, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :login_required, :only => [:edit, :create, :update, :destroy]
+  prepend_before_filter :login_filter, :only => :create
   def index
     respond_to do |format|
       format.html { redirect_to forum_path(@forum) }
@@ -32,6 +33,7 @@ class TopicsController < ApplicationController
   end
 
   def new
+    store_location
     @topic = Topic.new
 
     respond_to do |format|

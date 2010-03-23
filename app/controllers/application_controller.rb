@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_page
 #  before_filter :set_language
   before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
-
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e125a4be589f9d81263920581f6e4182'
@@ -28,7 +27,7 @@ class ApplicationController < ActionController::Base
     if !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
-          password_authentication( user.login.downcase, user.password.password, false )
+          password_authentication( user.login.downcase, user.password, false )
         else
           password_authentication( params[:login].downcase, params[:password], false )
         end
