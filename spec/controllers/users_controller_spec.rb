@@ -14,7 +14,7 @@ describe UsersController do
     lambda do
       create_user(:login => nil)
       assigns[:user].errors.on(:login).should_not be_nil
-      response.should_not be_success
+      flash[:error].should_not be_nil
     end.should_not change(User, :count)
   end
 
@@ -22,7 +22,7 @@ describe UsersController do
     lambda do
       create_user(:password => nil)
       assigns[:user].errors.on(:password).should_not be_nil
-      response.should_not be_success
+      flash[:error].should_not be_nil
     end.should_not change(User, :count)
   end
 
@@ -30,7 +30,7 @@ describe UsersController do
     lambda do
       create_user(:password_confirmation => nil)
       assigns[:user].errors.on(:password_confirmation).should_not be_nil
-      response.should_not be_success
+      flash[:error].should_not be_nil
     end.should_not change(User, :count)
   end
 
@@ -38,12 +38,12 @@ describe UsersController do
     lambda do
       create_user(:email => nil)
       assigns[:user].errors.on(:email).should_not be_nil
-      response.should_not be_success
+      flash[:error].should_not be_nil
     end.should_not change(User, :count)
   end
 
   it 'activates user' do
-#    sites(:default).users.authenticate(users(:pending).login, 'test').should be_nil
+    sites(:default).users.authenticate(users(:pending).login, 'test').should be_nil
     get :activate, :activation_code => users(:pending).activation_code
     response.should redirect_to('/')
     sites(:default).users.authenticate(users(:pending).login, 'test').should == users(:pending)
