@@ -1,6 +1,8 @@
 class Topic < ActiveRecord::Base
   include User::Editable
-
+  
+  acts_as_taggable
+  
   before_validation_on_create :set_default_attributes
   validates_presence_of :title
 

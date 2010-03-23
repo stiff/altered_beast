@@ -10,7 +10,6 @@
 <% end %>
 </ul>
 
-
 <% end # right content -%>
 
 <% if logged_in? %>
@@ -54,13 +53,14 @@
         <%= link_to(I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?')) %>
       <% end -%>
     </span>
-  <% end %>
+  <% end %>  
 </h1>
 
 <p class="subtitle">
   <%= feed_icon_tag @topic.title, formatted_forum_topic_posts_path(@forum, @topic, 'atom') %>
   <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
   <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
+  <%= display_linked_tags(@topic) %>
 </p>
 
 <% unless @posts.empty? -%>

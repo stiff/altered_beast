@@ -72,6 +72,14 @@ module ApplicationHelper
     !logged_in? || current_user.active?
   end
   
+  def display_linked_tags(topic)
+    topic.tag_list.map{|t| link_to("##{t}", tag_path(t))}.join(" ")
+  end
+  
+  def display_tags(topic)
+    topic.tag_list.map{|t| "##{t}"}.join(" ")
+  end
+  
   # i18n do will_paginate
 
   include WillPaginate::ViewHelpers

@@ -10,6 +10,12 @@
 <label style="margin-left:1em;">
 <%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
 </label>
+</p>
+
+<p>
+<label for="topic_tags"><%= I18n.t('txt.views_topics.tags', :default => 'Tags') %></label><br />
+<%= form.text_field :tags %>
+</label>
 <% end -%>
 
 </p>

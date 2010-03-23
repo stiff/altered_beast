@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   map.settings '/settings',                  :controller => 'users',    :action => 'settings'
   map.resource  :session
   
+  map.tag       '/tag/:tag_name',            :controller => 'tags',     :action => 'search'
+  
   map.with_options :controller => 'posts', :action => 'monitored' do |map|
     map.formatted_monitored_posts 'users/:user_id/monitored.:format'
     map.monitored_posts           'users/:user_id/monitored'
