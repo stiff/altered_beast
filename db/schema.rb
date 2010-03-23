@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090317123901) do
+ActiveRecord::Schema.define(:version => 20100323130451) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -90,6 +90,20 @@ ActiveRecord::Schema.define(:version => 20090317123901) do
     t.integer  "posts_count",  :default => 0
     t.text     "description"
     t.text     "tagline"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
   end
 
   create_table "topics", :force => true do |t|

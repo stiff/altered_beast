@@ -182,6 +182,8 @@
       :views            => "Visualizações",
       :latest_post      => "Última atualização",
       :set              => "Definir",
+      :topic_created    => "Tópico criado com sucesso",
+      :topic_updated    => "Tópico modificado com sucesso",
       :views_topics => {
           :topic        => "Título",
           :body         => "Texto",
@@ -194,6 +196,8 @@
       :count_posts_found  => {:zero => "nenhuma mensagem", :one => "1 mensagem", :other => "{{count}} mensagens" },
       :topic              => "Discussão",
       :forum              => "Fórum",
+      :post_updated       => "Mensagem modificada com sucesso",
+      :post_created       => "Post criado com sucesso",
       :views_posts        => {
           :formatting_help        => "Formatação",
           :formatting_bold        => "*negrito*",

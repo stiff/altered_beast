@@ -42,7 +42,7 @@ class PostsController < SessionsController
         format.html { redirect_to forum_topic_path(@forum, @topic) }
         format.xml  { render :xml  => @post.errors, :status => :unprocessable_entity }
       else
-        flash[:notice] = 'Post was successfully created.'
+        flash[:notice] = I18n.t 'txt.post_created', :default => 'Post was successfully created.'
         format.html { redirect_to(forum_topic_post_path(@forum, @topic, @post, :anchor => dom_id(@post))) }
         format.xml  { render :xml  => @post, :status => :created, :location => forum_topic_post_url(@forum, @topic, @post) }
       end
@@ -52,7 +52,7 @@ class PostsController < SessionsController
   def update
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        flash[:notice] = 'Post was successfully updated.'
+        flash[:notice] = I18n.t 'txt.post_updated', :default => 'Post was successfully updated.'
         format.html { redirect_to(forum_topic_path(@forum, @topic, :anchor => dom_id(@post))) }
         format.xml  { head :ok }
       else
@@ -89,11 +89,11 @@ protected
       raise ActiveRecord::RecordNotFound
     end
   end
-  
+
 private
   def validate_user
     unless current_user.active?
-      flash[:error] = I18n.t 'txt.messages_until_activate', 
+      flash[:error] = I18n.t 'txt.messages_until_activate',
         :default => "You can not post more than 5 messages until you activate your account. Please click the link in your email to activate your account"
       redirect_back_or_default(forum_topic_path(@forum, @topic))
     end

@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
       end
     end
   end
-  
+
   def edit
   end
 
@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
         format.html { render :action => "new" }
         format.xml  { render :xml  => @topic.errors, :status => :unprocessable_entity }
       else
-        flash[:notice] = 'Topic was successfully created.'
+        flash[:notice] = I18n.t 'txt.topic_created', :default => 'Topic was successfully created.'
         format.html { redirect_to(forum_topic_path(@forum, @topic)) }
         format.xml  { render :xml  => @topic, :status => :created, :location => forum_topic_url(@forum, @topic) }
       end
@@ -59,7 +59,7 @@ class TopicsController < ApplicationController
     current_user.revise @topic, params[:topic]
     respond_to do |format|
       if @topic.errors.empty?
-        flash[:notice] = 'Topic was successfully updated.'
+        flash[:notice] = I18.t 'txt.topic_updated', :default => 'Topic was successfully updated.'
         format.html { redirect_to(forum_topic_path(@forum, @topic)) }
         format.xml  { head :ok }
       else
@@ -82,7 +82,7 @@ protected
   def find_forum
     @forum = current_site.forums.find_by_permalink(params[:forum_id])
   end
-  
+
   def find_topic
     @topic = @forum.topics.find_by_permalink(params[:id])
   end
