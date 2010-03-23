@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  def login_filter    
+  def login_filter
     if !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
         end
     end
   end
-  
+
   def create_user(should_redirect = true)
     cookies.delete :auth_token
     @user = current_site.users.build(params[:user])
@@ -42,10 +42,10 @@ class ApplicationController < ActionController::Base
     @user.register! if @user.valid?
     unless @user.new_record?
       redirect_back_or_default(login_path) if should_redirect
-      flash[:notice] = I18n.t 'txt.activation_required', 
+      flash[:notice] = I18n.t 'txt.activation_required',
         :default => "Thanks for signing up! Please click the link in your email to activate your account"
     else
-      flash[:error] = "#{flash[:error]} #{@user.error_messages}"
+      flash[:error] = @user.errors.full_messages.uniq.join(" / ")
       if should_redirect
         redirect_back_or_default(login_path)
       else
