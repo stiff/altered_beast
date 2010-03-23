@@ -23,7 +23,6 @@ class UsersController < ApplicationController
 
   def create
       @user = create_user
-      p "==========================#{@user.inspect}"
   end
 
   def settings
