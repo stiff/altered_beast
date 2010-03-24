@@ -35,8 +35,11 @@ class PostsController < SessionsController
   end
 
   def create
-    @post = current_user.reply @topic, params[:post][:body]
-
+    if logged_in?
+      @post = current_user.reply @topic, params[:post][:body]
+    else
+      @post = Post.new    
+    end
     respond_to do |format|
       if @post.new_record?
         format.html { redirect_to forum_topic_path(@forum, @topic) }
@@ -91,8 +94,8 @@ protected
   end
 
 private
-  def validate_user
-    unless current_user.active?
+  def validate_user   
+    unless can_comment?
       flash[:error] = I18n.t 'txt.messages_until_activate',
         :default => "You can not post more than 5 messages until you activate your account. Please click the link in your email to activate your account"
       redirect_back_or_default(forum_topic_path(@forum, @topic))

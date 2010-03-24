@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   helper :all
-  helper_method :current_page
+  helper_method :current_page,:can_comment?
 #  before_filter :set_language
   before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
   # See ActionController::RequestForgeryProtection for details
@@ -17,23 +17,29 @@ class ApplicationController < ActionController::Base
   rescue_from Site::UndefinedError do |e|
     redirect_to new_site_path
   end
+  
+  def can_comment?
+    !logged_in? || current_user.active?
+  end  
 
   def current_page
     @page ||= params[:page].blank? ? 1 : params[:page].to_i
   end
 
   protected
+  
+  
   def login_filter
     if !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
-          password_authentication( user.login.downcase, user.password, false )
+          password_authentication( user.login.downcase, user.password, false ) unless user.new_record?
         else
           password_authentication( params[:login].downcase, params[:password], false )
         end
     end
   end
-
+  #mapa
   def create_user(should_redirect = true)
     cookies.delete :auth_token
     @user = current_site.users.build(params[:user])
@@ -46,8 +52,6 @@ class ApplicationController < ActionController::Base
     else
       flash[:error] = @user.errors.full_messages.uniq.join(" / ")
       if should_redirect
-        redirect_back_or_default(login_path)
-      else
         render :action => "new", :controller => "users"
       end
     end

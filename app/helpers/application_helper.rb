@@ -68,10 +68,6 @@ module ApplicationHelper
     moderator_of?(record) && concat(capture(&block))
   end
   
-  def can_comment?
-    !logged_in? || current_user.active?
-  end
-  
   def display_linked_tags(topic)
     topic.tag_list.map{|t| link_to("##{t}", tag_path(t))}.join(" ")
   end
