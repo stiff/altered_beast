@@ -14,23 +14,25 @@
 <% form_for :topic,
      :url  => forum_topics_path(@forum) do |f| -%>
 <%= render :partial => "form", :object => f %>
-    <%if can_comment?%>
-    <div>
-         <b><%= I18n.t 'txt.login', :default => 'New topic' %></b><br/>
-         <div id="login">
-           <%= render :partial => "sessions/form"%>
-         </div>
-         <b><%= I18n.t 'txt.sign_up', :default => 'New topic' %></b><br/>
-         <div id="cadastro">
-          <% fields_for :user do |f| %>
-              <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-          <% end %>
-
-         </div>
-    </div>
-    <%end%>
-    
-<%= submit_tag I18n.t('txt.post_topic', :default => 'Post topic') %>
+      <%unless logged_in?%>
+        <div style="float:left">
+        <b><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
+             <div id="login" style="float:left;width:200px">             
+               <%= render :partial => "sessions/form"%><br/>
+               <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic')%>
+             </div>
+     
+             <div id="cadastro" style="float:right;width:300px">
+              <% fields_for :user do |f| %>
+                  <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+              <% end %><br/>
+              <%= submit_tag I18n.t('txt.post_topic_and_create_user', :default => 'Create user and post topic')%>
+             </div>
+        </div>
+       <%end%>
+<div <%unless logged_in?%>style="float:left;margin-top:270px"<%end%>>      
+  <%= submit_tag I18n.t('txt.post_topic', :default => 'Post topic') if logged_in?%>
+</div>
 <% end -%>
 
 <%= javascript_tag "$('topic_title').focus();" %>

@@ -191,6 +191,8 @@
           :save_reply   => "Responder",
           :delete_sure  => "Esta discussão será apagada.",
       },
+      :post_topic_and_login => "Logar e postar",
+      :post_topic_and_create_user => "Cadastrar e postar",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
@@ -226,6 +228,7 @@
       :count_users           => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
       :count_users_active    => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking   => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
+      :login_or_signup_and_comment     => "Faça o login ou cadastre-se agora",
       :user_is_administrator => "Administrador",
       :views_users           => {
           :reset_password            => "Esqueci minha senha",
