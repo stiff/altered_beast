@@ -1,7 +1,7 @@
 module PathHelper
 
   def forum_posts_path(forum, data)
-    root_url
+    post_path(data)
   end
 
   def new_forum_topic_path(forum)
@@ -20,7 +20,7 @@ module PathHelper
     formatted_topic_posts_path(forum, topic, {})
   end
 
-  def forum_topic_posts_path(forum, topic, data)
+  def forum_topic_posts_path(forum, topic, data = {})
     topic_posts_path(topic, data)
   end
 
@@ -30,6 +30,14 @@ module PathHelper
 
   def edit_forum_topic_path(forum, topic)
     edit_topic_path(topic)
+  end
+
+  def edit_forum_topic_post_path(forum, topic, post, data = {})
+    edit_topic_post_path(topic, post, data)
+  end
+
+  def forum_topic_post_path(forum, topic, post, data = {})
+    topic_post_path(topic, post, data)
   end
 
 end

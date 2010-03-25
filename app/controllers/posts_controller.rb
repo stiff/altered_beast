@@ -38,7 +38,7 @@ class PostsController < SessionsController
     if logged_in?
       @post = current_user.reply @topic, params[:post][:body]
     else
-      @post = Post.new    
+      @post = Post.new
     end
     respond_to do |format|
       if @post.new_record?
@@ -78,8 +78,8 @@ protected
   def find_parents
     if params[:user_id]
       @parent = @user = User.find(params[:user_id])
-    elsif params[:forum_id]
-      @parent = @forum = Forum.find_by_permalink(params[:forum_id])
+    else
+      @parent = @forum = Forum.first
       @parent = @topic = @forum.topics.find_by_permalink(params[:topic_id]) if params[:topic_id]
     end
   end
@@ -94,7 +94,7 @@ protected
   end
 
 private
-  def validate_user   
+  def validate_user
     unless can_comment?
       flash[:error] = I18n.t 'txt.messages_until_activate',
         :default => "You can not post more than 5 messages until you activate your account. Please click the link in your email to activate your account"
