@@ -1,6 +1,6 @@
 module PathHelper
 
-  def forum_posts_path(forum, data)
+  def forum_posts_path(forum, data = {})
     post_path(data)
   end
 
