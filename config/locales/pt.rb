@@ -164,6 +164,7 @@
       :or_login_with_openid => "Entre pelo OpenID",
       :successful_login     => "Login feito com sucesso",
       :logged_out           => "Logout feito com sucesso",
+      :invalid_login        => "Usuário ou senha incorreta",
 
       # Topics
       :sticky           => "fixo",
