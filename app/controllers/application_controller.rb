@@ -1,7 +1,10 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+
   include AuthenticatedSystem
+  include PathHelper
+
   helper :all
   helper_method :current_page,:can_comment?
 #  before_filter :set_language
@@ -17,18 +20,18 @@ class ApplicationController < ActionController::Base
   rescue_from Site::UndefinedError do |e|
     redirect_to new_site_path
   end
-  
+
   def can_comment?
     !logged_in? || current_user.active?
-  end  
+  end
 
   def current_page
     @page ||= params[:page].blank? ? 1 : params[:page].to_i
   end
 
   protected
-  
-  
+
+
   def login_filter
     if !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?

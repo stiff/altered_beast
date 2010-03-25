@@ -67,15 +67,15 @@ module ApplicationHelper
   def for_moderators_of(record, &block)
     moderator_of?(record) && concat(capture(&block))
   end
-  
+
   def display_linked_tags(topic)
     topic.tag_list.map{|t| link_to("##{t}", tag_path(t))}.join(" ")
   end
-  
+
   def display_tags(topic)
     topic.tag_list.map{|t| "##{t}"}.join(" ")
   end
-  
+
   # i18n do will_paginate
 
   include WillPaginate::ViewHelpers
@@ -87,4 +87,11 @@ module ApplicationHelper
   alias_method_chain :will_paginate, :i18n
 
   # /i18n
+
+  # PATH
+
+  include PathHelper
+
+  # /PATH
+
 end

@@ -3,7 +3,7 @@ class TopicsController < SessionsController
   before_filter :find_topic, :only => [:show, :edit, :update, :destroy]
   before_filter :login_required, :only => [:edit, :update, :destroy]
   prepend_before_filter :login_filter, :only => :create
-  
+
   def index
     respond_to do |format|
       format.html { redirect_to forum_path(@forum) }
@@ -43,7 +43,7 @@ class TopicsController < SessionsController
     end
   end
 
-  def create    
+  def create
     if logged_in?
       @topic = current_user.post @forum, params[:topic]
     else
@@ -86,7 +86,8 @@ class TopicsController < SessionsController
 
 protected
   def find_forum
-    @forum = current_site.forums.find_by_permalink(params[:forum_id])
+    #@forum = current_site.forums.find_by_permalink(params[:forum_id])
+    @forum = current_site.forums.first
   end
 
   def find_topic
