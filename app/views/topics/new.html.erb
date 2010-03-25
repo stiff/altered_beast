@@ -14,17 +14,21 @@
 <% form_for :topic,
      :url  => forum_topics_path(@forum) do |f| -%>
 <%= render :partial => "form", :object => f %>
-    <div <%if logged_in?%>style="display:none"<%end%>>
-         <div id="login" style="float:left; width:200px;">
+    <%if can_comment?%>
+    <div>
+         <b><%= I18n.t 'txt.login', :default => 'New topic' %></b><br/>
+         <div id="login">
            <%= render :partial => "sessions/form"%>
          </div>
-         <div id="cadastro" style="float:left;>
+         <b><%= I18n.t 'txt.sign_up', :default => 'New topic' %></b><br/>
+         <div id="cadastro">
           <% fields_for :user do |f| %>
               <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
           <% end %>
 
          </div>
     </div>
+    <%end%>
     
 <%= submit_tag I18n.t('txt.post_topic', :default => 'Post topic') %>
 <% end -%>
