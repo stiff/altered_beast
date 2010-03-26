@@ -1,43 +1,51 @@
 module PathHelper
 
-  def forum_posts_path(forum, data = {})
-    post_path(data)
+  def forum_posts_path(forum, *args)
+    posts_path(*args)
   end
 
-  def new_forum_topic_path(forum)
-    new_topic_path
+  def new_forum_topic_path(forum, *args)
+    new_topic_path(*args)
   end
 
-  def forum_topic_path(forum, topic, data = {})
-    topic_path(topic, data)
+  def forum_topic_path(forum, *args)
+    topic_path(*args)
   end
 
-  def forum_path(forum)
-    root_path
+  def forum_path(forum, *args)
+    root_path(*args)
   end
 
-  def formatted_forum_topic_posts_path(forum, topic, format)
-    formatted_topic_posts_path(forum, topic, {})
+  def formatted_forum_topic_posts_path(forum, *args)
+    formatted_topic_posts_path(*args)
   end
 
-  def forum_topic_posts_path(forum, topic, data = {})
-    topic_posts_path(topic, data)
+  def forum_topic_posts_path(forum, *args)
+    topic_posts_path(*args)
   end
 
-  def forum_topics_path(forum)
-    topics_path
+  def forum_topics_path(forum, *args)
+    topics_path(*args)
   end
 
-  def edit_forum_topic_path(forum, topic)
-    edit_topic_path(topic)
+  def edit_forum_topic_path(forum, *args)
+    edit_topic_path(*args)
   end
 
-  def edit_forum_topic_post_path(forum, topic, post, data = {})
-    edit_topic_post_path(topic, post, data)
+  def edit_forum_topic_post_path(forum, *args)
+    edit_topic_post_path(*args)
   end
 
-  def forum_topic_post_path(forum, topic, post, data = {})
-    topic_post_path(topic, post, data)
+  def forum_topic_post_path(forum, *args)
+    topic_post_path(*args)
+  end
+
+  def forum_topic_post_url(forum, *args)
+    topic_post_url(*args)
+  end
+
+  def forum_topic_url(forum, *args)
+    topic_url(*args)
   end
 
 end
