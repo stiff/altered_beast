@@ -87,7 +87,7 @@ class TopicsController < SessionsController
 protected
   def find_forum
     #@forum = current_site.forums.find_by_permalink(params[:forum_id])
-    @forum = current_site.forums.first
+    @forum = Forum.first
   end
 
   def find_topic
