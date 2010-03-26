@@ -8,6 +8,7 @@ describe TopicsController, "GET #index" do
 
   before do
     @forum  = forums(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   it_assigns :forum, :topics => nil
@@ -32,6 +33,7 @@ describe TopicsController, "GET #show" do
   before do
     @forum  = forums(:default)
     @topic  = topics(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   it_assigns :topic, :forum, :posts, :session => {:topics => nil}
@@ -97,7 +99,6 @@ describe TopicsController, "GET #show" do
 
 protected
   def stub_topic!
-    Forum.stub!(:first).and_return(@forum)
     @forum.stub!(:topics).and_return([])
     @forum.topics.stub!(:find_by_permalink).with(@topic.to_param).and_return(@topic)
   end
@@ -111,6 +112,7 @@ describe TopicsController, "GET #new" do
   before do
     login_as :default
     @forum  = forums(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   it_assigns :forum, :topic
@@ -144,6 +146,7 @@ describe TopicsController, "GET #edit" do
     login_as :default
     @forum  = forums(:default)
     @topic  = topics(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   it_assigns :topic, :forum
@@ -156,6 +159,7 @@ describe TopicsController, "POST #create" do
   before do
     login_as :default
     @forum  = forums(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   describe TopicsController, "(successful creation)" do
@@ -210,6 +214,7 @@ describe TopicsController, "PUT #update" do
     login_as :default
     @forum = forums(:default)
     @topic = topics(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   describe TopicsController, "(successful save)" do
@@ -231,6 +236,7 @@ describe TopicsController, "PUT #update" do
     before do
       @attributes = {:title => ''}
       @topic.update_attributes @attributes
+      Forum.stub!(:first).and_return(@forum)
     end
 
     it_assigns :topic, :forum
@@ -256,6 +262,7 @@ describe TopicsController, "PUT #update" do
     before do
       @attributes = {:title => ''}
       @topic.update_attributes @attributes
+      Forum.stub!(:first).and_return(@forum)
     end
 
     it_assigns :topic, :forum
@@ -273,6 +280,7 @@ describe TopicsController, "DELETE #destroy" do
     login_as :default
     @forum = forums(:default)
     @topic = topics(:default)
+    Forum.stub!(:first).and_return(@forum)
   end
 
   it_assigns :topic, :forum

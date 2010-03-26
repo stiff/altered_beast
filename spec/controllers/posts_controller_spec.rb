@@ -10,6 +10,7 @@ module PostsControllerParentObjects
       @post  = posts(:default)
       @forum = forums(:default)
       @topic = topics(:default)
+      Forum.stub!(:first).and_return(@forum)
     end
   end
 end
