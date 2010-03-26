@@ -65,7 +65,7 @@ class TopicsController < SessionsController
     current_user.revise @topic, params[:topic]
     respond_to do |format|
       if @topic.errors.empty?
-        flash[:notice] = I18.t 'txt.topic_updated', :default => 'Topic was successfully updated.'
+        flash[:notice] = I18n.t 'txt.topic_updated', :default => 'Topic was successfully updated.'
         format.html { redirect_to(forum_topic_path(@forum, @topic)) }
         format.xml  { head :ok }
       else

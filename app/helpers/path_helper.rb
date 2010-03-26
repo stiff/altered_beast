@@ -8,16 +8,16 @@ module PathHelper
     new_topic_path(*args)
   end
 
-  def forum_topic_path(forum, *args)
+  def forum_topic_path(*args)
     topic_path(*args)
   end
 
   def forum_path(forum, *args)
-    root_path(*args)
+    root_path
   end
 
   def formatted_forum_topic_posts_path(forum, *args)
-    formatted_topic_posts_path(*args)
+    topic_posts_path(*args)
   end
 
   def forum_topic_posts_path(forum, *args)
@@ -46,6 +46,10 @@ module PathHelper
 
   def forum_topic_url(forum, *args)
     topic_url(*args)
+  end
+
+  def forum_url(*args)
+    root_url
   end
 
 end
