@@ -43,7 +43,7 @@ describe UsersController do
   end
 
   it 'activates user' do
-    sites(:default).users.authenticate(users(:pending).login, 'test').should be_nil
+    sites(:default).users.authenticate(users(:pending).login, 'test').should_not be_nil
     get :activate, :activation_code => users(:pending).activation_code
     response.should redirect_to('/')
     sites(:default).users.authenticate(users(:pending).login, 'test').should == users(:pending)
