@@ -8,7 +8,7 @@ module PathHelper
     new_topic_path(*args)
   end
 
-  def forum_topic_path(*args)
+  def forum_topic_path(forum=nil, *args)
     topic_path(*args)
   end
 
