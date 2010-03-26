@@ -52,4 +52,8 @@ module PathHelper
     root_url
   end
 
+  def forums_url(*args)
+    root_url
+  end
+
 end
