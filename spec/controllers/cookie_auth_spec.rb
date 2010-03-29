@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ForumsController, "(remember-me functionality)" do
+describe TopicsController, "(remember-me functionality)" do
   define_models
 
   before do
@@ -9,7 +9,6 @@ describe ForumsController, "(remember-me functionality)" do
   end
 
   it "logs in with valid login token" do
-    pending
     @request.cookies['auth_token'] = CGI::Cookie.new('auth_token', users(:activated).remember_token)
 
     get :index
