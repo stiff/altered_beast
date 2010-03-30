@@ -19,7 +19,7 @@
 
 <% end %>
 
-<% @page_title = @forum.name %> 
+<% @page_title = @forum.name %>
 
 <div class="crumbs">
 <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
@@ -27,9 +27,14 @@
 <h1 style="margin-top:0.5em"><%= h @forum.name %></h1>
 
 <p class="subtitle">
-  <%= feed_icon_tag @forum.name, forum_posts_path(@forum, :format => :atom) %> 
-  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
-  <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
+  <% if @forum.contain_posts? %>
+	  <%= feed_icon_tag @forum.name, forum_posts_path(@forum, :format => :atom) %>
+	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
+	  <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
+  <% else %>
+	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>
+  <% end %>
+
 </p>
 
 <% if @topics.total_entries -%>
@@ -49,7 +54,7 @@
 <% for topic in @topics %>
 <tr class="hentry">
   <td style="padding:5px; width:16px;" class="c1">
-    <% 
+    <%
     icon = "comment"
     color = ""
     if topic.locked?

@@ -34,7 +34,9 @@
   <span>
       <% form_tag posts_path, :method => 'get' do -%>
 	    <h2>
-	    	#agile #arquitetura #java
+		    <%= link_to("##{"agile"}", tag_path("agile")) %>
+		    <%= link_to("##{"arquitetura"}", tag_path("arquitetura")) %>
+		    <%= link_to("##{"java"}", tag_path("java")) %>
         	<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box,:onclick=>"if (this.value=='search') this.value=''" %>
         </h2>
       <% end -%>
