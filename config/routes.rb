@@ -3,11 +3,12 @@ ActionController::Routing::Routes.draw do |map|
     :controller => "sessions", :action => "create",
     :requirements => { :method => :get }
 
-  map.resources :sites, :moderatorships, :monitorship
+  map.resources :sites, :moderatorships
+
+  map.resources :monitorships
 
   map.resources :topics do |topic|
     topic.resources :posts
-    topic.resource :monitorship
   end
 
   map.resources :posts, :collection => {:search => :get}

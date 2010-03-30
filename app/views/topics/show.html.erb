@@ -14,12 +14,13 @@
 
 <% if logged_in? %>
 
-<% form_tag monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do -%>
+<% form_tag monitorship_path, :style => 'margin-top:0em; float:right;' do -%>
 <div>
   <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %>
-    onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => monitorship_path(@forum, @topic), :method => :delete %>}" />
+    onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@topic) %>} else {<%= remote_function :url => monitorship_path(@topic), :method => :delete %>}" />
   <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
   <%= hidden_field_tag '_method', 'delete' if @monitoring %>
+  <%= hidden_field_tag '_method', 'put' if not @monitoring %>
   <%= submit_tag I18n.t 'txt.set', :default => "Set", :id => 'monitor_submit' %>
 </div>
 <% end -%>
@@ -53,7 +54,7 @@
         <%= link_to(I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?')) %>
       <% end -%>
     </span>
-  <% end %>  
+  <% end %>
 </h1>
 
 <p class="subtitle">
@@ -114,7 +115,7 @@
 
 
   </td>
-  <td class="body entry-content" id="post-body-<%= post.id %>">    
+  <td class="body entry-content" id="post-body-<%= post.id %>">
     <%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "comment", :id => 'reply-link' if (can_comment?) %>
       <%= post.body_html %>
   </td>
