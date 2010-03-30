@@ -14,5 +14,5 @@ describe "Routes" do
     params_from(:get, "/topics/topic-name")[:controller].should == "topics"
     params_from(:get, "/topics/topic-name")[:id].should == "topic-name"
   end
-
+  
 end

@@ -73,6 +73,13 @@ describe Topic do
     @post.should be_new_record
     @post.errors.on(:base).should == 'Topic is locked'
   end
+  
+  it "should change - for _" do
+    topic = new_topic(:default)
+    topic.title = "test with spaces"
+    topic.nice_permalink.should == "test_with_spaces"
+  end
+  
 end
 
 describe Topic, "being deleted" do

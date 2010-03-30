@@ -16,13 +16,14 @@
 <%= render :partial => "form", :object => f %>
       <%unless logged_in?%>
         <div style="float:left">
-        <b><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
+        
+        <b style="text-align:center"><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
              <div id="login" style="float:left;width:200px">             
                <%= render :partial => "sessions/form"%><br/>
                <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic')%>
              </div>
      
-             <div id="cadastro" style="float:right;width:300px">
+             <div id="cadastro" style="float:right;width:300px;border-left:1px solid black;padding-left:10px">
               <% fields_for :user do |f| %>
                   <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
               <% end %><br/>

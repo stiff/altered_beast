@@ -37,10 +37,14 @@ class Topic < ActiveRecord::Base
   attr_accessor :body
   attr_accessible :title, :body
 
-  attr_readonly :posts_count, :hits
+  attr_readonly :posts_count, :hits,:my_permalink
 
-  has_permalink :title, :scope => :forum_id
+  has_permalink :nice_permalink, :scope => :forum_id
 
+
+  def nice_permalink
+    title.parameterize.tr '-','_' if title
+  end
 
   def to_s
     title
@@ -77,7 +81,7 @@ class Topic < ActiveRecord::Base
   end
 
   def to_param
-    permalink
+   permalink
   end
 
 protected

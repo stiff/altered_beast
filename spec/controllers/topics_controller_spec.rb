@@ -170,7 +170,21 @@ describe TopicsController, "POST #create" do
 
     it_assigns :forum, :topic, :flash => { :notice => :not_nil }
     it_redirects_to { forum_topic_path(@forum, assigns(:topic)) }
+    
+    it "sanitize permalink on creation" do
+      post :create, :forum_id => @forum.to_param, :topic => {:title => 'foo test é', :body => 'bar'}
+      assigns[:topic].permalink.should == "foo_test_e"
+    end
+    
+        
+    it "have different uris for two topics with same title" do
+      post :create, :forum_id => @forum.to_param, :topic => {:title => 'same name', :body => 'bar'}
+      assigns[:topic].permalink.should == "same_name"
+      post :create, :forum_id => @forum.to_param, :topic => {:title => 'same name', :body => 'bar'}
+      assigns[:topic].permalink.should == "same_name-2"
+    end
   end
+  
 
   describe TopicsController, "(unsuccessful creation)" do
     define_models
