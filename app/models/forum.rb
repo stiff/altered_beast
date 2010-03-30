@@ -1,14 +1,14 @@
 class Forum < ActiveRecord::Base
   formats_attributes :description
-  
+
   acts_as_list
 
   validates_presence_of :name
-  
+
   belongs_to :site
-  
+
   has_permalink :name
-  
+
   attr_readonly :posts_count, :topics_count
 
   has_many :topics, :order => "#{Topic.table_name}.sticky desc, #{Topic.table_name}.last_updated_at desc", :dependent => :delete_all
@@ -30,7 +30,7 @@ class Forum < ActiveRecord::Base
   def self.ordered
     find :all, :order => 'position'
   end
-  
+
 
   def to_param
     permalink
@@ -38,5 +38,9 @@ class Forum < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def contain_posts?
+    true
   end
 end
