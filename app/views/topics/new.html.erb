@@ -17,8 +17,8 @@
       <%unless logged_in?%>
         <div style="float:left">
         
-        <b style="text-align:center"><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
-             <div id="login" style="float:left;width:200px">             
+        <b style="text-align:center;padding-left:200px"><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
+             <div id="login" style="float:left;width:200px;padding-left:100px">             
                <%= render :partial => "sessions/form"%><br/>
                <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic')%>
              </div>

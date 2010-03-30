@@ -645,7 +645,8 @@ table.topics tr td.c1
  table.topics tr td.c2
   {	border-left:0; padding-left:2px; }
 
-
+.entry-title {font-size:1.5em}
+.tag-link {color:gray}
 table.topics tr td.c3 { border-left:0; }
 
 table.forums tr td.c1 {	border-right:0; padding-right:5px; padding-top:7px; }
