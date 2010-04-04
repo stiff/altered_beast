@@ -7,6 +7,7 @@
   <br />
   <%= text_field_tag 'openid_url', params[:openid_url], :class => "openid_url" %>
 </p>
+<p><%= submit_tag I18n.t('txt.log_in', :default => 'Log in') %>
 <p>or login with <a href="#" onclick="LoginForm.setToPassword()">username/password</a></p>
 </div>
 
