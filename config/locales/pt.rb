@@ -163,7 +163,7 @@
       :remember_me          => "Lembrar de mim",
       :or_login_with_openid => "Entre pelo OpenID",
       :successful_login     => "Login feito com sucesso",
-      :logged_out           => "Logout feito com sucesso",      
+      :logged_out           => "Logout feito com sucesso",
       :invalid_login        => "Usuário ou senha incorreta",
 
       # Topics
@@ -193,13 +193,14 @@
       },
       :post_topic_and_login => "Logar e postar",
       :post_topic_and_create_user => "Cadastrar e postar",
-      
-      
-      #Email
-      :account_has_been_created => "Sua conta foi criada com sucesso.",
-      :username => "Usuário",
-      :password => "Senha",
-      :visit_url_to_activate => "Visite este link para ativar sua conta",
+
+
+      # Email
+      :account_has_been_created   => "Sua conta foi criada com sucesso.",
+      :account_has_been_activated => "Sua conta foi ativada com sucesso.",
+      :visit_url_to_activate      => "Visite este link para ativar sua conta",
+      :username                   => "Usuário",
+      :password                   => "Senha",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
