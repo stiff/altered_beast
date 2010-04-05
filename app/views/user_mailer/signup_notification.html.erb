@@ -1,8 +1,8 @@
-Your account has been created.
+<%= t('txt.account_has_been_created', :default => "Your account has been created.")%>
 
-  Username: <%= @user.login %>
-  Password: <%= @user.password %>
+  <%= t('txt.username', :default => "Username")%>: <%= @user.login %>
+  <%= t('txt.password', :default => "Password")%>: <%= @user.password %>
 
-Visit this url to activate your account:
+<%= t('txt.visit_url_to_activate', :default => "Visit this url to activate your account"):
 
   <%= @url %>

@@ -193,6 +193,13 @@
       },
       :post_topic_and_login => "Logar e postar",
       :post_topic_and_create_user => "Cadastrar e postar",
+      
+      
+      #Email
+      :account_has_been_created => "Sua conta foi criada com sucesso.",
+      :username => "Usuário",
+      :password => "Senha",
+      :visit_url_to_activate => "Visite este link para ativar sua conta",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
