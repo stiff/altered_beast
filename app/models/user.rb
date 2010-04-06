@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   belongs_to :site, :counter_cache => true
   validates_presence_of :site_id
+
+  belongs_to :responsability
+  belongs_to :company_size
+  belongs_to :local
   
   has_many :posts, :order => "#{Post.table_name}.created_at desc"
   has_many :topics, :order => "#{Topic.table_name}.created_at desc"

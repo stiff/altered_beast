@@ -45,7 +45,10 @@ class ApplicationController < ActionController::Base
   #mapa
   def create_user(should_redirect = true)
     cookies.delete :auth_token
-    @user = current_site.users.build(params[:user])
+    @user = current_site.users.build(params[:user]) 
+    @user.responsability = Responsability.find(params[:user][:responsability_id])
+    @user.company_size = CompanySize.find(params[:user][:company_size_id])
+    
     @user.save if @user.valid?
     @user.register! if @user.valid?
     unless @user.new_record?
