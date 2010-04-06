@@ -9,11 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100323130451) do
+ActiveRecord::Schema.define(:version => 20100406171114) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
     t.string "answer"
+  end
+
+  create_table "company_sizes", :force => true do |t|
+    t.string "description"
   end
 
   create_table "forums", :force => true do |t|
@@ -30,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20100323130451) do
 
   add_index "forums", ["position", "site_id"], :name => "index_forums_on_position_and_site_id"
   add_index "forums", ["site_id", "permalink"], :name => "index_forums_on_site_id_and_permalink"
+
+  create_table "locals", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "city"
+    t.string   "states"
+  end
 
   create_table "moderatorships", :force => true do |t|
     t.integer  "forum_id"
@@ -80,6 +92,10 @@ ActiveRecord::Schema.define(:version => 20100323130451) do
   add_index "posts", ["created_at", "topic_id"], :name => "index_posts_on_topic_id"
   add_index "posts", ["created_at", "user_id"], :name => "index_posts_on_user_id"
 
+  create_table "responsabilities", :force => true do |t|
+    t.string "description"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.string   "host"
@@ -90,6 +106,12 @@ ActiveRecord::Schema.define(:version => 20100323130451) do
     t.integer  "posts_count",  :default => 0
     t.text     "description"
     t.text     "tagline"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
@@ -151,6 +173,10 @@ ActiveRecord::Schema.define(:version => 20100323130451) do
     t.string   "bio"
     t.string   "display_name"
     t.string   "permalink"
+    t.integer  "responsability_id"
+    t.integer  "company_size_id"
+    t.integer  "local_id"
+    t.integer  "working_since"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"
