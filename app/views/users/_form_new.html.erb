@@ -10,8 +10,12 @@
 <p><label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label><br/>
 <%= f.password_field :password_confirmation %></p>
 
-<p><label for="user_openid_url"><%= I18n.t 'txt.responsability', :default => "Responsability" %></label><br />
+<p><label for="responsability_id"><%= I18n.t 'txt.responsability', :default => "Responsability" %></label><br />
 <%= f.collection_select :responsability_id, Responsability.all, :id, :description %>
+</p>
+
+<p><label for="company_size_id"><%= I18n.t 'txt.company_size', :default => "Company size" %></label><br />
+<%= f.collection_select :company_size_id, CompanySize.all, :id, :description %>
 </p>
 
 <p><label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label><br />
