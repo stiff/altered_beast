@@ -4,7 +4,7 @@ class User
   attr_accessor :password
 
   before_validation :normalize_login_and_email
-  validates_presence_of     :login, :email
+  validates_presence_of     :login, :email,:working_since,:local
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
