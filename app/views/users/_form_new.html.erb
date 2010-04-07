@@ -28,6 +28,9 @@
 <%= f.collection_select :company_size_id, CompanySize.all, :id, :description %>
 </p>
 
+<p><label for="working_since"><%= I18n.t 'txt.working_since', :default => 'Working since' %></label><br/>
+<%= f.text_field :working_since %></p>
+
 <p><label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label><br />
 <%= f.text_field :openid_url %>
 </p>
