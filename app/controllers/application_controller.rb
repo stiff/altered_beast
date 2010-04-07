@@ -48,6 +48,8 @@ class ApplicationController < ActionController::Base
     @user = current_site.users.build(params[:user]) 
     @user.responsability = Responsability.find(params[:user][:responsability_id]) if params[:user][:responsability_id]
     @user.company_size = CompanySize.find(params[:user][:company_size_id]) if params[:user][:company_size_id]
+    @user.local = Local.find(params[:user][:local_id]) if params[:user][:local_id]
+    
     
     @user.save if @user.valid?
     @user.register! if @user.valid?

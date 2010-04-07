@@ -21,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate', :activation_code => nil
   map.signup   '/signup',                    :controller => 'users',    :action => 'new'
+  map.state   '/state',                      :controller => 'users',    :action => 'update_state'
   map.login    '/login',                     :controller => 'sessions', :action => 'new'
   map.logout   '/logout',                    :controller => 'sessions', :action => 'destroy'
   map.settings '/settings',                  :controller => 'users',    :action => 'settings'
@@ -34,5 +35,4 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.root :controller => :forums, :action => :show, :id => "arquitetura"
-
 end
