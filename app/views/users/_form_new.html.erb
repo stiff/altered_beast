@@ -10,11 +10,15 @@
 <p><label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label><br/>
 <%= f.password_field :password_confirmation %></p>
 
-<p><label for="responsability_id"><%= I18n.t 'txt.responsability', :default => "Responsability" %></label><br />
+<p><label for="user_responsability_id"><%= I18n.t 'txt.responsability', :default => "Responsability" %></label><br />
 <%= f.collection_select :responsability_id, Responsability.all, :id, :description %>
 </p>
 
-<p><label for="company_size_id"><%= I18n.t 'txt.company_size', :default => "Company size" %></label><br />
+<p><label for="state_id"><%= I18n.t 'txt.state', :default => "State" %></label><br />
+<%= collection_select :states, :id, Local.states, :states, :states %>
+</p>
+
+<p><label for="user_company_size_id"><%= I18n.t 'txt.company_size', :default => "Company size" %></label><br />
 <%= f.collection_select :company_size_id, CompanySize.all, :id, :description %>
 </p>
 
