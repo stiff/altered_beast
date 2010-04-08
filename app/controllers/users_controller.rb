@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     redirect_back_or_default('/') and return unless admin?
     @user = find_user
     @user.admin = (params[:user][:admin] == "1")
-    @user.save
+    @user.save!
     redirect_to @user
   end
 

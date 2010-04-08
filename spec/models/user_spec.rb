@@ -5,16 +5,17 @@ describe User do
 
   describe User, "being created" do
     define_models :users
-  
+
     before do
       @creating_user = lambda do
         user = create_user
         violated "#{user.errors.full_messages.to_sentence}" if user.new_record?
       end
     end
-  
+
     it 'logs in with openid' do
-      u = sites(:default).users.new(:openid_url => 'http://foo', :email => 'zoe@girl.com')
+      u = sites(:default).users.new(:openid_url => 'http://foo', :email => 'zoe@girl.com',
+                                    :local => mock_model(Local), :working_since => 2000)
       u.login = 'zoegirl'
       assert u.valid?, u.errors.inspect
     end
@@ -22,7 +23,7 @@ describe User do
     it 'increments User.count' do
       @creating_user.should change(User, :count).by(1)
     end
-  
+
     it 'increments Site#users_count' do
       @creating_user.should change { sites(:default).reload.users_count }.by(1)
     end
@@ -36,19 +37,19 @@ describe User do
       end.should_not change(User, :count)
     end
   end
-  
+
   it "formats User#bio" do
     u = User.new :bio => 'foo'
     u.bio_html.should be_nil
     u.send :format_attributes
     u.bio_html.should == '<p>foo</p>'
   end
-  
+
   it "sets User#display_name from login if nil" do
     user = User.new :login => 'foo'
     user.display_name.should == user.login
   end
-  
+
   it "#seen! sets #last_seen_at" do
     user = users(:default)
     user.last_seen_at.should be_nil
@@ -133,7 +134,9 @@ describe User do
 
 protected
   def create_user(options = {})
-    returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)) do |u|
+    returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey',
+                         :password_confirmation => 'monkey', :local => mock_model(Local),
+                         :working_since => 2000 }.merge(options)) do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
       u.save
     end
@@ -162,19 +165,21 @@ describe User, "with no created users" do
   end
 
   def make_user(site, login, email)
-    user = User.new :login => login, :email => email, :password => 'monkey', :password_confirmation => 'monkey'
+    user = User.new :login => login, :email => email, :password => 'monkey',
+                    :password_confirmation => 'monkey', :local => mock_model(Local),
+                    :working_since => 2000
     user.site_id = site.id
     # user.stub!(:site).and_return @site
     user.save!
     user
   end
-  
+
   it 'creates initial user as an admin' do
     site = Site.create! :name => "xfoo", :host => "xsite1.com"
     user = make_user(site, 'quire', 'quire@example.com')
     user.should be_admin
   end
-  
+
   it 'creates initial user as admin for each site' do
     site = Site.create! :name => "foo", :host => "site1.com"
 
