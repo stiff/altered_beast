@@ -88,10 +88,10 @@ class UsersController < ApplicationController
     @user.save
     redirect_to @user
   end
-  
+
   def update_state
     cities = Local.cities_of(params[:state])
-    
+
     render :update do |page|
       page.replace_html 'cities_combo', :partial => 'cities', :object => cities
     end

@@ -3,6 +3,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe UsersController do
   define_models :users
 
+  before do
+    @local = mock_model(Local)
+    Local.stub!(:find).and_return(@local)
+  end
+
   it 'allows signup' do
     lambda do
       create_user
@@ -78,7 +83,8 @@ describe UsersController do
 
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
-      :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)
+      :password => 'monkey', :password_confirmation => 'monkey',
+      :local_id => 1, :working_since => 2000}.merge(options)
   end
 end
 
