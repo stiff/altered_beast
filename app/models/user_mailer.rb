@@ -10,6 +10,15 @@ class UserMailer < ActionMailer::Base
     @subject    += I18n.t 'txt.subject_activated', :default => 'Your account has been activated!'
     @body[:url]  = root_url(:host => user.site.host)
   end
+  
+  def topic_updated(user, post)
+    setup_email(user)
+    @subject    += "-  #{I18n.t 'txt.topic', :default => 'Topic'} #{post.topic.title} #{I18n.t 'txt.updated', :default => 'updated'}"
+    @body[:url]  = root_url(:host => user.site.host)
+    @body[:message]  = post.body[0..100]
+    @body[:message]  += "..." if post.body.size > 100
+    @body[:url]  = topic_url(post.topic, :host => user.site.host)
+  end
 
   protected
     def setup_email(user)

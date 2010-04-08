@@ -61,6 +61,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :post_observer
 
   # Make Active Record use UTC-base instead of local time
   config.active_record.default_timezone = :utc
@@ -70,5 +71,4 @@ Rails::Initializer.run do |config|
   # All files from config/locales/*.rb,yml are added automatically.
   # config.i18n.load_path << Dir[File.join(RAILS_ROOT, 'my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :pt
-
 end
