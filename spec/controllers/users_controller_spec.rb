@@ -47,6 +47,22 @@ describe UsersController do
     end.should_not change(User, :count)
   end
 
+  it 'requires local on signup' do
+    lambda do
+      create_user(:local_id => nil)
+      assigns[:user].errors.on(:local).should_not be_nil
+      flash[:error].should_not be_nil
+    end.should_not change(User, :count)
+  end
+
+  it 'requires working_since on signup' do
+    lambda do
+      create_user(:working_since => nil)
+      assigns[:user].errors.on(:working_since).should_not be_nil
+      flash[:error].should_not be_nil
+    end.should_not change(User, :count)
+  end
+
   it 'activates user' do
     sites(:default).users.authenticate(users(:pending).login, 'test').should_not be_nil
     get :activate, :activation_code => users(:pending).activation_code
