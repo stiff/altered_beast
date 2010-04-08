@@ -15,7 +15,9 @@ describe User do
 
     it 'logs in with openid' do
       u = sites(:default).users.new(:openid_url => 'http://foo', :email => 'zoe@girl.com',
-                                    :local => mock_model(Local), :working_since => 2000)
+                                    :local => mock_model(Local), :working_since => 2000,
+                                    :company_size => mock_model(CompanySize),
+                                    :responsability => mock_model(Responsability))
       u.login = 'zoegirl'
       assert u.valid?, u.errors.inspect
     end
@@ -136,7 +138,8 @@ protected
   def create_user(options = {})
     returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey',
                          :password_confirmation => 'monkey', :local => mock_model(Local),
-                         :working_since => 2000 }.merge(options)) do |u|
+                         :working_since => 2000, :company_size => mock_model(CompanySize),
+                         :responsability => mock_model(Responsability) }.merge(options)) do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
       u.save
     end
@@ -167,7 +170,8 @@ describe User, "with no created users" do
   def make_user(site, login, email)
     user = User.new :login => login, :email => email, :password => 'monkey',
                     :password_confirmation => 'monkey', :local => mock_model(Local),
-                    :working_since => 2000
+                    :working_since => 2000, :company_size => mock_model(CompanySize),
+                    :responsability => mock_model(Responsability)
     user.site_id = site.id
     # user.stub!(:site).and_return @site
     user.save!

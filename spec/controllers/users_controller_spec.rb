@@ -5,7 +5,11 @@ describe UsersController do
 
   before do
     @local = mock_model(Local)
+    @company_size = mock_model(CompanySize)
+    @responsability = mock_model(Responsability)
     Local.stub!(:find).and_return(@local)
+    CompanySize.stub!(:find).and_return(@company_size)
+    Responsability.stub!(:find).and_return(@responsability)
   end
 
   it 'allows signup' do
@@ -55,10 +59,26 @@ describe UsersController do
     end.should_not change(User, :count)
   end
 
-  it 'requires working_since on signup' do
+  it 'requires working-since on signup' do
     lambda do
       create_user(:working_since => nil)
       assigns[:user].errors.on(:working_since).should_not be_nil
+      flash[:error].should_not be_nil
+    end.should_not change(User, :count)
+  end
+
+  it 'requires company size on signup' do
+    lambda do
+      create_user(:company_size_id => nil)
+      assigns[:user].errors.on(:company_size).should_not be_nil
+      flash[:error].should_not be_nil
+    end.should_not change(User, :count)
+  end
+
+  it 'requires responsability on signup' do
+    lambda do
+      create_user(:responsability_id => nil)
+      assigns[:user].errors.on(:responsability).should_not be_nil
       flash[:error].should_not be_nil
     end.should_not change(User, :count)
   end
@@ -99,8 +119,8 @@ describe UsersController do
 
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
-      :password => 'monkey', :password_confirmation => 'monkey',
-      :local_id => 1, :working_since => 2000}.merge(options)
+      :password => 'monkey', :password_confirmation => 'monkey', :local_id => 1,
+      :working_since => "2000", :company_size_id => 1, :responsability_id => 1}.merge(options)
   end
 end
 
