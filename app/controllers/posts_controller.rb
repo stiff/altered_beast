@@ -1,6 +1,7 @@
 class PostsController < SessionsController
   before_filter :find_parents
   before_filter :find_post, :only => [:edit, :update, :destroy]
+  before_filter :login_required, :only => [:edit, :update, :destroy]
   prepend_before_filter :login_filter, :only => :create
   before_filter :validate_user, :only => [:create, :destroy]
   # /posts
@@ -38,12 +39,19 @@ class PostsController < SessionsController
     if logged_in?
       @post = current_user.reply @topic, params[:post][:body]
     else
-      @post = Post.new
+      @post = Post.new(:body=>params[:post][:body])
     end
+    
     respond_to do |format|
       if @post.new_record?
-        format.html { redirect_to forum_topic_path(@forum, @topic) }
-        format.xml  { render :xml  => @post.errors, :status => :unprocessable_entity }
+#        format.html { redirect_to forum_topic_path(@forum, @topic) }
+        @posts = @topic.posts.paginate :page => current_page
+        format.html do
+           render :template => "topics/show"
+        end
+        format.xml  do
+           render :xml  => @post.errors, :status => :unprocessable_entity 
+        end
       else
         flash[:notice] = I18n.t 'txt.post_created', :default => 'Post was successfully created.'
         format.html { redirect_to(forum_topic_post_path(@forum, @topic, @post, :anchor => dom_id(@post))) }
