@@ -93,6 +93,6 @@
 
 <%= will_paginate @topics %>
 
-<% if logged_in? %>
+<% if can_comment? %>
   <p><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
 <% end%>
