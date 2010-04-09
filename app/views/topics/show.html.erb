@@ -15,7 +15,7 @@
 
 <% if logged_in? %>
 
-<% form_tag monitorship_path, :style => 'margin-top:0em; float:right;' do -%>
+<% form_tag monitorship_path(@topic), :style => 'margin-top:0em; float:right;' do -%>
 <div>
   <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if @monitoring %>>
   <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
