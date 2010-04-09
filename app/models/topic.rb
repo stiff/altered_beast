@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
   before_validation_on_create :set_default_attributes
   validates_presence_of :title
 
-  after_create   :create_initial_post
+  after_create   :after_create_handler
   before_update  :check_for_moved_forum
   after_update   :set_post_forum_id
   before_destroy :count_user_posts_for_counter_cache
@@ -85,6 +85,15 @@ class Topic < ActiveRecord::Base
   end
 
 protected
+  def after_create_handler
+      create_initial_post
+      create_monitorships
+  end
+  
+  def create_monitorships
+    Monitorship.create!(:topic_id => id, :user_id => user.id)
+  end
+  
   def create_initial_post
     user.reply self, @body #unless locked?
     @body = nil
