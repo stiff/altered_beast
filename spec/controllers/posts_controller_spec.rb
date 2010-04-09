@@ -170,7 +170,8 @@ describe PostsController, "POST #create" do
     act! { post :create, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :post => {:body => ''} }
 
     it_assigns :post, :forum, :topic, :parent => lambda { @topic }
-    it_redirects_to { forum_topic_url(@forum, @topic) }
+    #it_redirects_to { forum_topic_url(@forum, @topic) }
+    it_renders :template, "topics/show"
   end
 
   describe PostsController, "(successful creation, xml)" do
