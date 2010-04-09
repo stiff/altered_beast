@@ -193,6 +193,7 @@
       },
       :post_topic_and_login => "Logar e postar",
       :post_topic_and_create_user => "Cadastrar e postar",
+      :not_signedup => "Não cadastrado",
 
 
       # Email
@@ -240,6 +241,11 @@
       :count_users_lurking   => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
       :login_or_signup_and_comment     => "Faça o login ou cadastre-se agora",
       :user_is_administrator => "Administrador",
+      :select_responsability => 'Selecione a responsabilidade',
+      :select_state => 'Selecione o estado',
+      :select_state_first => 'Selecione o estado primeiro',
+      :select_company_size => 'Selecione a quantidade de funcionários',
+      :working_since => 'Ano que começou a trabalhar',
       :views_users           => {
           :reset_password            => "Esqueci minha senha",
           :email_directions          => "Informe seu endereço de email:",

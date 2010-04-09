@@ -887,12 +887,13 @@ div.editbox
 	background:url(/images/reply_background.png);
 	border:2px solid #333;
 	border-width:2px 0;
-	position:fixed;
+	/*position:fixed;*/
 	bottom:0;
 	left:0;
 	width:100%;
 	padding:6px 0 7px;
 	z-index:50;
+	display:block !important;
 }
 
 div.editbox .container

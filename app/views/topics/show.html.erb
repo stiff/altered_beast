@@ -1,3 +1,4 @@
+
 <% @page_title = @topic.title %>
 <% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
 
@@ -114,7 +115,6 @@
 
   </td>
   <td class="body entry-content" id="post-body-<%= post.id %>">
-    <%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "comment", :id => 'reply-link' if (can_comment?) %>
       <%= post.body_html %>
   </td>
 </tr>
@@ -134,11 +134,8 @@
 </p>
 <% else -%>
 
-
-<p><%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "utility", :id => 'reply-link' %></p>
-
 <% if can_comment? %>
-<div id="reply" class="editbox">
+<div id="reply" class="editbox" style="margin-top:50px;">
   <div class="container">
     <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
     <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
@@ -153,23 +150,30 @@
       </tr>
       <tr>
         <td valign="bottom" style="padding-bottom:15px;">
-         <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'reply-cancel') %></span>
+         <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"></span>
        </td>
      </tr>
     </table>
-    <%if !logged_in?%>
-    <div>
-         <div id="login" style="float:left; width:200px;">
-           <%= render :partial => "sessions/form"%>
-         </div>
-         <div id="cadastro" style="float:left;>
-          <% fields_for :user do |f| %>
-              <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-          <% end %>
-
-         </div>
-    </div>
-    <%end%>
+      <%unless logged_in?%>
+        <div style="float:left;margin-top:10px">
+        
+        <b style="text-align:center;padding-left:200px"><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
+             <div id="login" style="float:left;width:200px;padding-left:100px;">             
+               <%= render :partial => "sessions/form"%><br/>
+             </div>
+     
+             <div id="cadastro" style="float:right;width:300px;padding-left:10px">
+               <div id="link_cadastro" style="margin-top:40px;<%if @user%>display:none;<%end%>">
+                <a href="javascript:void;" onclick="$('campos_cadastro').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
+               </div>                      
+               <div id="campos_cadastro" <%unless @user%>style="display:none;"<%end%> 
+                  <% fields_for :user do |f| %>
+                      <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+                  <% end %>
+               </div>
+             </div>
+        </div>
+       <%end%>        
     <% end -%>
   </div>
 </div>
