@@ -4,7 +4,6 @@ namespace :app do
   
   desc "Load database"
   task :load_database do
-    say "Loading database dependencies"
     Responsability.create!(:description => "desenvolvimento")
     Responsability.create!(:description => "liderança ou arquitetura de equipe")
     Responsability.create!(:description => "quality assurance (QA) ou testes")
