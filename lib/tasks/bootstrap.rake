@@ -1,12 +1,33 @@
 namespace :app do
   task :app_specific => [:create_site] do
   end
+  
+  desc "Load database"
+  task :load_database do
+    say "Loading database dependencies"
+    Responsability.create!(:description => "desenvolvimento")
+    Responsability.create!(:description => "liderança ou arquitetura de equipe")
+    Responsability.create!(:description => "quality assurance (QA) ou testes")
+    Responsability.create!(:description => "líder técnico ou arquiteto geral")
+    Responsability.create!(:description => "product owner")
+    Responsability.create!(:description => "outro")
+    
+    CompanySize.create(:description => "1 a 10")
+    CompanySize.create(:description => "11 a 50")
+    CompanySize.create(:description => "51 a 500")
+    CompanySize.create(:description => "501 ou mais")
 
-  task :create_site => [:setup, :environment] do
+    ActiveRecord::Base.connection.update(File.open('cities.sql').read)
+    
+  end
+  
+
+  task :create_site => [:setup, :environment, :load_database] do
     options = OpenStruct.new :name => 'localhost', :host => 'localhost'
     say "We need to create a default 'site' for your users to blog and forum and whatnot."
     say "Or for you to test on, if you're a developer."
     say "If you are a developer, and you set the host to anything other than 'localhost', please make sure to add an entry to your /etc/hosts file, f.e.: '127.0.0.1 test.local'"
+    
     options.host = ask("Host:") {|q| q.default = options.host } 
     puts
     options.name = ask("Site Name:") {|q| q.default = options.name }
@@ -41,6 +62,10 @@ namespace :app do
     user = site.all_users.build :login => options.login, :email => options.email
     user.admin = true
     user.password = user.password_confirmation = options.password
+    user.local = Local.first
+    user.company_size = CompanySize.first
+    user.responsability = Responsability.first
+    user.working_since = 1970
     begin
       user.save!
     rescue ActiveRecord::RecordInvalid
