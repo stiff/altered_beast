@@ -1,7 +1,8 @@
 *~
 .DS_Store
 tmp
-log
+log/development.log
+log/test.log
 config/database.yml
 config/email.yml
 vendor/rails
