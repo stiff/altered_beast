@@ -1,9 +1,9 @@
 set :application, "Forum"
-set :user, "caelum"
+set :user, "forum"
 set :repository,  "http://github.com/caelum/novoforum.git"
 
 set :scm, :git
-set :scm_verbose, true
+set :scm_verbose, false
 
 role :web, "97.74.206.156"                          # Your HTTP server, Apache/etc
 role :app, "97.74.206.156"                          # This may be the same as your `Web` server
