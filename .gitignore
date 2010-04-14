@@ -3,6 +3,7 @@
 tmp
 log
 config/database.yml
+config/email.yml
 vendor/rails
 db/*.sqlite
 db/*.sqlite2
