@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     @subject    += I18n.t 'txt.subject_activated', :default => 'Your account has been activated!'
     @body[:url]  = root_url(:host => user.site.host)
   end
-  
+
   def topic_updated(user, post)
     setup_email(user)
     @subject    += "-  #{I18n.t 'txt.topic', :default => 'Topic'} #{post.topic.title} #{I18n.t 'txt.updated', :default => 'updated'}"
@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
-      @from        = "ADMINEMAIL"
+      @from        = "no-reply@caelum.com.br"
       @subject     = "[YOURSITE] "
       @sent_on     = Time.now
       @body[:user] = user
