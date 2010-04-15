@@ -17,7 +17,7 @@ class <%= class_name %>Mailer < ActionMailer::Base
   protected
     def setup_email(<%= file_name %>)
       @recipients  = "#{<%= file_name %>.email}"
-      @from        = "ADMINEMAIL"
+      @from        = "no-reply@fastpresentation.com"
       @subject     = "[YOURSITE] "
       @sent_on     = Time.now
       @body[:<%= file_name %>] = <%= file_name %>
