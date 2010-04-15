@@ -1,5 +1,6 @@
 set :application, "Forum"
 set :user, "forum"
+set :use_sudo, false
 set :repository,  "http://github.com/caelum/novoforum.git"
 
 set :scm, :git
@@ -9,8 +10,6 @@ role :web, "97.74.206.156"                          # Your HTTP server, Apache/e
 role :app, "97.74.206.156"                          # This may be the same as your `Web` server
 role :db,  "97.74.206.156", :primary => true # This is where Rails migrations will run
 
-
-set :use_sudo, false
 
 set :deploy_to, "/home/#{user}/webapps/#{application}" 
 
@@ -27,6 +26,11 @@ namespace :deploy do
 # more details in http://archive.jvoorhis.com/articles/2006/07/07/managing-database-yml-with-capistrano
   desc "SymbolLink production database.yml" 
   task :after_default do
-    run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{current_path}/config/database.yml" 
+    run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{current_path}/config/database.yml"
+    run "ln -nfs #{deploy_to}/#{shared_dir}/config/email.yml #{current_path}/config/email.yml"
+    default_run_options[:pty] = true
+    run "#{sudo} chgrp -R apache #{current_path}"
+    run "#{sudo} find #{current_path} -type d -exec chmod g+x {} \\;"
+    run "#{sudo} /sbin/service httpd restart"
   end
 end
