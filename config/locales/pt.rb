@@ -72,7 +72,8 @@
     },
     :txt => {
       :main_title => "Localizing Rails",
-      :app_name => "Demo Application",
+      :beast_title => "tectura.com.br",
+      :app_name => "tectura.com.br",
       :sub_title => "how to localize your app with Rails' new i18n features",
       :contents => "Contents",
       :menu => {
@@ -158,6 +159,9 @@
       # Session
       :cancel               => "Cancelar",
       :login_name           => "Usuário",
+      :login_name_signup    => "Usuário (Nome Sobrenome)",
+      :state                => "Estado",
+      :city                 => "Cidade",
       :password             => "Senha",
       :log_in               => "Entrar",
       :remember_me          => "Lembrar de mim",

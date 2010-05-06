@@ -23,8 +23,8 @@ class UserMailer < ActionMailer::Base
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
-      @from        = "no-reply@caelum.com.br"
-      @subject     = "[YOURSITE] "
+      @from        = "no-reply@tectura.com.br"
+      @subject     = "[tectura.com.br] "
       @sent_on     = Time.now
       @body[:user] = user
     end
