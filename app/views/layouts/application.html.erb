@@ -18,27 +18,10 @@
 </div>
 
 <div id="footer">
-  <p class="disclaim">
-    <strong>
-    <% if site = @current_site || Site.first %>
-      <%= site.tagline %>
-    <% end %>
-    </strong>
-  </p>
-    <%
-    footers=[I18n.t('txt.footer_message', :default => "Two's company. Three's a forum. More's a Beast.")
-    ]
-    %>
-    <%= footers[rand(footers.size)]%>
-    </strong>
-  </p>
-  <p class="credit">
-    <%= I18n.t('txt.powered_by', :default => 'Powered by') %> <a href="http://github.com/courtenay/altered_beast/">Altered Beast</a><br />
-<%= I18n.t('txt.created_by', :default => 'Criado por') %> <a href="http://www.workingwithrails.com/person/5337-josh-goebel" class="subtle">Josh Goebel</a>,
-    <a href="http://blog.caboo.se">Courtenay Gasking</a> <%= I18n.t 'txt.and', :default => 'and' %> 
-    <a href="http://weblog.techno-weenie.net" class="subtle">Rick Olson</a>
-  </p>
+  <%=link_to "Sobre o tectura", about_url%>
+
   <br style="clear:both;" />
+
 </div>
 </body>
 </html>

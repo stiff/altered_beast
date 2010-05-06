@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout   '/logout',                    :controller => 'sessions', :action => 'destroy'
   map.settings '/settings',                  :controller => 'users',    :action => 'settings'
   map.resource  :session
+  map.about     '/about',                    :controller => 'about',    :action => 'show'
 
   map.tag       '/tag/:tag_name',            :controller => 'tags',     :action => 'search'
 
