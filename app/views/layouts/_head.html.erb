@@ -5,8 +5,7 @@
   <title><%=h @current_site && current_site.name || I18n.t('txt.beast_title', :default => 'Altered Beast') %><%= " - #{h @page_title}" if @page_title %></title>
   <%= stylesheet_link_tag 'display' %>
   <%= stylesheet_link_tag 'captcha' %>
-  <%= stylesheet_link_tag 'alphacube' %>
-  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", "window", "window_effects", :cache => "beast" %>
+  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>
 <% unless @feed_icons.blank? -%>
   <% @feed_icons.each do |feed| -%>
   <%= auto_discovery_link_tag :atom, feed[:url], :title => "Subscribe to '#{feed[:title]}'" %>
