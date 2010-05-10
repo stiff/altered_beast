@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def create
-      @user = create_user
+    @user = create_user
   end
 
   def settings
