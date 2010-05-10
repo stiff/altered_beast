@@ -5,6 +5,7 @@ describe UsersController do
 
   before do
     @local = mock_model(Local)
+    @local.stub!(:destroyed?).and_return(false)
     @company_size = mock_model(CompanySize)
     @responsability = mock_model(Responsability)
     Local.stub!(:find).and_return(@local)
@@ -67,22 +68,6 @@ describe UsersController do
     end.should_not change(User, :count)
   end
 
-  it 'requires company size on signup' do
-    lambda do
-      create_user(:company_size_id => nil)
-      assigns[:user].errors.on(:company_size).should_not be_nil
-      flash[:error].should_not be_nil
-    end.should_not change(User, :count)
-  end
-
-  it 'requires responsability on signup' do
-    lambda do
-      create_user(:responsability_id => nil)
-      assigns[:user].errors.on(:responsability).should_not be_nil
-      flash[:error].should_not be_nil
-    end.should_not change(User, :count)
-  end
-
   it 'activates user' do
     sites(:default).users.authenticate(users(:pending).login, 'test').should_not be_nil
     get :activate, :activation_code => users(:pending).activation_code
@@ -120,7 +105,7 @@ describe UsersController do
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
       :password => 'monkey', :password_confirmation => 'monkey', :local_id => 1,
-      :working_since => "2000", :company_size_id => 1, :responsability_id => 1}.merge(options)
+      :working_since => "2000"}.merge(options)
   end
 end
 

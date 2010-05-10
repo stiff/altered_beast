@@ -24,8 +24,7 @@ module ModelStubbing
         :salt => '7e3041ebc2fc05a40c60028e2c4901a81035d3cd', :crypted_password => '00742970dc9e6319f8019fd54864d3ea740f04b1',
         :created_at => current_time - 5.days, :site => all_stubs(:site), :remember_token => 'foo-bar', :remember_token_expires_at => current_time + 5.days,
         :activation_code => '8f24789ae988411ccf33ab0c30fe9106fab32e9b', :activated_at => current_time - 4.days, :posts_count => 3, :permalink => 'normal-user',
-        :local => all_stubs(:local), :working_since => 2000, :company_size => all_stubs(:company_size),
-        :responsability => all_stubs(:responsability)
+        :local => all_stubs(:local), :working_since => 2000
 
       stub :activated, :login => 'activated-user', :email => 'activated-user@example.com', :state => 'active',
         :salt => '7e3041ebc2fc05a40c60028e2c4901a81035d3cd', :crypted_password => '00742970dc9e6319f8019fd54864d3ea740f04b1',

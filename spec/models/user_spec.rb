@@ -138,8 +138,7 @@ protected
   def create_user(options = {})
     returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey',
                          :password_confirmation => 'monkey', :local => mock_model(Local),
-                         :working_since => 2000, :company_size => mock_model(CompanySize),
-                         :responsability => mock_model(Responsability) }.merge(options)) do |u|
+                         :working_since => 2000 }.merge(options)) do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
       u.save
     end
@@ -170,8 +169,7 @@ describe User, "with no created users" do
   def make_user(site, login, email)
     user = User.new :login => login, :email => email, :password => 'monkey',
                     :password_confirmation => 'monkey', :local => mock_model(Local),
-                    :working_since => 2000, :company_size => mock_model(CompanySize),
-                    :responsability => mock_model(Responsability)
+                    :working_since => 2000
     user.site_id = site.id
     # user.stub!(:site).and_return @site
     user.save!
