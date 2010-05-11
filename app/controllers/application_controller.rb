@@ -55,8 +55,13 @@ class ApplicationController < ActionController::Base
     @user.register! if @user.valid?
     unless @user.new_record?
 #      redirect_back_or_default(login_path) if should_redirect
-      flash[:notice] = I18n.t 'txt.activation_required',
-        :default => "Thanks for signing up! Please click the link in your email to activate your account"
+      unless @user.using_openid
+        flash[:notice] = I18n.t 'txt.activation_required',
+          :default => "Thanks for signing up! Please click the link in your email to activate your account"
+      else
+        @user.activate!
+        flash[:notice] = I18n.t 'txt.signup_complete', :default => "Signup complete!"
+      end
       redirect_to root_url
     else
       flash[:error] = @user.errors.full_messages.uniq.join(" / ")
