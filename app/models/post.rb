@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.per_page
-  		10
+  		20
   end
 
   def self.search(query, options = {})
