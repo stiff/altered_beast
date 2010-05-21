@@ -23,7 +23,7 @@
                <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic')%>
              </div>
      
-             <div id="cadastro" style="float:right;width:300px;border-left:1px solid black;padding-left:10px">
+             <div id="cadastro" style="float:right;width:300px;padding-left:30px">
               <% fields_for :user do |f| %>
                   <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
               <% end %><br/>

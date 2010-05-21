@@ -938,6 +938,7 @@ div.editbox h5
   margin:0.2em 0 0.5em;
 }
 
+div.editbox a { color:#CCC; }
 div.editbox p.help span,
 div.editbox ul.help span { color:#666; }
 div.editbox p.help,
