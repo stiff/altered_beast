@@ -140,6 +140,7 @@ protected
                          :password_confirmation => 'monkey', :local => mock_model(Local),
                          :working_since => 2000 }.merge(options)) do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
+      u.local.stub!(:destroyed?).and_return(false)
       u.save
     end
   end
@@ -171,7 +172,7 @@ describe User, "with no created users" do
                     :password_confirmation => 'monkey', :local => mock_model(Local),
                     :working_since => 2000
     user.site_id = site.id
-    # user.stub!(:site).and_return @site
+    user.local.stub!(:destroyed?).and_return(false)
     user.save!
     user
   end
