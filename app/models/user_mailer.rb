@@ -13,18 +13,24 @@ class UserMailer < ActionMailer::Base
 
   def topic_updated(user, post)
     setup_email(user)
-    @subject    += "-  #{I18n.t 'txt.topic', :default => 'Topic'} #{post.topic.title} #{I18n.t 'txt.updated', :default => 'updated'}"
+    @subject    += "#{I18n.t 'txt.topic', :default => 'Topic'} #{post.topic.title} #{I18n.t 'txt.updated', :default => 'updated'}"
     @body[:url]  = root_url(:host => user.site.host)
     @body[:message]  = post.body[0..100]
     @body[:message]  += "..." if post.body.size > 100
     @body[:url]  = topic_url(post.topic, :host => user.site.host)
   end
 
+  def remember_password(user)
+    setup_email(user)
+    @subject    += "#{I18n.t 'txt.request_to_change_your_password', :default => 'Request to change your password'}"
+    @body[:url]  = reset_password_url(:secret => user.lost_password_secret, :host => user.site.host)
+  end
+
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
       @from        = "no-reply@tectura.com.br"
-      @subject     = "[tectura.com.br] "
+      @subject     = "[tectura.com.br] - "
       @sent_on     = Time.now
       @body[:user] = user
     end

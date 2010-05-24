@@ -203,11 +203,14 @@
       # Email
       :account_has_been_created   => "Sua conta foi criada com sucesso.",
       :account_has_been_activated => "Sua conta foi ativada com sucesso.",
+      :reset_your_password => "Clique no link abaixo para definir uma nova senha.",
       :visit_url_to_activate      => "Visite este link para ativar sua conta",
       :subject_activate           => "Ative sua conta",
       :subject_activated          => "Sua conta foi ativada",
+      :request_to_change_your_password => "Mudança de senha",
       :username                   => "Usuário",
       :password                   => "Senha",
+      :verify_your_email          => "Verifique seu email para mudar sua senha",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
