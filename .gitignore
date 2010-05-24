@@ -14,3 +14,4 @@ public/javascripts/beast.js
 .loadpath
 .project
 doc/
+.rvmrc
