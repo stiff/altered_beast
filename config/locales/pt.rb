@@ -169,6 +169,7 @@
       :successful_login     => "Login feito com sucesso",
       :logged_out           => "Logout feito com sucesso",
       :invalid_login        => "Usuário ou senha incorreta",
+      :email_not_found      => "Este email não está cadastrado",
 
       # Topics
       :sticky           => "fixo",

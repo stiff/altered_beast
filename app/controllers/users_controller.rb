@@ -99,11 +99,16 @@ class UsersController < ApplicationController
   
   def remember_password
     user = User.find_by_email params[:email]
-    user.generate_lost_password_secret
-    user.save
-    UserMailer.deliver_remember_password(user)
-    flash[:notice] = I18n.t('txt.verify_your_email', :default => 'Verify your mail in order to reset your password')
-    redirect_to root_url
+    if user.nil?
+      flash[:error] = I18n.t "txt.email_not_found", :default => "Email address not found"
+      redirect_to login_path
+    else
+      user.generate_lost_password_secret
+      user.save
+      UserMailer.deliver_remember_password(user)
+      flash[:notice] = I18n.t('txt.verify_your_email', :default => 'Verify your mail in order to reset your password')
+      redirect_to root_url
+    end
   end
   
   def reset_password
