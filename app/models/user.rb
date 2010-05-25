@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
     d = Digest::SHA1.new
     d.update self.salt
     d.update Time.now.to_s
+    d.update rand.to_s
     self.lost_password_secret = d.hexdigest
   end
 end

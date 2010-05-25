@@ -112,12 +112,12 @@ class UsersController < ApplicationController
   
   def reset_password_confirmation
     @user = User.find_by_lost_password_secret(params[:user][:lost_password_secret])
-     if @user.update_attributes(params[:user])
-        flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
-        redirect_to(login_url) 
-      else
-        render :action => "reset_password"
-      end
+    if @user.update_attributes(params[:user])
+      flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
+      redirect_to(login_url) 
+    else
+      render :action => "reset_password"
+    end
   end
 
 protected

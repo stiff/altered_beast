@@ -101,6 +101,22 @@ describe UsersController do
     response.should be_redirect
     lambda{ create_user }.should change(ActionMailer::Base.deliveries, :size).by(1)
   end
+  
+  it "prepares for password reset" do
+    user = mock_model(User)
+    user.should_receive(:generate_lost_password_secret)
+    user.should_receive(:save)
+    User.should_receive(:find_by_email).and_return(user)
+    UserMailer.should_receive(:deliver_remember_password)
+    post :remember_password, {:email => 'jack@provider.com'}
+  end
+  
+  it "resets the password" do
+    user = mock_model(User)
+    user.should_receive(:update_attributes).and_return(true)
+    User.should_receive(:find_by_lost_password_secret).and_return(user)
+    post :reset_password_confirmation, :user => {}
+  end
 
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
