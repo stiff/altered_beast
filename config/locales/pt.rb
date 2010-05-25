@@ -254,6 +254,7 @@
       :select_state_first => 'Selecione o estado primeiro',
       :select_company_size => 'Selecione a quantidade de funcionários',
       :working_since => 'Ano que começou a trabalhar',
+      :update                    => "Alterar",
       :views_users           => {
           :reset_password            => "Esqueci minha senha",
           :email_directions          => "Informe seu endereço de email:",
@@ -280,7 +281,7 @@
           :find_a_user               => "Busca de Usuários",
           :search_title              => "Procurar",
           :posts_title               => "Mensagens",
-          :current_status_title      => "Status"
+          :current_status_title      => "Status",
       },
     }
   }
