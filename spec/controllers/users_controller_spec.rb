@@ -117,6 +117,17 @@ describe UsersController do
     User.should_receive(:find_by_lost_password_secret).and_return(user)
     post :reset_password_confirmation, :user => {}
   end
+  
+  it  "should resend registration mail" do
+    user = mock_model(User)
+    controller.should_receive(:current_user).and_return(user)
+    UserMailer.should_receive(:deliver_signup_notification).with(user)
+
+    get :resend_confirmation_mail
+    
+    flash[:notice].should == I18n.t("txt.mail_sent")
+    response.should redirect_to(root_path)    
+  end
 
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
