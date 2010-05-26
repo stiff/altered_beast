@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.state   '/state',                            :controller => 'users',    :action => 'update_state'
   map.login    '/login',                           :controller => 'sessions', :action => 'new'
   map.logout   '/logout',                          :controller => 'sessions', :action => 'destroy'
+  map.resend_confirmation_mail '/resend_confirmation_mail', :controller => 'users', :action => 'resend_confirmation_mail'
   map.lost_password '/lost_password',               :controller => 'users',    :action => 'remember_password'
   map.reset_password_confirmation '/reset_password',            :controller => 'users',    :action => 'reset_password_confirmation', :conditions => { :method => :post }
   map.reset_password '/reset_password/:secret',    :controller => 'users',    :action => 'reset_password', :conditions => { :method => :get }

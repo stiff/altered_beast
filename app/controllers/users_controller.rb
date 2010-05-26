@@ -124,6 +124,12 @@ class UsersController < ApplicationController
       render :action => "reset_password"
     end
   end
+  
+  def resend_confirmation_mail
+    UserMailer.deliver_signup_notification current_user
+    flash[:notice] = I18n.t("txt.mail_sent", :default => "Mail sent")
+    redirect_to root_path
+  end
 
 protected
   def find_user

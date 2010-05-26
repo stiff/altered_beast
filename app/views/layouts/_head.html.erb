@@ -19,14 +19,16 @@
   <ul id="nav">
     <li><%= link_to I18n.t('txt.home', :default => 'Home'), root_path, :rel => 'home' %></li>
     <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
-
     <% if logged_in? -%>
-    <li class="login"><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
-    <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
-    <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
+      <li class="login"><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
+      <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
+      <% if current_user.pending? -%>
+        <li><%= link_to I18n.t('txt.resend_confirmation_mail', :default => 'Resend confirmation mail'), resend_confirmation_mail_path %></li>
+      <% end -%>
+      <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
     <% else -%>
-    <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri)) %></li>
-    <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri)) %></li>
+      <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri)) %></li>
+      <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri)) %></li>
     <% end -%>
   </ul>
   <% name = (site = @current_site || Site.first) && site.name %>
