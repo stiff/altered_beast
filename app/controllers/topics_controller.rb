@@ -1,7 +1,8 @@
 class TopicsController < SessionsController
   before_filter :find_forum
   before_filter :find_topic, :only => [:show, :edit, :update, :destroy]
-  before_filter :login_required, :only => [:edit, :update, :destroy]
+  before_filter :login_required, :only => [:edit, :update]
+  before_filter :admin_required, :only => [:destroy]
   prepend_before_filter :login_filter, :only => :create
 
   def index

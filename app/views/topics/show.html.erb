@@ -40,17 +40,17 @@
   <span class="arrow">&rarr;</span>
 </div>
 
-<h1 id="topic-title" style="margin-top:0.5em;"<%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
+<h1 id="topic-title" style="margin-top:0.5em;">
 
   <%= h @topic.title %>
   <% if @topic.locked? %>
   <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
   <% end %>
   <% if logged_in? %>
-    <span style="display:none;" id="topic_mod">
+    <span id="topic_mod">
       <% if @topic.editable_by?(current_user) -%>
-        <%= link_to(I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility") %> |
-        <%= link_to(I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?')) %>
+        <%= link_to(I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility") %>
+        <%= "| " + link_to(I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?')) if(current_user.admin?)%>
       <% end -%>
     </span>
   <% end %>
