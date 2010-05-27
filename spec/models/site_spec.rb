@@ -89,7 +89,7 @@ describe Site, "#users" do
   end
   
   it "finds only active users in the correct site" do
-    sites(:default).users.sort_by(&:login).should == [users(:activated), users(:default)]
+    sites(:default).users.sort_by(&:login).should == [users(:activated), users(:admin), users(:default)]
     sites(:other).users.should   == [users(:other)]
   end
   
