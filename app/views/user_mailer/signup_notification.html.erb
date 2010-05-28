@@ -1,7 +1,11 @@
+Seja bem vindo ao Tectura,
+
 <%= t('txt.account_has_been_created', :default => "Your account has been created.")%>
 
   <%= t('txt.username', :default => "Username")%>: <%= @user.login %>
-
-<%= t('txt.visit_url_to_activate', :default => "Visit this url to activate your account")%> :
-
+  
+  Compartilhe seu conhecimento agora mesmo! Acesse o link abaixo para ativar sua conta:
   <%= @url %>
+  
+  Não se esqueça que você pode acompanhar os posts via rss pelo link: http://tectura.com.br/posts.atom
+  
