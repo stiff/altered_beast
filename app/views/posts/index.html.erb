@@ -15,23 +15,22 @@
 <%= will_paginate @posts %>
 
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+<colgroup width="100%">
+	<col width="20%" />
+	<col width="80%" />
+</colgroup>
+
 <% for post in @posts do %>
-<% unless post == @posts.first %>
-<tr class="spacer">
-  <td colspan="2">&nbsp;</td>
-</tr>
-<% end %>
 <tr class="post hentry" id="<%= dom_id post %>">
   <td class="author vcard">
-    <div class="date">
+    <%= avatar_for @users[post.user_id] %>
+    <span class="fn"><%= link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user) %></span><br />
+    <span class="posts"><%= I18n.t 'txt.count_posts', :count => @users[post.user_id].posts.size, :num => number_with_delimiter(@users[post.user_id].posts.size) %></span>   
+	<div class="date">
       <abbr class="updated" title="<%= post.created_at.xmlschema %>">
       <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => 'posted {{when}} ago' %>
       </abbr>
     </div>
-
-    <%= avatar_for @users[post.user_id] %>
-    <span class="fn"><%= link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user) %></span>
-    <span class="posts"><%= I18n.t 'txt.count_posts', :count => @users[post.user_id].posts.size, :num => number_with_delimiter(@users[post.user_id].posts.size) %></span>
   </td>
   <td class="body entry-content">
     <p class="topic">

@@ -5,10 +5,10 @@
 <hr />
 <% end %>
 
-<h5 style="margin-bottom:1.0em;"><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
+<h5><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
 
 <% unless @forum.moderators.empty? -%>
-<ul class="flat" style="margin-top:1em;">
+<ul class="flat">
 <% @forum.moderators.each do |user| -%>
   <li><%= link_to h(user.display_name || user.login), user %></li>
 <% end -%>
@@ -21,10 +21,15 @@
 
 <% @page_title = @forum.name %>
 
+
+<% if can_comment? %>
+	<%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread large" %>
+<% end %>
+
 <div class="crumbs">
-<%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
+<%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
 </div>
-<h1 style="margin-top:0.5em"><%= h @forum.name %></h1>
+<h1><%= h @forum.name %></h1>
 
 <p class="subtitle">
   <% if @forum.contain_posts? %>
@@ -34,26 +39,28 @@
   <% else %>
 	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>
   <% end %>
-
 </p>
 
 <% if @topics.total_entries -%>
-<% if can_comment? %>
-<p style="float:right; margin-top:0;"><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
-<% end %>
 <%= will_paginate @topics %>
 <% end -%>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide topics">
+	<colgroup span ="5">
+		<col span="1" width="4%" valign="middle" />
+		<col span="1" width="66%" />
+		<col span="2" width="10%" />
+		<col span="1" width="20%" />
+	</colgroup>
 <tr>
   <th class="la" colspan="2"><%= I18n.t 'txt.topic', :default => 'Topic' %></th>
-  <th width="1%"><%= I18n.t 'txt.posts', :default => 'Posts' %></th>
-  <th width="1%"><%= I18n.t 'txt.views', :default => 'Views' %></th>
+  <th ><%= I18n.t 'txt.posts', :default => 'Posts' %></th>
+  <th ><%= I18n.t 'txt.views', :default => 'Views' %></th>
   <th class="la"><%= I18n.t 'txt.latest_post', :default => 'Latest post' %></th>
 </tr>
 <% for topic in @topics %>
 <tr class="hentry">
-  <td style="padding:5px; width:16px;" class="c1">
+  <td class="c1">
     <%
     icon = "comment"
     color = ""
@@ -93,6 +100,7 @@
 
 <%= will_paginate @topics %>
 
+<br class="clear" />
 <% if can_comment? %>
-  <p><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
+  <p><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %></p>
 <% end%>

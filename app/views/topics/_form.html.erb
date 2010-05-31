@@ -1,27 +1,24 @@
+<div id="newTreadForm">
 <p>
-<label for="topic_title"><%= I18n.t('txt.views_topics.topic', :default => 'Name') %></label><br />
-<%= form.text_field :title, :onchange => "/*TopicForm.editNewTitle(this);*/", :class => "primary", :tabindex => 10 %>
-
-<% for_moderators_of @forum do -%>
-<label style="margin-left:1em;">
-<%= form.check_box :sticky %> <%= I18n.t('txt.sticky', :default => 'sticky') %>
-</label>
-
-<label style="margin-left:1em;">
-<%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
-</label>
+	<label for="topic_title"><%= I18n.t('txt.views_topics.topic', :default => 'Name') %></label>
+	<%= form.text_field :title, :onchange => "/*TopicForm.editNewTitle(this);*/", :class => "primary", :tabindex => 10 %>
 </p>
+<% for_moderators_of @forum do -%>
+<div id="treadType">	
+	<label><%= I18n.t('txt.sticky', :default => 'sticky') %></label> <%= form.check_box :sticky %> 
+	<label><%= I18n.t('txt.locked', :default => 'locked') %></label> <%= form.check_box :locked %> 
+</div><br class="clear" />
 <% end -%>
 
 <p>
-<label for="topic_tags"><%= I18n.t('txt.views_topics.tags', :default => 'Tags (Use "," como separador - Ex: "java, ruby")') %></label><br />
+<label for="topic_tags"><%= I18n.t('txt.views_topics.tags', :default => 'Tags <small>(Use "," como separador - Ex: "java, ruby")</small>') %></label>
 <%= form.text_field :tags, :tabindex => 15 %>
 </label>
 
 </p>
 <% if @topic.new_record? -%>
 <p>
-	<label for="topic_body"><%= I18n.t('txt.views_topics.body', :default => 'Body') %></label><br />
+	<label for="topic_body"><%= I18n.t('txt.views_topics.body', :default => 'Body') %></label>
 	<%= form.text_area :body, :rows => 12, :tabindex => 20 %>
 </p>
 <% end -%>
@@ -29,8 +26,9 @@
 <% if admin? && !@topic.new_record? && forums = current_site.ordered_forums -%>
 	<% if forums.size > 1 -%>
 <p id="topic_forum_id">
-  <label for="topic_forum_id"><%= I18n.t('txt.forum', :default => 'Forum') %></label><br />
+  <label for="topic_forum_id"><%= I18n.t('txt.forum', :default => 'Forum') %></label>
   <%= form.select :forum_id, forums.map {|x| [x.name, x.id] } %></p>
 </p>
 	<% end -%>
 <% end -%>
+</div><!-- end new post-->

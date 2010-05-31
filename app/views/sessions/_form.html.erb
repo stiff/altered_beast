@@ -1,10 +1,10 @@
-<p><%= label_tag I18n.t('txt.login_name', :default => 'Login') %><br />
+<p><%= label_tag I18n.t('txt.login_name', :default => 'Login') %>
 <%= text_field_tag 'login', @login %></p>
 
-<p><%= label_tag I18n.t('txt.password', :default => 'Password') %><br/>
+<p><%= label_tag I18n.t('txt.password', :default => 'Password') %>
 <%= password_field_tag 'password', nil %></p>
 
-<p><%= label_tag 'remember_me', I18n.t('txt.remember_me', :default => 'Remember me') %>
+<p id="rememberAjust"><%= label_tag 'remember_me', I18n.t('txt.remember_me', :default => 'Remember me') %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>
 
 

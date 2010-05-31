@@ -1,30 +1,37 @@
-<p><label for="login"><%= I18n.t 'txt.login_name_signup', :default => 'Login' %></label><br/>
-<%= f.text_field :login %></p>
+<div id="newUser">
+<p>
+	<label for="login"><%= I18n.t 'txt.login_name_signup', :default => 'Login' %></label>
+	<%= f.text_field :login %>
+</p>
 
-<p><label for="email"><%= I18n.t 'txt.email', :default => 'Email' %></label><br/>
-<%= f.text_field :email %></p>
+<p>
+	<label for="email"><%= I18n.t 'txt.email', :default => 'Email' %></label>
+	<%= f.text_field :email %>
+</p>
 
-<p><label for="password"><%= I18n.t 'txt.password', :default => 'Password' %></label><br/>
-<%= f.password_field :password %></p>
+<p>
+	<label for="password"><%= I18n.t 'txt.password', :default => 'Password' %></label>
+	<%= f.password_field :password %>
+</p>
 
-<p><label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label><br/>
+<p><label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label>
 <%= f.password_field :password_confirmation %></p>
 
-<p><label for="state_id"><%= I18n.t 'txt.state', :default => "State" %></label><br />
+<p id="estadoSelect"><label for="state_id"><%= I18n.t 'txt.state', :default => "State" %></label>
 <%= collection_select :states, :id, Local.states, :states, :states, {:prompt => t('txt.select_state', :default => 'Select state'), :selected => @user.nil? || @user.local.nil? ? '' : @user.local.states}, 
                   {:onchange => "#{remote_function(:url  => {:action => 'update_state', :controller => 'users'},
                                                     :with => "'state='+value",
                                                     :complete => '$(\'user_local_id\').focus()')}"} %>
 </p>
 
-<p><label for="user_local_id"><%= I18n.t 'txt.city', :default => "City" %></label><br />
+<p id="cidadeSelect"><label for="user_local_id"><%= I18n.t 'txt.city', :default => "City" %></label>
 <span id="cities_combo"><%= f.collection_select :local_id, (@user.nil? || @user.local.nil? ? [] : Local.cities_of(@user.local.states)), :id, :city, {:prompt => t('txt.select_state_first', :default => 'Select state first')} %></span>
 </p>
-
-<p><label for="working_since"><%= I18n.t 'txt.working_since', :default => 'Working since' %></label><br/>
+<br />
+<p><label for="working_since"><%= I18n.t 'txt.working_since', :default => 'Working since' %></label>
 <%= f.text_field :working_since %></p>
 
-<p><label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label><br />
+<p><label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label>
 <%= f.text_field :openid_url %>
 </p>
 
@@ -36,5 +43,6 @@
 <p><label for="user_responsability_id"><%= I18n.t 'txt.responsability', :default => "Responsability" %></label><br />
 <%= f.collection_select :responsability_id, Responsability.all, :id, :description,{:prompt => t('txt.select_responsability', :default => 'Select responsability'), :selected => @user.nil? ? '' : @user.responsability} %>
 </p>
-
 -->
+
+</div><!-- newUser-->

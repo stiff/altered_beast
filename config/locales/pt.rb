@@ -185,7 +185,7 @@
       :goto_last_page   => "última página",
       :posts            => "Mensagens",
       :views            => "Visualizações",
-      :latest_post      => "Última atualização",
+      :latest_post      => "Movimentação",
       :set              => "Definir",
       :topic_created    => "Tópico criado com sucesso",
       :topic_updated    => "Tópico modificado com sucesso",

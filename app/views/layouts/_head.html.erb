@@ -15,34 +15,42 @@
 </head>
 <body>
 
-<div id="header">
-  <ul id="nav">
-    <li><%= link_to I18n.t('txt.home', :default => 'Home'), root_path, :rel => 'home' %></li>
-    <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
+<div id="headerWarp">
+	<div id="header">
+  		<ul id="userMenu">
+    		<li><%= link_to I18n.t('txt.home', :default => 'Home'), root_path, :rel => 'home' %></li>
+    		<li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
 
-    <% if logged_in? -%>
-    <li class="login"><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
-    <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
-    <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
-    <% else -%>
-    <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri)) %></li>
-    <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri)) %></li>
-    <% end -%>
-  </ul>
-  <% name = (site = @current_site || Site.first) && site.name %>
-  <h1><%= link_to name || I18n.t('txt.beast_title', :default => 'Altered Beast'), root_path %></h1>
-  <span>
-      <% form_tag posts_path, :method => 'get' do -%>
-	    <h2>
-		    <%= link_to("##{"agile"}", tag_path("agile")) %>
-		    <%= link_to("##{"arquitetura"}", tag_path("arquitetura")) %>
-		    <%= link_to("##{"java"}", tag_path("java")) %>
-		    <%= link_to("##{"csharp"}", tag_path("csharp")) %>
-		    <%= link_to("##{"design"}", tag_path("design")) %>
-		    <%= link_to("##{"dotnet"}", tag_path("dotnet")) %>
-		    <%= link_to("##{"rails"}", tag_path("rails")) %>
-        	<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box,:onclick=>"if (this.value=='search') this.value=''" %>
-        </h2>
-      <% end -%>
-      </span>
-</div>
+    		<% if logged_in? -%>
+    			<li class="login"><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
+    			<li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
+    			<li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
+    		<% else -%>
+    			<li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri)) %></li>
+    			<li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri)) %></li>
+    		<% end -%>
+  		</ul><!-- navigation bar -->
+
+  		<% form_tag posts_path, :method => 'get' do -%>
+			<%= text_field_tag :q, (params[:q] || "search"), :size => 15, :id => :search_box,:onclick=>"if (this.value=='search') this.value=''" %>
+  		<% end -%>
+
+
+  		<div id="tecturaMenu">
+			<ul>
+				<li><%= link_to("##{"agile"}", tag_path("agile")) %></li>
+				<li><%= link_to("##{"arquitetura"}", tag_path("arquitetura")) %></li>
+		    	<li><%= link_to("##{"java"}", tag_path("java")) %></li>
+		    	<li><%= link_to("##{"csharp"}", tag_path("csharp")) %></li>
+		    	<li><%= link_to("##{"design"}", tag_path("design")) %></li>
+		    	<li><%= link_to("##{"dotnet"}", tag_path("dotnet")) %></li>
+		    	<li><%= link_to("##{"rails"}", tag_path("rails")) %></li>
+			</ul>	
+  		</div><!-- menu-->
+
+
+ 		<% name = (site = @current_site || Site.first) && site.name %>
+		<h1 id="logoSite"><%= link_to "<span>#{name || I18n.t('txt.beast_title', :Default => 'Altered Beast')}</span>", root_path, :rel => 'home' %></h1>
+
+	</div><!-- header -->
+</div><!-- header warp-->

@@ -3,13 +3,15 @@
 <h2><%= link_to h(@post.topic.title), forum_topic_path(@post.forum, @post.topic) %></h2>
 
 <%= link_to(I18n.t('txt.views_posts.delete', :default => 'Delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
-      :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>
+      :class => "btn grayBtn", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>
 
 <%= error_messages_for :topic %>
 <% form_for :post, :html => { :method => :put }, 
      :url  => forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page) do |f| -%>
 <p id="post_body"><%= f.text_area :body %></p>
+<div>
 <p><%= submit_tag I18n.t('txt.views_posts.save', :default => 'Save post') %> 
   <%= I18n.t 'txt.or', :default => 'or' %> 
   <%= link_to I18n.t('txt.cancel', :default => 'cancel'), forum_topic_path(@post.forum, @post.topic, :page => current_page) %></p>
+</div>
 <% end -%>

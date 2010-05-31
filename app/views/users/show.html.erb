@@ -41,9 +41,9 @@
 <% end -%>
 <% end -%>
 
-<p style="float:right;"><%= avatar_for @user, 80 %></p> 
+<%= avatar_for @user, 80 %>
 
-<h1><%=h @user.display_name %> </h1>
+<h1><%=h @user.display_name %></h1>
 
 <p class="subtitle">
   <%= feed_icon_tag @user.display_name, user_posts_path(:user_id => @user, :format => :rss) %>
@@ -54,10 +54,11 @@
   </span>
 </p>
 
-<%= @user.bio_html %>
+<div id="userInfoCnt">
+	<%= @user.bio_html %>
 
-<% unless @user.website.blank? -%>
-<p><strong><%= I18n.t 'txt.website', :default => 'Website' %></strong> <%= sanitize link_to(@user.website.gsub("http://",""), "http://" + @user.website.gsub("http://","")) %>
-<% end -%>
-<p><%= I18n.t 'txt.user_since', :default => 'User since {{date}}', :date => @user.created_at.to_date.to_s(:long) %></p>
-
+	<% unless @user.website.blank? -%>
+		<p><strong><%= I18n.t 'txt.website', :default => 'Website' %></strong> <%= sanitize link_to(@user.website.gsub("http://",""), "http://" + 		@user.website.gsub("http://","")) %>
+	<% end -%>
+	<p><%= I18n.t 'txt.user_since', :default => 'User since {{date}}', :date => @user.created_at.to_date.to_s(:long) %></p>
+</div><!-- user block content -->

@@ -3,7 +3,7 @@
 
 <%= render :partial => "form_new", :locals=>{:f=>f} %>
 <%#= render :partial => 'captcha' # enable for brainbuster %>
-
-<p><%= submit_tag I18n.t('txt.sign_up', :default => 'Sign up') %></p>
+<br class="clear" />
+<p><%= submit_tag I18n.t('txt.sign_up', :default => 'Sign up'), :class => "btn grayBtn" %></p>
 
 <% end -%>

@@ -1,4 +1,3 @@
-
 <% @page_title = @topic.title %>
 <% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
 
@@ -15,12 +14,13 @@
 
 <% if logged_in? %>
 
-<% form_tag monitorship_path(@topic), :style => 'margin-top:0em; float:right;' do -%>
+<% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
 <div>
-  <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if @monitoring %>>
-  <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
-  <%= hidden_field_tag '_method', 'put' %>
-  <%= submit_tag I18n.t 'txt.set', :default => "Set", :id => 'monitor_submit' %>
+  <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if @monitoring %> />
+  <label id="monitor_label" for="monitor_checkbox">
+	<%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
+	<%= hidden_field_tag '_method', 'put' %>
+ 	<%= submit_tag I18n.t 'txt.set', :default => 'Set', :id => 'monitor_submit' %>
 </div>
 <% end -%>
 
@@ -28,23 +28,22 @@
 
 
 <div class="crumbs">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
+  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
   <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
-  <%
-  page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
-  if page and page!=1 %>
-  <small style="color:#ccc">
-  (<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
+  <% page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
+  	if page and page!=1 %>
+  <small>
+  	(<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
   </small>
   <% end %>
-  <span class="arrow">&rarr;</span>
-</div>
+  <span class="arrow">»</span>
+</div><!-- crumbs -->
 
-<h1 id="topic-title" style="margin-top:0.5em;"<%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
+<h1 id="topic-title" <%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
 
   <%= h @topic.title %>
   <% if @topic.locked? %>
-  <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
+  	<span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
   <% end %>
   <% if logged_in? %>
     <span style="display:none;" id="topic_mod">
@@ -68,6 +67,10 @@
 
 <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+	<colgroup width="840">
+		<col width="168" />
+		<col width="672" />
+	</colgroup>
 <% for post in @posts do -%>
 <% unless post == @posts.first -%>
 
@@ -79,16 +82,8 @@
 <% end %>
 <tr class="post hentry" id="<%= dom_id post %>-row">
   <td class="author vcard">
-    <div class="date">
-      <a href="#<%= dom_id post %>" rel="bookmark">
-      <abbr class="updated" title="<%= post.created_at.xmlschema %>">
-      <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
-      </abbr>
-      </a>
-    </div>
-
     <%= avatar_for post.user %>
-    <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span>
+    <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
     <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? %>
     <span class="admin">
       <% if post.user.admin? %>
@@ -98,22 +93,30 @@
       <% elsif post.user.suspended? %>
         <%=h post.user.state  %>
       <% end %>
-    </span>
+    </span><br />
     <% end %>
     <span class="posts"><%= I18n.t 'txt.count_posts', :count => post.user.posts.size, :num => number_with_delimiter(post.user.posts.size) %></span>
+	<br />
 
-
+    <div class="date">
+      <a href="#<%= dom_id post %>" rel="bookmark">
+      	<abbr class="updated" title="<%= post.created_at.xmlschema %>">
+      		<%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
+      	</abbr>
+      </a><!-- bookmark-->
+    </div><!-- date -->
+	
     <% if logged_in? && post.editable_by?(current_user) -%>
     <p>
       <span class="edit">
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
-				<%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'utility' %>
+				<%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
       </span>
     </p>
     <% end -%>
 
-
   </td>
+
   <td class="body entry-content" id="post-body-<%= post.id %>">
       <%= post.body_html %>
   </td>
@@ -121,6 +124,12 @@
 
 <% end %>
 </table>
+
+<div class="crumbs">
+  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
+  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">»</span>
+</div>
+
 
 <%= will_paginate @posts %>
 <% end -%>
@@ -135,52 +144,41 @@
 <% else -%>
 
 <% if can_comment? %>
-<div id="reply" class="editbox" style="margin-top:50px;">
+<div id="reply" class="editbox">
   <div class="container">
     <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
     <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td rowspan="2" width="70%">
-          <%= f.text_area :body, :rows => 8 %>
-        </td>
-        <td valign="top">
-          <%= render :partial => "posts/formatting" %>
-        </td>
-      </tr>
-      <tr>
-        <td valign="bottom" style="padding-bottom:15px;">
-         <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply') %> <span class="button_or"></span>
-       </td>
-     </tr>
-    </table>
-      <%unless logged_in?%>
-        <div style="float:left;margin-top:10px">
-        
-        <b style="text-align:center;padding-left:200px"><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></b><br/>                     
-             <div id="login" style="float:left;width:200px;padding-left:100px;">             
-               <%= render :partial => "sessions/form"%><br/>
-             </div>
-     
-             <div id="cadastro" style="float:right;width:300px;padding-left:10px">
-               <div id="link_cadastro" style="margin-top:40px;<%if @user%>display:none;<%end%>">
-                <a href="javascript:void;" onclick="$('campos_cadastro').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
-               </div>                      
-               <div id="campos_cadastro" <%unless @user%>style="display:none;"<%end%> 
-                  <% fields_for :user do |f| %>
-                      <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-                  <% end %>
-               </div>
-             </div>
-        </div>
-       <%end%>        
-    <% end -%>
-  </div>
-</div>
-<% end %>
-<% end %>
+		<%= f.text_area :body, :rows => 8 %>
 
-<div class="crumbs" style="margin-top:1.1em;">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
-  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">&rarr;</span>
-</div>
+		<div class="toolsBox">
+			<%= render :partial => "posts/formatting" %>
+			<%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'saveBtn' %>
+		</div><!-- toolsbox-->
+
+      <%unless logged_in?%>
+		<br class="clear" />
+      	<div id="quickBox2">
+        
+        <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>
+             <div id="loginQBox">             
+               <%= render :partial => "sessions/form"%><br/>
+             </div><!-- login -->
+     
+			<div id="link_cadastro" style="<%if @user%>display:none;<%end%>">
+					<a href="javascript:void;" onclick="$('cadastroQBox').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
+			</div><!-- link_cadastro -->
+                      
+			<div id="cadastroQBox" <%unless @user%>style="display:none;"<%end%> 
+					<% fields_for :user do |f| %>
+						<%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+					<% end %>
+			</div><!-- cadastroQBox -->
+
+        </div><!-- alteranativeLogin -->
+       <%end%>        
+
+    <% end -%>
+  </div><!-- container -->
+</div><!-- editbox-->
+<% end %>
+<% end %>

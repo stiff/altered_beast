@@ -13,7 +13,7 @@
 
 <% end %>
 
-<h1 style="margin-top:0;"><%= I18n.t 'txt.forums', :default => 'Forums' %></h1>
+<h1><%= I18n.t 'txt.forums', :default => 'Forums' %></h1>
 <p class="subtitle">
 <%= feed_icon_tag I18n.t('txt.recent_posts', :default => "Recent Posts"), posts_path(:format => 'atom') %>
 <%= I18n.t 'txt.count_topics', :count => current_site.topics.size, :num => number_with_delimiter(current_site.topics.size) %>,
@@ -65,10 +65,10 @@
 <%# TODO: online_users = User.currently_online -%>
 <% if false # TODO: unless online_users.empty? %>
 <div class="stats">
-<div class="users">
-<% unless online_users.empty? %>
-<%= 'Users online:'[:users_online] %> <%= online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " %><br />
-<% end %>
-</div>
+	<div class="users">
+		<% unless online_users.empty? %>
+		<%= 'Users online:'[:users_online] %> <%= online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " %><br />
+		<% end %>
+	</div>
 </div>
 <% end %>

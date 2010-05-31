@@ -2,9 +2,9 @@
 
 <%= error_messages_for :topic %>
 <% form_for :topic,
-     :url  => forum_topic_path(@forum, @topic),
-     :html => { :method => :put } do |f| -%>
+	:url  => forum_topic_path(@forum, @topic),
+	:html => { :method => :put } do |f| -%>
 <%= render :partial => "form", :object => f %>
-<br />
+<br class="clear" />
 <%= submit_tag I18n.t('txt.save_changes', :default => 'Save changes') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), forum_topic_path) %>
 <% end -%>

@@ -1,0 +1,98 @@
+/*css declarations:
+nested styles 
+background, color and border
+floats and clears
+dimension
+paddings and margin
+text configurations
+*/
+
+
+/*grid color*/
+@black:#1A1A1A;
+@lightgray:#f2f2f2;
+@white:#FFFFFF;
+@blue:#002D62;
+@yellow:#FBCC3B;
+@red:#c00;
+
+/*commum tags*/
+.dro{ display:block; position:relative; overflow:hidden;}
+
+.rounded(@radius:4px){
+  	-moz-border-radius: @radius; /* Firefox */
+  	-webkit-border-radius: @radius; /* Safari, Chrome */
+  	border-radius: @radius; /* CSS3 */}
+
+/*warning msg*/
+
+.fieldWithErrors{.dro; width:auto; height:auto;}
+.fieldWithErrors input, .fieldWithErrors textarea { .dro; width:400px; height:auto; .rounded; border:solid 1px @red; padding:5px; margin-bottom:10px;}
+
+.notice{
+	.dro;
+	width:850px;
+	height:auto;
+	padding:10px;
+	margin:0px 0px 10px 0px;
+	font-weight:bold;
+	text-align:center;
+	.rounded;}
+
+	.checked{ background:#ccffcc; color:#003800;}
+	.error{ background:#ffcccc; color:#720000;}
+
+#errorExplanation {
+	.dro;
+	float:left;
+	height:auto;
+	width: 320px;
+	border: 1px solid red;
+	padding-bottom: 12px;
+	.rounded;
+
+	h2 {
+		.dro;
+		width:auto;
+		height:auto;
+		text-align: center;
+		font-weight: bold;
+		padding: 5px 15px 5px 15px;
+		margin-bottom:5px;
+		font-size: 1.1em;
+		background-color: @red;
+		color: @white; }
+
+	p {
+		.dro;
+		width:95%;
+		height:auto;
+		margin-left:5%;
+		height:auto;
+		color: @black + 50%;}
+	ul {
+		.dro;
+		width:95%;
+		height:auto;
+		margin-left:5%;
+		margin-top:5px;
+		
+		li { .dro; font-size: 1.1em; margin-bottom:5px; color:@red - 20%;}
+	}
+}
+
+div.uploadStatus { margin: 5px; }
+
+div.progressBar {
+	margin: 5px;
+		
+	div.border {
+	background-color: @white;
+	border: 1px solid gray;
+	width: 100%; }
+
+	div.background {
+	background-color: #333;
+	height: 18px;
+	width: 0%; }
+}

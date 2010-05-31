@@ -1,26 +1,18 @@
 <div id="edit" class="editbox">
-<div class="container">
-  <% form_for :post, :url => forum_topic_post_path(@post.forum, @post.topic, @post), 
-    :html => { :method => :put, :id => 'edit-form' } do |f| -%>
-  <table width="100%" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-      <td rowspan="2" width="70%">
-        <%= f.text_area :body, :rows => 10, :id => "edit_post_body", :tabindex => 1 %>
-      </td>
-      <td valign="top">
-        <%= link_to(I18n.t('txt.views_posts.delete', :default => 'delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
-              :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>  
+	<div class="container">
+		<% form_for :post, :url => forum_topic_post_path(@post.forum, @post.topic, @post), 
+		:html => { :method => :put, :id => 'edit-form' } do |f| -%>
+			<%= f.text_area :body, :rows => 10, :id => "edit_post_body", :tabindex => 1 %>
+			
+			<div class="toolsBox">
+				<%= render :partial => "formatting" %>
+	
+				<%= ajax_spinner_for "editbox", "spinner_black.gif" %>
+				<%= submit_tag I18n.t('txt.save_changes', :default => 'Save Changes'), :tabindex => 2, :class => 'saveBtn' %> 
+				<%= link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'edit-cancel', :class => 'cancelBtn') %>
+				<%= link_to(I18n.t('txt.views_posts.delete', :default => 'delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), :class => "deleteBtn", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>  
 
-        <%= render :partial => "formatting" %>
-      </td>
-    </tr>
-    <tr>
-      <td valign="bottom" style="padding-bottom:15px;">
-        <%= ajax_spinner_for "editbox", "spinner_black.gif" %>
-        <%= submit_tag I18n.t('txt.save_changes', :default => 'Save Changes'), :tabindex => 2 %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'edit-cancel') %></span>
-      </td>
-    </tr>
-  </table>
-  <% end -%>
-</div>
-</div>
+			</div><!-- toolsbox-->
+		<% end -%>
+	</div><!-- container-->
+</div><!-- editbox-->
