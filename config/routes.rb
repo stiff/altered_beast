@@ -19,16 +19,20 @@ ActionController::Routing::Routes.draw do |map|
                                      :purge     => :delete },
                         :has_many => [:posts]
 
-  map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate', :activation_code => nil
-  map.signup   '/signup',                    :controller => 'users',    :action => 'new'
-  map.state   '/state',                      :controller => 'users',    :action => 'update_state'
-  map.login    '/login',                     :controller => 'sessions', :action => 'new'
-  map.logout   '/logout',                    :controller => 'sessions', :action => 'destroy'
-  map.settings '/settings',                  :controller => 'users',    :action => 'settings'
-  map.resource  :session
-  map.about     '/about',                    :controller => 'about',    :action => 'show'
-
-  map.tag       '/tag/:tag_name',            :controller => 'tags',     :action => 'search'
+  map.activate '/activate/:activation_code',       :controller => 'users',    :action => 'activate', :activation_code => nil
+  map.signup   '/signup',                          :controller => 'users',    :action => 'new'
+  map.state   '/state',                            :controller => 'users',    :action => 'update_state'
+  map.login    '/login',                           :controller => 'sessions', :action => 'new'
+  map.logout   '/logout',                          :controller => 'sessions', :action => 'destroy'
+  map.resend_confirmation_mail '/resend_confirmation_mail', :controller => 'users', :action => 'resend_confirmation_mail'
+  map.lost_password '/lost_password',               :controller => 'users',    :action => 'remember_password'
+  map.reset_password_confirmation '/reset_password',            :controller => 'users',    :action => 'reset_password_confirmation', :conditions => { :method => :post }
+  map.reset_password '/reset_password/:secret',    :controller => 'users',    :action => 'reset_password', :conditions => { :method => :get }
+  map.settings '/settings',                        :controller => 'users',    :action => 'settings'
+  map.resource  :session                           
+  map.about     '/about',                          :controller => 'about',    :action => 'show'
+                                                   
+  map.tag       '/tag/:tag_name',                  :controller => 'tags',     :action => 'search'
 
   map.with_options :controller => 'posts', :action => 'monitored' do |map|
     map.formatted_monitored_posts 'users/:user_id/monitored.:format'

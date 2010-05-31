@@ -19,7 +19,7 @@
 
 <p id="estadoSelect"><label for="state_id"><%= I18n.t 'txt.state', :default => "State" %></label>
 <%= collection_select :states, :id, Local.states, :states, :states, {:prompt => t('txt.select_state', :default => 'Select state'), :selected => @user.nil? || @user.local.nil? ? '' : @user.local.states}, 
-                  {:onchange => "#{remote_function(:url  => {:action => 'update_state', :controller => 'users'},
+                  {:onchange => "$(\'user_local_id\').focus(); #{remote_function(:url  => {:action => 'update_state', :controller => 'users'},
                                                     :with => "'state='+value",
                                                     :complete => '$(\'user_local_id\').focus()')}"} %>
 </p>
@@ -44,5 +44,8 @@
 <%= f.collection_select :responsability_id, Responsability.all, :id, :description,{:prompt => t('txt.select_responsability', :default => 'Select responsability'), :selected => @user.nil? ? '' : @user.responsability} %>
 </p>
 -->
-
 </div><!-- newUser-->
+
+<script type="text/javascript">
+$('user_login').focus();
+</script>

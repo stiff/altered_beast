@@ -169,6 +169,7 @@
       :successful_login     => "Login feito com sucesso",
       :logged_out           => "Logout feito com sucesso",
       :invalid_login        => "Usuário ou senha incorreta",
+      :email_not_found      => "Este email não está cadastrado",
 
       # Topics
       :sticky           => "fixo",
@@ -203,11 +204,16 @@
       # Email
       :account_has_been_created   => "Sua conta foi criada com sucesso.",
       :account_has_been_activated => "Sua conta foi ativada com sucesso.",
+      :reset_your_password        => "Clique no link abaixo para definir uma nova senha.",
       :visit_url_to_activate      => "Visite este link para ativar sua conta",
       :subject_activate           => "Ative sua conta",
       :subject_activated          => "Sua conta foi ativada",
+      :request_to_change_your_password => "Mudança de senha",
       :username                   => "Usuário",
       :password                   => "Senha",
+      :verify_your_email          => "Verifique seu email para mudar sua senha",
+      :mail_sent                  => "Email enviado",
+      :resend_confirmation_mail   => "Reenviar email de confirmação",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
@@ -250,6 +256,7 @@
       :select_state_first => 'Selecione o estado primeiro',
       :select_company_size => 'Selecione a quantidade de funcionários',
       :working_since => 'Ano que começou a trabalhar',
+      :update                    => "Alterar",
       :views_users           => {
           :reset_password            => "Esqueci minha senha",
           :email_directions          => "Informe seu endereço de email:",
@@ -276,7 +283,7 @@
           :find_a_user               => "Busca de Usuários",
           :search_title              => "Procurar",
           :posts_title               => "Mensagens",
-          :current_status_title      => "Status"
+          :current_status_title      => "Status",
       },
     }
   }

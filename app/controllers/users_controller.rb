@@ -96,6 +96,40 @@ class UsersController < ApplicationController
       page.replace_html 'cities_combo', :partial => 'cities', :object => cities
     end
   end
+  
+  def remember_password
+    user = User.find_by_email params[:email]
+    if user.nil?
+      flash[:error] = I18n.t "txt.email_not_found", :default => "Email address not found"
+      redirect_to login_path
+    else
+      user.generate_lost_password_secret
+      user.save
+      UserMailer.deliver_remember_password(user)
+      flash[:notice] = I18n.t('txt.verify_your_email', :default => 'Verify your mail in order to reset your password')
+      redirect_to root_url
+    end
+  end
+  
+  def reset_password
+    @user = User.find_by_lost_password_secret(params[:secret])
+  end
+  
+  def reset_password_confirmation
+    @user = User.find_by_lost_password_secret(params[:user][:lost_password_secret])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
+      redirect_to(login_url) 
+    else
+      render :action => "reset_password"
+    end
+  end
+  
+  def resend_confirmation_mail
+    UserMailer.deliver_signup_notification current_user
+    flash[:notice] = I18n.t("txt.mail_sent", :default => "Mail sent")
+    redirect_to root_path
+  end
 
 protected
   def find_user

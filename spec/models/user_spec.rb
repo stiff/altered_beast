@@ -63,6 +63,23 @@ describe User do
     users(:default).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     User.authenticate(users(:default).login, 'new password').should == users(:default)
   end
+  
+  it 'generate different lost password secret for different user' do
+    user1 = create_user :login => "Mario", :email => 'mario@mario.com'
+    user2 = create_user :login => "Luigi", :email => 'luigi@mario.com'
+    user1.generate_lost_password_secret
+    user2.generate_lost_password_secret
+    user1.lost_password_secret.should_not == user2.lost_password_secret
+  end
+  
+  it 'generate different lost password secret for different times' do
+    user = create_user
+    user.generate_lost_password_secret
+    lps1 = user.lost_password_secret
+    user.generate_lost_password_secret
+    lps2 = user.lost_password_secret
+    lps1.should_not == lps2
+  end
 
   it 'does not rehash password' do
     users(:default).update_attributes(:login => users(:default).login.reverse)

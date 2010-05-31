@@ -63,7 +63,7 @@ class Topic < ActiveRecord::Base
   end
 
   def self.per_page
-  		10
+  		20
   end
 
   def last_page

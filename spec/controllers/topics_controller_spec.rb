@@ -291,7 +291,7 @@ describe TopicsController, "DELETE #destroy" do
   act! { delete :destroy, :forum_id => @forum.to_param, :id => @topic.to_param }
 
   before do
-    login_as :default
+    login_as :admin
     @forum = forums(:default)
     @topic = topics(:default)
     Forum.stub!(:first).and_return(@forum)

@@ -1064,12 +1064,35 @@ h1#new_topic {
   position: relative;
   overflow: hidden;
 }
+
 .fieldWithErrors {
   display: block;
   position: relative;
   overflow: hidden;
   width: auto;
   height: auto;
+
+
+div.editbox a { color:#CCC; }
+div.editbox p.help span,
+div.editbox ul.help span { color:#666; }
+div.editbox p.help,
+div.editbox ul.help
+{
+  padding:3px 10px;
+  font-size:0.75em;
+  color:#ccc;
+  font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+}
+div.editbox ul.help { margin:0; }
+
+div.editbox ul.help {
+  list-style-type:none; }
+  
+#monitor_topic a
+{
+  color: #666;
+
 }
 .fieldWithErrors input {
   display: block;
