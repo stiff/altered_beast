@@ -60,13 +60,13 @@
     # Active Record
     :activerecord => {
       :models     => {
-          :user         => "usuário",
+        :user         => "usuário",
       },
       :attributes => {
-          :user   => {
-              :login    => "Nome de Usuário",
-              :password => "Senha",
-              :password_confirmation => "Confirmação de Senha",
+        :user   => {
+          :login    => "Nome de Usuário",
+          :password => "Senha",
+          :password_confirmation => "Confirmação de Senha",
           },
       },
     },
@@ -153,7 +153,7 @@
       :by_user        => "por {{user}}",
       :view           => "ler",
       :views_forums   => {
-          :unmoderated  => "Este fórum não é moderado."
+        :unmoderated  => "Este fórum não é moderado."
       },
 
       # Session
@@ -191,15 +191,14 @@
       :topic_created    => "Tópico criado com sucesso",
       :topic_updated    => "Tópico modificado com sucesso",
       :views_topics => {
-          :topic        => "Título",
-          :body         => "Texto",
-          :save_reply   => "Responder",
-          :delete_sure  => "Esta discussão será apagada.",
+        :topic        => "Título",
+        :body         => "Texto",
+        :save_reply   => "Responder",
+        :delete_sure  => "Esta discussão será apagada.",
       },
       :post_topic_and_login => "Logar e postar",
       :post_topic_and_create_user => "Cadastrar e postar",
       :not_signedup => "Não cadastrado",
-
 
       # Email
       :account_has_been_created   => "Sua conta foi criada com sucesso.",
@@ -223,16 +222,16 @@
       :post_updated       => "Mensagem modificada com sucesso",
       :post_created       => "Post criado com sucesso",
       :views_posts        => {
-          :formatting_help        => "Formatação",
-          :formatting_bold        => "*negrito*",
-          :formatting_italics     => "_itálico_",
-          :formatting_blockquote  => "'bq. <span>(citação)</span>'",
-          :formatting_list        => "* ou # <span>(listas)</span>",
-          :delete                 => "Apagar mensagem",
+        :formatting_help        => "Formatação",
+        :formatting_bold        => "*negrito*",
+        :formatting_italics     => "_itálico_",
+        :formatting_blockquote  => "'bq. <span>(citação)</span>'",
+        :formatting_list        => "* ou # <span>(listas)</span>",
+        :delete                 => "Apagar mensagem",
       },
       :admin              => {
-          :edit_post                 => "Editar mensagem",
-          :user_is_an_administrator  => "Administrador",
+        :edit_post                 => "Editar mensagem",
+        :user_is_an_administrator  => "Administrador",
       },
 
       # User
@@ -258,32 +257,32 @@
       :working_since => 'Ano que começou a trabalhar',
       :update                    => "Alterar",
       :views_users           => {
-          :reset_password            => "Esqueci minha senha",
-          :email_directions          => "Informe seu endereço de email:",
-          :send_email                => "Enviar link por email",
-          :basics_title              => "Informações Principais",
-          :email_title               => "Email",
-          :password_title            => "Senha",
-          :password_field            => "Digite a nova senha duas vezes. Deixe em branco para não alterar.",
-          :once                      => "senha",
-          :and_again                 => "confirmação",
-          :change_email_or_password  => "Salvar email e/ou senha",
-          :profile                   => "Perfil do Usuário",
-          :display_name              => "Nome",
-          :display_name_or_login     => "Nome / Login",
-          :openid_url_title          => "OpenID",
-          :open_id_field             => "URL da Identidade OpenID",
-          :website_title             => "Endereço Web",
-          :without_http              => "sem http://",
-          :bio_title                 => "Sobre mim",
-          :update_profile            => "Salvar perfil",
-          :avatars_title             => "Avatar",
-          :gravatar_notice           => "Para ter seu avatar exibido neste fórum, registre-se no {{gravatar}}.",
+        :reset_password            => "Esqueci minha senha",
+        :email_directions          => "Informe seu endereço de email:",
+        :send_email                => "Enviar link por email",
+        :basics_title              => "Informações Principais",
+        :email_title               => "Email",
+        :password_title            => "Senha",
+        :password_field            => "Digite a nova senha duas vezes. Deixe em branco para não alterar.",
+        :once                      => "senha",
+        :and_again                 => "confirmação",
+        :change_email_or_password  => "Salvar email e/ou senha",
+        :profile                   => "Perfil do Usuário",
+        :display_name              => "Nome",
+        :display_name_or_login     => "Nome / Login",
+        :openid_url_title          => "OpenID",
+        :open_id_field             => "URL da Identidade OpenID",
+        :website_title             => "Endereço Web",
+        :without_http              => "sem http://",
+        :bio_title                 => "Sobre mim",
+        :update_profile            => "Salvar perfil",
+        :avatars_title             => "Avatar",
+        :gravatar_notice           => "Para ter seu avatar exibido neste fórum, registre-se no {{gravatar}}.",
 
-          :find_a_user               => "Busca de Usuários",
-          :search_title              => "Procurar",
-          :posts_title               => "Mensagens",
-          :current_status_title      => "Status",
+        :find_a_user               => "Busca de Usuários",
+        :search_title              => "Procurar",
+        :posts_title               => "Mensagens",
+        :current_status_title      => "Status",
       },
     }
   }

@@ -1,21 +1,37 @@
-<%= render :partial => "layouts/head" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR">
 
-<div id="contentWarp">
-		<div id="content">
-			<%= content_tag 'p', h(flash[:notice]), :class => 'notice checked' if flash[:notice] %>
-			<%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title><%= yield :page_title %></title>
+  <%= stylesheet_link_tag "display", "captcha" %>
+  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>
+  <% unless @feed_icons.blank? -%>
+    <% @feed_icons.each do |feed| -%>
+      <%= auto_discovery_link_tag :atom, feed[:url], :title => "Assine o #{feed[:title]}" %>
+    <% end -%>
+  <% end -%>
+  <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
+</head>
 
-			<%= yield %>	
-		</div><!-- content -->
-</div><!-- contentwarp-->
+<body>
+  <%= render :partial => "layouts/header" %>
 
+  <div id="contentWrap">
+    <div id="content">
+      <%= content_tag 'p', h(flash[:notice]), :class => 'notice checked' if flash[:notice] %>
+      <%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
 
-<div id="footerWarp">
-	<div id="footer">
-		<p>Todos os direitos Reservados a <a href="http://www.caelum.com.br" target="blank">Caelum | Ensino e Inovação</a>.</p>
-  		<%=link_to "Sobre o tectura", about_url%>
-	</div><!--footer-->
-</div><!--footerwarp-->
+      <%= yield %>
+    </div>
+  </div>
+
+  <div id="footerWrap">
+    <div id="footer">
+      <p>Todos os direitos Reservados a <a href="http://www.caelum.com.br" target="blank">Caelum | Ensino e Inovação</a>.</p>
+      <%= link_to "Sobre o tectura", about_url %>
+    </div>
+  </div>
 
 </body>
 </html>

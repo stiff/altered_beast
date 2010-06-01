@@ -1,0 +1,32 @@
+<div id="header">
+  <div id="wrapper">
+    <h1 id="tectura">
+      <%= link_to content_tag(:span, "Tectura - Desenvolvedores discutindo arquitetura na prática"), root_path, :rel => "home" %>
+    </h1>
+    <ul id="userMenu">
+      <li><%= link_to I18n.t('txt.home', :default => 'Home'), root_path, :rel => 'home' %></li>
+      <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
+    <% if logged_in? -%>
+      <li><%=  link_to I18n.t('txt.my_topics'), user_posts_path(current_user) %></li>
+      <li><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
+      <li><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri)) %></li>
+    <% else -%>
+      <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri)) %></li>
+      <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri)) %></li>
+    <% end -%>
+    </ul>
+    <% form_tag posts_path, :method => 'get' do -%>
+      <%= text_field_tag :q, (params[:q] || "busca"), :size => 15, :id => :search_box %>
+    <% end -%>
+    <ul id="tecturaMenu">
+      <li><%= link_to("##{"agile"}", tag_path("agile")) %></li>
+      <li><%= link_to("##{"arquitetura"}", tag_path("arquitetura")) %></li>
+      <li><%= link_to("##{"java"}", tag_path("java")) %></li>
+      <li><%= link_to("##{"csharp"}", tag_path("csharp")) %></li>
+      <li><%= link_to("##{"design"}", tag_path("design")) %></li>
+      <li><%= link_to("##{"dotnet"}", tag_path("dotnet")) %></li>
+      <li><%= link_to("##{"rails"}", tag_path("rails")) %></li>
+    </ul>	
+
+  </div>
+</div>

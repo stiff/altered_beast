@@ -1,21 +1,20 @@
 <% content_for :right do %>
 
-<% unless @forum.description.blank? %>
-<%= @forum.description %>
-<hr />
-<% end %>
+  <% unless @forum.description.blank? %>
+    <%= @forum.description %><hr />
+  <% end %>
 
-<h5><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
+  <h5><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
 
-<% unless @forum.moderators.empty? -%>
-<ul class="flat">
-<% @forum.moderators.each do |user| -%>
-  <li><%= link_to h(user.display_name || user.login), user %></li>
-<% end -%>
-</ul>
-<% else -%>
-<p><%= I18n.t 'txt.views_forums.unmoderated', :default => 'This forum is currently unmoderated.<br />Please always be courteous.' %></p>
-<% end -%>
+  <% unless @forum.moderators.empty? -%>
+    <ul class="flat">
+      <% @forum.moderators.each do |user| -%>
+        <li><%= link_to h(user.display_name || user.login), user %></li>
+      <% end -%>
+    </ul>
+  <% else -%>
+    <p><%= I18n.t 'txt.views_forums.unmoderated', :default => 'This forum is currently unmoderated.<br />Please always be courteous.' %></p>
+  <% end -%>
 
 <% end %>
 

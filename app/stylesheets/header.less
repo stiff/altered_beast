@@ -1,128 +1,145 @@
-/*grid color*/
-@black:#1A1A1A;
-@white:#FFFFFF;
-@blue:#002D62;
-@yellow:#FBCC3B;
+/* Grid color */
+@black:  #1A1A1A;
+@white:  #FFFFFF;
+@blue:   #002D62;
+@yellow: #FBCC3B;
 
-/*commum tags*/
-.dro{ display:block; position:relative; overflow:hidden;}
+/*common tags*/
+.block {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
 
-.rounded(@radius:4px){
-  	-moz-border-radius: @radius; /* Firefox */
-  	-webkit-border-radius: @radius; /* Safari, Chrome */
-  	border-radius: @radius; /* CSS3 */}
+.rounded(@radius:4px) {
+  border-radius: @radius; /* CSS3 */
+  -moz-border-radius: @radius; /* Firefox */
+  -webkit-border-radius: @radius; /* Chrome, Safari */
+}
 
-#headerWarp{
-	.dro;
-	background:@black + 30%;
-	background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#1A1A1A)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #333,  #1A1A1A); /* for firefox 3.6+ */	
-	border-bottom:solid 1px @black;
-	width:100%;
-	height:auto;
-	
-	#header{
-		.dro;
-		width:900px;
-		height:auto;
-		margin:0px auto;
-	
-		#logoSite{
-			.dro;
-			clear:left;
-			width:320px;
-			height:90px;
-			background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
-			
-			a {
-				.dro;
-				width:100%; height:100%; text-decoration:none;
-				span{display:none;}
-			}
-		}
-		
-		form{
-			.dro;
-			float:right;
-			clear:right;
-			width:auto;
-			height:auto;
-			margin-bottom:15px;
-			
-			#search_box{
-				.dro;
-				background:@white;
-				border:none;
-				color:@black + 50%;
-				float:left;
-				width:200px; 
-				height:auto; 
-				padding:5px;
-				margin:10px 0px 0px 0px; 
-				font-size:1em;}
-		}
-		
-		#tecturaMenu{
-			.dro;
-		  	-moz-border-radius: 5px 5px 0px 0px; /* Firefox */
-		  	-webkit-border-top-left-radius: 5px; /* Safari, Chrome */
-			-webkit-border-top-right-radius:5px;
-		  	border-radius: 5px 5px 0px 0px; /* CSS3 */
-			background:@black - 1%;
-			float:right;
-			clear:right;
-			width:100%;
-			height:auto;
-			margin:20px 0px 0px 0px;
-			font-size:1.2em;
-			
-			li{
-				.dro;
-				float:right;	
-				width:auto;
-				height:auto;
-				margin:10px 10px;
-				
-				a{
-					.dro;
-					width:auto;
-					height:auto;
-					color:@white;
-					text-decoration:none;
-					padding:5px 7px;
-					
-					:hover{background:@yellow; color:@black + 30%; .rounded;}
-				}
-				
-			}
-		}
-			
-		#userMenu{
-			.dro;
-			float:right;
-			width:auto;
-			height:auto;
-			
-			li {
-				.dro;
-				float:left;
-				width:auto;
-				height:auto;
-				
-				a{
-					.dro;
-					margin:10px 0 5px 10px;
-					float:left;
-					width:auto;
-					height:auto;
-					color:@white;
-					text-decoration:none;
-					text-transform:uppercase;
-					font-size:.8em;
-					
-					:hover{color:@yellow;}
-				}
-			}
-		}
-	}
+#header {
+  .block;
+  background: @black + 30%;
+  background: -moz-linear-gradient(top,  #333,  #1A1A1A); /* Firefox */	
+  background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#1A1A1A)); /* Chrome, Safari */
+  border-bottom: solid 1px @black;
+  height: auto;
+  width: 100%;
+
+  #wrapper {
+    .block;
+    height: auto;
+    margin: 0px auto;
+    width: 900px;
+
+    #tectura{
+      .block;
+      background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
+      clear: left;
+      float: left;
+      height: 90px;
+      width: 320px;
+
+      a {
+        .block;
+        height: 100%;
+        text-decoration: none;
+        width: 100%;
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    form{
+      .block;
+      clear: right;
+      float: right;
+      height: auto;
+      margin-bottom: 15px;
+      width: auto;
+
+      #search_box{
+        .block;
+        background: @white;
+        border:none;
+        color: @black + 50%;
+        float: left;
+        font-size: 1em;
+        height: auto; 
+        margin: 10px 0px 0px 0px; 
+        padding: 5px;
+        width: 200px;
+      }
+    }
+
+    #tecturaMenu{
+      .block;
+      background: @black - 1%;
+      border-radius: 5px 5px 0px 0px; /* CSS3 */
+      -moz-border-radius: 5px 5px 0px 0px; /* Firefox */
+      -webkit-border-top-left-radius: 5px; /* Safari, Chrome */
+      -webkit-border-top-right-radius: 5px;
+      clear: right;
+      float: right;
+      font-size: 1.2em;
+      height: auto;
+      margin: 20px 0px 0px 0px;
+      width: 100%;
+
+      li{
+        .block;
+        float: right;	
+        height: auto;
+        margin: 10px 10px;
+        width: auto;
+
+        a{
+          .block;
+          color: @white;
+          height: auto;
+          padding: 5px 7px;
+          text-decoration: none;
+          width: auto;
+
+          :hover {
+            .rounded;
+            background: @yellow;
+            color: @black + 30%;
+          }
+        }
+      }
+    }
+
+    #userMenu{
+      .block;
+      float: right;
+      height: auto;
+      width: auto;
+
+      li {
+        .block;
+        float: left;
+        height: auto;
+        width: auto;
+
+        a{
+          .block;
+          color: @white;
+          float: left;
+          font-size: 0.8em;
+          height: auto;
+          margin: 10px 0 5px 10px;
+          text-decoration: none;
+          text-transform: uppercase;
+          width: auto;
+
+          :hover{
+            color: @yellow;
+          }
+        }
+      }
+    }
+  }
 }

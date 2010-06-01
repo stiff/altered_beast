@@ -4,35 +4,31 @@
 /* http://sonspring.com/journal/clearing-floats */
 
 .clear {
-	clear: both;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+  clear: both;
+  display: block;
+  height: 0px;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0px;
 }
 
 /* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
 
 .clearfix:after {
-	clear: both;
-	content: ' ';
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+  clear: both;
+  content: " ";
+  display: block;
+  font-size: 0px;
+  height: 0px;
+  line-height: 0px;
+  visibility: hidden;
+  width: 0px;
 }
 
 .clearfix {
-	display: inline-block;
+  display: block;
 }
 
 * html .clearfix {
-	height: 1%;
-}
-
-.clearfix {
-	display: block;
+  height: 1%;
 }
