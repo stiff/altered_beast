@@ -1,5 +1,5 @@
 {
-  :'pt' => {
+  :'pt-BR' => {
 
     # will_paginate
     :previous => "Anterior",
