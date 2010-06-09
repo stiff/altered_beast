@@ -4,47 +4,22 @@
   position: relative;
 }
 #header {
-  display: block;
-  overflow: hidden;
-  position: relative;
   background: #383838;
   background: -moz-linear-gradient(top, #333333, #1a1a1a);
   background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#1a1a1a));
-  border-bottom: solid 1px #1a1a1a;
-  height: auto;
-  width: 100%;
 }
 #header #wrapper {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  height: auto;
   margin: 0px auto;
   width: 900px;
 }
 #header #wrapper #tectura {
-  display: block;
-  overflow: hidden;
-  position: relative;
   background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
-  clear: left;
   float: left;
   height: 90px;
+  text-indent: -10000px;
   width: 320px;
 }
-#header #wrapper #tectura a {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-  text-decoration: none;
-  width: 100%;
-}
-#header #wrapper #tectura a span { display: none; }
 #header #wrapper form {
-  display: block;
-  overflow: hidden;
-  position: relative;
   clear: right;
   float: right;
   height: auto;
@@ -52,9 +27,9 @@
   width: auto;
 }
 #header #wrapper form #search_box {
-  display: block;
-  overflow: hidden;
-  position: relative;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   background: #ffffff;
   border: none;
   color: #4c4c4c;
@@ -63,12 +38,9 @@
   height: auto;
   margin: 10px 0px 0px 0px;
   padding: 5px;
-  width: 200px;
+  width: 250px;
 }
-#header #wrapper #tecturaMenu {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-tags {
   background: #191919;
   border-radius: 5px 5px 0px 0px;
   -moz-border-radius: 5px 5px 0px 0px;
@@ -81,52 +53,37 @@
   margin: 20px 0px 0px 0px;
   width: 100%;
 }
-#header #wrapper #tecturaMenu li {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-tags li {
   float: right;
   height: auto;
   margin: 10px 10px;
   width: auto;
 }
-#header #wrapper #tecturaMenu li a {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-tags li a {
   color: #ffffff;
   height: auto;
   padding: 5px 7px;
   text-decoration: none;
   width: auto;
 }
-#header #wrapper #tecturaMenu li a:hover {
+#header #wrapper #nav-tags li a:hover {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   background: #fbcc3b;
   color: #383838;
 }
-#header #wrapper #userMenu {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-users {
   float: right;
   height: auto;
   width: auto;
 }
-#header #wrapper #userMenu li {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-users li {
   float: left;
   height: auto;
   width: auto;
 }
-#header #wrapper #userMenu li a {
-  display: block;
-  overflow: hidden;
-  position: relative;
+#header #wrapper #nav-users li a {
   color: #ffffff;
   float: left;
   font-size: 0.8em;
@@ -136,4 +93,4 @@
   text-transform: uppercase;
   width: auto;
 }
-#header #wrapper #userMenu li a:hover { color: #fbcc3b; }
+#header #wrapper #nav-users li a:hover { color: #fbcc3b; }

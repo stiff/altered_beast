@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100524201425) do
+ActiveRecord::Schema.define(:version => 20100609210203) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20100524201425) do
     t.integer  "local_id"
     t.integer  "working_since"
     t.string   "lost_password_secret"
+    t.string   "city"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

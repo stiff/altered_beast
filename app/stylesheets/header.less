@@ -4,7 +4,7 @@
 @blue:   #002D62;
 @yellow: #FBCC3B;
 
-/*common tags*/
+/* Common tags */
 .block {
   display: block;
   overflow: hidden;
@@ -18,42 +18,32 @@
 }
 
 #header {
-  .block;
+  /* .block; <<<<< IE? */
   background: @black + 30%;
   background: -moz-linear-gradient(top,  #333,  #1A1A1A); /* Firefox */	
   background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#1A1A1A)); /* Chrome, Safari */
-  border-bottom: solid 1px @black;
-  height: auto;
-  width: 100%;
+  /* border-bottom: solid 1px @black; */
+  /* height: auto; <<<<< IE? */
+  /* width: 100%; */
 
   #wrapper {
-    .block;
-    height: auto;
+    /* .block; <<<<< IE? */
+    /* height: auto; <<<<< IE? */
     margin: 0px auto;
     width: 900px;
 
     #tectura{
-      .block;
+      /* .block; <<<<< IE? */
       background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
-      clear: left;
+      /* clear: left; <<<<< IE? */
       float: left;
       height: 90px;
+      text-indent: -10000px;
       width: 320px;
-
-      a {
-        .block;
-        height: 100%;
-        text-decoration: none;
-        width: 100%;
-
-        span {
-          display: none;
-        }
-      }
     }
 
     form{
-      .block;
+      /* .block; <<<<< IE? */
       clear: right;
       float: right;
       height: auto;
@@ -61,7 +51,8 @@
       width: auto;
 
       #search_box{
-        .block;
+        /* .block; <<<<< IE? */
+        .rounded;
         background: @white;
         border:none;
         color: @black + 50%;
@@ -70,12 +61,12 @@
         height: auto; 
         margin: 10px 0px 0px 0px; 
         padding: 5px;
-        width: 200px;
+        width: 250px;
       }
     }
 
-    #tecturaMenu{
-      .block;
+    #nav-tags{
+      /* .block; <<<<< IE? */
       background: @black - 1%;
       border-radius: 5px 5px 0px 0px; /* CSS3 */
       -moz-border-radius: 5px 5px 0px 0px; /* Firefox */
@@ -89,14 +80,14 @@
       width: 100%;
 
       li{
-        .block;
+        /* .block; <<<<< IE? */
         float: right;	
         height: auto;
         margin: 10px 10px;
         width: auto;
 
         a{
-          .block;
+          /* .block; <<<<< IE? */
           color: @white;
           height: auto;
           padding: 5px 7px;
@@ -112,20 +103,20 @@
       }
     }
 
-    #userMenu{
-      .block;
+    #nav-users{
+      /* .block; <<<<< IE? */
       float: right;
       height: auto;
       width: auto;
 
       li {
-        .block;
+        /* .block; <<<<< IE? */
         float: left;
         height: auto;
         width: auto;
 
         a{
-          .block;
+          /* .block; <<<<< IE? */
           color: @white;
           float: left;
           font-size: 0.8em;

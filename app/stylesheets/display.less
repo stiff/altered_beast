@@ -1,14 +1,6 @@
-/*css declarations:
-nested styles 
-background, color and border
-floats and clears
-dimension
-paddings and margin
-text configurations
-*/
-
 @import "resetstyle";
 @import "gridfix";
+@import "header";
 
 /*grid color*/
 @black:#1A1A1A;
@@ -20,72 +12,82 @@ text configurations
 @red:#c00;
 
 /*common tags*/
-body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important;}
-	
-.dro{ display:block; position:relative; overflow:hidden;}
-
-.rounded(@radius:4px){
-  	-moz-border-radius: @radius; /* Firefox */
-  	-webkit-border-radius: @radius; /* Safari, Chrome */
-  	border-radius: @radius; /* CSS3 */}
-
-.shadowM{
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	border-bottom: 1px solid rgba(0,0,0,0.25);  
-	cursor: pointer;}
-
-.btn{	
-	.dro;
-	text-decoration: none;
-	font-weight: bold;
-	border:none;
-	font-size:1.2em;
-	.rounded;}
-
-.ntread{
-	width:auto;
-	height:auto;
-	float:right;	
-	color: @white;	
-	padding: 10px 10px 10px 30px;
-	margin:10px 0px 0px 0px;
-	background: #222 url("/images/newsTread.png") no-repeat 5px 8px;
-	:hover{background-color:@black + 50%;}	
+body {
+  background: @blue !important;
+  font: 11px Arial, Sans-serif;
 }
 
-.grayBtn{
-	width:auto;
-	height:auto;
-	float:right;	
-	color: @white;
-	padding: 10px;
-	margin:0px;	
-	background:#222 url();
-	border:none;
-	:hover{background-color:@black + 50%;}	
+.rounded(@radius:4px) {
+  border-radius: @radius; /* CSS3 */
+  -moz-border-radius: @radius; /* Firefox */
+  -webkit-border-radius: @radius; /* Safari, Chrome */
+}
+
+.shadowM {
+  border-bottom: 1px solid rgba(0,0,0,0.25);  
+  cursor: pointer;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.btn {
+  .block;
+  text-decoration: none;
+  font-weight: bold;
+  border:none;
+  font-size:1.2em;
+  .rounded;
+}
+
+.ntread {
+  width:auto;
+  height:auto;
+  float:right;	
+  color: @white;	
+  padding: 10px 10px 10px 30px;
+  margin:10px 0px 0px 0px;
+  background: #222 url("/images/newsTread.png") no-repeat 5px 8px;
+
+  :hover {
+    background-color:@black + 50%;
+  }
+}	
+
+.grayBtn {
+  width:auto;
+  height:auto;
+  float:right;	
+  color: @white;
+  padding: 10px;
+  margin:0px;	
+  background:#222 url();
+  border:none;
+
+  :hover {
+    background-color: @black + 50%;
+  }	
 }
 
 /*standar size*/
-.size01{ padding:15px; width:870px;}
-
-/*struct elemets*/
-@import "header";
+.size01 {
+  padding:15px;
+  width:870px;
+}
 
 #contentWrap{
-	.dro;
+	.block;
 	background:@white;
 	width:100%;
 	height:auto;
 
 	#content{
-		.dro;
+		.block;
 		background:@lightgray;
 		.size01;
 		margin:0px auto;
 		
-		h1{ .dro; float:left; color:@black; font-size:3em; font-weight:bold; margin-top:5px; padding:2px 0px;
+		h1{ .block; float:left; color:@black; font-size:3em; font-weight:bold; margin-top:5px; padding:2px 0px;
 			
 			#topic_mod {
 				font-size:.5em;
@@ -98,7 +100,7 @@ body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important
 		}
 		
 		.subtitle{
-			.dro;
+			.block;
 			color:@blue;
 			float:left;
 			clear:left;
@@ -131,7 +133,7 @@ body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important
 		
 		table{
 			background:@white;
-			width:840px !important;
+			width:870px !important;
 			
 			th{	font-size:1em; }
 			
@@ -168,37 +170,46 @@ body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important
 			}
 		}
 		
-		form{.dro; width:auto; height:auto; float:left;}
+		form{.block; width:auto; height:auto; float:left;}
 	}
 }
 
 /*forum*/
-.crumbs{
-	.dro;
-	float:left;
-	width:100%;
-	height:auto;
-	font-size:1em;
-	
-	a{
-		.dro;
-		float:left;
-		color:@lightgray - 50%;
-		text-decoration:none;
-		
-		:hover{color:@blue - 50%;}
-		
-		}	
-	
-	.arrow{
-		.dro;
-		float:left;
-		margin:0px 5px;
-		color:@lightgray - 90%;
-		font-weight:bold;}
+.crumbs {
+  .block;
+  float:left;
+  font-size:1em;
+  height:auto;
+  margin-bottom: 5px;
+  width: 100%;
+
+  a {
+    .block;
+    float:left;
+    color:@lightgray - 50%;
+    text-decoration:none;
+
+    :hover {
+      color:@blue - 50%;
+    }
+  }	
+
+  .arrow {
+    .block;
+    float:left;
+    margin:0px 5px;
+    color:@lightgray - 90%;
+    font-weight:bold;
+  }
+
+  #feed_icon {
+    float: right;
+  }
+
 }
+
 	table{
-		.dro;
+		.block;
 		float:left;
 		height:auto;
 	
@@ -224,7 +235,7 @@ body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important
 				
 				:hover{color:@yellow - 50%;}
 			}
-			.date{.dro; margin-top:5px;}
+			.date{.block; margin-top:5px;}
 			.date a{
 				text-decoration:none; 
 				color:@blue + 50%; 
@@ -233,7 +244,7 @@ body{ font-size:11px; font-family:Arial, Sans-serif; background:@blue !important
 			}
 			
 			p .editMsg{
-				.dro;
+				.block;
 				float:right;
 				width:auto;
 				height:auto;
@@ -269,17 +280,17 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 #newUser{padding:0px !important;}
 
 #newTreadForm{
-	.dro;
+	.block;
 	float:left;
 	width:415px;
 	heigh:auto;
 	margin-left:48px;
 	
 	p{
-		.dro;
+		.block;
 		
 		label{
-			.dro;
+			.block;
 			width:auto;
 			height:auto;
 			font-size:1.2em;
@@ -292,7 +303,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 		}
 		
 		input,textarea{
-			.dro;
+			.block;
 			width:400px;
 			height:auto;
 			padding:5px;
@@ -305,13 +316,13 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 	}
 
 	#treadType{
-		.dro;
+		.block;
 		float:left;
 		width:100%; 
 		height:auto;
 		
 		label,input{
-			.dro; 
+			.block; 
 			width:auto; 
 			height:auto; 
 			float:left; 
@@ -319,7 +330,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 			padding:0px;}
 		
 		input{
-			.dro;
+			.block;
 			float:left;
 			margin:0px 10px 0px 5px; 
 			padding:0px !important;}
@@ -338,7 +349,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 }
 
 #quickBox2{ 
-	.dro;
+	.block;
 	float:left;
 	width:360px;
 	height:auto;
@@ -347,12 +358,12 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 	background:@yellow;
 	.rounded;
 	
-	h3{ .dro; float:left; width:100%; height:auto; margin-bottom:15px; font-size:1.5em; text-transform:uppercase; text-align:center; }
+	h3{ .block; float:left; width:100%; height:auto; margin-bottom:15px; font-size:1.5em; text-transform:uppercase; text-align:center; }
 
 	}
 
 #quickBox{
-	.dro;
+	.block;
 	float:left;
 	width:360px;
 	height:auto;	
@@ -361,7 +372,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 	background:@yellow;
 	.rounded;
 	
-	h3{ .dro; float:left; width:100%; height:auto; margin-bottom:15px; font-size:1.5em; text-transform:uppercase; text-align:center; }
+	h3{ .block; float:left; width:100%; height:auto; margin-bottom:15px; font-size:1.5em; text-transform:uppercase; text-align:center; }
 	
 }
 	
@@ -371,12 +382,12 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 
 #loginQBox, #cadastroQBox, #password_fields{
 	p{
-		.dro; margin-bottom:10px; float:left; width:100%; height:auto;
+		.block; margin-bottom:10px; float:left; width:100%; height:auto;
 
-		label{ .dro; width:auto; height:auto; margin-bottom:5px; font-weight:bold;}
+		label{ .block; width:auto; height:auto; margin-bottom:5px; font-weight:bold;}
 
 		input{
-			.dro;
+			.block;
 			float:left;
 			height:auto;
 			padding:5px;}
@@ -392,7 +403,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 }	
 
 #loginQBox{
-	.dro;
+	.block;
 	width:auto;
 	height:auto;
 	float:left;
@@ -401,7 +412,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 	border-color:@yellow - 50%;}
 		
 #rememberAjust{
-	.dro;
+	.block;
 	float:left;
 	heigh:auto;
 	padding-top:2px;
@@ -413,7 +424,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 }
 
 #cadastroQBox{
-	.dro;
+	.block;
 	width:auto;
 	height:auto;
 	float:left;		
@@ -422,13 +433,13 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 	border-color:@yellow + 50%;}
 
 #alternativeLogin{
-	.dro;
+	.block;
 	float:left;
 	width:250px;
 	height:auto;
 	margin-left:5px;
 	
-	a,span{.dro; float:left; width:auto; height:auto; margin-right:5px;}
+	a,span{.block; float:left; width:auto; height:auto; margin-right:5px;}
 	
 	a{
 		text-decoration:none;
@@ -439,42 +450,42 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 
 /*edit post*/
 .editbox{
-	.dro;
+	.block;
 	float:left;	
 	width:100%;
 	height:auto;
 	padding:10px;
 	
 	.container{
-		.dro;
+		.block;
 		float:left;
 		width:860px;
 		height:auto;
 		
 		form{
-			.dro;
+			.block;
 			float:left;
 			width:400px;
 			height:auto;
 		
 			.toolsBox{
-				.dro;
+				.block;
 				float:left;
 				width:400px;
 				height:auto;
 				margin-left:10px;
 				
-				h3{.dro; width:100%; height:auto; margin-bottom:10px;}
+				h3{.block; width:100%; height:auto; margin-bottom:10px;}
 				
 				ul.help{
-					.dro;
+					.block;
 					width:100%;
 					height:auto;
 					float:left;
 					margin-bottom:15px;
 					
 					li{
-						.dro;
+						.block;
 						width:100%;
 						height:auto;
 						padding-bottom:5px;
@@ -484,7 +495,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 				}
 				
 				.deleteBtn, .cancelBtn, .saveBtn{
-					.dro;
+					.block;
 					height:auto;
 					float:left;
 					margin-right:5px;
@@ -520,7 +531,7 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 			}
 		
 			textarea{
-				.dro;
+				.block;
 				float:left;
 				width:400px;
 				height:200px;
@@ -531,13 +542,13 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 
 /*view users list*/
 #searchUser{
-	.dro;
+	.block;
 	float:right;
 	width:auto;
 	height:auto;
 	
 	h5{
-		.dro;
+		.block;
 		width:auto;
 		height:auto;
 		float:left;
@@ -546,23 +557,23 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 		font-weight:bold;}
 		
 	form {
-		.dro;
+		.block;
 		float:left;
 		width:auto;
 		height:auto;
 		
 		p{
-		.dro;
+		.block;
 		float:left;
 		width:auto;
 		height:auto;
 		float:left;
 		margin-left:5px;
 		
-			label{ .dro; float:left; width:auto; height:auto; font-size:1em; padding-top:6px; padding-right:5px; }
+			label{ .block; float:left; width:auto; height:auto; font-size:1em; padding-top:6px; padding-right:5px; }
 
 			input#q{
-				.dro;
+				.block;
 				background:@white;
 				float:left;
 				width:150px;
@@ -590,11 +601,11 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 }
 
 /*view user info*/
-.photo{.dro; float:right; margin-bottom:10px;}
+.photo{.block; float:right; margin-bottom:10px;}
 
 #userInfoCnt{
 	p{
-		.dro;
+		.block;
 		width:80%;
 		float:left;
 		margin-bottom:10px;
@@ -605,25 +616,22 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 @import "scaffold";
 
 /*footer elements*/
-#footerWrap{
-	.dro;
-	width:100%;
-	height:auto;
-	
-	#footer{
-		.dro;
-		color:@white;
-		.size01;
-		height:auto;
-		margin:0px auto;
-		padding:10px 0px;
-		font-size:.9em;
-		text-align:center;
-		
-		a{
-			text-decoration:none; 
-			color:@blue + 50%;
-			:hover{color:@yellow;}	
-		}
-	}	
+#footer {
+  /* .block; <<<<< IE? */
+  .size01;
+  color: @white;
+  /* height:auto; <<<<< IE? */
+  margin: 0px auto;
+  padding: 10px 0px;
+  font-size: 0.9em;
+  text-align :center;
+
+  a {
+    text-decoration: none; 
+    color: @blue + 50%;
+
+    :hover {
+      color: @yellow;
+    }
+  }
 }

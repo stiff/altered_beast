@@ -1,4 +1,7 @@
-<% @page_title = @topic.title %>
+<% content_for :page_title do -%>
+  <%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %>
+<% end -%>
+
 <% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
 
 <% content_for :right do -%>

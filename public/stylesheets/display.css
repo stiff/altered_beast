@@ -62,15 +62,106 @@ legend { color: #000000; }
 }
 .clearfix { display: block; }
 * html .clearfix { height: 1%; }
+.block {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+#header {
+  background: #383838;
+  background: -moz-linear-gradient(top, #333333, #1a1a1a);
+  background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#1a1a1a));
+}
+#header #wrapper {
+  margin: 0px auto;
+  width: 900px;
+}
+#header #wrapper #tectura {
+  background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
+  float: left;
+  height: 90px;
+  text-indent: -10000px;
+  width: 320px;
+}
+#header #wrapper form {
+  clear: right;
+  float: right;
+  height: auto;
+  margin-bottom: 15px;
+  width: auto;
+}
+#header #wrapper form #search_box {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background: #ffffff;
+  border: none;
+  color: #4c4c4c;
+  float: left;
+  font-size: 1em;
+  height: auto;
+  margin: 10px 0px 0px 0px;
+  padding: 5px;
+  width: 250px;
+}
+#header #wrapper #nav-tags {
+  background: #191919;
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  clear: right;
+  float: right;
+  font-size: 1.2em;
+  height: auto;
+  margin: 20px 0px 0px 0px;
+  width: 100%;
+}
+#header #wrapper #nav-tags li {
+  float: right;
+  height: auto;
+  margin: 10px 10px;
+  width: auto;
+}
+#header #wrapper #nav-tags li a {
+  color: #ffffff;
+  height: auto;
+  padding: 5px 7px;
+  text-decoration: none;
+  width: auto;
+}
+#header #wrapper #nav-tags li a:hover {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background: #fbcc3b;
+  color: #383838;
+}
+#header #wrapper #nav-users {
+  float: right;
+  height: auto;
+  width: auto;
+}
+#header #wrapper #nav-users li {
+  float: left;
+  height: auto;
+  width: auto;
+}
+#header #wrapper #nav-users li a {
+  color: #ffffff;
+  float: left;
+  font-size: 0.8em;
+  height: auto;
+  margin: 10px 0 5px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: auto;
+}
+#header #wrapper #nav-users li a:hover { color: #fbcc3b; }
 body {
   font-size: 11px;
   font-family: Arial, Sans-serif;
   background: #002d62 !important;
-}
-.dro {
-  display: block;
-  position: relative;
-  overflow: hidden;
 }
 .shadowM {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -81,15 +172,15 @@ body {
 }
 .btn {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   text-decoration: none;
   font-weight: bold;
   border: none;
   font-size: 1.2em;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 .ntread {
   width: auto;
@@ -116,157 +207,18 @@ body {
   padding: 15px;
   width: 870px;
 }
-.block {
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-#header {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  background: #383838;
-  background: -moz-linear-gradient(top, #333333, #1a1a1a);
-  background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#1a1a1a));
-  border-bottom: solid 1px #1a1a1a;
-  height: auto;
-  width: 100%;
-}
-#header #wrapper {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  height: auto;
-  margin: 0px auto;
-  width: 900px;
-}
-#header #wrapper #tectura {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
-  clear: left;
-  float: left;
-  height: 90px;
-  width: 320px;
-}
-#header #wrapper #tectura a {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-  text-decoration: none;
-  width: 100%;
-}
-#header #wrapper #tectura a span { display: none; }
-#header #wrapper form {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  clear: right;
-  float: right;
-  height: auto;
-  margin-bottom: 15px;
-  width: auto;
-}
-#header #wrapper form #search_box {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  background: #ffffff;
-  border: none;
-  color: #4c4c4c;
-  float: left;
-  font-size: 1em;
-  height: auto;
-  margin: 10px 0px 0px 0px;
-  padding: 5px;
-  width: 200px;
-}
-#header #wrapper #tecturaMenu {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  background: #191919;
-  border-radius: 5px 5px 0px 0px;
-  -moz-border-radius: 5px 5px 0px 0px;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  clear: right;
-  float: right;
-  font-size: 1.2em;
-  height: auto;
-  margin: 20px 0px 0px 0px;
-  width: 100%;
-}
-#header #wrapper #tecturaMenu li {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  float: right;
-  height: auto;
-  margin: 10px 10px;
-  width: auto;
-}
-#header #wrapper #tecturaMenu li a {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  color: #ffffff;
-  height: auto;
-  padding: 5px 7px;
-  text-decoration: none;
-  width: auto;
-}
-#header #wrapper #tecturaMenu li a:hover {
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  background: #fbcc3b;
-  color: #383838;
-}
-#header #wrapper #userMenu {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  float: right;
-  height: auto;
-  width: auto;
-}
-#header #wrapper #userMenu li {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  float: left;
-  height: auto;
-  width: auto;
-}
-#header #wrapper #userMenu li a {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  color: #ffffff;
-  float: left;
-  font-size: 0.8em;
-  height: auto;
-  margin: 10px 0 5px 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-  width: auto;
-}
-#header #wrapper #userMenu li a:hover { color: #fbcc3b; }
 #contentWrap {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   background: #ffffff;
   width: 100%;
   height: auto;
 }
 #contentWrap #content {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   background: #f2f2f2;
   padding: 15px;
   width: 870px;
@@ -274,8 +226,8 @@ body {
 }
 #contentWrap #content h1 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   color: #1a1a1a;
   font-size: 3em;
@@ -291,8 +243,8 @@ body {
 #contentWrap #content h1 #topic_mod a:hover { color: #fbcc3b; }
 #contentWrap #content .subtitle {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   color: #002d62;
   float: left;
   clear: left;
@@ -318,14 +270,14 @@ body {
   height: auto;
   right: 10px;
   top: 45px;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #contentWrap #content #postMonitor div input[type=submit] {
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
   padding: 5px 10px;
   border: solid 1px #f2f2f2;
   background-color: #c0c0c0;
@@ -333,7 +285,7 @@ body {
 }
 #contentWrap #content table {
   background: #ffffff;
-  width: 840px !important;
+  width: 870px !important;
 }
 #contentWrap #content table th { font-size: 1em; }
 #contentWrap #content table .c2 .entry-title {
@@ -377,25 +329,26 @@ body {
 #contentWrap #content table td img.grey { background-color: #cccccc; }
 #contentWrap #content form {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
 }
 .crumbs {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
-  width: 100%;
-  height: auto;
   font-size: 1em;
+  height: auto;
+  margin-bottom: 5px;
+  width: 100%;
 }
 .crumbs a {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   color: #c0c0c0;
   text-decoration: none;
@@ -403,17 +356,18 @@ body {
 .crumbs a:hover { color: #000030; }
 .crumbs .arrow {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   margin: 0px 5px;
   color: #989898;
   font-weight: bold;
 }
+.crumbs #feed_icon { float: right; }
 table {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   height: auto;
 }
@@ -439,8 +393,8 @@ table td.author .fn a {
 table td.author .fn a:hover { color: #c99a09; }
 table td.author .date {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   margin-top: 5px;
 }
 table td.author .date a {
@@ -450,8 +404,8 @@ table td.author .date a {
 table td.author .date a:hover { color: #c99a09; }
 table td.author p .editMsg {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: right;
   width: auto;
   height: auto;
@@ -461,9 +415,9 @@ table td.author p .editMsg {
   font-size: 1em;
   text-decoration: none;
   background: #f2f2f2;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 table td.author p .editMsg:hover {
   background: #326532;
@@ -490,8 +444,8 @@ h1#new_topic {
 #newUser { padding: 0px !important; }
 #newTreadForm {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 415px;
   heigh: auto;
@@ -499,13 +453,13 @@ h1#new_topic {
 }
 #newTreadForm p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 #newTreadForm p label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   font-size: 1.2em;
@@ -518,8 +472,8 @@ h1#new_topic {
 }
 #newTreadForm p input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 400px;
   height: auto;
   padding: 5px;
@@ -527,14 +481,14 @@ h1#new_topic {
   border-style: solid !important;
   border-width: 1px;
   border-color: #4c4c4c;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #newTreadForm p textarea {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 400px;
   height: auto;
   padding: 5px;
@@ -542,22 +496,22 @@ h1#new_topic {
   border-style: solid !important;
   border-width: 1px;
   border-color: #4c4c4c;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #newTreadForm #treadType {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 100%;
   height: auto;
 }
 #newTreadForm #treadType label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
@@ -566,8 +520,8 @@ h1#new_topic {
 }
 #newTreadForm #treadType input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
@@ -576,8 +530,8 @@ h1#new_topic {
 }
 #newTreadForm #treadType input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   margin: 0px 10px 0px 5px;
   padding: 0px !important;
@@ -589,15 +543,15 @@ h1#new_topic {
 #cidadeSelect { width: 220px !important; }
 #link_cadastro a {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   text-decoration: none;
   font-weight: bold;
   border: none;
   font-size: 1.2em;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
   width: auto;
   height: auto;
   float: right;
@@ -612,22 +566,22 @@ h1#new_topic {
 #link_cadastro a:hover { background-color: #4c4c4c; }
 #quickBox2 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 360px;
   height: auto;
   margin-top: 10px;
   padding: 15px;
   background: #fbcc3b;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #quickBox2 h3 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 100%;
   height: auto;
@@ -638,22 +592,22 @@ h1#new_topic {
 }
 #quickBox {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 360px;
   height: auto;
   margin-left: 10px;
   padding: 15px;
   background: #fbcc3b;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #quickBox h3 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 100%;
   height: auto;
@@ -666,8 +620,8 @@ h1#new_topic {
 #cidadeSelect { width: 220px; }
 #loginQBox p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   margin-bottom: 10px;
   float: left;
   width: 100%;
@@ -675,8 +629,8 @@ h1#new_topic {
 }
 #loginQBox p label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   margin-bottom: 5px;
@@ -684,16 +638,16 @@ h1#new_topic {
 }
 #loginQBox p input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   height: auto;
   padding: 5px;
 }
 #cadastroQBox p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   margin-bottom: 10px;
   float: left;
   width: 100%;
@@ -701,8 +655,8 @@ h1#new_topic {
 }
 #cadastroQBox p label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   margin-bottom: 5px;
@@ -710,16 +664,16 @@ h1#new_topic {
 }
 #cadastroQBox p input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   height: auto;
   padding: 5px;
 }
 #password_fields p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   margin-bottom: 10px;
   float: left;
   width: 100%;
@@ -727,8 +681,8 @@ h1#new_topic {
 }
 #password_fields p label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   margin-bottom: 5px;
@@ -736,8 +690,8 @@ h1#new_topic {
 }
 #password_fields p input {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   height: auto;
   padding: 5px;
@@ -747,14 +701,14 @@ h1#new_topic {
   border: solid 1px;
   border-color: #4c4c4c;
   background: #ffffff;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #loginQBox {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
@@ -764,8 +718,8 @@ h1#new_topic {
 }
 #rememberAjust {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   heigh: auto;
   padding-top: 2px;
@@ -779,8 +733,8 @@ h1#new_topic {
 #rememberAjust input { float: left; }
 #cadastroQBox {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
@@ -790,8 +744,8 @@ h1#new_topic {
 }
 #alternativeLogin {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 250px;
   height: auto;
@@ -799,8 +753,8 @@ h1#new_topic {
 }
 #alternativeLogin a {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: auto;
   height: auto;
@@ -808,8 +762,8 @@ h1#new_topic {
 }
 #alternativeLogin span {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: auto;
   height: auto;
@@ -822,8 +776,8 @@ h1#new_topic {
 #alternativeLogin a:hover { color: #c99a09; }
 .editbox {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 100%;
   height: auto;
@@ -831,24 +785,24 @@ h1#new_topic {
 }
 .editbox .container {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 860px;
   height: auto;
 }
 .editbox .container form {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 400px;
   height: auto;
 }
 .editbox .container form .toolsBox {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 400px;
   height: auto;
@@ -856,16 +810,16 @@ h1#new_topic {
 }
 .editbox .container form .toolsBox h3 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 100%;
   height: auto;
   margin-bottom: 10px;
 }
 .editbox .container form .toolsBox ul.help {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 100%;
   height: auto;
   float: left;
@@ -873,8 +827,8 @@ h1#new_topic {
 }
 .editbox .container form .toolsBox ul.help li {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 100%;
   height: auto;
   padding-bottom: 5px;
@@ -886,8 +840,8 @@ h1#new_topic {
 .editbox .container form .toolsBox ul.help li a:hover { color: #c99a09; }
 .editbox .container form .toolsBox .deleteBtn {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   height: auto;
   float: left;
   margin-right: 5px;
@@ -896,14 +850,14 @@ h1#new_topic {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 .editbox .container form .toolsBox .cancelBtn {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   height: auto;
   float: left;
   margin-right: 5px;
@@ -912,14 +866,14 @@ h1#new_topic {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 .editbox .container form .toolsBox .saveBtn {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   height: auto;
   float: left;
   margin-right: 5px;
@@ -928,9 +882,9 @@ h1#new_topic {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 .editbox .container form .toolsBox .saveBtn {
   padding: 0px 9px;
@@ -956,8 +910,8 @@ h1#new_topic {
 }
 .editbox .container form textarea {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: 400px;
   height: 200px;
@@ -965,16 +919,16 @@ h1#new_topic {
 }
 #searchUser {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: right;
   width: auto;
   height: auto;
 }
 #searchUser h5 {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: auto;
   height: auto;
   float: left;
@@ -984,16 +938,16 @@ h1#new_topic {
 }
 #searchUser form {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: auto;
   height: auto;
 }
 #searchUser form p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: auto;
   height: auto;
@@ -1002,8 +956,8 @@ h1#new_topic {
 }
 #searchUser form p label {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: left;
   width: auto;
   height: auto;
@@ -1013,8 +967,8 @@ h1#new_topic {
 }
 #searchUser form p input#q {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   background: #ffffff;
   float: left;
   width: 150px;
@@ -1023,9 +977,9 @@ h1#new_topic {
   margin: 0px 5px 0px 0px;
   border: solid 1px;
   border-color: #4c4c4c;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
 }
 #searchUser form p .searchBtn {
   width: 70px;
@@ -1041,15 +995,15 @@ h1#new_topic {
 #searchUser form p .searchBtn:hover { background-color: #4c4c4c; }
 .photo {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   float: right;
   margin-bottom: 10px;
 }
 #userInfoCnt p {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 80%;
   float: left;
   margin-bottom: 10px;
@@ -1181,28 +1135,17 @@ div.progressBar div.background {
   height: 18px;
   width: 0%;
 }
-#footerWrap {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: auto;
-}
-#footerWrap #footer {
-  display: block;
-  position: relative;
-  overflow: hidden;
+#footer {
   color: #ffffff;
   padding: 15px;
   width: 870px;
-  height: auto;
   margin: 0px auto;
   padding: 10px 0px;
   font-size: 0.9em;
   text-align: center;
 }
-#footerWrap #footer a {
+#footer a {
   text-decoration: none;
   color: #325f94;
 }
-#footerWrap #footer a:hover { color: #fbcc3b; }
+#footer a:hover { color: #fbcc3b; }

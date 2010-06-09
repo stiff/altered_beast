@@ -1,38 +1,18 @@
-<% content_for :right do %>
+<% content_for :page_title do -%>
+  <%= "#{@forum.name.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %> 
+<% end -%>
 
-  <% unless @forum.description.blank? %>
-    <%= @forum.description %><hr />
-  <% end %>
-
-  <h5><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
-
-  <% unless @forum.moderators.empty? -%>
-    <ul class="flat">
-      <% @forum.moderators.each do |user| -%>
-        <li><%= link_to h(user.display_name || user.login), user %></li>
-      <% end -%>
-    </ul>
-  <% else -%>
-    <p><%= I18n.t 'txt.views_forums.unmoderated', :default => 'This forum is currently unmoderated.<br />Please always be courteous.' %></p>
-  <% end -%>
-
-<% end %>
-
-<% @page_title = @forum.name %>
-
-
-<% if can_comment? %>
-	<%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread large" %>
-<% end %>
+<%# if can_comment? %>
+  <%#= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread large" %>
+<%# end %>
 
 <div class="crumbs">
-<%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
+  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
+  <%= link_to image_tag('feed-icon.png', :size => '14x14', :alt => "Feed Tectura"), forum_posts_path(@forum, :format => :atom), :id => "feed_icon" %>
 </div>
-<h1><%= h @forum.name %></h1>
 
 <p class="subtitle">
   <% if @forum.contain_posts? %>
-	  <%= feed_icon_tag @forum.name, forum_posts_path(@forum, :format => :atom) %>
 	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
 	  <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
   <% else %>
