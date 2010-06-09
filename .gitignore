@@ -1,5 +1,6 @@
 *~
 .DS_Store
+app/stylesheets/*.css
 tmp
 log/development.log
 log/test.log
