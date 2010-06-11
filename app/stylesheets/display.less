@@ -14,8 +14,16 @@
 /*common tags*/
 body {
   background: @blue !important;
-  font: 11px Arial, Sans-serif;
+  font: 11px Helvetica, Arial, sans-serif;
 }
+
+.wrapper {
+  /* .block; <<<<< IE? */
+  /* height: auto; <<<<< IE? */
+  margin: 0px auto;
+  width: 900px;
+}
+
 
 .rounded(@radius:4px) {
   border-radius: @radius; /* CSS3 */
@@ -32,7 +40,7 @@ body {
 }
 
 .btn {
-  .block;
+/*  .block;*/
   text-decoration: none;
   font-weight: bold;
   border:none;
@@ -41,16 +49,18 @@ body {
 }
 
 .ntread {
-  width:auto;
-  height:auto;
-  float:right;	
-  color: @white;	
-  padding: 10px 10px 10px 30px;
-  margin:10px 0px 0px 0px;
-  background: #222 url("/images/newsTread.png") no-repeat 5px 8px;
+/*  width: auto;*/
+/*  height: auto;*/
+  color: @white;
+  display: inline-block;
+  float: left;
+  padding: 5px 5px 5px 25px;
+  margin: 10px 0px 10px 0px;
+  background: url("/images/newsTread.png") no-repeat 2px 2px;
+  background-color: @black + 50%;
 
   :hover {
-    background-color:@black + 50%;
+    background-color: @black + 20%;
   }
 }	
 
@@ -102,11 +112,11 @@ body {
 		.subtitle{
 			.block;
 			color:@blue;
-			float:left;
+			float:right;
 			clear:left;
 			width:auto;
 			height:auto;
-			margin-bottom:15px;
+/*      margin-bottom:15px;*/
 			font-size:1em;
 			font-weight:bold;
 			text-transform:uppercase;
@@ -203,7 +213,16 @@ body {
   }
 
   #feed_icon {
+    color: @lightgray - 80%;
+    font: bolder 12px Arial, sans-serif;
     float: right;
+    :hover {
+      color: @blue + 40%;
+    }
+    img {
+      position: relative;
+      top: 2px;
+    }
   }
 
 }
@@ -275,9 +294,44 @@ body {
 	}
 
 /*new topic section*/
-h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; padding:5px 0px 5px 45px !important;}
+#new_topic {
+  background: url('/images/newsTreadIcon.png') no-repeat -1px 2px;
+  padding: 5px 0px 5px 45px !important;
+}
 
-#newUser{padding:0px !important;}
+#newUser {
+  padding: 0px 3px !important;
+  width: 420px;
+
+  h1 {
+    float: none !important;
+  }
+
+  h3 {
+    color: @blue + 40%;
+    font: bold 14px Arial, sans-serif;
+    margin: 0px 0px 6px 0px;
+    padding: 10px 0px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  input,
+  textarea {
+    .block;
+    width: 408px;
+    height: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-style: solid !important;
+    border-width: 1px;
+    border-color: @black + 50%;
+    .rounded(4px);
+  }
+}
 
 #newTreadForm{
 	.block;
@@ -342,10 +396,10 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 #cidadeSelect{width:220px !important;}
 
 #link_cadastro a{
-	.btn;
-	.grayBtn;
-	font-size:.9em;
-	margin-top:5px;
+  .btn;
+  .grayBtn;
+  font-size:.9em;
+  margin-top:5px;
 }
 
 #quickBox2{ 
@@ -618,9 +672,9 @@ h1#new_topic{ background:url('/images/newsTreadIcon.png') no-repeat -1px 2px; pa
 /*footer elements*/
 #footer {
   /* .block; <<<<< IE? */
-  .size01;
+/*  .size01;*/
   color: @white;
-  /* height:auto; <<<<< IE? */
+  height: 200px;
   margin: 0px auto;
   padding: 10px 0px;
   font-size: 0.9em;

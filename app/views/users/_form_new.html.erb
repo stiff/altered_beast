@@ -1,35 +1,42 @@
 <% content_for :end_page_js do %>
   $("user_login").focus();
 <% end %>
+
 <div id="newUser">
-<p>
-  <label for="login"><%= I18n.t 'txt.login_name_signup', :default => 'Login' %></label>
-  <%= f.text_field :login %>
-</p>
+  <h1>Novo Usuário</h1>
 
-<p>
-  <label for="email"><%= I18n.t 'txt.email', :default => 'Email' %></label>
-  <%= f.text_field :email %>
-</p>
+  <h3>Informações de Autenticação</h3>
 
-<p>
-  <label for="password"><%= I18n.t 'txt.password', :default => 'Password' %></label>
-  <%= f.password_field :password %>
-</p>
+  <p>
+    <label for="login"><%= I18n.t 'txt.login_name_signup', :default => 'Login' %></label>
+    <%= f.text_field :login %>
+  </p>
 
-<p>
-  <label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label>
-  <%= f.password_field :password_confirmation %>
-</p>
+  <p>
+    <label for="email"><%= I18n.t 'txt.email', :default => 'Email' %></label>
+    <%= f.text_field :email %>
+  </p>
 
-<p>
-  <label for="city"><%= I18n.t 'txt.city', :default => 'City' %></label>
-  <%= f.text_field :city %>
-</p>
+  <p>
+    <label for="password"><%= I18n.t 'txt.password', :default => 'Password' %></label>
+    <%= f.password_field :password %>
+  </p>
 
-<p>
-  <label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label>
-  <%= f.text_field :openid_url %>
-</p>
+  <p>
+    <label for="password_confirmation"><%= I18n.t 'txt.password_confirm', :default => 'Confirm Password' %></label>
+    <%= f.password_field :password_confirmation %>
+  </p>
 
-</div><!-- newUser-->
+  <h3>Informações Adicionais</h3>
+
+  <p>
+    <label for="city"><%= I18n.t 'txt.city_label', :default => 'City' %></label>
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label>
+    <%= f.text_field :openid_url %>
+  </p>
+
+</div>

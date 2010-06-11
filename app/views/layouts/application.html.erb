@@ -24,15 +24,11 @@
     </div>
   </div>
 
-  <div id="footer" class="clearfix">
-    <div id="wrapper">
+  <div id="footer">
+    <div class="clearfix wrapper">
       <p>Todos os direitos Reservados a <a href="http://www.caelum.com.br" target="blank">Caelum | Ensino e Inovação</a>.</p>
       <%= link_to "Sobre o tectura", about_url %>
     </div>
-  </div>
-
-  <div id="missing">
-    <%= yield :right %>
   </div>
 
   <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>

@@ -159,7 +159,7 @@
       # Session
       :cancel               => "Cancelar",
       :login_name           => "Usuário",
-      :login_name_signup    => "Usuário (Nome Sobrenome)",
+      :login_name_signup    => "Login / Nome do Usuário (utilize o padrão \"Nome Sobrenome\", por favor)",
       :state                => "Estado",
       :city                 => "Cidade",
       :password             => "Senha",
@@ -237,6 +237,7 @@
       # User
       :password_confirm      => "Confirmação de Senha",
       :openid_url            => "URL do OpenID (opcional)",
+      :city_label            => "Cidade (opcional)",
       :sign_up               => "Cadastrar",
       :activation_required   => "Seu cadastro foi feito. Ative sua conta clicando no link enviado ao seu email.",
       :account_updated       => "Informações de conta atualizadas com sucesso.",

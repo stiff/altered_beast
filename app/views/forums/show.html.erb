@@ -2,13 +2,9 @@
   <%= "#{@forum.name.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %> 
 <% end -%>
 
-<%# if can_comment? %>
-  <%#= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread large" %>
-<%# end %>
-
 <div class="crumbs">
   <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-  <%= link_to image_tag('feed-icon.png', :size => '14x14', :alt => "Feed Tectura"), forum_posts_path(@forum, :format => :atom), :id => "feed_icon" %>
+  <%= link_to "ASSINE " + image_tag('feed-icon.png', :size => '14x14', :alt => "Feed Tectura"), forum_posts_path(@forum, :format => :atom), :id => "feed_icon" %>
 </div>
 
 <p class="subtitle">
@@ -19,6 +15,10 @@
 	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>
   <% end %>
 </p>
+
+<% if can_comment? %>
+  <%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
+<% end%>
 
 <% if @topics.total_entries -%>
 <%= will_paginate @topics %>
@@ -81,5 +81,5 @@
 
 <br class="clear" />
 <% if can_comment? %>
-  <p><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %></p>
+  <%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
 <% end%>

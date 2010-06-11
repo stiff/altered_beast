@@ -26,109 +26,102 @@
   /* height: auto; <<<<< IE? */
   /* width: 100%; */
 
-  #wrapper {
+  #tectura{
     /* .block; <<<<< IE? */
-    /* height: auto; <<<<< IE? */
-    margin: 0px auto;
-    width: 900px;
+    background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
+    /* clear: left; <<<<< IE? */
+    float: left;
+    height: 90px;
+    text-indent: -10000px;
+    width: 320px;
+  }
 
-    #tectura{
+  form{
+    /* .block; <<<<< IE? */
+    clear: right;
+    float: right;
+    /* height: auto; */
+    /* width: auto; */
+
+    #search_box{
       /* .block; <<<<< IE? */
-      background: url('../images/tecturalogoHorizontal.png') no-repeat left top;
-      /* clear: left; <<<<< IE? */
+      .rounded;
+      background: @white;
+      border:none;
+      color: @black + 50%;
       float: left;
-      height: 90px;
-      text-indent: -10000px;
-      width: 320px;
+      font-size: 1em;
+      height: auto; 
+      margin: 10px 0px 0px 0px; 
+      padding: 5px;
+      width: 250px;
     }
+  }
 
-    form{
+  #nav-tags{
+    /* .block; <<<<< IE? */
+    background: @black - 1%;
+    border-radius: 5px 5px 0px 0px; /* CSS3 */
+    -moz-border-radius: 5px 5px 0px 0px; /* Firefox */
+    -webkit-border-top-left-radius: 5px; /* Safari, Chrome */
+    -webkit-border-top-right-radius: 5px;
+    float: right;
+    font-size: 1.2em;
+    margin: 20px 0px 0px 0px;
+    text-align: right;
+    width: 100%;
+
+    li{
       /* .block; <<<<< IE? */
-      clear: right;
-      float: right;
-      height: auto;
-      margin-bottom: 15px;
-      width: auto;
+      /* float: right; */
+      display: inline;
+      /* height: auto; */
+      /* width: auto; */
 
-      #search_box{
+      a{
         /* .block; <<<<< IE? */
-        .rounded;
-        background: @white;
-        border:none;
-        color: @black + 50%;
-        float: left;
-        font-size: 1em;
-        height: auto; 
-        margin: 10px 0px 0px 0px; 
-        padding: 5px;
-        width: 250px;
-      }
-    }
+        color: @white;
+        display: inline-block;
+        /* height: auto; */
+        margin: 10px;
+        padding: 5px 7px;
+        text-decoration: none;
+        /* width: auto; */
 
-    #nav-tags{
-      /* .block; <<<<< IE? */
-      background: @black - 1%;
-      border-radius: 5px 5px 0px 0px; /* CSS3 */
-      -moz-border-radius: 5px 5px 0px 0px; /* Firefox */
-      -webkit-border-top-left-radius: 5px; /* Safari, Chrome */
-      -webkit-border-top-right-radius: 5px;
-      clear: right;
-      float: right;
-      font-size: 1.2em;
-      height: auto;
-      margin: 20px 0px 0px 0px;
-      width: 100%;
-
-      li{
-        /* .block; <<<<< IE? */
-        float: right;	
-        height: auto;
-        margin: 10px 10px;
-        width: auto;
-
-        a{
-          /* .block; <<<<< IE? */
-          color: @white;
-          height: auto;
-          padding: 5px 7px;
-          text-decoration: none;
-          width: auto;
-
-          :hover {
-            .rounded;
-            background: @yellow;
-            color: @black + 30%;
-          }
+        :hover {
+          .rounded;
+          background: @yellow;
+          color: @black + 30%;
         }
       }
     }
+  }
 
-    #nav-users{
+  #nav-users{
+    /* .block; <<<<< IE? */
+    float: right;
+    height: auto;
+    width: auto;
+
+    li {
       /* .block; <<<<< IE? */
-      float: right;
+      float: left;
       height: auto;
       width: auto;
 
-      li {
+      a{
         /* .block; <<<<< IE? */
+        color: @white;
         float: left;
+        font-size: 0.8em;
         height: auto;
+        margin: 10px 0 5px 10px;
+        text-decoration: none;
+        text-transform: uppercase;
         width: auto;
 
-        a{
-          /* .block; <<<<< IE? */
-          color: @white;
-          float: left;
-          font-size: 0.8em;
-          height: auto;
-          margin: 10px 0 5px 10px;
-          text-decoration: none;
-          text-transform: uppercase;
-          width: auto;
-
-          :hover{
-            color: @yellow;
-          }
+        :hover{
+          color: @yellow;
         }
       }
     }

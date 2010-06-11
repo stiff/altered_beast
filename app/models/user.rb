@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_permalink :login, :scope => :site_id
   
   attr_readonly :posts_count, :last_seen_at
+  attr_accessible :city
 
   named_scope :named_like, lambda {|name|
     { :conditions => ["users.display_name like ? or users.login like ?", 

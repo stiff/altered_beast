@@ -109,7 +109,8 @@ var RowManager = {
 };
 
 Event.addBehavior({
-  '#search, #reply': function() { this.hide() },
+  // '#search, #reply': function() { this.hide() },
+  '#search': function() { this.hide() },
   '#search-link:click': function() {
     $('search').toggle();
     $('search_box').focus();
