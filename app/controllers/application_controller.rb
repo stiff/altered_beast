@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => 'e125a4be589f9d81263920581f6e4182'
 
   # Filter password parameter from logs
-  filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
 
   # raised in #current_site
   rescue_from Site::UndefinedError do |e|
