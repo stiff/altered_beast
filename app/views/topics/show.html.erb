@@ -2,67 +2,55 @@
   <%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %>
 <% end -%>
 
-<% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
-
-<% content_for :right do -%>
-
-<h5><%= I18n.t 'txt.voices', :default => 'Voices' %></h5>
-<ul class="flat talking">
-<% @topic.voices.each do | user | %>
-  <li><%= link_to h(user.display_name), user_path(user) %></li>
-<% end %>
-</ul>
-
-<% end # right content -%>
-
 <% if logged_in? %>
-
-<% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
-<div>
-  <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if @monitoring %> />
-  <label id="monitor_label" for="monitor_checkbox">
-	<%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
-	<%= hidden_field_tag '_method', 'put' %>
- 	<%= submit_tag I18n.t 'txt.set', :default => 'Set', :id => 'monitor_submit' %>
-</div>
+  <% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
+    <div>
+      <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if monitoring? %> />
+      <label id="monitor_label" for="monitor_checkbox">
+        <% if monitoring? -%>
+          <%= I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') %>
+        <% else -%>
+          <%= I18n.t('txt.monitor_topic', :default => 'Monitor topic') %>
+        <% end -%>
+      </label>
+      <%= hidden_field_tag '_method', 'put' %>
+      <%= submit_tag I18n.t 'txt.set', :default => 'Set', :id => 'monitor_submit' %>
+    </div>
+  <% end -%>
 <% end -%>
-
-<% end -%>
-
 
 <div class="crumbs">
   <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
   <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
-  <% page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
-  	if page and page!=1 %>
-  <small>
-  	(<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
-  </small>
-  <% end %>
+  <% if page and page != 1 -%>
+    <small>
+      (<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
+    </small>
+  <% end -%>
   <span class="arrow">»</span>
 </div><!-- crumbs -->
 
-<h1 id="topic-title" <%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
-
-  <%= h @topic.title %>
+<h1 id="topic-title" <%= "onmouseover=\"$('topic_mod').show();\" onmouseout=\"$('topic_mod').hide();\"" if logged_in? %>>
+  <%=h @topic.title %>
   <% if @topic.locked? %>
-  	<span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
+    <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
   <% end %>
-  <% if logged_in? %>
-    <span id="topic_mod">
-      <% if @topic.editable_by?(current_user) -%>
-        <%= link_to(I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility") %>
-        <%= "| " + link_to(I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?')) if(current_user.admin?)%>
+<% if logged_in? %>
+  <span id="topic_mod">
+    <% if @topic.editable_by? current_user -%>
+      <%= link_to I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility" %> |
+      <% if current_user.admin? -%>
+        <%= link_to I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?') %>
       <% end -%>
-    </span>
-  <% end %>
+    <% end -%>
+  </span>
+<% end %>
 </h1>
 
 <p class="subtitle">
-  <%= feed_icon_tag @topic.title, formatted_forum_topic_posts_path(@forum, @topic, 'atom') %>
+  <%= display_linked_tags(@topic) %>
   <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
   <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
-  <%= display_linked_tags(@topic) %>
 </p>
 
 <% unless @posts.empty? -%>
@@ -70,9 +58,9 @@
 
 <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
-	<colgroup width="840">
-		<col width="168" />
-		<col width="672" />
+	<colgroup width="870">
+		<col width="180" />
+		<col width="690" />
 	</colgroup>
 <% for post in @posts do -%>
 <% unless post == @posts.first -%>
@@ -113,7 +101,7 @@
     <p>
       <span class="edit">
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
-				<%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
+        <%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
       </span>
     </p>
     <% end -%>

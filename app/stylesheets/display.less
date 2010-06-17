@@ -65,8 +65,6 @@ body {
 }	
 
 .grayBtn {
-  width:auto;
-  height:auto;
   float:right;	
   color: @white;
   padding: 10px;
@@ -300,18 +298,14 @@ body {
 }
 
 #newUser {
-  padding: 0px 3px !important;
-  width: 420px;
+/*  padding: 0px 3px !important;*/
+  width: 360px;
 
-  h1 {
-    float: none !important;
-  }
-
-  h3 {
-    color: @blue + 40%;
-    font: bold 14px Arial, sans-serif;
-    margin: 0px 0px 6px 0px;
-    padding: 10px 0px;
+  h3{
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   label {
@@ -321,9 +315,8 @@ body {
 
   input,
   textarea {
-    .block;
-    width: 408px;
-    height: auto;
+/*    .block;*/
+    width: 348px;
     padding: 5px;
     margin-bottom: 10px;
     border-style: solid !important;
@@ -434,7 +427,7 @@ body {
 	
 #cidadeSelect{width:220px;}
 
-#loginQBox, #cadastroQBox, #password_fields{
+#newUser, #loginQBox, #cadastroQBox, #password_fields{
 	p{
 		.block; margin-bottom:10px; float:left; width:100%; height:auto;
 
@@ -686,6 +679,36 @@ body {
 
     :hover {
       color: @yellow;
+    }
+  }
+}
+
+td[id^=post-body] {
+  em {
+    font-style: italic;
+  }
+
+  ol {
+    margin: 0px 0px 10px 20px;
+
+    li {
+      list-style: decimal;
+    }
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  ul {
+    margin: 0px 0px 10px 20px;
+
+    li {
+      list-style: disc;
     }
   }
 }

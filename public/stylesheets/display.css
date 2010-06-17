@@ -180,8 +180,6 @@ body {
 }
 .ntread:hover { background-color: #2e2e2e; }
 .grayBtn {
-  width: auto;
-  height: auto;
   float: right;
   color: #ffffff;
   padding: 10px;
@@ -436,27 +434,19 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   background: url('/images/newsTreadIcon.png') no-repeat -1px 2px;
   padding: 5px 0px 5px 45px !important;
 }
-#newUser {
-  padding: 0px 3px !important;
-  width: 420px;
-}
-#newUser h1 { float: none !important; }
+#newUser { width: 360px; }
 #newUser h3 {
-  color: #28558a;
-  font: bold 14px Arial, sans-serif;
-  margin: 0px 0px 6px 0px;
-  padding: 10px 0px;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
 }
 #newUser label {
   display: block;
   margin-bottom: 3px;
 }
 #newUser input {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  width: 408px;
-  height: auto;
+  width: 348px;
   padding: 5px;
   margin-bottom: 10px;
   border-style: solid !important;
@@ -467,11 +457,7 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   -webkit-border-radius: 4px;
 }
 #newUser textarea {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  width: 408px;
-  height: auto;
+  width: 348px;
   padding: 5px;
   margin-bottom: 10px;
   border-style: solid !important;
@@ -588,8 +574,6 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  width: auto;
-  height: auto;
   float: right;
   color: #ffffff;
   padding: 10px;
@@ -654,6 +638,32 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
 }
 #estadoSelect { width: 140px; }
 #cidadeSelect { width: 220px; }
+#newUser p {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 10px;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+#newUser p label {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  height: auto;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+#newUser p input {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  height: auto;
+  padding: 5px;
+}
 #loginQBox p {
   display: block;
   overflow: hidden;
@@ -1184,3 +1194,10 @@ div.progressBar div.background {
   color: #325f94;
 }
 #footer a:hover { color: #fbcc3b; }
+td[id^=post-body] em { font-style: italic; }
+td[id^=post-body] ol { margin: 0px 0px 10px 20px; }
+td[id^=post-body] ol li { list-style: decimal; }
+td[id^=post-body] p { margin-bottom: 10px; }
+td[id^=post-body] strong { font-weight: bold; }
+td[id^=post-body] ul { margin: 0px 0px 10px 20px; }
+td[id^=post-body] ul li { list-style: disc; }

@@ -13,7 +13,6 @@
 <p>
 <label for="topic_tags"><%= I18n.t('txt.views_topics.tags', :default => 'Tags <small>(Use "," como separador - Ex: "java, ruby")</small>') %></label>
 <%= form.text_field :tags, :tabindex => 15, :value => @topic.tag_list %>
-</label>
 
 </p>
 <% if @topic.new_record? -%>
@@ -21,9 +20,7 @@
 	<label for="topic_body"><%= I18n.t('txt.views_topics.body', :default => 'Body') %></label>
 	<%= form.text_area :body, :rows => 12, :tabindex => 20 %>
 </p>
-<p>
-	<%= render :partial => "posts/formatting" %>
-</p>
+<%= render :partial => "posts/formatting" %>
 
 <% end -%>
 

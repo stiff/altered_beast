@@ -159,7 +159,7 @@
       # Session
       :cancel               => "Cancelar",
       :login_name           => "Usuário",
-      :login_name_signup    => "Login / Nome do Usuário (utilize o padrão \"Nome Sobrenome\", por favor)",
+      :login_name_signup    => "Login / Nome do Usuário (Nome Sobrenome)",
       :state                => "Estado",
       :city                 => "Cidade",
       :password             => "Senha",
@@ -249,7 +249,7 @@
       :count_users           => {:zero => "nenhum usuário", :one => "1 usuário", :other => "{{num}} usuários" },
       :count_users_active    => {:zero => "nenhum usuário ativo", :one => "1 usuário ativo", :other => "{{num}} usuários ativos" },
       :count_users_lurking   => {:zero => "nenhum usuário escondido", :one => "1 usuário escondido", :other => "{{num}} usuários escondidos" },
-      :login_or_signup_and_comment     => "Faça o login ou cadastre-se agora",
+      :login_or_signup_and_comment     => "Faça o login",
       :user_is_administrator => "Administrador",
       :select_responsability => 'Selecione a responsabilidade',
       :select_state => 'Selecione o estado',
