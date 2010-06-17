@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
         @user.activate!
         flash[:notice] = I18n.t 'txt.signup_complete', :default => "Signup complete!"
       end
-      redirect_to root_url
+      redirect_to root_url if should_redirect
     else
       flash[:error] = @user.errors.full_messages.uniq.join(" / ")
       if should_redirect
@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
     end
     @user
   end
-
+  
   private
   def set_language
     I18n.locale = :en || I18n.default_locale

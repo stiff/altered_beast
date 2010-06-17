@@ -155,21 +155,20 @@
                <%= render :partial => "sessions/form"%><br/>
              </div><!-- login -->
      
-			<div id="link_cadastro" style="<%if @user%>display:none;<%end%>">
-					<a href="javascript:void;" onclick="$('cadastroQBox').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
-			</div><!-- link_cadastro -->
-                      
-			<div id="cadastroQBox" <%unless @user%>style="display:none;"<%end%> 
-					<% fields_for :user do |f| %>
-						<%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-					<% end %>
-			</div><!-- cadastroQBox -->
+    <div id="link_cadastro" style="<%if @user%>display:none;<%end%>">
+      <a href="javascript:void;" onclick="$('cadastroQBox').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
+    </div><!-- link_cadastro -->
 
-        </div><!-- alteranativeLogin -->
-       <%end%>        
+    <div id="cadastroQBox" <% unless @user -%>style="display:none;"<% end -%>>
+      <% fields_for :user do |f| %>
+        <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+      <% end %>
+    </div><!-- cadastroQBox -->
+  </div><!-- alteranativeLogin -->
+<% end -%>        
 
     <% end -%>
   </div><!-- container -->
 </div><!-- editbox-->
-<% end %>
-<% end %>
+<% end -%>
+<% end -%>

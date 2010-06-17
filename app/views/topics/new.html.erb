@@ -20,14 +20,14 @@
         <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>                     
              <div id="loginQBox">             
                <%= render :partial => "sessions/form"%>
-               <%= submit_tag I18n.t('txt.post_topic_annd_login', :default => 'Log in and post topic'), :class => "btn grayBtn" %>
+               <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic'), :class => "btn grayBtn" %>
              </div>
      
              <div id="cadastroQBox">
               <% fields_for :user do |f| %>
                   <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
               <% end %>
-				<br class="clear" />
+        <br class="clear" />
               <%= submit_tag I18n.t('txt.post_topic_and_create_user', :default => 'Create user and post topic'), :class => "btn grayBtn" %>
              </div>
         </div><!-- loginQBox -->
@@ -39,5 +39,6 @@
 </div>
 <% end -%>
 
-<%= javascript_tag "$('topic_title').focus();" %>
-
+<% content_for :end_page_js do %>
+  $('topic_title').focus();
+<% end -%>
