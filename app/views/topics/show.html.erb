@@ -125,50 +125,40 @@
 <%= will_paginate @posts %>
 <% end -%>
 
-<div id="edit"></div>
 <% if @topic.locked? -%>
-<p>
+  <p>
     <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => I18n.t('txt.views_topics.topic_locked', :default => "Topic locked") %>
-    <label>
-    <%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
-</p>
-<% else -%>
-
-<% if can_comment? %>
-<div id="reply" class="editbox">
-  <div class="container">
+    <label><%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
+  </p>
+<% elsif can_comment? -%>
     <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
     <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
-		<%= f.text_area :body, :rows => 8 %>
+      <div id="newTreadForm">
+        <p><%= f.text_area :body, :rows => 8 %></p>
+        <div class="toolsBox">
+          <%= render :partial => "posts/formatting" %>
+        </div><!-- toolsbox-->
+      </div>
 
-		<div class="toolsBox">
-			<%= render :partial => "posts/formatting" %>
-			<%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'saveBtn' %>
-		</div><!-- toolsbox-->
+      <% unless logged_in? -%>
+        <div id="quickBox">
+          <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>                     
+          <div id="loginQBox">             
+            <%= render :partial => "sessions/form"%>
+            <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic'), :class => "btn grayBtn" %>
+          </div>
 
-      <%unless logged_in?%>
-		<br class="clear" />
-      	<div id="quickBox2">
-        
-        <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>
-             <div id="loginQBox">             
-               <%= render :partial => "sessions/form"%><br/>
-             </div><!-- login -->
-     
-    <div id="link_cadastro" style="<%if @user%>display:none;<%end%>">
-      <a href="javascript:void;" onclick="$('cadastroQBox').setStyle({'display':'block'});$('link_cadastro').setStyle({'display':'none'})"><%=I18n.t('txt.not_signedup', :default => 'Not signed up')%></a>
-    </div><!-- link_cadastro -->
+          <div id="cadastroQBox">
+            <% fields_for :user do |f| %>
+              <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+            <% end %>
+            <br class="clear" />
+            <%= submit_tag I18n.t('txt.post_topic_and_create_user', :default => 'Create user and post topic'), :class => "btn grayBtn" %>
+          </div>
+        </div><!-- loginQBox -->
+       <% end -%>
+       <br class="clear" />
 
-    <div id="cadastroQBox" <% unless @user -%>style="display:none;"<% end -%>>
-      <% fields_for :user do |f| %>
-        <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-      <% end %>
-    </div><!-- cadastroQBox -->
-  </div><!-- alteranativeLogin -->
-<% end -%>        
-
+       <div><%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %></div>
     <% end -%>
-  </div><!-- container -->
-</div><!-- editbox-->
-<% end -%>
 <% end -%>
