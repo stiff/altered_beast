@@ -357,13 +357,6 @@ body {
   position: relative;
   top: 2px;
 }
-table {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  float: left;
-  height: auto;
-}
 table th {
   background: #383838;
   color: #ffffff;
@@ -1201,3 +1194,9 @@ td[id^=post-body] p { margin-bottom: 10px; }
 td[id^=post-body] strong { font-weight: bold; }
 td[id^=post-body] ul { margin: 0px 0px 10px 20px; }
 td[id^=post-body] ul li { list-style: disc; }
+.pagination {
+  font-size: 130%;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+}

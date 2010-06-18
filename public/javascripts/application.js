@@ -39,7 +39,7 @@ var PostForm = {
     onclick:function() {
       PostForm.cancel();
       $('reply').toggle();
-      $('post_body').focus();
+      // $('post_body').focus();
     }
   }),
 
