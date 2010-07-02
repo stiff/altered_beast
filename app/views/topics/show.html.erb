@@ -30,7 +30,7 @@
   <span class="arrow">»</span>
 </div><!-- crumbs -->
 
-<h1 id="topic-title" <%= "onmouseover=\"$('topic_mod').show();\" onmouseout=\"$('topic_mod').hide();\"" if logged_in? %>>
+<h1 id="topic-title">
   <%=h @topic.title %>
   <% if @topic.locked? %>
     <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
