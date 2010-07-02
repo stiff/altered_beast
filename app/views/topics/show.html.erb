@@ -100,7 +100,6 @@
     <% if logged_in? && post.editable_by?(current_user) -%>
     <p>
       <span class="edit">
-        <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
         <%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
       </span>
     </p>

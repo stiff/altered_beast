@@ -1,2 +1,0 @@
-page.replace :edit, :partial => "edit"
-page.post_form.edit_post @post.id
