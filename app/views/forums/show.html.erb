@@ -21,15 +21,16 @@
 <% end%>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide topics">
-	<colgroup span ="5">
-		<col span="1" width="4%" valign="middle" />
-		<col span="1" width="66%" />
-		<col span="2" width="10%" />
-		<col span="1" width="20%" />
+	<colgroup span ="6">
+		<col span="1" width="5%" valign="middle" />
+		<col span="1" />
+		<col span="3" width="5%" />
+		<col span="1" width="10%" />
 	</colgroup>
 <tr>
   <th class="la" colspan="2"><%= I18n.t 'txt.topic', :default => 'Topic' %></th>
   <th ><%= I18n.t 'txt.posts', :default => 'Posts' %></th>
+  <th><%= I18n.t 'txt.author', :default => 'Author' %></th>
   <th ><%= I18n.t 'txt.views', :default => 'Views' %></th>
   <th class="la"><%= I18n.t 'txt.latest_post', :default => 'Latest post' %></th>
 </tr>
@@ -61,6 +62,7 @@
     <%= display_linked_tags(topic) %>
   </td>
   <td class="ca inv stat"><%= topic.posts.size %></td>
+  <td class=""><%= link_to topic.user.login, user_path(topic.user) %></td>
   <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>
   <td class="lp">
     <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>"><%= I18n.t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted {{when}} ago" %></abbr>
