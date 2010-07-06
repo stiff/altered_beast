@@ -1,5 +1,6 @@
 <% content_for :end_page_js do %>
   $("user_login").focus();
+  $("user_confirmation_field").hide();
 <% end %>
 
 <div id="newUser">
@@ -27,5 +28,9 @@
   <p>
     <label for="user_openid_url"><%= I18n.t 'txt.openid_url', :default => "OpenID URL (optional)" %></label>
     <%= f.text_field :openid_url %>
+  </p>
+  <p id="user_confirmation_field">
+    <label for="user_confirmation"><%= I18n.t 'txt.user_confirm', :default => "User confirmation" %></label>
+    <%= text_field_tag :confirmation %>
   </p>
 </div>

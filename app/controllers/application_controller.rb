@@ -33,7 +33,9 @@ class ApplicationController < ActionController::Base
 
 
   def login_filter
-    if !logged_in?
+    if params[:confirmation]
+      redirect_to root_url
+    elsif !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
           password_authentication( user.login.downcase, user.password, false ) unless user.new_record?
@@ -44,32 +46,37 @@ class ApplicationController < ActionController::Base
   end
   #mapa
   def create_user(should_redirect = true)
-    cookies.delete :auth_token
-    @user = current_site.users.build(params[:user]) 
-    # @user.responsability = Responsability.find(params[:user][:responsability_id]) if params[:user][:responsability_id]
-    # @user.company_size = CompanySize.find(params[:user][:company_size_id]) if params[:user][:company_size_id]
-    # @user.local = Local.find(params[:user][:local_id]) if params[:user][:local_id]
-    
-    
-    @user.save if @user.valid?
-    @user.register! if @user.valid?
-    unless @user.new_record?
-#      redirect_back_or_default(login_path) if should_redirect
-      unless @user.using_openid
-        flash[:notice] = I18n.t 'txt.activation_required',
-          :default => "Thanks for signing up! Please click the link in your email to activate your account"
-      else
-        @user.activate!
-        flash[:notice] = I18n.t 'txt.signup_complete', :default => "Signup complete!"
-      end
-      redirect_to root_url if should_redirect
+    if params[:confirmation]
+      redirect_to root_url
     else
-      flash[:error] = @user.errors.full_messages.uniq.join(" / ")
-      if should_redirect
-        render :action => "new", :controller => "users"
+      cookies.delete :auth_token
+
+      @user = current_site.users.build(params[:user]) 
+      # @user.responsability = Responsability.find(params[:user][:responsability_id]) if params[:user][:responsability_id]
+      # @user.company_size = CompanySize.find(params[:user][:company_size_id]) if params[:user][:company_size_id]
+      # @user.local = Local.find(params[:user][:local_id]) if params[:user][:local_id]
+    
+    
+      @user.save if @user.valid?
+      @user.register! if @user.valid?
+      unless @user.new_record?
+  #      redirect_back_or_default(login_path) if should_redirect
+        unless @user.using_openid
+          flash[:notice] = I18n.t 'txt.activation_required',
+            :default => "Thanks for signing up! Please click the link in your email to activate your account"
+        else
+          @user.activate!
+          flash[:notice] = I18n.t 'txt.signup_complete', :default => "Signup complete!"
+        end
+        redirect_to root_url if should_redirect
+      else
+        flash[:error] = @user.errors.full_messages.uniq.join(" / ")
+        if should_redirect
+          render :action => "new", :controller => "users"
+        end
       end
+      @user
     end
-    @user
   end
   
   private

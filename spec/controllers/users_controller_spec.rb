@@ -13,6 +13,13 @@ describe UsersController do
     Responsability.stub!(:find).and_return(@responsability)
   end
 
+  it 'does not allow confirmation on create' do
+    lambda do
+      post 'create', :confirmation => "anystring"
+      response.should redirect_to(root_url)
+    end.should_not change(User, :count)
+  end
+
   it 'allows signup' do
     lambda do
       create_user
