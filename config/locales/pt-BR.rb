@@ -172,6 +172,7 @@
       :email_not_found      => "Este email não está cadastrado",
 
       # Topics
+      :author           => "autor",
       :sticky           => "fixo",
       :locked           => "trancado",
       :post_topic       => "Criar discussão",
