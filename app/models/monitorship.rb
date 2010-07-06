@@ -4,6 +4,7 @@ class Monitorship < ActiveRecord::Base
   
   validates_presence_of :user_id, :topic_id
   validate :uniqueness_of_relationship
+  
   before_create :check_for_inactive
   
   attr_accessible :user_id, :topic_id

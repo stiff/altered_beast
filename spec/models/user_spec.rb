@@ -151,6 +151,17 @@ describe User do
     users(:default).should be_deleted
   end
 
+  it "should verify posting ownership" do
+    topic = topics(:default)
+    admin = users(:admin)
+    user = users(:default)
+
+    topic.user = user
+
+    (admin.is_owner_of? topic.posts.first).should be_false
+    (user.is_owner_of? topic.posts.first).should be_true
+  end
+
 protected
   def create_user(options = {})
     returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey',

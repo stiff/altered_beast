@@ -98,4 +98,8 @@ class User < ActiveRecord::Base
     d.update rand.to_s
     self.lost_password_secret = d.hexdigest
   end
+  
+  def is_owner_of?(post)
+    (post.user == self) && (post.topic.user == self)
+  end
 end

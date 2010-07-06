@@ -3,7 +3,8 @@ class PostObserver < ActiveRecord::Observer
   
   def after_save(post)
     post.topic.monitoring_users.each do |user|
-      UserMailer.deliver_topic_updated(user, post)
+
+      UserMailer.deliver_topic_updated(user, post) unless user.is_owner_of?(post)
     end
   end
 end
