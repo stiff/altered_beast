@@ -1222,3 +1222,14 @@ td[id^=post-body] ul li { list-style: disc; }
   color: #666666;
   font-size: 10px;
 }
+#about h1 {
+  display: block;
+  clear: both;
+  margin-bottom: 15px;
+}
+#about p {
+  font: normal 12px Arial, Helvetica, Sans-serif;
+  display: block;
+  clear: both;
+  width: 500px;
+}
