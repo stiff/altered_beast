@@ -7,7 +7,8 @@
 
     :date => {
       :formats => {
-        :long_ordinal => lambda { |date| "%B #{date.day.ordinalize}, %Y" }
+        :long_ordinal => lambda { |date| "%B #{date.day.ordinalize}, %Y" },
+        :long => lambda { |date| "%B #{date.day.ordinalize}, %Y" }
       }
     },
     :time => {
@@ -145,8 +146,8 @@
       :footer_message => "Copyright © 2010 <a href=\"http://www.caelum.com.br\">Caelum</a>",
       :created_by     => "código criado por",
       :moderator      => "Moderador",
-      :count_topics   => {:one => "1 discussão", :other => "{{count}} discussões"},
-      :count_posts    => {:one => "1 mensagem", :other => "{{count}} mensagens"},
+      :count_topics   => {:one => "<span class=\"bignum\">1</span> discussão", :other => "<span class=\"bignum\">{{count}}</span> discussões"},
+      :count_posts    => {:one => "<span class=\"bignum\">1</span> mensagem", :other => "<span class=\"bignum\">{{count}}</span> mensagens"},
       :my_topics      => "Minhas discussões",
       :new_topic      => "Nova discussão",
       :post_age       => "Há {{when}}",
@@ -236,6 +237,12 @@
       },
 
       # User
+      
+      # Missing on User#show
+      :all => "todas",
+      :monitored => "monitoradas",
+      :user_since => "cadastrado em {{date}}",
+      
       :password_confirm      => "Confirmação de Senha",
       :openid_url            => "URL do OpenID (opcional)",
       :city_label            => "Cidade (opcional)",
