@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   end
   #mapa
   def create_user(should_redirect = true)
-    if params[:confirmation]
+    unless params[:confirmation].nil? || params[:confirmation].empty?
       redirect_to root_url
     else
       cookies.delete :auth_token
