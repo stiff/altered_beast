@@ -16,14 +16,11 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded.
   # See Rails::Configuration for more options.
 
-  config.gem 'mislav-will_paginate', :lib => "will_paginate",
-    :source => "http://gems.github.com"
-
+  config.gem "mislav-will_paginate", :lib => "will_paginate", :source => "http://gems.github.com"
+  config.gem "RedCloth", :lib => "redcloth"
   config.gem "bluecloth"
-
-  config.gem 'RedCloth', :lib => "redcloth",
-    :source => "http://code.whytheluckystiff.net"
   config.gem "less"
+  config.gem "coderay"
 
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework

@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title><%= yield :page_title %></title>
-  <%= stylesheet_link_tag "display", "captcha" %>
+  <%= stylesheet_link_tag "display", "captcha", "coderay" %>
   <% unless @feed_icons.blank? -%>
     <% @feed_icons.each do |feed| -%>
       <%= auto_discovery_link_tag :atom, feed[:url], :title => "Assine o #{feed[:title]}" %>
