@@ -16,3 +16,5 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+ExceptionNotification::Notifier.exception_recipients = %w(paulo.silveira@caelum.com.br pedro.matiello@caelum.com.br pedro.mariano@caelum.com.br)
