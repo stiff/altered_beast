@@ -1,8 +1,8 @@
 class Topic < ActiveRecord::Base
   include User::Editable
-  
+
   acts_as_taggable
-  
+
   before_validation_on_create :set_default_attributes
   validates_presence_of :title
 
@@ -37,10 +37,13 @@ class Topic < ActiveRecord::Base
   attr_accessor :body
   attr_accessible :title, :body
 
-  attr_readonly :posts_count, :hits,:my_permalink
+  attr_readonly :posts_count, :hits, :my_permalink, :score
 
   has_permalink :nice_permalink, :scope => :forum_id
 
+  def score
+    self.posts.first.score
+  end
 
   def nice_permalink
     title.parameterize.tr '-','_' if title
@@ -63,7 +66,7 @@ class Topic < ActiveRecord::Base
   end
 
   def self.per_page
-  		20
+    20
   end
 
   def last_page
@@ -89,11 +92,11 @@ protected
       create_initial_post
       create_monitorships
   end
-  
+
   def create_monitorships
     Monitorship.create!(:topic_id => id, :user_id => user.id)
   end
-  
+
   def create_initial_post
     user.reply self, @body #unless locked?
     @body = nil

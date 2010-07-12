@@ -1,163 +1,163 @@
 <% content_for :page_title do -%>
-  <%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %>
+    <%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %>
 <% end -%>
 
-<% if logged_in? %>
-  <% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
-    <div>
-      <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if monitoring? %> />
-      <label id="monitor_label" for="monitor_checkbox">
-        <% if monitoring? -%>
-          <%= I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') %>
-        <% else -%>
-          <%= I18n.t('txt.monitor_topic', :default => 'Monitor topic') %>
-        <% end -%>
-      </label>
-      <%= hidden_field_tag '_method', 'put' %>
-      <%= submit_tag I18n.t 'txt.set', :default => 'Set', :id => 'monitor_submit' %>
-    </div>
-  <% end -%>
+<% if logged_in? -%>
+    <% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
+        <div>
+            <input id="monitor_checkbox" name="enable_monitor" type="checkbox" <%= "checked='checked'" if monitoring? %> />
+            <label id="monitor_label" for="monitor_checkbox">
+                <% if monitoring? -%>
+                    <%= I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') %>
+                <% else -%>
+                    <%= I18n.t('txt.monitor_topic', :default => 'Monitor topic') %>
+                <% end -%>
+            </label>
+            <%= hidden_field_tag '_method', 'put' %>
+            <%= submit_tag I18n.t 'txt.set', :default => 'Set', :id => 'monitor_submit' %>
+        </div>
+    <% end -%>
 <% end -%>
 
 <div class="crumbs">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
-  <% if page and page != 1 -%>
-    <small>
-      (<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
-    </small>
-  <% end -%>
-  <span class="arrow">»</span>
+    <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
+    <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
+    <% if page and page != 1 -%>
+        <small>(<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)</small>
+    <% end -%>
+    <span class="arrow">»</span>
 </div><!-- crumbs -->
 
 <h1 id="topic-title">
-  <%=h @topic.title %>
-  <% if @topic.locked? %>
-    <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
-  <% end %>
-<% if logged_in? %>
-  <span id="topic_mod">
-    <% if @topic.editable_by? current_user -%>
-      <%= link_to I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility" %> |
-      <% if current_user.admin? -%>
-        <%= link_to I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?') %>
-      <% end -%>
+    <%=h @topic.title %>
+    <% if @topic.locked? -%>
+        <span>(<%= I18n.t 'txt.topic', :default => 'Topic' %> <%= I18n.t 'txt.locked', :default => 'locked' %>)</span>
     <% end -%>
-  </span>
-<% end %>
+    <% if logged_in? -%>
+        <span id="topic_mod">
+            <% if @topic.editable_by? current_user -%>
+                <%= link_to I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility" %> |
+                <% if current_user.admin? -%>
+                    <%= link_to I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?') %>
+                <% end -%>
+            <% end -%>
+        </span>
+    <% end -%>
 </h1>
 
 <p class="subtitle">
-  <%= display_linked_tags(@topic) %>
-  <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
-  <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
+    <%= display_linked_tags(@topic) %>
+    <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
+    <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
 
 <% unless @posts.empty? -%>
-<%= will_paginate @posts %>
+    <%= will_paginate @posts %>
+    <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
+    <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+        <colgroup width="870">
+            <col width="50" />
+            <col width="140">
+            <col width="680" />
+        </colgroup>
+        <% for post in @posts do -%>
+            <% unless post == @posts.first -%>
+                <tr class="spacer">
+                    <td colspan="3">
+                        <a name="<%= dom_id post %>" id="<%= dom_id post %>">&nbsp;</a>
+                    </td>
+                </tr>
+            <% end -%>
+            <tr class="post hentry" id="<%= dom_id post %>-row">
+                <% if post == @posts.first && logged_in? -%>
+                    <td class="post_votes">
+                        <a href="#"><%= image_tag 'bullet_triangle_green.png' %></a>
+                        <h2>20</h2>
+                        <a href="#"><%= image_tag 'bullet_triangle_red.png' %></a>                    
+                    </td>
+                    <td class="author vcard">
+                <% else -%>
+                    <td class="author vcard" colspan="2">
+                <% end -%>
+                    <%= avatar_for post.user %>
+                    <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
+                    <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? -%>
+                        <span class="admin">
+                            <% if post.user.admin? -%>
+                                <%= I18n.t 'txt.user_is_administrator', :default => 'Administator' %>
+                            <% elsif post.forum.moderators.include?(post.user) -%>
+                                <%= I18n.t 'txt.user_is_moderator', :default => 'Moderator' %>
+                            <% elsif post.user.suspended? -%>
+                                <%=h post.user.state  %>
+                            <% end -%>
+                        </span><br />
+                    <% end -%>
+                    <span class="posts"><%= I18n.t 'txt.count_posts', :count => post.user.posts.size, :num => number_with_delimiter(post.user.posts.size) %></span><br />
+                    <div class="date">
+                        <a href="#<%= dom_id post %>" rel="bookmark">
+                            <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+                                <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
+                            </abbr>
+                        </a><!-- bookmark-->
+                    </div><!-- date -->
+                    <% if logged_in? && post.editable_by?(current_user) -%>
+                        <p>
+                            <span class="edit">
+                                <%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
+                            </span>
+                        </p>
+                    <% end -%>
+                </td>
+                <td class="body entry-content" id="post-body-<%= post.id %>">
+                    <%= coderay(post.body_html) %>
+                </td>
+            </tr>
+        <% end -%>
+    </table>
 
-<a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
-<table border="0" cellspacing="0" cellpadding="0" class="posts wide">
-	<colgroup width="870">
-		<col width="180" />
-		<col width="690" />
-	</colgroup>
-<% for post in @posts do -%>
-<% unless post == @posts.first -%>
+    <div class="crumbs">
+        <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
+        <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">»</span>
+    </div>
 
-<tr class="spacer">
-  <td colspan="2">
-    <a name="<%= dom_id post %>" id="<%= dom_id post %>">&nbsp;</a>
-  </td>
-</tr>
-<% end %>
-<tr class="post hentry" id="<%= dom_id post %>-row">
-  <td class="author vcard">
-    <%= avatar_for post.user %>
-    <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
-    <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? %>
-    <span class="admin">
-      <% if post.user.admin? %>
-        <%= I18n.t 'txt.user_is_administrator', :default => 'Administator' %>
-      <% elsif post.forum.moderators.include?(post.user) %>
-        <%= I18n.t 'txt.user_is_moderator', :default => 'Moderator' %>
-      <% elsif post.user.suspended? %>
-        <%=h post.user.state  %>
-      <% end %>
-    </span><br />
-    <% end %>
-    <span class="posts"><%= I18n.t 'txt.count_posts', :count => post.user.posts.size, :num => number_with_delimiter(post.user.posts.size) %></span>
-	<br />
+    <%= will_paginate @posts %>
 
-    <div class="date">
-      <a href="#<%= dom_id post %>" rel="bookmark">
-      	<abbr class="updated" title="<%= post.created_at.xmlschema %>">
-      		<%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
-      	</abbr>
-      </a><!-- bookmark-->
-    </div><!-- date -->
-	
-    <% if logged_in? && post.editable_by?(current_user) -%>
-    <p>
-      <span class="edit">
-        <%= link_to I18n.t('txt.admin.edit_post', :default => 'Edit post'), edit_forum_topic_post_path(@forum, @topic, post, :page => current_page), :class => 'editMsg' %>
-      </span>
-    </p>
-    <% end -%>
-
-  </td>
-
-  <td class="body entry-content" id="post-body-<%= post.id %>">
-      <%= coderay(post.body_html) %>
-  </td>
-</tr>
-
-<% end %>
-</table>
-
-<div class="crumbs">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-  <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">»</span>
-</div>
-
-
-<%= will_paginate @posts %>
 <% end -%>
 
 <% if @topic.locked? -%>
-  <p>
-    <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => I18n.t('txt.views_topics.topic_locked', :default => "Topic locked") %>
-    <label><%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
-  </p>
+    <p>
+        <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => I18n.t('txt.views_topics.topic_locked', :default => "Topic locked") %>
+        <label><%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
+    </p>
 <% elsif can_comment? -%>
     <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
     <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
-      <div id="newTreadForm">
-        <p><%= f.text_area :body, :rows => 8 %></p>
-        <div class="toolsBox">
-          <%= render :partial => "posts/formatting" %>
-        </div><!-- toolsbox-->
-      </div>
+        <div id="newTreadForm">
+            <p><%= f.text_area :body, :rows => 8 %></p>
+            <div class="toolsBox">
+                <%= render :partial => "posts/formatting" %>
+            </div><!-- toolsbox-->
+        </div>
 
-      <% unless logged_in? -%>
-        <div id="quickBox">
-          <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>                     
-          <div id="loginQBox">             
-            <%= render :partial => "sessions/form"%>
-            <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic'), :class => "btn grayBtn" %>
-          </div>
+        <% unless logged_in? -%>
+            <div id="quickBox">
+                <h3><%= I18n.t 'txt.login_or_signup_and_comment', :default => 'Login now' %></h3>                     
+                <div id="loginQBox">             
+                    <%= render :partial => "sessions/form"%>
+                    <%= submit_tag I18n.t('txt.post_topic_and_login', :default => 'Log in and post topic'), :class => "btn grayBtn" %>
+                </div>
 
-          <div id="cadastroQBox">
-            <% fields_for :user do |f| %>
-              <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
-            <% end %>
-            <br class="clear" />
-            <%= submit_tag I18n.t('txt.post_topic_and_create_user', :default => 'Create user and post topic'), :class => "btn grayBtn" %>
-          </div>
-        </div><!-- loginQBox -->
-       <% end -%>
-       <br class="clear" />
+                <div id="cadastroQBox">
+                    <% fields_for :user do |f| %>
+                    <%= render :partial => "users/form_new",:locals=>{:f=>f} %>
+                    <% end %>
+                    <br class="clear" />
+                    <%= submit_tag I18n.t('txt.post_topic_and_create_user', :default => 'Create user and post topic'), :class => "btn grayBtn" %>
+                </div>
+            </div><!-- loginQBox -->
+        <% end -%>
+        <br class="clear" />
 
-       <div><%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %></div>
+        <div><%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %></div>
     <% end -%>
 <% end -%>
