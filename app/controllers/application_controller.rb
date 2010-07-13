@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   include PathHelper
-  # include ExceptionNotification::Notifiable
+  include ExceptionNotification::Notifiable
 
   helper :all
   helper_method :current_page,:can_comment?
