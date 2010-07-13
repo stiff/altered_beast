@@ -11,6 +11,8 @@
     <% end -%>
   <% end -%>
   <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
+  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>
+  <%= yield :head_content %>
 </head>
 
 <body>
@@ -31,7 +33,6 @@
     </div>
   </div>
 
-  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>
   <script type="text/javascript">
     <%= yield :end_page_js %>
   </script>

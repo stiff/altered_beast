@@ -1,0 +1,14 @@
+<td class="post_votes" id="post_votes-<%= post.id %>">
+    <% if post.votes.find_by_user_id(current_user) && post.votes.find_by_user_id(current_user).value == 1 -%>
+        <%= image_tag 'upvote_disabled.png' %>
+    <% else -%>
+        <%= link_to (image_tag 'upvote.png'), "#", :id => "upvote_link-#{post.id}" %>
+    <% end -%>
+    <h2 id="score-<%= post.id %>"><%= post.score %></h2>
+    <% if post.votes.find_by_user_id(current_user) && post.votes.find_by_user_id(current_user).value == -1 -%>
+        <%= image_tag 'downvote_disabled.png' %>
+    <% else -%>
+        <%= link_to (image_tag 'downvote.png'), "#", :id => "downvote_link-#{post.id}" %>
+    <% end -%>
+    <script type="text/javascript">setVoteControls();</script>
+</td>

@@ -109,5 +109,4 @@ private
       redirect_back_or_default(forum_topic_path(@forum, @topic))
     end
   end
-
 end

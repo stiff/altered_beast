@@ -19,7 +19,8 @@ ActionController::Routing::Routes.draw do |map|
                                      :purge     => :delete },
                         :has_many => [:posts]
 
-  map.resources :votes
+  map.upvote 'posts/:id/upvote', :controller => "votes", :action => "upvote"
+  map.downvote 'posts/:id/downvote', :controller => "votes", :action => "downvote"
 
   map.activate '/activate/:activation_code',       :controller => 'users',    :action => 'activate', :activation_code => nil
   map.signup   '/signup',                          :controller => 'users',    :action => 'new'

@@ -70,11 +70,7 @@
             <% end -%>
             <tr class="post hentry" id="<%= dom_id post %>-row">
                 <% if post == @posts.first && logged_in? -%>
-                    <td class="post_votes">
-                        <a href="#"><%= image_tag 'bullet_triangle_green.png' %></a>
-                        <h2>20</h2>
-                        <a href="#"><%= image_tag 'bullet_triangle_red.png' %></a>                    
-                    </td>
+                <%= render :partial => 'topics/vote_control', :locals => {:post => post} %>
                     <td class="author vcard">
                 <% else -%>
                     <td class="author vcard" colspan="2">
@@ -160,4 +156,31 @@
 
         <div><%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %></div>
     <% end -%>
+<% end -%>
+
+<% content_for :head_content do -%>
+<script type="text/javascript">
+    function setVoteControls() {
+        createControlsFor('upvote');
+        createControlsFor('downvote');
+    }    
+    
+    function createControlsFor(type) {
+        $$('a[id|=' + type + '_link]').each(function(item) {
+
+            var post_id = item.id.replace(type +'_link-', '');
+
+            $(item).observe('click', function() {
+                new Ajax.Request('/posts/' + post_id + '/' + type, {
+                    parameters: 'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>'),
+                    onSuccess: function(response) {
+                        $$('td[id=post_votes-' + post_id + ']')[0].replace(response.responseText);
+                    }
+                })
+                Event.stop(event);
+            });
+        });
+    }
+    setVoteControls();
+</script>
 <% end -%>

@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
 
   # topic's site (set by callback)
   belongs_to :site, :counter_cache => true
+  has_many :votes
 
   validates_presence_of :user_id, :site_id, :topic_id, :forum_id, :body
   validate :topic_is_not_locked
@@ -21,7 +22,7 @@ class Post < ActiveRecord::Base
   after_create  :update_cached_fields
   after_destroy :update_cached_fields
 
-  attr_accessible :body
+  attr_accessible :body, :score
 
   def forum_name
     forum.name
