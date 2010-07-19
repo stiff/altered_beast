@@ -42,5 +42,8 @@ ActionController::Routing::Routes.draw do |map|
     map.monitored_posts           'users/:user_id/monitored'
   end
 
+  map.show_all "forums/all", :controller => "forums", :action => "show_all"
+  map.hide_downvoted "forums/voted", :controller => "forums", :action => "hide_downvoted"
+
   map.root :controller => :forums, :action => :show, :id => "arquitetura"
 end

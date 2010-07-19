@@ -1,5 +1,5 @@
 class ForumsController < ApplicationController
-  before_filter :admin_required, :except => [:index, :show]
+  before_filter :admin_required, :except => [:index, :show, :show_all, :hide_downvoted]
 
   # GET /forums
   # GET /forums.xml
@@ -21,9 +21,17 @@ class ForumsController < ApplicationController
     @forum = Forum.find_by_permalink(params[:id])
     (session[:forums] ||= {})[@forum.id] = Time.now.utc
     (session[:forums_page] ||= Hash.new(1))[@forum.id] = current_page if current_page > 1
+
+    session[:show_all] ||= false
+
     respond_to do |format|
       format.html do # show.html.erb
-        @topics = @forum.topics.paginate :page => current_page
+
+        if session[:show_all] == true
+          @topics = Topic.paginate_by_forum_id @forum.id, :page => current_page, :order => "score DESC"
+        else
+          @topics = Topic.paginate_by_forum_id @forum.id, :page => current_page, :order => "score DESC", :conditions => "score > 0"
+        end
       end
       format.xml  { render :xml => @forum }
     end
@@ -90,4 +98,15 @@ class ForumsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def show_all
+    session[:show_all] = true
+    redirect_to root_path
+  end
+
+  def hide_downvoted
+    session[:show_all] = false
+    redirect_to root_path
+  end
+
 end

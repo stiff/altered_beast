@@ -35,15 +35,11 @@ class Topic < ActiveRecord::Base
   validates_presence_of :body, :on => :create
 
   attr_accessor :body
-  attr_accessible :title, :body
+  attr_accessible :title, :body, :score
 
-  attr_readonly :posts_count, :hits, :my_permalink, :score
+  attr_readonly :posts_count, :hits, :my_permalink
 
   has_permalink :nice_permalink, :scope => :forum_id
-
-  def score
-    self.posts.first.score
-  end
 
   def nice_permalink
     title.parameterize.tr '-','_' if title

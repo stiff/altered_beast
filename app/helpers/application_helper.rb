@@ -107,4 +107,11 @@ module ApplicationHelper
     end
   end
 
+  def show_all_link
+    if session[:show_all] == true
+      link_to I18n.t("txt.hide_downvoted"), hide_downvoted_path, :id => "show_control_link"
+    else
+      link_to I18n.t("txt.show_all"), show_all_path, :id => "show_control_link"
+    end
+  end
 end

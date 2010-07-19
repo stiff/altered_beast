@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713182400) do
+ActiveRecord::Schema.define(:version => 20100714185026) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20100713182400) do
     t.integer  "forum_id"
     t.text     "body_html"
     t.integer  "site_id"
-    t.integer  "score"
+    t.integer  "score",      :default => 1, :null => false
   end
 
   add_index "posts", ["created_at", "forum_id"], :name => "index_posts_on_forum_id"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20100713182400) do
     t.integer  "last_user_id"
     t.integer  "site_id"
     t.string   "permalink"
+    t.integer  "score",           :default => 1,     :null => false
   end
 
   add_index "topics", ["forum_id", "permalink"], :name => "index_topics_on_forum_id_and_permalink"

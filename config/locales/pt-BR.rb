@@ -173,7 +173,8 @@
       :email_not_found      => "Este email não está cadastrado",
 
       # Topics
-      :author           => "autor",
+      :author           => "Autor",
+      :score            => "Pontos",
       :sticky           => "fixo",
       :locked           => "trancado",
       :post_topic       => "Criar discussão",
@@ -293,6 +294,10 @@
         :posts_title               => "Mensagens",
         :current_status_title      => "Status",
       },
+      
+      # show_all control
+      :show_all =>       "Mostrar todos os tópicos",
+      :hide_downvoted => "Mostrar somente com pontuação positiva",
     }
   }
 }

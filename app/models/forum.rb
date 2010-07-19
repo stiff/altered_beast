@@ -11,7 +11,7 @@ class Forum < ActiveRecord::Base
 
   attr_readonly :posts_count, :topics_count
 
-  has_many :topics, :order => "#{Topic.table_name}.sticky desc, #{Topic.table_name}.last_updated_at desc", :dependent => :delete_all
+  has_many :topics, :order => "#{Topic.table_name}.sticky desc, #{Topic.table_name}.score desc, #{Topic.table_name}.last_updated_at desc", :dependent => :delete_all
 
   # this is used to see if a forum is "fresh"... we can't use topics because it puts
   # stickies first even if they are not the most recently modified

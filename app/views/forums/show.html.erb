@@ -1,83 +1,55 @@
 <% content_for :page_title do -%>
-  <%= "#{@forum.name.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %> 
+    <%= "#{@forum.name.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %> 
 <% end -%>
 
 <div class="crumbs">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-  <%= link_to "ASSINE " + image_tag('feed-icon.png', :size => '14x14', :alt => "Feed Tectura"), forum_posts_path(@forum, :format => :atom), :id => "feed_icon" %>
+    <%= link_to I18n.t('txt.forums'), root_path %><span class="arrow">»</span>
+    <%= link_to "ASSINE " + image_tag('feed-icon.png', :size => '14x14'), forum_posts_path(@forum, :format => :atom), :id => "feed_icon" %>
 </div>
 
 <p class="subtitle">
-  <% if @forum.contain_posts? %>
-	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
-	  <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
-  <% else %>
-	  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>
-  <% end %>
+    <% if @forum.contain_posts? -%>
+        <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
+        <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
+    <% else -%>
+        <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>
+    <% end -%>
 </p>
 
-<% if can_comment? %>
-  <%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
-<% end%>
+<% if can_comment? -%>
+  <%= link_to I18n.t('txt.new_topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
+<% end -%>
+
+<%= show_all_link %>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide topics">
-	<colgroup span ="6">
-		<col span="1" width="5%" valign="middle" />
-		<col span="1" />
-		<col span="3" width="5%" />
-		<col span="1" width="10%" />
-	</colgroup>
-<tr>
-  <th class="la" colspan="2"><%= I18n.t 'txt.topic', :default => 'Topic' %></th>
-  <th ><%= I18n.t 'txt.posts', :default => 'Posts' %></th>
-  <th><%= I18n.t('txt.author', :default => 'Author').capitalize %></th>
-  <th ><%= I18n.t 'txt.views', :default => 'Views' %></th>
-  <th class="la"><%= I18n.t 'txt.latest_post', :default => 'Latest post' %></th>
-</tr>
-<% for topic in @topics %>
-<tr class="hentry">
-  <td class="c1">
-    <%
-    icon = "comment"
-    color = ""
-    if topic.locked?
-      icon = "lock"
-      post = I18n.t('txt.views_forums.comma_locked_topic', :default => ', this topic is locked.')
-      color = "darkgrey"
-    end
-    %>
-    <% if recent_topic_activity(topic) %>
-    <%= image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => I18n.t('txt.views_forums.recent_activity', :default => "Recent activity") + "#{post}" %>
-    <% else %>
-      <%= image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => I18n.t('txt.views_forums.no_recent_activity', :default => "No recent activity") + "#{post}" %>
-    <% end %>
-  </td>
-  <td class="c2">
-    <%= I18n.t('txt.sticky', :default => ('[sticky]' + '<strong>')) if topic.sticky? %>
-    <%= topic_title_link (topic), :class => "entry-title", :rel => "bookmark" %>
-    <%= "</strong>" if topic.sticky? %>
-    <% if topic.paged? -%>
-      <small><%= link_to I18n.t('txt.goto_last_page', :default => 'last'), forum_topic_path(@forum, topic, :page => topic.last_page) %></small>
-    <% end -%><br/>
-    <%= display_linked_tags(topic) %>
-  </td>
-  <td class="ca inv stat"><%= topic.posts.size %></td>
-  <td class=""><%= link_to topic.user.login, user_path(topic.user) %></td>
-  <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>
-  <td class="lp">
-    <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>"><%= I18n.t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted {{when}} ago" %></abbr>
-    <% if topic.last_user -%>
-    <%= I18n.t 'txt.by_user', :default => 'by {{user}}', :user => link_to( topic.last_user.display_name, user_path(topic.last_user)) %>
+    <colgroup span ="6">
+        <col span="1" width="5%" valign="middle" />
+        <col span="1" />
+        <col span="1" width="5%"/>
+        <col span="3" width="5%" />
+        <col span="1" width="10%" />
+    </colgroup>
+    <thead>
+        <th class="la" colspan="2"><%= I18n.t 'txt.topic', :default => 'Topic' %></th>
+        <th><%= I18n.t('txt.score', :default => 'Score') %></th>
+        <th><%= I18n.t('txt.posts', :default => 'Posts') %></th>
+        <th><%= I18n.t('txt.author', :default => 'Author') %></th>
+        <th><%= I18n.t('txt.views', :default => 'Views') %></th>
+        <th class="la"><%= I18n.t 'txt.latest_post', :default => 'Latest post' %></th>
+    </thead>
+    <% for topic in @topics do -%>
+        <% if topic.score >= 0 -%>
+            <%= render :partial => 'topic', :locals => {:topic => topic} %>
+        <% elsif topic.score < 0 -%>
+            <%= render :partial => 'bad_topic', :locals => {:topic => topic} %>
+        <% end -%>
     <% end -%>
-    <span><%= link_to ("(" + I18n.t('txt.view', :default => 'view') + ")"), forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => dom_id(topic.recent_post)) %></span>
-  </td>
-</tr>
-<% end %>
 </table>
 
 <%= will_paginate @topics %>
 
 <br class="clear" />
 <% if can_comment? %>
-  <%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
+    <%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "btn ntread" %>
 <% end%>
