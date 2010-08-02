@@ -17,3 +17,4 @@ public/javascripts/beast.js
 doc/
 .rvmrc
 coverage/
+public/stylesheets/header.css
