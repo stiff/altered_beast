@@ -195,4 +195,6 @@ ActiveRecord::Schema.define(:version => 20100714185026) do
     t.datetime "updated_at"
   end
 
+  add_index "votes", ["post_id", "user_id"], :name => "index_votes_on_post_id_and_user_id", :unique => true
+
 end
