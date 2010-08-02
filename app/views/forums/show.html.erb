@@ -40,9 +40,9 @@
     </thead>
     <% for topic in @topics do -%>
         <% if topic.score >= 0 -%>
-            <%= render :partial => 'topic', :locals => {:topic => topic} %>
+            <%= render :partial => 'forums/topic', :locals => {:topic => topic} %>
         <% elsif topic.score < 0 -%>
-            <%= render :partial => 'bad_topic', :locals => {:topic => topic} %>
+            <%= render :partial => 'forums/bad_topic', :locals => {:topic => topic} %>
         <% end -%>
     <% end -%>
 </table>
