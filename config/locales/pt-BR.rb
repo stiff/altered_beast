@@ -228,7 +228,7 @@
         :formatting_help        => "Formatação",
         :formatting_bold        => "*negrito*",
         :formatting_italics     => "_itálico_",
-        :formatting_blockquote  => "'bq. <span>(citação)</span>'",
+        :formatting_blockquote  => "bq. <span>citação</span>",
         :formatting_list        => "* ou # <span>(listas)</span>",
         :delete                 => "Apagar mensagem",
       },
