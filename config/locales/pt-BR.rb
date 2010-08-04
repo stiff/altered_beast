@@ -135,7 +135,7 @@
       :forums   => "Fóruns",
       :users    => "Usuários",
       :settings => "Preferências",
-      :logout   => "Sair",
+      :logout   => "Logout",
       :signup   => "Cadastro",
       :login    => "Login",
       :or       => " | ",

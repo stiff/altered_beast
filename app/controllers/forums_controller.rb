@@ -28,9 +28,16 @@ class ForumsController < ApplicationController
       format.html do # show.html.erb
 
         if session[:show_all] == true
-          @topics = Topic.paginate_by_forum_id @forum.id, :page => current_page, :order => "score DESC"
+          @topics = Topic.paginate_by_forum_id @forum.id,
+                    :page => current_page,
+                    :order => "sticky desc, last_updated_at desc"
+                    #, :order => "score DESC"
         else
-          @topics = Topic.paginate_by_forum_id @forum.id, :page => current_page, :order => "score DESC", :conditions => "score > 0"
+          # @topics = Topic.paginate_by_forum_id @forum.id, :page => current_page, :order => "score DESC", :conditions => "score > 0"
+          @topics = Topic.paginate_by_forum_id @forum.id,
+                    :page => current_page,
+                    :order => "sticky desc, last_updated_at desc",
+                    :conditions => "score > 0"
         end
       end
       format.xml  { render :xml => @forum }
