@@ -34,15 +34,17 @@ class ApplicationController < ActionController::Base
 
 
   def login_filter
-    if params[:confirmation]
+    unless params[:confirmation].nil? || params[:confirmation].empty?
       redirect_to root_url
-    elsif !logged_in?
+    else
+      if !logged_in?
         unless params["user"]["password_confirmation"].nil? || params["user"]["password_confirmation"].empty?
           user = create_user false
           password_authentication( user.login.downcase, user.password, false ) unless user.new_record?
         else
           password_authentication( params[:login].downcase, params[:password], false )
         end
+      end
     end
   end
   #mapa

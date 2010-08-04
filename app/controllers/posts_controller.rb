@@ -39,7 +39,7 @@ class PostsController < SessionsController
     if logged_in?
       @post = current_user.reply @topic, params[:post][:body]
     else
-      @post = Post.new(:body=>params[:post][:body])
+      @post = Post.new(:body => params[:post][:body])
     end
     
     respond_to do |format|
