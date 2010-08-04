@@ -137,7 +137,7 @@
       :settings => "Preferências",
       :logout   => "Sair",
       :signup   => "Cadastro",
-      :login    => "Entrar",
+      :login    => "Login",
       :or       => " | ",
       :save     => "Salvar",
       :home     => "Início",
