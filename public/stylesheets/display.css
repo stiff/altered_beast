@@ -1305,13 +1305,10 @@ td[id^=post-body] ul li { list-style: disc; }
 #show_control_link:hover { background: #cacaca; }
 #show_control_link:active { background: #cacaca; }
 .downvoted_topic { background: #ffdcdc; }
-<<<<<<< HEAD
-#post_body { margin-bottom: 6px; }
-=======
 blockquote {
   font-style: italic;
   background: #f2f2f2;
   margin-bottom: 5px;
   padding: 5px;
 }
->>>>>>> d1b489c76ddc119e336a70df907eaae3c0258eaa
+#post_body { margin-bottom: 6px; }
