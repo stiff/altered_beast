@@ -1,5 +1,5 @@
 <h1><%= I18n.t 'txt.views_posts.edit', :default => 'Edit Post' %></h1>
-
+<br /><br /><br /><br />
 <h2><%= link_to h(@post.topic.title), forum_topic_path(@post.forum, @post.topic) %></h2>
 
 <%= link_to(I18n.t('txt.views_posts.delete', :default => 'Delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 

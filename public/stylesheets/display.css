@@ -209,6 +209,29 @@ body {
   width: 870px;
   margin: 0px auto;
 }
+#contentWrap #content h2 {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+#contentWrap #content h2 a:link {
+  color: #002d62;
+  text-decoration: none;
+}
+#contentWrap #content h2 a:visited {
+  color: #002d62;
+  text-decoration: none;
+}
+#contentWrap #content h2 a:hover {
+  color: #002d62;
+  text-decoration: none;
+}
+#contentWrap #content h2 a:active {
+  color: #002d62;
+  text-decoration: none;
+}
 #contentWrap #content h1 {
   display: block;
   overflow: hidden;
@@ -1282,3 +1305,4 @@ td[id^=post-body] ul li { list-style: disc; }
 #show_control_link:hover { background: #cacaca; }
 #show_control_link:active { background: #cacaca; }
 .downvoted_topic { background: #ffdcdc; }
+#post_body { margin-bottom: 6px; }

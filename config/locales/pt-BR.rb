@@ -231,6 +231,7 @@
         :formatting_blockquote  => "bq. <span>citação</span>",
         :formatting_list        => "* ou # <span>(listas)</span>",
         :delete                 => "Apagar mensagem",
+        :edit                   => "Editar mensagem",
       },
       :admin              => {
         :edit_post                 => "Editar mensagem",

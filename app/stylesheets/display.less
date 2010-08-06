@@ -89,8 +89,19 @@ body {
 		.size01;
 		margin:0px auto;
 		
-		h1{ .block; float:left; color:@black; font-size:3em; font-weight:bold; margin-top:5px; padding:2px 0px;
+		h2 {
+			.block;
+			font-size: 18px;
+			margin-bottom: 6px;
 			
+			a:link, a:visited, a:hover, a:active {
+				color: @blue;
+				text-decoration: none;
+			}
+		}
+		
+		h1{ .block; float:left; color:@black; font-size:3em; font-weight:bold; margin-top:5px; padding:2px 0px;			
+
 			#topic_mod {
 				font-size:.5em;
 				a { 
@@ -791,4 +802,8 @@ td[id^=post-body] {
 
 .downvoted_topic {
   background: @red + 220%;
+}
+
+#post_body {
+	margin-bottom: 6px;
 }
