@@ -177,8 +177,18 @@ body {
   margin: 10px 0px 10px 0px;
   background: url("/images/newsTread.png") no-repeat 2px 2px;
   background-color: #323232;
+  clear: left;
 }
 .ntread:hover { background-color: #141414; }
+.largeBtn {
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0px;
+  background: #222222 url();
+  border: none;
+}
+.largeBtn:hover { background-color: #323232; }
 .grayBtn {
   float: right;
   color: #ffffff;
@@ -233,34 +243,34 @@ body {
   text-decoration: none;
 }
 #contentWrap #content h1 {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  float: left;
   color: #000000;
   font-size: 3em;
   font-weight: bold;
-  margin-top: 5px;
+  margin: 5px 0px 10px 0px;
   padding: 2px 0px;
 }
-#contentWrap #content h1 #topic_mod { font-size: 0.5em; }
+#contentWrap #content h1 #topic_mod { font-size: 0.3em; }
 #contentWrap #content h1 #topic_mod a {
   text-decoration: none;
   color: #325f94;
 }
-#contentWrap #content h1 #topic_mod a:hover { color: #fbcc3b; }
+#contentWrap #content h1 #topic_mod a:hover {
+  color: #5582b7;
+  text-decoration: underline;
+}
 #contentWrap #content .subtitle {
   display: block;
   overflow: hidden;
   position: relative;
   color: #002d62;
-  float: right;
+  float: left;
   clear: left;
   width: auto;
   height: auto;
   font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 #contentWrap #content .subtitle a {
   text-decoration: none;
@@ -484,13 +494,9 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   -webkit-border-radius: 4px;
 }
 #newTreadForm {
-  display: block;
-  overflow: hidden;
-  position: relative;
   float: left;
-  width: 415px;
-  heigh: auto;
-  margin-left: 48px;
+  width: 470px;
+  height: auto;
 }
 #newTreadForm p {
   display: block;
@@ -515,7 +521,7 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   display: block;
   overflow: hidden;
   position: relative;
-  width: 400px;
+  width: 440px;
   height: auto;
   padding: 5px;
   margin-bottom: 10px;
@@ -530,7 +536,7 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   display: block;
   overflow: hidden;
   position: relative;
-  width: 400px;
+  width: 440px;
   height: auto;
   padding: 5px;
   margin-bottom: 10px;
@@ -1311,4 +1317,11 @@ blockquote {
   margin-bottom: 5px;
   padding: 5px;
 }
-#post_body { margin-bottom: 6px; }
+#post_body {
+  margin-bottom: 6px;
+  width: 700px;
+}
+.edit_title {
+  clear: both;
+  display: block;
+}

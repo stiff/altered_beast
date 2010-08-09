@@ -36,10 +36,10 @@
     <% if logged_in? -%>
         <span id="topic_mod">
             <% if @topic.editable_by? current_user -%>
-                <%= link_to I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility" %> |
+                ( <%= link_to I18n.t('txt.edit', :default => 'edit'), edit_forum_topic_path(@forum, @topic), :class => "utility" %>
                 <% if current_user.admin? -%>
-                    <%= link_to I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?') %>
-                <% end -%>
+                  | <%= link_to I18n.t('txt.delete', :default => 'delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_topics.delete_sure', :default => 'Delete this topic forever?') %>
+                <% end -%> )
             <% end -%>
         </span>
     <% end -%>
@@ -133,6 +133,8 @@
             <div class="toolsBox">
                 <%= render :partial => "posts/formatting" %>
             </div><!-- toolsbox-->
+            <%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %>
+
         </div>
 
         <% unless logged_in? -%>
@@ -152,9 +154,6 @@
                 </div>
             </div><!-- loginQBox -->
         <% end -%>
-        <br class="clear" />
-
-        <div><%= submit_tag I18n.t('txt.views_topics.save_reply', :default => 'Save reply'), :class => 'btn ntread' %></div>
     <% end -%>
 <% end -%>
 

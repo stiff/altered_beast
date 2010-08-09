@@ -1,4 +1,6 @@
-<h1><%= I18n.t 'txt.views_topics.edit', :default => 'Edit Topic' %></h1>
+<h1 class="edit_title">
+  <%= I18n.t 'txt.views_topics.edit', :default => 'Edit Topic' %>
+</h1>
 
 <%= error_messages_for :topic %>
 <% form_for :topic,
