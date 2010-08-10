@@ -518,6 +518,7 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   border-style: solid !important;
   border-width: 1px;
   border-color: #323232;
+  overflow: auto;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -533,6 +534,7 @@ table td.entry-content p.topic a:hover { color: #c99a09; }
   border-style: solid !important;
   border-width: 1px;
   border-color: #323232;
+  overflow: auto;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
