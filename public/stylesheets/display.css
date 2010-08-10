@@ -1248,7 +1248,8 @@ td[id^=post-body] ul li { list-style: disc; }
 }
 .post_votes h2 {
   font: bold 18px Arial, Helvetica, Sans-serif;
-  padding: 5px;
+  padding: 0px 5px 0px 5px;
+  margin: 0px !important;
 }
 .spacer td { background: #f2f2f2; }
 #show_control_link:link {
