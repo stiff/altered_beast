@@ -268,15 +268,15 @@ body {
 }
 #contentWrap #content .subtitle a:hover { color: #fbcc3b; }
 #contentWrap #content #postMonitor {
+  float: right;
   display: block;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   background: #f2f2f2;
   padding: 5px;
   width: auto;
   height: auto;
   right: 10px;
-  top: 45px;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -343,14 +343,11 @@ body {
   float: left;
 }
 .crumbs {
-  display: block;
-  overflow: hidden;
-  position: relative;
   float: left;
   font-size: 1em;
   height: auto;
   margin-bottom: 5px;
-  width: 100%;
+  width: 650px;
 }
 .crumbs a {
   display: block;
