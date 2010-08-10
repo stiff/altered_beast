@@ -25,8 +25,8 @@
                 <%= display_linked_tags(topic) %>
             </td>
 
-            <td class="ca inv stat"><%= topic.score %></td>
             <td class="ca inv stat"><%= topic.posts.size %></td>
+            <td class="ca inv stat"><%= topic.score %></td>
             <td class="ca inv stat"><%= link_to topic.user.login, user_path(topic.user) %></td>
             <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>
             <td class="lp">
