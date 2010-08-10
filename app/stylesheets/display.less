@@ -682,16 +682,15 @@ body {
 #footer {
   /* .block; <<<<< IE? */
 /*  .size01;*/
+  display: block;
   color: @white;
-  height: 200px;
   margin: 0px auto;
   padding: 10px 0px;
-  font-size: 0.9em;
   text-align :center;
 
   a {
     text-decoration: none; 
-    color: @blue + 50%;
+    color: @blue + 80%;
 
     :hover {
       color: @yellow;
@@ -833,4 +832,10 @@ blockquote {
 .edit_title {
   clear: both;
   display: block;
+}
+
+#bug_report p {
+  font-size: 12px;
+  margin-bottom: 8px;
+  width: 700px;
 }
