@@ -1,44 +1,5 @@
-== Altered Beast
+== Novoforum
 
-The popular rails-based Beast forum, rewritten from the ground up with the same database and views.
+This is the source code for the Tectura forum.
 
-* full i18n (with German and English support)
-* updated for Rails 2.3.3
-* using rspec/model_stubbing
-* added a state machine for user logins
-* built-in multi-site support
-* spam protection from akismet/viking
-* forum authorization rules (public/private/invitation)
-* email and atom feed support
-* xml/json API (not 100% tested yet, fixing soon)
-* highline based easy console installer
-* internationalization via the I18n framework
-
-Check out the code via git:
-
-    git clone git://github.com/courtenay/altered_beast.git
-
-
-=== INSTALLATION
-
-    # download altered_beast
-    # gem install rails 2.3.3
-    $ mkdir log
-    $ rake tmp:create
-    $ rake app:bootstrap
-
-    Follow the instructions to create your database and load users.
-    Start the application with script/server and visit http://localhost:3000 to 
-    visit your new forum.
-    
-    
-=== FAQ
-
-How do I paginate?
-
-* Open post.rb and topic.rb and add the pagination configuration:
-
-def self.per_page
-	5
-end
-
+http://www.tectura.com.br/
