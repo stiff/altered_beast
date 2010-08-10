@@ -102,7 +102,7 @@ module ApplicationHelper
       text.gsub(/\<code name=\"(.*?)\"\>(.*?)\<\/code\>/m) do
         result_text = CGI.unescapeHTML($2)
         colored = CodeRay.scan(result_text, $1)
-        colored.html :line_numbers => :inline, :wrap => :page
+        colored.html :line_numbers => :inline, :wrap => :span
       end
     end
   end
