@@ -2,6 +2,7 @@
 .DS_Store
 app/stylesheets/*.css
 tmp
+log/production.log
 log/development.log
 log/test.log
 config/database.yml
@@ -17,3 +18,4 @@ public/javascripts/beast.js
 doc/
 .rvmrc
 coverage/
+all.css
