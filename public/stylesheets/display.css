@@ -1323,3 +1323,4 @@ blockquote {
   width: 700px;
 }
 span.CodeRay { display: block; }
+.topics, .posts { clear: both; }
