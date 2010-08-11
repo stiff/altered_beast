@@ -176,7 +176,7 @@
                         $$('td[id=post_votes-' + post_id + ']')[0].replace(response.responseText);
                     }
                 })
-                Event.stop(event);
+                return false;
             });
         });
     }
