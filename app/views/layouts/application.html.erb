@@ -11,7 +11,7 @@
     <% end -%>
   <% end -%>
   <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
-  <%= javascript_include_tag "prototype", "effects", "lowpro", "application", :cache => "beast" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js", "effects", "lowpro", "application", :cache => "beast" %>
   <%= yield :head_content %>
 </head>
 
