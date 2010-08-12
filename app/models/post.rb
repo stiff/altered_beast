@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
   after_destroy :update_cached_fields
 
   attr_accessible :body, :score
-
+  
   def forum_name
     forum.name
   end

@@ -20,6 +20,7 @@ describe Post do
     p.send :format_attributes
     p.body_html.should == '<p>bar</p>'
   end
+    
 end
 
 describe Post, "being deleted" do
