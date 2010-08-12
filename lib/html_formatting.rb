@@ -11,7 +11,7 @@ module HtmlFormatting
       else
         line
       end
-    end.join("\n")
+    end.join("\n") unless text.nil?
   end
 
   
