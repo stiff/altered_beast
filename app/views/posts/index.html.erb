@@ -28,7 +28,7 @@
     <span class="posts"><%= I18n.t 'txt.count_posts', :count => @users[post.user_id].posts.size, :num => number_with_delimiter(@users[post.user_id].posts.size) %></span>   
 	<div class="date">
       <abbr class="updated" title="<%= post.created_at.xmlschema %>">
-      <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => 'posted {{when}} ago' %>
+      <%= I18n.t 'txt.post_age', :when => time_ago_formatted(post.created_at), :default => 'posted {{when}} ago' %>
       </abbr>
     </div>
   </td>

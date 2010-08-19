@@ -92,7 +92,7 @@
                     <div class="date">
                         <a href="#<%= dom_id post %>" rel="bookmark">
                             <abbr class="updated" title="<%= post.created_at.xmlschema %>">
-                                <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
+                                <%= I18n.t 'txt.post_age', :when => time_ago_formatted(post.created_at), :default => "posted {{when}} ago" %>
                             </abbr>
                         </a><!-- bookmark-->
                     </div><!-- date -->

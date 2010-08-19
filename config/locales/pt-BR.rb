@@ -150,7 +150,7 @@
       :count_posts    => {:one => "<span class=\"bignum\">1</span> mensagem", :other => "<span class=\"bignum\">{{count}}</span> mensagens"},
       :my_topics      => "Minhas discussões",
       :new_topic      => "Nova discussão",
-      :post_age       => "Há {{when}}",
+      :post_age       => "{{when}} atrás",
       :by_user        => "por {{user}}",
       :view           => "ler",
       :views_forums   => {

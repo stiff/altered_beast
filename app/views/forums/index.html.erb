@@ -49,7 +49,7 @@
 
     <td class="inv lp">
       <% if forum.recent_post -%>
-        <%= I18n.t 'txt.post_age', :when => time_ago_in_words(forum.recent_post.created_at), :default => "posted {{when}} ago" %><br />
+        <%= I18n.t 'txt.post_age', :when => time_ago_formatted(forum.recent_post.created_at), :default => "posted {{when}} ago" %><br />
         <strong><%= I18n.t 'txt.by_user', :default => 'by {{user}}', :user => "#{h(forum.recent_post.user.display_name)}" %></strong>
         <span>(<%= link_to I18n.t('txt.view', :default => 'view'), forum_topic_path(forum, forum.recent_post.topic, :page => forum.recent_post.topic.last_page, :anchor => dom_id(forum.recent_post)) %>)</span>
       <% end -%>

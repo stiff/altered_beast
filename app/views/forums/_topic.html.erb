@@ -31,7 +31,7 @@
             <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>
             <td class="lp">
                 <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>">
-                    <%= I18n.t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted {{when}} ago" %>
+                    <%= I18n.t 'txt.post_age', :when => time_ago_formatted(topic.last_updated_at), :default => "posted {{when}} ago" %>
                 </abbr>
                 <% if topic.last_user -%>
                     <%= I18n.t 'txt.by_user', :default => 'by {{user}}', :user => link_to( topic.last_user.display_name, user_path(topic.last_user)) %>
