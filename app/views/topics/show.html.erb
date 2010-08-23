@@ -1,6 +1,9 @@
-<% content_for :page_title do -%>
-    <%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %>
-<% end -%>
+<% content_for :page_title do -%><%= "#{@topic.title.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %><% end -%>
+
+<% content_for :head_content do -%>
+  <%= "<meta content=\"#{@topic.title.capitalize}\" name=\"description\" />" %>
+  <%= "<meta content=\"#{display_tags_as_keywords(@topic)}\" name=\"keywords\" />" %>
+<% end %>
 
 <% if logged_in? -%>
     <% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>

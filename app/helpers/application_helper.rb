@@ -73,8 +73,8 @@ module ApplicationHelper
     topic.tag_list.map{|t| link_to("##{t}", tag_path(t),:class => "tag-link")}.join(" ")
   end
 
-  def display_tags(topic)
-    topic.tag_list.map{|t| "##{t}"}.join(" ")
+  def display_tags_as_keywords(topic)
+    topic.tag_list.map{|t| "#{t}"}.join(", ")
   end
 
   # i18n do will_paginate

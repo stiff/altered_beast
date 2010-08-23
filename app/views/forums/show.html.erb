@@ -1,6 +1,8 @@
-<% content_for :page_title do -%>
-    <%= "#{@forum.name.capitalize} || Tectura - Desenvolvedores discutindo arquitetura na prática" %> 
-<% end -%>
+<% content_for :head_content do -%>
+  <meta content="Fórum para discussões sobre arquitetura de software." name="description">
+<% end %>
+
+<% content_for :page_title do -%><%= "Tectura - Desenvolvedores discutindo arquitetura na prática" %><% end -%>
 
 <div class="crumbs">
     <%= link_to I18n.t('txt.forums'), root_path %><span class="arrow">»</span>
