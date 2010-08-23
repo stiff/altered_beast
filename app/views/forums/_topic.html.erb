@@ -36,6 +36,5 @@
                 <% if topic.last_user -%>
                     <%= I18n.t 'txt.by_user', :default => 'by {{user}}', :user => link_to( topic.last_user.display_name, user_path(topic.last_user)) %>
                 <% end -%>
-                <span><%= link_to ("(" + I18n.t('txt.view', :default => 'view') + ")"), forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => dom_id(topic.recent_post)) %></span>
             </td>
         </tr>
