@@ -54,9 +54,6 @@
     <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
 
-======================================
-<%= @posts %>
-
 <% unless @posts.empty? -%>
     <%= will_paginate @posts %>
     <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
