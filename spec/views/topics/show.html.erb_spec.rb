@@ -8,25 +8,39 @@ describe "/topics/show.html.erb" do
   end
   
   before do
-    @forum  = forums(:default)
     @topic  = topics(:default)
-    Forum.stub!(:first).and_return(@forum)
+
+    @user = users(:default)
+    @user.signature = "A very provocative signature"
+    @user.signature_html = "A very provocative signature"
+
+    @post = posts(:default)
+    @post.body_html = "A very insightful comment"
+    @post.user = @user
+    
+    @posts = [@post].paginate :page => 1
 
     @topic.title = "Topic Title"
     @topic.tags = [Tag.new(:name => "first tag"), Tag.new(:name => "other tag")]
 
     assigns[:topic] = @topic
-    assigns[:posts] = []
+    assigns[:posts] = @posts
   end
 
-  it "should render post title as meta description" do
+  it "should render topic's title as meta description" do
   	render "/topics/show.html.erb"
   	head_content.should include('<meta content="Topic title" name="description" />')
   end
   
-  it "should render post tags as meta description" do
+  it "should render topic's tags as meta description" do
   	render "/topics/show.html.erb"
   	head_content.should include('<meta content="first tag, other tag" name="keywords" />')
+  end
+  
+  it "should include user's signature in posts" do
+    render "/topics/show.html.erb"
+    response.should have_tag("div[class=?]", "signature")
+    response.body.should include("A very provocative signature")
   end
 end
 

@@ -54,6 +54,9 @@
     <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
 
+======================================
+<%= @posts %>
+
 <% unless @posts.empty? -%>
     <%= will_paginate @posts %>
     <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
@@ -109,6 +112,12 @@
                 </td>
                 <td class="body entry-content" id="post-body-<%= post.id %>">
                     <%= coderay(post.body_html) %>
+                    <% unless post.user.signature.empty? %>
+                      <div class="signature">
+                        --<br/>
+                        <%= post.user.signature_html %>
+                      </div>
+                    <% end %>
                 </td>
             </tr>
         <% end -%>

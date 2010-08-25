@@ -288,6 +288,7 @@
         :website_title             => "Endereço Web",
         :without_http              => "sem http://",
         :bio_title                 => "Sobre mim",
+        :sig_title                 => "Assinatura",
         :update_profile            => "Salvar perfil",
         :avatars_title             => "Avatar",
         :gravatar_notice           => "Para ter seu avatar exibido neste fórum, registre-se no {{gravatar}}.",

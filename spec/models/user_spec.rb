@@ -46,6 +46,13 @@ describe User do
     u.send :format_attributes
     u.bio_html.should == '<p>foo</p>'
   end
+  
+  it "formats User#signature" do
+    u = User.new :signature => 'picardia'
+    u.signature_html.should == ""
+    u.send :format_attributes
+    u.signature_html.should == '<p>picardia</p>'
+  end
 
   it "sets User#display_name from login if nil" do
     user = User.new :login => 'foo'

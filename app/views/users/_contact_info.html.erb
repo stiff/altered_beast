@@ -23,3 +23,8 @@
   <label for="user_bio"><%= I18n.t 'txt.views_users.bio_title', :default => 'Bio' %></label><br />
   <%= settings.text_area :bio, :rows => 10, :style => "width:99%" %>
 </p>
+
+<p>
+  <label for="user_sig"><%= I18n.t 'txt.views_users.sig_title', :default => 'Signature' %></label><br />
+  <%= settings.text_area :signature, :rows => 3, :style => "width:99%" %>
+</p>

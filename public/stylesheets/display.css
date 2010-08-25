@@ -147,7 +147,7 @@ legend { color: #000000; }
 #header #nav-users li a:hover { color: #fbcc3b; }
 body {
   background: #002d62 !important;
-  font: 11px Helvetica, Arial, sans-serif;
+  font: 12px Helvetica, Arial, sans-serif;
 }
 .wrapper {
   margin: 0px auto;
@@ -1339,4 +1339,9 @@ span.CodeRay { display: block; }
   position: relative;
   top: -20px;
   left: -20px;
+}
+.signature {
+  font-size: 10px;
+  margin-top: 10px;
+  padding: -1px;
 }
