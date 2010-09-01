@@ -8,11 +8,11 @@
                post = I18n.t('txt.views_forums.comma_locked_topic', :default => ', this topic is locked.')
                color = "darkgrey"
            end %>
-        <% if recent_topic_activity(topic) -%>
-            <%= image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => I18n.t('txt.views_forums.recent_activity', :default => "Recent activity") + "#{post}" %>
-        <% else -%>
-            <%= image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title =>  I18n.t('txt.views_forums.no_recent_activity', :default => "No recent activity") + "#{post}" %>
-        <% end -%>
+          <% if recent_topic_activity(topic) -%>
+              <img src="/images/clearbits/<%=icon%>.gif", class="icon green", title="<%= I18n.t('txt.views_forums.recent_activity', :default => 'Recent activity')%>">
+          <% else -%>
+              <img src="/images/clearbits/<%=icon%>.gif", class="icon grey", title="<%= I18n.t('txt.views_forums.no_recent_activity', :default => 'No recent activity')%>">
+          <% end -%>
     </td>
 
     <td class="c2">
