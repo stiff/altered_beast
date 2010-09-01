@@ -5,6 +5,12 @@
   <%= "<meta content=\"#{display_tags_as_keywords(@topic)}\" name=\"keywords\" />" %>
 <% end %>
 
+<p class="subtitle">
+    <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
+    <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
+ </p>
+
+
 <% if logged_in? -%>
     <% form_tag monitorship_path(@topic), :id => 'postMonitor' do -%>
         <div>
@@ -46,8 +52,16 @@
             <% end -%>
         </span>
     <% end -%>
-</h1>
+<!--FRAME DO FACEBOOK-->
+	 <p>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 
+	</p>
+	<!--/FRAME DO FACEBOOK-->
+</h1>
+<p>
+	   
+</p>
 <p class="subtitle">
     <%= display_linked_tags(@topic) %>
     <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
