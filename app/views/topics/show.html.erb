@@ -52,12 +52,6 @@
             <% end -%>
         </span>
     <% end -%>
-<!--FRAME DO FACEBOOK-->
-	 <p>
-		<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
-
-	</p>
-	<!--/FRAME DO FACEBOOK-->
 </h1>
 <p>
 	   
@@ -131,6 +125,14 @@
                     <% end %>
                 </td>
             </tr>
+            <% if post == @posts.first -%>
+                <tr class="post hentry">
+                    <td colspan="3">
+											<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+                    </td>
+                </tr>
+            <% end -%>
+
         <% end -%>
     </table>
 
