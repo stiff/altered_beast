@@ -129,6 +129,17 @@
                 <tr class="post hentry">
                     <td colspan="3">
 											<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+											<!-- AddThis Button BEGIN -->
+											<span class="addthis_toolbox addthis_default_style">
+												<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=caelumsp"
+												class="addthis_button_compact">Share</a>
+												<span class="addthis_separator">|</span>
+													<a class="addthis_button_facebook"></a>
+													<a class="addthis_button_myspace"></a>
+													<a class="addthis_button_google"></a>
+													<a class="addthis_button_twitter"></a>
+											</span>
+											<!-- AddThis Button END -->
                     </td>
                 </tr>
             <% end -%>
@@ -183,7 +194,11 @@
 <% end -%>
 
 <% content_for :end_page_js do -%>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=caelumsp"></script>
 <script type="text/javascript">
+	
+		var addthis_config = {"data_track_clickback":true};
+		
     function setVoteControls() {
         createControlsFor('upvote');
         createControlsFor('downvote');
