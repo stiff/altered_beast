@@ -162,7 +162,7 @@ describe PostsController, "POST #create" do
     act! { post :create, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :post => {:body => 'foo'} }
 
     it_assigns :post, :forum, :topic, :parent => lambda { @topic }, :flash => { :notice => :not_nil }
-    it_redirects_to { forum_topic_post_path(@forum, @topic, assigns(:post), :anchor => "post_#{assigns(:post).id}") }
+    it_redirects_to { forum_topic_url(@forum, @topic, :page => 1, :anchor => "post_#{assigns(:post).id}") }
   end
 
   describe PostsController, "(unsuccessful creation)" do

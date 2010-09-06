@@ -41,10 +41,10 @@ class PostsController < SessionsController
     else
       @post = Post.new(:body => params[:post][:body])
     end
+    @topic = Topic.find_by_id(@topic.id) # reloading topic to update post count / last page
     
     respond_to do |format|
       if @post.new_record?
-#        format.html { redirect_to forum_topic_path(@forum, @topic) }
         @posts = @topic.posts.paginate :page => current_page
         format.html do
            render :template => "topics/show"
@@ -54,7 +54,7 @@ class PostsController < SessionsController
         end
       else
         flash[:notice] = I18n.t 'txt.post_created', :default => 'Post was successfully created.'
-        format.html { redirect_to(forum_topic_post_path(@forum, @topic, @post, :anchor => dom_id(@post))) }
+        format.html { redirect_to(:action => "show", :controller => "topics", :id => @topic.permalink, :page => @topic.last_page, :anchor => dom_id(@post)) }
         format.xml  { render :xml  => @post, :status => :created, :location => forum_topic_post_url(@forum, @topic, @post) }
       end
     end
