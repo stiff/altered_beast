@@ -101,6 +101,6 @@ class User < ActiveRecord::Base
   end
   
   def is_owner_of?(post)
-    (post.user == self) && (post.topic.user == self)
+    post.user == self
   end
 end
