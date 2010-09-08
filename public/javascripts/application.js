@@ -126,10 +126,12 @@ Event.addBehavior({
   },
 
   'tr.post': function() {
-    var postId = this.id.match(/^post_(\d+)-/)[1];
-    var anchor = this.down(".edit a");
-    if(anchor) { PostForm.edit.attach(anchor, postId) };
-    RowManager.addMouseBehavior(this);
+    var postId = this.id.match(/^post_(\d+)/);
+    if (postId != null) {
+      var anchor = this.down(".edit a");
+      if(anchor) { PostForm.edit.attach(anchor, postId[1]) };
+      RowManager.addMouseBehavior(this);
+    }
   },
 
   '#reply-link': function() {
