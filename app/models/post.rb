@@ -42,6 +42,10 @@ class Post < ActiveRecord::Base
     options[:count]      ||= {:select => "#{Post.table_name}.id"}
     paginate options
   end
+  
+  def was_modified?
+    self.created_at != self.updated_at
+  end
 
 protected
   def update_cached_fields
