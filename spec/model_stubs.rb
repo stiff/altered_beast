@@ -47,7 +47,7 @@ module ModelStubbing
     end
 
     model Post do
-      stub :topic => all_stubs(:topic), :forum => all_stubs(:forum), :user => all_stubs(:user), :body => 'initial', :created_at => current_time - 5.days, :site => all_stubs(:site)
+      stub :topic => all_stubs(:topic), :forum => all_stubs(:forum), :user => all_stubs(:user), :body => 'initial', :created_at => current_time - 5.days, :updated_at => current_time - 5.days, :site => all_stubs(:site)
       stub :other, :topic => all_stubs(:other_topic), :body => 'other', :created_at => current_time - 13.days
       stub :other_forum, :forum => all_stubs(:other_forum), :topic => all_stubs(:other_forum_topic)
     end
