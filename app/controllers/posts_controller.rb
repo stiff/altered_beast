@@ -53,6 +53,7 @@ class PostsController < SessionsController
            render :xml  => @post.errors, :status => :unprocessable_entity 
         end
       else
+        update_monitorship(current_user, @topic, true)
         flash[:notice] = I18n.t 'txt.post_created', :default => 'Post was successfully created.'
         format.html { redirect_to(:action => "show", :controller => "topics", :id => @topic.permalink, :page => @topic.last_page, :anchor => dom_id(@post)) }
         format.xml  { render :xml  => @post, :status => :created, :location => forum_topic_post_url(@forum, @topic, @post) }

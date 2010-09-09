@@ -155,14 +155,21 @@ describe PostsController, "POST #create" do
 
   before do
     @post = nil
+    @monitorship = mock_model(Monitorship)
+    Monitorship.stub!(:find_or_initialize_by_user_id_and_topic_id).and_return(@monitorship)
   end
 
   describe PostsController, "(successful creation)" do
     define_models
+    
+    before do
+      @monitorship.should_receive(:update_attribute).with(:active, true)
+    end
+    
     act! { post :create, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :post => {:body => 'foo'} }
 
     it_assigns :post, :forum, :topic, :parent => lambda { @topic }, :flash => { :notice => :not_nil }
-    it_redirects_to { forum_topic_url(@forum, @topic, :page => 1, :anchor => "post_#{assigns(:post).id}") }
+    it_redirects_to { forum_topic_url(@forum, @topic, :page => 1, :anchor => "post_#{assigns(:post).id}") }    
   end
 
   describe PostsController, "(unsuccessful creation)" do
@@ -176,6 +183,11 @@ describe PostsController, "POST #create" do
 
   describe PostsController, "(successful creation, xml)" do
     define_models
+    
+    before do
+      @monitorship.should_receive(:update_attribute).with(:active, true)
+    end
+    
     act! { post :create, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :post => {:body => 'foo'}, :format => 'xml' }
 
     it_assigns :post, :forum, :topic, :parent => lambda { @topic }, :headers => { :Location => lambda { forum_topic_post_url(@forum, @topic, assigns(:post)) } }
