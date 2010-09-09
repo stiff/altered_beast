@@ -14,13 +14,11 @@ describe MonitorshipsController, "PUT #update" do
   it "should enable monitorship for a post, for a user" do
     @monitorship.should_receive(:update_attribute).with(:active, true)
     put :update, :id => 'topic-name', :enable_monitor => 'on'
-    assigns[:monitorship].should == @monitorship
   end
 
   it "should disable monitorship for a post, for a user" do
     @monitorship.should_receive(:update_attribute).with(:active, false)
     put :update, :id => 'topic-name'
-    assigns[:monitorship].should == @monitorship
   end
 
 end

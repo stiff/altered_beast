@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   include PathHelper
+  include MonitorshipsHelper
   include ExceptionNotification::Notifiable
 
   helper :all

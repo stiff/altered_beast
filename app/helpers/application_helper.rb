@@ -89,11 +89,12 @@ module ApplicationHelper
 
   # /i18n
 
-  # PATH
+  # INCLUDES
 
   include PathHelper
+  include MonitorshipsHelper
 
-  # /PATH
+  # /INCLUDES
 
   # Coderay
   
