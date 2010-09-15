@@ -55,21 +55,16 @@
     <%#= will_paginate @posts %>
     <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
     <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
-        <colgroup width="870">
-            <col width="50" />
-            <col width="140">
-            <col width="680" />
-        </colgroup>
         <% for post in @posts do -%>
             <% unless post == @posts.first -%>
                 <tr class="spacer">
-                    <td colspan="3">
+                    <td colspan="2">
                         <a name="<%= dom_id post %>" id="<%= dom_id post %>">&nbsp;</a>
                     </td>
                 </tr>
             <% end -%>
             <tr class="post hentry" id="<%= dom_id post %>-row">
-                    <td class="author vcard" colspan="2">
+                    <td class="author vcard">
                     <%= avatar_for post.user %>
                     <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
                     <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? -%>
@@ -111,7 +106,7 @@
             </tr>
             <% if post == @topic.posts.first -%>
                 <tr class="post hentry">
-                    <td colspan="3">
+                    <td colspan="2">
                       <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
                       <!-- AddThis Button BEGIN -->
                       <span class="addthis_toolbox addthis_default_style">

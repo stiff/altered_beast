@@ -340,7 +340,7 @@ body {
 #contentWrap #content table td {
   border-bottom: 1px solid;
   border-bottom-color: #c0c0c0;
-  padding: 5px;
+  padding: 10px;
 }
 #contentWrap #content table td img.icon { background: url("/images/clearbits/bg_rounded.gif") no-repeat scroll 0 0 #669966; }
 #contentWrap #content table td img.grey { background-color: #cccccc; }
@@ -400,7 +400,7 @@ table th {
 table .hentry td { padding: 5px; }
 table td.author {
   background: #dedede;
-  padding: 5px;
+  padding: 10px;
 }
 table td.author .fn a {
   font-size: 1.1em;
@@ -410,10 +410,8 @@ table td.author .fn a {
 }
 table td.author .fn a:hover { color: #c99a09; }
 table td.author .date {
-  display: block;
-  overflow: hidden;
-  position: relative;
   margin-top: 5px;
+  display: inline-block;
 }
 table td.author .date a {
   text-decoration: none;
