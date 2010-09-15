@@ -401,6 +401,7 @@ table .hentry td { padding: 5px; }
 table td.author {
   background: #dedede;
   padding: 10px;
+  width: 170px;
 }
 table td.author .fn a {
   font-size: 1.1em;
@@ -431,6 +432,7 @@ table td.author p .editMsg {
   font-size: 1em;
   text-decoration: none;
   background: #f2f2f2;
+  margin-top: 15px;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
