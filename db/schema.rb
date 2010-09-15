@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100824200231) do
+ActiveRecord::Schema.define(:version => 20100915144248) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -181,8 +181,8 @@ ActiveRecord::Schema.define(:version => 20100824200231) do
     t.integer  "working_since"
     t.string   "lost_password_secret"
     t.string   "city"
-    t.string   "signature",                               :default => "",        :null => false
-    t.string   "signature_html",                          :default => "",        :null => false
+    t.text     "signature",                                                      :null => false
+    t.text     "signature_html",                                                 :null => false
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"
@@ -196,7 +196,5 @@ ActiveRecord::Schema.define(:version => 20100824200231) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "votes", ["post_id", "user_id"], :name => "index_votes_on_post_id_and_user_id", :unique => true
 
 end
