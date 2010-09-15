@@ -1,4 +1,4 @@
-<td class="post_votes" id="post_votes-<%= post.id %>">
+<div class="post_votes" id="post_votes-<%= post.id %>">
     <% if post.votes.find_by_user_id(current_user) && post.votes.find_by_user_id(current_user).value == 1 -%>
         <%= image_tag 'upvote_disabled.png' %>
     <% else -%>
@@ -17,4 +17,4 @@
       }
       
     </script>
-</td>
+</div>

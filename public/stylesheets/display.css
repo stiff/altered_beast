@@ -247,8 +247,7 @@ body {
   font-size: 3em;
   font-weight: bold;
   margin: 5px 0px 10px 0px;
-  padding: 2px 0px;
-  clear: both;
+  padding: 2px 0px 2px 20px;
 }
 #contentWrap #content h1 #topic_mod { font-size: 0.3em; }
 #contentWrap #content h1 #topic_mod a {
@@ -265,13 +264,13 @@ body {
   position: relative;
   color: #002d62;
   float: left;
-  clear: left;
   width: auto;
   height: auto;
   font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 #contentWrap #content .subtitle a {
   text-decoration: none;
@@ -1212,10 +1211,47 @@ td[id^=post-body] strong { font-weight: bold; }
 td[id^=post-body] ul { margin: 0px 0px 10px 20px; }
 td[id^=post-body] ul li { list-style: disc; }
 .pagination {
-  font-size: 130%;
+  font-size: 100%;
   font-weight: bold;
-  padding: 15px;
+  padding: 0px 5px;
   text-align: center;
+  clear: both;
+}
+.pagination a:link {
+  color: #333333;
+  padding: 5px;
+  background: #dcdcdc;
+  text-decoration: none;
+  border: 1px solid #666666;
+}
+.pagination a:visited {
+  color: #333333;
+  padding: 5px;
+  background: #dcdcdc;
+  text-decoration: none;
+  border: 1px solid #666666;
+}
+.pagination a:hover {
+  color: #333333;
+  padding: 5px;
+  background: #dcdcdc;
+  text-decoration: none;
+  border: 1px solid #666666;
+}
+.pagination a:active {
+  color: #333333;
+  padding: 5px;
+  background: #dcdcdc;
+  text-decoration: none;
+  border: 1px solid #666666;
+}
+.pagination a:hover {
+  color: #336699;
+  border-color: #336699;
+}
+.pagination span {
+  padding: 5px;
+  border: 1px solid #cccccc;
 }
 #user_profile .bignum {
   background: #002d62;
@@ -1254,7 +1290,11 @@ td[id^=post-body] ul li { list-style: disc; }
 }
 .post_votes {
   background: #dedede;
+  display: inline-block;
   text-align: center;
+  clear: left;
+  float: left;
+  width: 50px;
 }
 .post_votes h2 {
   font: bold 18px Arial, Helvetica, Sans-serif;
@@ -1345,3 +1385,8 @@ span.CodeRay { display: block; }
   margin-top: 10px;
   padding: -1px;
 }
+#topic-title {
+  float: left;
+  width: 800px;
+}
+.down_pagination { margin: 20px; }

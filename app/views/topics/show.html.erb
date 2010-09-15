@@ -28,14 +28,7 @@
     <% end -%>
 <% end -%>
 
-<div class="crumbs">
-    <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-    <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %>
-    <% if page and page != 1 -%>
-        <small>(<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)</small>
-    <% end -%>
-    <span class="arrow">»</span>
-</div><!-- crumbs -->
+<%= render :partial => 'topics/vote_control', :locals => {:post => @topic.posts.first} if logged_in? %>
 
 <h1 id="topic-title">
     <%=h @topic.title %>
@@ -53,17 +46,13 @@
         </span>
     <% end -%>
 </h1>
-<p>
-	   
-</p>
+
 <p class="subtitle">
     <%= display_linked_tags(@topic) %>
-    <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
-    <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
 
 <% unless @posts.empty? -%>
-    <%= will_paginate @posts %>
+    <%#= will_paginate @posts %>
     <a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
     <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
         <colgroup width="870">
@@ -80,12 +69,7 @@
                 </tr>
             <% end -%>
             <tr class="post hentry" id="<%= dom_id post %>-row">
-                <% if post == @posts.first && logged_in? -%>
-                <%= render :partial => 'topics/vote_control', :locals => {:post => post} %>
-                    <td class="author vcard">
-                <% else -%>
                     <td class="author vcard" colspan="2">
-                <% end -%>
                     <%= avatar_for post.user %>
                     <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
                     <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? -%>
@@ -125,21 +109,21 @@
                     <% end %>
                 </td>
             </tr>
-            <% if post == @posts.first -%>
+            <% if post == @topic.posts.first -%>
                 <tr class="post hentry">
                     <td colspan="3">
-											<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
-											<!-- AddThis Button BEGIN -->
-											<span class="addthis_toolbox addthis_default_style">
-												<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=caelumsp"
-												class="addthis_button_compact">Share</a>
-												<span class="addthis_separator">|</span>
-													<a class="addthis_button_facebook"></a>
-													<a class="addthis_button_myspace"></a>
-													<a class="addthis_button_google"></a>
-													<a class="addthis_button_twitter"></a>
-											</span>
-											<!-- AddThis Button END -->
+                      <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.tectura.com.br<%=request.request_uri%>&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+                      <!-- AddThis Button BEGIN -->
+                      <span class="addthis_toolbox addthis_default_style">
+                        <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=caelumsp"
+                        class="addthis_button_compact">Share</a>
+                        <span class="addthis_separator">|</span>
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_myspace"></a>
+                        <a class="addthis_button_google"></a>
+                        <a class="addthis_button_twitter"></a>
+                      </span>
+                      <!-- AddThis Button END -->
                     </td>
                 </tr>
             <% end -%>
@@ -147,12 +131,8 @@
         <% end -%>
     </table>
 
-    <div class="crumbs">
-        <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">»</span>
-        <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">»</span>
-    </div>
 
-    <%= will_paginate @posts %>
+    <div class="down_pagination"><%= will_paginate @posts %></div>
 
 <% end -%>
 
@@ -213,7 +193,7 @@
                 new Ajax.Request('/posts/' + post_id + '/' + type, {
                     parameters: 'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>'),
                     onSuccess: function(response) {
-                        $$('td[id=post_votes-' + post_id + ']')[0].replace(response.responseText);
+                        $$('div[id=post_votes-' + post_id + ']')[0].replace(response.responseText);
                     }
                 })
                 return false;

@@ -114,7 +114,7 @@ body {
 			}
 		}
 		
-    h1{color:@black; font-size:3em; font-weight:bold; margin:5px 0px 10px 0px; padding:2px 0px; clear: both;
+    h1{color:@black; font-size:3em; font-weight:bold; margin:5px 0px 10px 0px; padding:2px 0px 2px 20px;
 
 			#topic_mod {
 				font-size:.30em;
@@ -131,15 +131,15 @@ body {
 			.block;
 			color:@blue;
       float:left;
-      clear:left;
-			width:auto;
+/*      clear:left;
+*/			width:auto;
 			height:auto;
 /*      margin-bottom:15px;*/
 			font-size:1em;
 			font-weight:bold;
 			text-transform:uppercase;
 			margin-bottom: 10px;
-			
+			padding-left: 20px;
 			a{text-decoration:none; color:@blue + 50%; :hover{color:@yellow;}}
 			
 		}
@@ -736,10 +736,29 @@ td[id^=post-body] {
 }
 
 .pagination {
-  font-size: 130%;
+  font-size: 100%;
   font-weight: bold;
-  padding: 15px;
+  padding: 0px 5px;
   text-align: center;
+  clear: both;
+  
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: #333;
+    padding: 5px;
+    background: #DCDCDC;
+    text-decoration: none;
+    border: 1px solid #666;
+  }
+  
+  a:hover { color:#369;border-color: #369; }
+  
+  span {
+    padding: 5px;
+    border: 1px solid #CCC;    
+  }
 }
 
 #user_profile {
@@ -787,7 +806,11 @@ td[id^=post-body] {
 
 .post_votes {
   background: @lightgray - 20%;
+  display: inline-block;
   text-align: center;
+  clear: left;
+  float: left;
+  width: 50px;
   
   h2 {
     font: bold 18px Arial, Helvetica, Sans-serif;
@@ -871,3 +894,11 @@ span.CodeRay {
   padding: -1px;
 }
 
+#topic-title {
+  float: left;
+  width: 800px;
+}
+
+.down_pagination {
+  margin: 20px;
+}
