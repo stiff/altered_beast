@@ -3,6 +3,8 @@
   border: 1px solid silver;
   font-family: 'Courier New', 'Terminal', monospace;
   color: #000;
+  width: 650px;
+  overflow: auto;
 }
 .CodeRay pre { margin: 0px; }
 
