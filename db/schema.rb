@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100915144248) do
+ActiveRecord::Schema.define(:version => 20101004210454) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20100915144248) do
     t.string   "city"
     t.text     "signature",                                                      :null => false
     t.text     "signature_html",                                                 :null => false
+    t.boolean  "receive_mailing",                         :default => true
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

@@ -249,6 +249,7 @@
       
       :password_confirm      => "Confirmação de Senha",
       :openid_url            => "URL do OpenID (opcional)",
+      :receive_mailing       => "Desejo conhecer os posts mais falados das últimas duas semanas e os eventos importantes (email quinzenal)",
       :city_label            => "Cidade (opcional)",
       :sign_up               => "Cadastrar",
       :activation_required   => "Seu cadastro foi feito. Ative sua conta clicando no link enviado ao seu email.",
