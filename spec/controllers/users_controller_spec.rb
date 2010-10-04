@@ -139,7 +139,7 @@ describe UsersController do
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',
       :password => 'monkey', :password_confirmation => 'monkey', :local_id => 1,
-      :working_since => "2000"}.merge(options)
+      :working_since => "2000", :signature => 'Programmer', :signature_html => '<p>Programmer</p>'}.merge(options)
   end
 end
 
@@ -162,9 +162,9 @@ describe UsersController, "GET #index" do
     act! { get :index, :q => "bob" }
     define_models do
       model User do
-        stub :bob, :display_name => "Bob", :login => "robert"
-        stub :rob, :display_name => "Robert", :login => "bob"
-        stub :robby, :display_name => "Robby", :login => "robby"
+        stub :bob, :display_name => "Bob", :login => "robert", :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
+        stub :rob, :display_name => "Robert", :login => "bob", :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
+        stub :robby, :display_name => "Robby", :login => "robby", :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
       end
     end
     it "should find users by name" do

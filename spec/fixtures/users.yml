@@ -8,6 +8,7 @@ quentin:
   created_at:                <%= 5.days.ago.to_s :db  %>
   remember_token_expires_at: <%= 1.days.from_now.to_s %>
   remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
+  signature:                 Programador
       
 aaron:
   id:                        2
@@ -18,6 +19,7 @@ aaron:
   created_at:                <%= 1.days.ago.to_s :db %>
   remember_token_expires_at: 
   remember_token:            
+  signature:                 Programador
 
 
 old_password_holder:
@@ -27,5 +29,6 @@ old_password_holder:
   salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at:                <%= 1.days.ago.to_s :db %>
+  signature:                 Programador
 
 

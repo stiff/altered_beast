@@ -84,7 +84,7 @@ describe Site, "#users" do
     end
     
     model User do
-      stub :other, :site => all_stubs(:other_site)
+      stub :other, :signature => 'Programmer', :signature_html => '<p>Programmer</p>', :site => all_stubs(:other_site)
     end
   end
   

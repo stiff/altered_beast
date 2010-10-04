@@ -49,7 +49,7 @@ describe User do
   
   it "formats User#signature" do
     u = User.new :signature => 'picardia'
-    u.signature_html.should == ""
+    u.signature_html.should be_blank
     u.send :format_attributes
     u.signature_html.should == '<p>picardia</p>'
   end
@@ -172,7 +172,8 @@ describe User do
 protected
   def create_user(options = {})
     returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey',
-                         :password_confirmation => 'monkey', :local => mock_model(Local),
+                         :password_confirmation => 'monkey', :local => mock_model(Local), 
+                         :signature => 'Programmer', :signature_html => '<p>Programmer</p>',
                          :working_since => 2000 }.merge(options)) do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
       u.local.stub!(:destroyed?).and_return(false)
@@ -205,7 +206,7 @@ describe User, "with no created users" do
   def make_user(site, login, email)
     user = User.new :login => login, :email => email, :password => 'monkey',
                     :password_confirmation => 'monkey', :local => mock_model(Local),
-                    :working_since => 2000
+                    :working_since => 2000, :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
     user.site_id = site.id
     user.local.stub!(:destroyed?).and_return(false)
     user.save!

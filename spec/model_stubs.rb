@@ -24,14 +24,14 @@ module ModelStubbing
         :salt => '7e3041ebc2fc05a40c60028e2c4901a81035d3cd', :crypted_password => '00742970dc9e6319f8019fd54864d3ea740f04b1',
         :created_at => current_time - 5.days, :site => all_stubs(:site), :remember_token => 'foo-bar', :remember_token_expires_at => current_time + 5.days,
         :activation_code => '8f24789ae988411ccf33ab0c30fe9106fab32e9b', :activated_at => current_time - 4.days, :posts_count => 3, :permalink => 'normal-user',
-        :local => all_stubs(:local), :working_since => 2000
+        :local => all_stubs(:local), :working_since => 2000, :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
 
       stub :activated, :login => 'activated-user', :email => 'activated-user@example.com', :state => 'active',
         :salt => '7e3041ebc2fc05a40c60028e2c4901a81035d3cd', :crypted_password => '00742970dc9e6319f8019fd54864d3ea740f04b1',
         :created_at => current_time - 5.days, :site => all_stubs(:site), :remember_token => 'foo-bar-activated', :remember_token_expires_at => current_time + 5.days,
-        :activation_code => nil, :activated_at => current_time - 4.days, :posts_count => 3, :permalink => 'activated-user', :local => all_stubs(:local), :working_since => 2000
+        :activation_code => nil, :activated_at => current_time - 4.days, :posts_count => 3, :permalink => 'activated-user', :local => all_stubs(:local), :working_since => 2000, :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
         
-      stub :admin,     :login => 'admin-user',     :email => 'admin-user@example.com', :remember_token => 'blah', :admin => true, :state => 'active', :activated_at => current_time - 4.days
+      stub :admin,     :login => 'admin-user',     :email => 'admin-user@example.com', :remember_token => 'blah', :admin => true, :state => 'active', :activated_at => current_time - 4.days, :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
     end
 
     model Forum do
@@ -60,15 +60,15 @@ module ModelStubbing
 
   define_models :users do
     model User do
-      stub :admin,     :login => 'admin-user',     :email => 'admin-user@example.com', :remember_token => 'blah', :admin => true
-      stub :pending,   :login => 'pending-user',   :email => 'pending-user@example.com',   :state => 'pending', :activated_at => nil, :remember_token => 'asdf'
-      stub :suspended, :login => 'suspended-user', :email => 'suspended-user@example.com', :state => 'suspended', :remember_token => 'dfdfd'
+      stub :admin,     :login => 'admin-user',     :email => 'admin-user@example.com', :remember_token => 'blah', :admin => true, :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
+      stub :pending,   :login => 'pending-user',   :email => 'pending-user@example.com',   :state => 'pending', :activated_at => nil, :remember_token => 'asdf', :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
+      stub :suspended, :login => 'suspended-user', :email => 'suspended-user@example.com', :state => 'suspended', :remember_token => 'dfdfd', :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
     end
   end
 
   define_models :moderators do
     model User do
-      stub :other, :login => 'other-user', :email => '@example.com'
+      stub :other, :login => 'other-user', :email => '@example.com', :signature => 'Programmer', :signature_html => '<p>Programmer</p>'
     end
 
     model Moderatorship do
