@@ -8,8 +8,8 @@ http://www.tectura.com.br/
 
 To bootstrap the project, execute the following commands on the project root:
 
-+rake gems:install+
+<tt>rake gems:install</tt>
 
-+rake app:bootstrap+
+<tt>rake app:bootstrap</tt>
 
 You may be prompted to install a few extra gems.
