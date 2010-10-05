@@ -184,7 +184,6 @@ describe Topic, "#editable_by?" do
   it "allows moderator" do
     @topic.should_receive(:forum).and_return(@forum)
     @user.should_receive(:moderator_of?).with(@forum).and_return(true)
-    # @topic.forum_id = 2
     @topic.should be_editable_by(@user)
   end
 end

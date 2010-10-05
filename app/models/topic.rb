@@ -30,7 +30,9 @@ class Topic < ActiveRecord::Base
 
   has_many :monitorships, :dependent => :delete_all
   has_many :monitoring_users, :through => :monitorships, :source => :user, :conditions => {"#{Monitorship.table_name}.active" => true}
-
+  
+  has_many :views, :dependent => :delete_all
+  
   validates_presence_of :user_id, :site_id, :forum_id, :title
   validates_presence_of :body, :on => :create
 
@@ -54,6 +56,7 @@ class Topic < ActiveRecord::Base
   end
 
   def hit!
+    View.create(:topic_id => self.id)
     self.class.increment_counter :hits, id
   end
 
@@ -82,6 +85,17 @@ class Topic < ActiveRecord::Base
   def to_param
    permalink
   end
+  
+  def self.top_hottest_since(date, max = 10)
+    views = View.find(:all, :select => 'topic_id, count(topic_id) as count', :group => 'topic_id', :conditions => ['created_at >= ?', date], :order => 'count DESC', :limit => max)
+    puts views.inspect
+    
+    ids = views.map{|topic| topic.topic_id}
+    puts ids.inspect
+    
+    Topic.find(ids)
+  end
+  
 
 protected
   def after_create_handler
