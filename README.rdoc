@@ -3,3 +3,13 @@
 This is the source code for the Tectura forum.
 
 http://www.tectura.com.br/
+
+=== Bootstrapping
+
+To bootstrap the project, execute the following commands on the project root:
+
++rake gems:install+
+
++rake app:bootstrap+
+
+You may be prompted to install a few extra gems.
