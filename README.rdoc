@@ -6,7 +6,12 @@ http://www.tectura.com.br/
 
 === Bootstrapping
 
-To bootstrap the project, execute the following commands on the project root:
+To bootstrap the project, you'll need to define database and email settings in the files:
+
+	1. <tt>config/database.yml</tt>
+	2. <tt>config/email.yml</tt> 
+
+Then, execute the following commands on the project root:
 
 <tt>rake gems:install</tt>
 

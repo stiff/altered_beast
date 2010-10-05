@@ -20,3 +20,4 @@ doc/
 coverage/
 all.css
 temporary
+.buildpath
