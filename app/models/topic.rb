@@ -86,6 +86,11 @@ class Topic < ActiveRecord::Base
    permalink
   end
   
+  def self.send_hottest_topics_to_gui()
+    UserMailer.deliver_hottest_topics("pedro.matiello@caelum.com.br",
+                                      Topic.top_hottest_since(15.days.ago))
+  end
+  
   def self.top_hottest_since(date, max = 10)
     views = View.find(:all, :select => 'topic_id, count(topic_id) as count', :group => 'topic_id', :conditions => ['created_at >= ?', date], :order => 'count DESC', :limit => max)
     puts views.inspect

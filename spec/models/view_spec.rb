@@ -22,4 +22,11 @@ describe Topic, "Hits count" do
     hottest_topics.first.should == @topic2
     hottest_topics.last.should == @topic3
   end
+  
+  it "should send an email with the latest hottest topics" do
+    hottest_topics = mock(Array)
+    Topic.stub!(:top_hottest_since).with(15.days.ago).and_return(hottest_topics)
+    UserMailer.should_receive(:deliver_hottest_topics).with(anything(), hottest_topics)
+    Topic.send_hottest_topics_to_gui()
+  end
 end

@@ -25,6 +25,14 @@ class UserMailer < ActionMailer::Base
     @subject    += "#{I18n.t 'txt.request_to_change_your_password', :default => 'Request to change your password'}"
     @body[:url]  = reset_password_url(:secret => user.lost_password_secret, :host => user.site.host)
   end
+  
+  def hottest_topics(email, topics)
+    @recipients  = email
+    @from        = "no-reply@tectura.com.br"
+    @subject     = "[tectura.com.br] - hottest topics"
+    @sent_on     = Time.now
+    @body[:topics] = topics
+  end
 
   protected
     def setup_email(user)
