@@ -1,0 +1,5 @@
+<%= t('txt.hottest_topics', :default => "Hottest topics on Tectura.com.br")%>
+
+<% for topic in @topics do %>
+	<%= topic.title %> - <%= topic_url(topic, :host => Site.first.host) %>
+<% end %> 
