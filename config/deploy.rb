@@ -1,7 +1,7 @@
 set :application, "Forum"
 set :user, "forum"
 set :use_sudo, false
-set :repository,  "http://github.com/caelum/novoforum.git"
+set :repository,  "http://github.com/caelum/tectura.git"
 
 set :scm, :git
 set :scm_verbose, false
