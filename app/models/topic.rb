@@ -93,11 +93,7 @@ class Topic < ActiveRecord::Base
   
   def self.top_hottest_since(date, max = 10)
     views = View.find(:all, :select => 'topic_id, count(topic_id) as count', :group => 'topic_id', :conditions => ['created_at >= ?', date], :order => 'count DESC', :limit => max)
-    puts views.inspect
-    
     ids = views.map{|topic| topic.topic_id}
-    puts ids.inspect
-    
     Topic.find(ids)
   end
   
