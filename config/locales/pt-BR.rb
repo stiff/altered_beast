@@ -217,6 +217,7 @@
       :verify_your_email          => "Verifique seu email para mudar sua senha",
       :mail_sent                  => "Email enviado",
       :resend_confirmation_mail   => "Reenviar email de confirmação",
+      :hottest_topics             => "Tópicos mais vistos nos últimos 15 dias",
 
       # Posts
       :recent_posts       => "Mensagens recentes",
