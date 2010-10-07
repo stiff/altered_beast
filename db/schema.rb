@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101005182024) do
+ActiveRecord::Schema.define(:version => 20101007144648) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(:version => 20101005182024) do
   create_table "company_sizes", :force => true do |t|
     t.string "description"
   end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "forums", :force => true do |t|
     t.integer "site_id"

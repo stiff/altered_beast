@@ -15,8 +15,13 @@ describe PostObserver do
 
     topic.should_receive(:monitoring_users).and_return([owner, admin])
     admin.should_receive(:is_owner_of?).with(post).and_return(false)
-    UserMailer.should_receive(:deliver_topic_updated).with(admin, post)
-    UserMailer.should_not_receive(:deliver_topic_updated).with(owner, post)
+    
+    dj = mock(PostDelayedMailer)
+    PostDelayedMailer.should_receive(:new).with(admin, post).and_return(dj)
+    Delayed::Job.should_receive(:enqueue).with(dj)
+    
+    
+    PostDelayedMailer.should_not_receive(:new).with(owner, post)
 
     obs = PostObserver.instance    
     obs.after_save post

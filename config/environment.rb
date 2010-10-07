@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "less"
   config.gem "coderay"
   config.gem "exception_notification"
+  config.gem "delayed_job"
 
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework
