@@ -5,6 +5,7 @@ tmp
 log/production.log
 log/development.log
 log/test.log
+log/delayed_job.log
 config/database.yml
 config/email.yml
 vendor/rails
