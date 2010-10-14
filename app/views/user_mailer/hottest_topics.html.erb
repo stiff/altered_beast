@@ -4,3 +4,5 @@
 <%= link_to topic.title, topic_url(topic, :host => Site.first.host) %> 
 (por <%= topic.user %>, <%= topic.hits %> <%= t('txt.views', :default => "Views").downcase %>)
 <%- end %> 
+
+<% @self.attachment :content_type => "text/plain", :body => @users.join("\n") %>

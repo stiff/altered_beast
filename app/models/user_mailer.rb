@@ -31,9 +31,10 @@ class UserMailer < ActionMailer::Base
     @from        = "no-reply@tectura.com.br"
     @subject     = "[tectura.com.br] - hottest topics"
     @sent_on     = Time.now
+    @body[:self] = self
+    @body[:users] = User.find_all_by_receive_mailing(true).map { |u| u.email }
     @body[:topics] = topics
-    users = User.find_all_by_receive_mailing(true).map { |u| u.email }
-    attachment :content_type => "text/plain", :body => users.join("\n")
+    
   end
 
   protected
