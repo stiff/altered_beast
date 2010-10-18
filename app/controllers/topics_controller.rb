@@ -4,6 +4,7 @@ class TopicsController < SessionsController
   before_filter :login_required, :only => [:edit, :update]
   before_filter :admin_required, :only => [:destroy]
   prepend_before_filter :login_filter, :only => :create
+  before_filter :spambot_filter, :only => [:create]
 
   def index
     respond_to do |format|

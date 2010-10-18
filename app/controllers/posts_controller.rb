@@ -4,6 +4,8 @@ class PostsController < SessionsController
   before_filter :login_required, :only => [:edit, :update, :destroy]
   prepend_before_filter :login_filter, :only => :create
   before_filter :validate_user, :only => [:create, :destroy]
+  before_filter :spambot_filter, :only => [:create]
+    
   # /posts
   # /users/1/posts
   # /forums/1/posts

@@ -156,6 +156,7 @@ describe PostsController, "POST #create" do
   before do
     @post = nil
     @monitorship = mock_model(Monitorship)
+    controller.should_receive(:spambot_filter).once
     Monitorship.stub!(:find_or_initialize_by_user_id_and_topic_id).and_return(@monitorship)
   end
 

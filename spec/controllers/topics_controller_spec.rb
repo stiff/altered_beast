@@ -159,6 +159,7 @@ describe TopicsController, "POST #create" do
   before do
     login_as :default
     @forum  = forums(:default)
+    controller.should_receive(:spambot_filter).at_least(:once)
     Forum.stub!(:first).and_return(@forum)
   end
 

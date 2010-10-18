@@ -34,6 +34,12 @@ class ApplicationController < ActionController::Base
   protected
 
 
+  def spambot_filter
+    if (params[:extra] != nil && !params[:extra].empty?)
+      redirect_to root_url
+    end 
+  end
+  
   def login_filter
     unless params[:confirmation].nil? || params[:confirmation].empty?
       redirect_to root_url

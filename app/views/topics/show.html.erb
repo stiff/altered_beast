@@ -141,6 +141,7 @@
     <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
         <div id="newTreadForm">
             <p><%= f.text_area :body, :rows => 8 %></p>
+            <input name="extra" id="extra" value="" type="hidden" />
             <div class="toolsBox">
                 <%= render :partial => "posts/formatting" %>
             </div><!-- toolsbox-->
