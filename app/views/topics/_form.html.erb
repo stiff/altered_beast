@@ -15,7 +15,7 @@
 <%= form.text_field :tags, :tabindex => 15, :value => @topic.tag_list %>
 
 </p>
-<input name="extra" id="extra" value="" type="text" />
+<input name="extra" id="extra" value="" type="hidden" />
 <% if @topic.new_record? -%>
 <p>
 	<label for="topic_body"><%= I18n.t('txt.views_topics.body', :default => 'Body') %></label>
