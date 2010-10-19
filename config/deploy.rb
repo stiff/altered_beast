@@ -28,6 +28,7 @@ namespace :deploy do
   task :after_default do
     run "ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{current_path}/config/database.yml"
     run "ln -nfs #{deploy_to}/#{shared_dir}/config/email.yml #{current_path}/config/email.yml"
+    run "ln -nfs #{deploy_to}/#{shared_dir}/config/recaptcha.rb #{current_path}/config/recaptcha.rb"
     run "cd #{current_path} && ./minify.sh"
     run "cd #{current_path} && RAILS_ENV=production script/delayed_job stop"
     run "cd #{current_path} && rake db:migrate RAILS_ENV=production"
