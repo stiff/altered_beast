@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include PathHelper
   include MonitorshipsHelper
   include ExceptionNotification::Notifiable
+  include ReCaptcha::AppHelper
 
   helper :all
   helper_method :current_page,:can_comment?
@@ -56,19 +57,25 @@ class ApplicationController < ActionController::Base
   end
   #mapa
   def create_user(should_redirect = true)
+
+    @user = current_site.users.build(params[:user])
+        
+    captcha_ok = validate_recap(params, @user.errors)
+    
     unless params[:confirmation].nil? || params[:confirmation].empty?
       redirect_to root_url
     else
       cookies.delete :auth_token
 
-      @user = current_site.users.build(params[:user]) 
       # @user.responsability = Responsability.find(params[:user][:responsability_id]) if params[:user][:responsability_id]
       # @user.company_size = CompanySize.find(params[:user][:company_size_id]) if params[:user][:company_size_id]
       # @user.local = Local.find(params[:user][:local_id]) if params[:user][:local_id]
     
-    
-      @user.save if @user.valid?
-      @user.register! if @user.valid?
+      if @user.valid? && captcha_ok  
+        @user.save 
+        @user.register!
+      end
+      
       unless @user.new_record?
   #      redirect_back_or_default(login_path) if should_redirect
         unless @user.using_openid

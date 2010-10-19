@@ -198,6 +198,7 @@ body {
   border: none;
 }
 .grayBtn:hover { background-color: #323232; }
+.wide { width: 870px !important; }
 .size01 {
   padding: 15px;
   width: 870px;
@@ -264,13 +265,12 @@ body {
   position: relative;
   color: #002d62;
   float: left;
-  width: auto;
+  clear: left;
   height: auto;
   font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: 10px;
-  padding-left: 20px;
+  margin: 10px 0px 10px 0px;
 }
 #contentWrap #content .subtitle a {
   text-decoration: none;
@@ -300,10 +300,7 @@ body {
   background-color: #c0c0c0;
   font-size: 1em !important;
 }
-#contentWrap #content table {
-  background: #ffffff;
-  width: 870px !important;
-}
+#contentWrap #content table { background: #ffffff; }
 #contentWrap #content table th { font-size: 1em; }
 #contentWrap #content table .c2 .entry-title {
   text-decoration: none;

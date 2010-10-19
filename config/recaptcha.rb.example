@@ -1,0 +1,15 @@
+# reCAPTCHA Configuration
+
+# -------------------------------------------------------------------------------------------
+# Do not edit recaptcha.rb.example. Make a copy named recaptcha.rb and edit this one instead.
+# -------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------
+# The following values are defined by your service's account at the recaptcha.net service.
+# -------------------------------------------------------------------------------------------
+
+# Public Key
+RCC_PUB = 'pubkey'
+
+# Private Key
+RCC_PRIV = 'privkey'

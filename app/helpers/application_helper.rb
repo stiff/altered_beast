@@ -93,6 +93,7 @@ module ApplicationHelper
 
   include PathHelper
   include MonitorshipsHelper
+  include ReCaptcha::ViewHelper
 
   # /INCLUDES
 

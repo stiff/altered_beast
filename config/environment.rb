@@ -9,6 +9,7 @@ RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require File.join(File.dirname(__FILE__), 'recaptcha')
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -23,6 +24,7 @@ Rails::Initializer.run do |config|
   config.gem "coderay"
   config.gem "exception_notification"
   config.gem "delayed_job"
+  config.gem "ruby-recaptcha"
 
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework

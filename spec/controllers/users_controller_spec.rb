@@ -22,9 +22,17 @@ describe UsersController do
 
   it 'allows signup' do
     lambda do
+      controller.stub!(:validate_recap).and_return(true)
       create_user
       response.should be_redirect
     end.should change(User, :count).by(1)
+  end
+  
+  it 'disallows signup if captcha is incorrect' do
+    lambda do
+      controller.stub!(:validate_recap).and_return(false)
+      create_user
+    end.should_not change(User, :count)
   end
 
   it 'requires login on signup' do
@@ -95,6 +103,7 @@ describe UsersController do
 
   it 'activates the first user as admin' do
     User.delete_all
+    controller.stub!(:validate_recap).and_return(true)
     create_user
     user = User.find_by_login('quire')
     user.register!
@@ -104,6 +113,7 @@ describe UsersController do
   end
 
   it "sends an email to the user on create" do
+    controller.stub!(:validate_recap).and_return(true)
     create_user :login => "admin", :email => "admin@example.com"
     response.should be_redirect
     lambda{ create_user }.should change(ActionMailer::Base.deliveries, :size).by(1)

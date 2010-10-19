@@ -31,11 +31,11 @@
     <%= f.text_field :openid_url %>
   </p>
   <p>
-    <label for="receive_mailing"><%= I18n.t 'txt.receive_mailing', :default => "I want to receive most commented posts of last two weeks and the important events (biweekly email)" %></label>
-    <%= f.check_box :receive_mailing %>
+    <label for="receive_mailing"><%= f.check_box :receive_mailing %><%= I18n.t 'txt.receive_mailing', :default => "I want to receive most commented posts of last two weeks and the important events (biweekly email)" %></label>
   </p>
   <p id="user_confirmation_field">
     <label for="user_confirmation"><%= I18n.t 'txt.user_confirm', :default => "User confirmation" %></label>
     <%= text_field_tag :confirmation %>
   </p>
+  <span style="visibility:hidden">.</span><%= get_captcha(:options => {:theme => 'blackglass'}) %><span style="visibility:hidden">.</span>
 </div>
