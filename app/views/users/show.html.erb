@@ -5,6 +5,9 @@
 <div id="user_profile">
   <%= avatar_for @user, 80 %>  
   <h2><%=h @user.display_name %></h2>
+  <% if current_user.admin? %>
+  	<p class="email"><%= @user.email %></p>
+  <% end %>
   <small>
     <%unless @user.website.blank? -%>
       <strong><%= I18n.t 'txt.website', :default => 'Website' %></strong> <%= sanitize link_to(@user.website.gsub("http://",""), "http://" + @user.website.gsub("http://","")) %><br />
