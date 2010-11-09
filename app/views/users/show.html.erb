@@ -5,7 +5,7 @@
 <div id="user_profile">
   <%= avatar_for @user, 80 %>  
   <h2><%=h @user.display_name %></h2>
-  <% if current_user.admin? %>
+  <% if !current_user.nil? && current_user.admin? %>
   	<p class="email"><%= @user.email %></p>
   <% end %>
   <small>

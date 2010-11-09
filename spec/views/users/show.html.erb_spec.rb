@@ -15,14 +15,14 @@ describe "/users/show.html.erb" do
   end
 
   it "should show user email to admins" do
-    template.should_receive(:current_user).and_return(@admin)
+    template.should_receive(:current_user).twice().and_return(@admin)
     render "/users/show.html.erb"
     response.body.should include("normal-user")
     response.body.should include("normal-user@example.com")
   end
   
   it "should not show user email to non-admins" do
-    template.should_receive(:current_user).and_return(@user)
+    template.should_receive(:current_user).twice().and_return(@user)
     render "/users/show.html.erb"
     response.body.should include("normal-user")
     response.body.should_not include("normal-user@example.com")
