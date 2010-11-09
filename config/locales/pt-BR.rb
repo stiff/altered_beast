@@ -226,6 +226,7 @@
       :forum              => "Fórum",
       :post_updated       => "Mensagem modificada com sucesso",
       :post_created       => "Post criado com sucesso",
+      :feed_title         => "Tectura.com.br | Últimos posts",
       :views_posts        => {
         :formatting_help        => "Formatação",
         :formatting_bold        => "*negrito*",

@@ -1,6 +1,6 @@
 xml.instruct! :xml, :version => "1.0"
 xml.feed(:xmlns => "http://www.w3.org/2005/Atom") do |feed|
-  feed.title "Posts for tectura.com.br"
+  feed.title I18n.t 'txt.feed_title', :default => "Posts for tectura.com.br"
   feed.link :href => request.url
   feed.updated((@posts.first || @topic || current_site).created_at.to_s(:rfc3339))
   feed.id  request.url
