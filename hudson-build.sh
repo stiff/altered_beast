@@ -45,10 +45,8 @@ gem install ruby-recaptcha -v=1.0.2 --no-ri --no-rdoc
 gem install sqlite3-ruby -v=1.3.1 --no-ri --no-rdoc
 gem install treetop -v=1.4.8 --no-ri --no-rdoc
 
-cp config/database.yml.example config/database.yml
+cp config/database.yml.test config/database.yml
 cp config/email.yml.example config/email.yml
 cp config/recaptcha.rb.example config/recaptcha.rb
 
-rake db:create:all
-rake db:migrate
 rake spec
