@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source /home/hudson/.profile
 source /home/hudson/.bashrc
