@@ -24,7 +24,7 @@ gem install exception_notification -v=2.3.3.0 --no-ri --no-rdoc
 gem install highline -v=1.6.1 --no-ri --no-rdoc
 gem install less -v=1.2.21 --no-ri --no-rdoc
 gem install linecache -v=0.43 --no-ri --no-rdoc
-gem install mislav-will_paginate -v=2.3.11 --no-ri --no-rdoc
+gem install mislav-will_paginate -v=2.3.11 --no-ri --no-rdoc --source http://gems.github.com
 gem install mutter -v=0.5.3 --no-ri --no-rdoc
 gem install mysql -v=2.8.1 --no-ri --no-rdoc
 gem install net-scp -v=1.0.4 --no-ri --no-rdoc
@@ -44,3 +44,7 @@ gem install ruby-openid -v=2.1.8 --no-ri --no-rdoc
 gem install ruby-recaptcha -v=1.0.2 --no-ri --no-rdoc
 gem install sqlite3-ruby -v=1.3.1 --no-ri --no-rdoc
 gem install treetop -v=1.4.8 --no-ri --no-rdoc
+
+rake db:create:all
+rake db:migrate
+rake spec
