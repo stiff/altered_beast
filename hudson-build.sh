@@ -4,7 +4,7 @@ source /home/hudson/.profile
 source /home/hudson/.bashrc
 source /home/hudson/.rvm/scripts/rvm
 
-rvm use 1.8.7-p174 --verbose
+rvm use 1.8.7-p302 --verbose
 rvm gemset create tectura
 rvm gemset use tectura
 
