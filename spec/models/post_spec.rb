@@ -20,6 +20,24 @@ describe Post do
     p.send :format_attributes
     p.body_html.should == '<p>bar</p>'
   end
+  
+  it "highlights source code in body html" do
+    body = "
+    First paragraph.
+    
+    <code name=\"java\">
+    public static void main(String[] args) {
+        System.out.println(\"Hello, world\");
+    } 
+    </code>
+    
+    Last paragraph."
+    
+    p = Post.new :body => body
+    p.send :format_attributes
+    p.body_html.should include("<span class=\"CodeRay\">")
+    (/span class=.*public.*span/ =~ p.body_html).should_not be_nil 
+  end
     
 end
 
