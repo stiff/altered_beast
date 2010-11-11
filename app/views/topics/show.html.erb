@@ -95,7 +95,7 @@
                     <% end -%>
                 </td>
                 <td class="body entry-content" id="post-body-<%= post.id %>">
-                    <%= coderay(post.body_html) %>
+                    <%= post.body_html %>
                     <% unless post.user.signature.empty? %>
                       <div class="signature">
                         --<br/>

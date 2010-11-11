@@ -1,4 +1,6 @@
 require 'md5'
+
+
 module ApplicationHelper
   #def forum_posts_path(forum, options = {})
   #	super(Forum.first, options)
@@ -96,21 +98,6 @@ module ApplicationHelper
   include ReCaptcha::ViewHelper
 
   # /INCLUDES
-
-  # Coderay
-  
-  def coderay(text)
-    unless text.nil?
-      text.gsub(/\<code name=\"(.*?)\"\>(.*?)\<\/code\>/m) do
-      	begin
-	        result_text = CGI.unescapeHTML($2)
-  	      colored = CodeRay.scan(result_text, $1)
-  	      colored.html :line_numbers => :inline, :wrap => :span
-  	    rescue
-  	    end
-      end
-    end
-  end
 
   def show_all_link
     if session[:show_all] == true
