@@ -31,6 +31,16 @@ class Post < ActiveRecord::Base
   def self.per_page
   		20
   end
+  
+  def page
+    count = 0
+    topic.posts.each do |p|
+      if (p.id == id)
+        return (count / Post.per_page)+1 
+      end
+      count = count + 1
+    end
+  end
 
   def self.search(query, options = {})
   # had to change the other join string since it conflicts when we bring parents in

@@ -11,7 +11,8 @@ xml.feed(:xmlns => "http://www.w3.org/2005/Atom") do |feed|
       entry.title post.topic
       entry.content post.body_html, :type => :html
       entry.updated post.updated_at.to_s(:rfc3339)
-      entry.link :href => forum_topic_url(post.topic.forum, post.topic, 
+      entry.link :href => forum_topic_url(post.topic.forum, post.topic,
+      									  :page => post.page, 
                                           :anchor => dom_id(post))
 
       entry.author do |author|

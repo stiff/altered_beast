@@ -7,6 +7,24 @@ describe Post do
     posts(:default).topic.should == topics(:default)
   end
   
+  it "knows its page in the topic" do
+    topic = mock_model(Topic)
+    arr = []
+    (1..30).each do |i|
+      p = mock_model(Post)
+      p.stub!(:topic).and_return(topic)
+      arr = arr + [p]
+    end
+    
+    post = posts(:default)
+    post.topic = topic
+    arr = arr + [post]
+    
+    topic.should_receive(:posts).and_return(arr)
+    
+    arr.last.page.should == 2    
+  end
+  
   it "requires body" do
     p = new_post(:default)
     p.body = nil
