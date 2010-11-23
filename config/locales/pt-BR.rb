@@ -290,6 +290,7 @@
         :open_id_field             => "URL da Identidade OpenID",
         :website_title             => "Endereço Web",
         :without_http              => "sem http://",
+        :without_at                => "sem @",
         :bio_title                 => "Sobre mim",
         :sig_title                 => "Assinatura",
         :update_profile            => "Salvar perfil",

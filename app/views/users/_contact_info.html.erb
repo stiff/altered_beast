@@ -20,6 +20,14 @@
 </p>
 
 <p>
+  <label for="user_twitter"><%= I18n.t 'txt.views_users.twitter_title', :default => 'Twitter' %></label><br />
+  <%= settings.text_field :twitter %> 
+	<span class="entryhelp">
+	(<%= I18n.t 'txt.views_users.without_at', :default => 'without @' %>)
+	</span>
+</p>
+
+<p>
   <label for="user_bio"><%= I18n.t 'txt.views_users.bio_title', :default => 'Bio' %></label><br />
   <%= settings.text_area :bio, :rows => 10, :style => "width:99%" %>
 </p>
