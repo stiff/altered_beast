@@ -5,5 +5,5 @@
 (por <%= topic.user %>, <%= topic.hits %> <%= t('txt.views', :default => "Views").downcase %>)
 <%- end %> 
 
-<% @self.attachment :content_type => "text/plain", :body => @users.join("\n"), :filename => "destinations.txt" %>
+<% @self.attachment :content_type => "text/plain", :body => @destinations.join("\n"), :filename => "destinations.txt" %>
 <% @self.attachment :content_type => "text/plain", :body => @shy_users.join("\n"), :filename => "quietos.txt" %>

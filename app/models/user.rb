@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
     post.user == self
   end
 
-  def self.recent_and_silent()
-    User.find(:all, :conditions => ['created_at >= ? and posts_count <= ?', 15.days.ago, 2])
+  def self.recent_and_silent(date)
+    User.find(:all, :conditions => ['created_at >= ? and posts_count <= ?', date, 2])
   end
 end

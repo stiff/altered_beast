@@ -192,7 +192,7 @@ describe User do
     eber.reply topics(:default), "2 posts"
     eber.reply topics(:default), "3 posts"
     
-    selected = User.recent_and_silent
+    selected = User.recent_and_silent(15.days.ago)
     selected.size.should == 3
     selected.should include(shem)
     selected.should include(arphaxad)

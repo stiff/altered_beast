@@ -34,10 +34,12 @@ describe Topic, "Hits count" do
   
   it "should send an email with the latest hottest topics" do
     hottest_topics = mock(Array)
+    destinations = mock(Array)
     shy_users = mock(Array)
     Topic.stub!(:top_hottest_since).with(15.days.ago).and_return(hottest_topics)
-    User.stub!(:recent_and_silent).and_return(shy_users)
-    UserMailer.should_receive(:deliver_hottest_topics).with(anything(), hottest_topics, shy_users)
+    User.stub!(:find_all_by_receive_mailing).with(true).and_return(destinations)
+    User.stub!(:recent_and_silent).with(15.days.ago).and_return(shy_users)
+    UserMailer.should_receive(:deliver_hottest_topics).with(anything(), hottest_topics, destinations, shy_users)
     Topic.send_hottest_topics_to_gui()
   end
 end

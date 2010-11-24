@@ -87,9 +87,16 @@ class Topic < ActiveRecord::Base
   end
   
   def self.send_hottest_topics_to_gui()
-    UserMailer.deliver_hottest_topics("pedro.matiello@caelum.com.br",
-                                      Topic.top_hottest_since(15.days.ago),
-                                      User.recent_and_silent)
+    start_date = 15.days.ago
+    
+    destinations = User.find_all_by_receive_mailing(true)
+    topics = Topic.top_hottest_since(start_date)
+    shy_users = User.recent_and_silent(start_date)
+    
+    UserMailer.deliver_hottest_topics("guilherme.silveira@caelum.com.br",
+                                      topics,
+                                      destinations,
+                                      shy_users)
   end
   
   def self.top_hottest_since(date, max = 10)
