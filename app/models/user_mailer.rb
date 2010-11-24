@@ -26,13 +26,14 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = reset_password_url(:secret => user.lost_password_secret, :host => user.site.host)
   end
   
-  def hottest_topics(email, topics)
+  def hottest_topics(email, topics, shy_users)
     @recipients  = email
-    @from        = "no-reply@tectura.com.br"
+    @from        = "pmatiello@yahoo.com.br"
     @subject     = "[tectura.com.br] - hottest topics"
     @sent_on     = Time.now
     @body[:self] = self
     @body[:users] = User.find_all_by_receive_mailing(true).map { |u| u.email }
+    @body[:shy_users] = shy_users.map { |u| u.email }
     @body[:topics] = topics
     
   end

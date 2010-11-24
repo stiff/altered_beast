@@ -168,6 +168,36 @@ describe User do
     (admin.is_owner_of? topic.posts.first).should be_false
     (user.is_owner_of? topic.posts.first).should be_true
   end
+  
+  it "should list recent users with few posts" do
+    noah = create_user(:login => "Noah", :email => "noah@email.com")
+    shem = create_user(:login => "Shem", :email => "shem@email.com")
+    arphaxad = create_user(:login => "Arphaxad", :email => "arphaxad@email.com")
+    shelah = create_user(:login => "Shelah", :email => "shelah@email.com")
+    eber = create_user(:login => "Eber", :email => "eber@email.com")
+    
+    noah.created_at = 1.month.ago
+    noah.save!
+    
+    shem.created_at = 14.days.ago
+    shem.save!
+    
+    arphaxad.created_at = 7.days.ago
+    arphaxad.reply topics(:default), "1 post"
+    
+    shelah.reply topics(:default), "1 post"
+    shelah.reply topics(:default), "2 posts"
+    
+    eber.reply topics(:default), "1 posts"
+    eber.reply topics(:default), "2 posts"
+    eber.reply topics(:default), "3 posts"
+    
+    selected = User.recent_and_silent
+    selected.size.should == 3
+    selected.should include(shem)
+    selected.should include(arphaxad)
+    selected.should include(shelah)
+  end
 
 protected
   def create_user(options = {})
