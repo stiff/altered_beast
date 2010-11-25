@@ -1,9 +1,17 @@
-<h1><%= t('txt.hottest_topics', :default => "Hottest topics on Tectura.com.br")%></h1>
+<img src="http://www.tectura.com.br/images/tecturalogoHorizontal.png" />
+
+<br/>
 
 <% for topic in @topics do %>
-<%= link_to topic.title, topic_url(topic, :host => Site.first.host) %> 
-(por <%= topic.user %>, <%= topic.hits %> <%= t('txt.views', :default => "Views").downcase %>)
-<%- end %> 
+<%= link_to topic.title, topic_url(topic, :host => Site.first.host) %><br/> 
+<p><%= topic.user %>... (<%= topic.hits %> <%= t('txt.views', :default => "Views").downcase %>)</p>
+<% end %> 
+
+<hr/>
+
+<a href="http://www.tectura.com.br/settings">
+	<small>Preferências de recebimento de email</small>
+</a>
 
 <% @self.attachment :content_type => "text/plain", :body => @destinations.join("\n"), :filename => "destinations.txt" %>
 <% @self.attachment :content_type => "text/plain", :body => @shy_users.join("\n"), :filename => "quietos.txt" %>
