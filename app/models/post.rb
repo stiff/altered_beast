@@ -44,8 +44,10 @@ class Post < ActiveRecord::Base
 
   def self.search(query, options = {})
   # had to change the other join string since it conflicts when we bring parents in
-    squery = query.sub(" ","%#")
-    options[:conditions] ||= ["LOWER(#{Post.table_name}.body) LIKE ?", "%#{squery}%"] unless query.blank?
+    unless query.blank?
+      squery = query.sub(" ","%#")
+      options[:conditions] ||= ["LOWER(#{Post.table_name}.body) LIKE ?", "%#{squery}%"]
+    end
     options[:select]     ||= "#{Post.table_name}.*, #{Topic.table_name}.title as topic_title, f.name as forum_name"
     options[:joins]      ||= "inner join #{Topic.table_name} on #{Post.table_name}.topic_id = #{Topic.table_name}.id " +
                              "inner join #{Forum.table_name} as f on #{Topic.table_name}.forum_id = f.id"
