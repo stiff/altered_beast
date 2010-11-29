@@ -41,6 +41,15 @@ describe PostsController, "GET #index" do
     it_assigns :posts, :forum, :topic, :parent => lambda { @topic }
     it_renders :template, :index, :format => :atom
   end
+  
+  describe PostsController, "(atom feed)" do
+    define_models
+
+    act! { get :index, :forum_id => @forum.to_param, :user => nil, :page => 1, :format => 'atom' }
+
+    it_assigns :posts, :forum, :parent => lambda { @topic }
+    it_renders :template, :index, :format => :atom
+   end
 end
 
 describe PostsController, "GET #index (for forums)" do
