@@ -5,6 +5,8 @@ class PostsController < SessionsController
   prepend_before_filter :login_filter, :only => :create
   before_filter :validate_user, :only => [:create, :destroy]
   before_filter :spambot_filter, :only => [:create]
+  caches_page :index
+  cache_sweeper :posts_sweeper
     
   # /posts
   # /users/1/posts
