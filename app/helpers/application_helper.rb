@@ -78,6 +78,16 @@ module ApplicationHelper
   def display_tags_as_keywords(topic)
     topic.tag_list.map{|t| "#{t}"}.join(", ")
   end
+  
+  def add_links(str)
+    rules = {
+      "//registration//" => link_to(I18n.t("txt.registration", :default => "registration"), settings_path)
+    }
+    rules.each do |from, to|
+      str = str.gsub(from, to)
+    end
+    str
+  end
 
   # i18n do will_paginate
 

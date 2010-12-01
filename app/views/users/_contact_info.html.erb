@@ -28,6 +28,14 @@
 </p>
 
 <p>
+  <label for="user_position"><%= I18n.t 'txt.views_users.position_title', :default => 'Position in Company' %></label><br />
+  <%= settings.text_field :position %> 
+	<span class="entryhelp">
+	(<%= I18n.t 'txt.views_users.position_help', :default => 'Architect, QA Analyst, Developer, etc' %>)
+	</span>
+</p>
+
+<p>
   <label for="user_bio"><%= I18n.t 'txt.views_users.bio_title', :default => 'Bio' %></label><br />
   <%= settings.text_area :bio, :rows => 10, :style => "width:99%" %>
 </p>

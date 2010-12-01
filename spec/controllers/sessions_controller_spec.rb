@@ -32,7 +32,20 @@ describe SessionsController, "POST /create" do
     attempt_login :remember_me => '0'
     response.cookies["auth_token"].should be_nil
   end
-
+  
+  it 'notifies on first login with unfilled user.position' do
+    User.find_by_login('normal-user').position.should be(nil)
+    post :create, @login[:options].merge(:login => users(@login[:user]).login, :password => @login[:pass])
+    flash[:notice].should include("//registration//")
+    User.find_by_login('normal-user').position.should_not be(nil) 
+  end
+  
+  it 'logins normally if user.position is filled' do
+    User.find_by_login('activated-user').position.should_not be(nil)
+    post :create, @login[:options].merge(:login => 'activated-user', :password => @login[:pass])
+    flash[:notice].should_not include("//registration//")
+  end
+  
   def attempt_login(user = nil, password = nil, options = {})
     case user
       when Hash

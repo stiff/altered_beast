@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123191411) do
+ActiveRecord::Schema.define(:version => 20101201150101) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20101123191411) do
     t.text     "signature_html",                                                 :null => false
     t.boolean  "receive_mailing",                         :default => true
     t.string   "twitter"
+    t.string   "position"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

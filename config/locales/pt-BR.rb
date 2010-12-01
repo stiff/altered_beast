@@ -272,6 +272,8 @@
       :select_company_size => 'Selecione a quantidade de funcionários',
       :working_since => 'Ano que começou a trabalhar',
       :update                    => "Alterar",
+      :registration              => "preferências",
+      :empty_fields              => "Seu cadastro tem campos não preenchidos. Complete-o na página de //registration//.",
       :views_users           => {
         :reset_password            => "Esqueci minha senha",
         :email_directions          => "Informe seu endereço de email:",
@@ -291,6 +293,8 @@
         :website_title             => "Endereço Web",
         :without_http              => "sem http://",
         :without_at                => "sem @",
+        :position_title            => "Cargo Atual",
+        :position_help             => "Arquiteto, Analista de QA, Desenvolvedor, etc",
         :bio_title                 => "Sobre mim",
         :sig_title                 => "Assinatura",
         :update_profile            => "Salvar perfil",

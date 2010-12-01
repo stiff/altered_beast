@@ -20,7 +20,7 @@
 
   <div id="contentWrap">
     <div id="content">
-      <%= content_tag 'p', h(flash[:notice]), :class => 'notice checked' if flash[:notice] %>
+      <%= content_tag 'p', add_links(h(flash[:notice])), :class => 'notice checked' if flash[:notice] %>
       <%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
       <%= yield %>
     </div>

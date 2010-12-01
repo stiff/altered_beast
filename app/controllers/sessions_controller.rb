@@ -62,7 +62,15 @@ class SessionsController < ApplicationController
 
   private
   def successful_login(should_redirect = true)
-    flash[:notice] = I18n.t 'txt.successful_login', :default => "Logged in successfully"
+    
+    if @current_user.position.nil?
+      @current_user.position = ""
+      @current_user.save
+      flash[:notice] = I18n.t 'txt.empty_fields', :default => "Your record is incomplete. Please complete your //registration//." 
+    else
+      flash[:notice] = I18n.t 'txt.successful_login', :default => "Logged in successfully"
+    end
+    
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     session[:user_id] = @current_user.id
