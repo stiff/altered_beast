@@ -1281,6 +1281,10 @@ td[id^=post-body] ul li { list-style: disc; }
   font: bold 16px Arial, Helvetica, Sans-serif;
   margin-bottom: 10px;
 }
+#user_profile p.position_title {
+  font: 12px Arial, Helvetica, Sans-serif;
+  margin-bottom: 10px;
+}
 #user_profile .email {
   font: 12px Arial, Helvetica, Sans-serif;
   margin-bottom: 10px;

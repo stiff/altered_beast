@@ -68,14 +68,8 @@
                     <%= avatar_for post.user %>
                     <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span><br />
                     <% if post.user.admin? || post.forum.moderators.include?(post.user) || !post.user.active? -%>
-                        <span class="admin">
-                            <% if post.user.admin? -%>
-                                <%= I18n.t 'txt.user_is_administrator', :default => 'Administator' %>
-                            <% elsif post.forum.moderators.include?(post.user) -%>
-                                <%= I18n.t 'txt.user_is_moderator', :default => 'Moderator' %>
-                            <% elsif post.user.suspended? -%>
-                                <%=h post.user.state  %>
-                            <% end -%>
+                        <span class="position_title">
+                        	<%= post.user.position unless post.user.position.nil?  %>
                         </span><br />
                     <% end -%>
                     <span class="posts"><%= I18n.t 'txt.count_posts', :count => post.user.posts.size, :num => number_with_delimiter(post.user.posts.size) %></span><br />
