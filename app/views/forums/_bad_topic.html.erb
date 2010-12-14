@@ -1,18 +1,7 @@
 <tr class="hentry downvoted_topic">
 
     <td class="c1">
-        <% icon = "comment"
-           color = ""
-           if topic.locked?
-               icon = "lock"
-               post = I18n.t('txt.views_forums.comma_locked_topic', :default => ', this topic is locked.')
-               color = "darkgrey"
-           end %>
-          <% if recent_topic_activity(topic) -%>
-              <img src="/images/clearbits/<%=icon%>.gif", class="icon green", title="<%= I18n.t('txt.views_forums.recent_activity', :default => 'Recent activity')%>">
-          <% else -%>
-              <img src="/images/clearbits/<%=icon%>.gif", class="icon grey", title="<%= I18n.t('txt.views_forums.no_recent_activity', :default => 'No recent activity')%>">
-          <% end -%>
+		<%= avatar_for topic.user %>
     </td>
 
     <td class="c2">
