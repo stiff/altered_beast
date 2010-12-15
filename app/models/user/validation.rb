@@ -20,7 +20,9 @@ class User
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation, :bio,
-    :openid_url, :display_name, :website, :twitter, :position, :working_since, :local, :local_id, :company_size, :company_size_id, :responsability, :responsability_id, :lost_password_secret, :signature
+    :openid_url, :display_name, :website, :twitter, :position, :working_since,
+    :local, :local_id, :company_size, :company_size_id, :responsability,
+    :responsability_id, :lost_password_secret, :signature, :receive_mailing 
 
   # Encrypts some data with the salt.
   def self.encrypt(password, salt)
