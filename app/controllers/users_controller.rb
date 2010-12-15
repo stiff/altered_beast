@@ -39,7 +39,6 @@ class UsersController < ApplicationController
     @user = admin? ? find_user : current_user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        puts params[:user]
         flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
         format.html { redirect_to(settings_path) }
         format.xml  { head :ok }
@@ -117,9 +116,12 @@ class UsersController < ApplicationController
   end
   
   def reset_password_confirmation
-    @user = User.find_by_lost_password_secret(params[:user][:lost_password_secret])
+    secret = params[:user][:lost_password_secret]
+    @user = (!secret.nil? && User.find_by_lost_password_secret(secret)) || nil
     if @user.update_attributes(params[:user])
       flash[:notice] = I18n.t 'txt.account_updated', :default => 'User account was successfully updated.'
+      @user.clear_lost_password_secret
+      @user.save!
       redirect_to(login_url) 
     else
       render :action => "reset_password"

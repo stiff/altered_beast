@@ -87,7 +87,14 @@ describe User do
     lps2 = user.lost_password_secret
     lps1.should_not == lps2
   end
-
+  
+  it 'should clear lost password secret' do
+    user = create_user
+    user.generate_lost_password_secret
+    user.clear_lost_password_secret
+    user.lost_password_secret.should == nil
+  end
+  
   it 'does not rehash password' do
     users(:default).update_attributes(:login => users(:default).login.reverse)
     User.authenticate(users(:default).login, 'test').should == users(:default)

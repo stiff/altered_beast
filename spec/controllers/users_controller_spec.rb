@@ -132,7 +132,15 @@ describe UsersController do
     user = mock_model(User)
     user.should_receive(:update_attributes).and_return(true)
     User.should_receive(:find_by_lost_password_secret).and_return(user)
-    post :reset_password_confirmation, :user => {}
+    user.should_receive(:clear_lost_password_secret)
+    user.should_receive(:save!)
+    post :reset_password_confirmation, :user => {:lost_password_secret => "secret"}
+  end
+    
+  it "fails to reset the password if lost password secret is nil" do
+    lambda do
+      post :reset_password_confirmation, :user => {}
+    end.should raise_error
   end
   
   it  "should resend registration mail" do
