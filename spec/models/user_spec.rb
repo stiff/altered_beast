@@ -100,8 +100,12 @@ describe User do
     User.authenticate(users(:default).login, 'test').should == users(:default)
   end
 
-  it 'authenticates user' do
+  it 'authenticates user by login' do
     User.authenticate(users(:default).login, 'test').should == users(:default)
+  end
+  
+  it 'authenticates user by email' do
+    User.authenticate(users(:default).email, 'test').should == users(:default)
   end
 
   it 'sets remember token' do

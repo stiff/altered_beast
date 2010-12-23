@@ -30,7 +30,7 @@ class User
   
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = User.find(:first, :conditions => ["login = ? and state in ('active', 'pending')", login])
+    u = User.find(:first, :conditions => ["login = ? or email = ? and state in ('active', 'pending')", login, login])
     u && u.authenticated?(password) ? u : nil
   end
 

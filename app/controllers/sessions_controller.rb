@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def create
+  def create 
     reset_session
     if using_open_id?
       cookies[:use_open_id] = {:value => '1', :expires => 1.year.from_now.utc}

@@ -159,7 +159,7 @@
 
       # Session
       :cancel               => "Cancelar",
-      :login_name           => "Usuário",
+      :login_name           => "Usuário / Email",
       :login_name_signup    => "Login / Nome do Usuário (Nome Sobrenome)",
       :state                => "Estado",
       :city                 => "Cidade",
