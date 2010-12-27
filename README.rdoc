@@ -19,3 +19,11 @@ Then, execute the following commands on the project root:
 <tt>rake app:bootstrap</tt>
 
 You may be prompted to install a few extra gems.
+
+=== Deploying
+
+To deploy Tectura to the production server, run:
+
+<tt>cap deploy</tt>
+
+You will be prompted for the server password.
