@@ -79,11 +79,11 @@ legend { color: #000000; }
   text-indent: -10000px;
   width: 320px;
 }
-#header form {
+#header .search_box {
   clear: right;
   float: right;
 }
-#header form #search_box {
+#header .search_box input.gsc-input {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -92,10 +92,20 @@ legend { color: #000000; }
   color: #4c4c4c;
   float: left;
   font-size: 1em;
-  height: auto;
-  margin: 10px 0px 0px 0px;
-  padding: 5px;
+  height: 24px;
+  margin: 5px 5px 5px 0px;
+  padding: 0px 3px;
   width: 250px;
+}
+#header .search_box input.gsc-search-button {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background: #f2f2f2;
+  border: 0px;
+  height: 24px;
+  margin: 5px 0px 5px 0px;
+  padding: 0px;
 }
 #header #nav-tags {
   background: #191919;
@@ -1394,3 +1404,7 @@ span.CodeRay { display: block; }
   width: 800px;
 }
 .down_pagination { margin: 20px; }
+#google-search {
+  margin: 0 auto;
+  width: 800px;
+}

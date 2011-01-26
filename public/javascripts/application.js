@@ -1,19 +1,3 @@
-// Comportamento do placeholder "busca" no campo de busca do header.
-Event.observe(window, 'load', function() {
-  $('search_box').observe('focus', function(event) {
-    el = event.element();
-    if (el.getValue() == 'busca') {
-      el.setValue('');
-    }
-  });
-  $('search_box').observe('blur', function(event) {
-    el = event.element();
-    if (el.getValue() == '') {
-      el.setValue('busca');
-    }
-  });
-});
-
 var TopicForm = {
   editNewTitle: function(txtField) {
     $('new_topic').innerHTML = (txtField.value.length > 5) ? txtField.value : 'New Topic';

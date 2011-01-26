@@ -13,9 +13,21 @@
       <li><%= link_to I18n.t("txt.logout", :default => "Logout"), logout_path(:to => CGI.escape(request.request_uri)) %></li>
     <% end -%>
     </ul>
-    <% form_tag posts_path, :method => :get do -%>
-      <%= text_field_tag :q, (params[:q] || "busca"), :size => "", :id => :search_box %>
-    <% end -%>
+
+<div class="search_box">
+<form action="/search" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="003735280102832993651:kiud59ykloy" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="hidden" name="cof" value="FORID:9" />
+    <input type="text" name="q" size="31" class="gsc-input" />
+    <input type="submit" name="sa" value="Pesquisar" class="gsc-search-button" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=pt"></script>
+</div>
+      
+
     <ul id="nav-tags">
       <li><%= link_to "#agile", tag_path("agile") %></li>
       <li><%= link_to "#arquitetura", tag_path("arquitetura") %></li>

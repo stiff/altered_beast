@@ -19,7 +19,7 @@ describe PostsController, "GET #index" do
   include PostsControllerParentObjects
   include PathHelper
 
-  act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :q => 'foo', :page => 5 }
+  act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :page => 5 }
 
   it_assigns :posts, :forum, :topic, :parent => lambda { @topic }
   it_renders :template, :index
@@ -27,7 +27,7 @@ describe PostsController, "GET #index" do
   describe PostsController, "(xml)" do
     define_models
 
-    act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :q => 'foo', :page => 5, :format => 'xml' }
+    act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :page => 5, :format => 'xml' }
 
     it_assigns :posts, :forum, :topic, :parent => lambda { @topic }
     it_renders :xml
@@ -36,7 +36,7 @@ describe PostsController, "GET #index" do
   describe PostsController, "(atom)" do
     define_models
 
-    act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :q => 'foo', :page => 5, :format => 'atom' }
+    act! { get :index, :forum_id => @forum.to_param, :topic_id => @topic.to_param, :user => nil, :page => 5, :format => 'atom' }
 
     it_assigns :posts, :forum, :topic, :parent => lambda { @topic }
     it_renders :template, :index, :format => :atom
@@ -56,7 +56,7 @@ describe PostsController, "GET #index (for forums)" do
   include PostsControllerParentObjects
   include PathHelper
 
-  act! { get :index, :forum_id => @forum.to_param, :page => 5, :q => 'foo' }
+  act! { get :index, :forum_id => @forum.to_param, :page => 5 }
 
   it_assigns :posts, :forum, :topic => nil, :user => nil, :parent => lambda { @forum }
   it_renders :template, :index
@@ -64,7 +64,7 @@ describe PostsController, "GET #index (for forums)" do
   describe PostsController, "(atom)" do
     define_models
 
-    act! { get :index, :forum_id => @forum.to_param, :page => 5, :q => 'foo', :format => 'atom' }
+    act! { get :index, :forum_id => @forum.to_param, :page => 5, :format => 'atom' }
 
     it_assigns :posts, :forum, :topic => nil, :user => nil, :parent => lambda { @forum }
     it_renders :template, :index, :format => "atom"
@@ -73,7 +73,7 @@ describe PostsController, "GET #index (for forums)" do
   describe PostsController, "(xml)" do
     define_models
 
-    act! { get :index, :forum_id => @forum.to_param, :page => 5, :q => 'foo', :format => 'xml' }
+    act! { get :index, :forum_id => @forum.to_param, :page => 5, :format => 'xml' }
 
     it_assigns :posts, :forum, :topic => nil, :user => nil, :parent => lambda { @forum }
     it_renders :xml
@@ -84,7 +84,7 @@ describe PostsController, "GET #index (for users)" do
   include PostsControllerParentObjects
   include PathHelper
 
-  act! { get :index, :user_id => @user.to_param, :q => 'foo', :page => 5 }
+  act! { get :index, :user_id => @user.to_param, :page => 5 }
 
   it_assigns :posts, :user, :forum => nil, :topic => nil, :parent => lambda { @user }
   it_renders :template, :index
@@ -92,7 +92,7 @@ describe PostsController, "GET #index (for users)" do
   describe PostsController, "(xml)" do
     define_models
 
-    act! { get :index, :user_id => @user.to_param, :page => 5, :q => 'foo', :format => 'xml' }
+    act! { get :index, :user_id => @user.to_param, :page => 5, :format => 'xml' }
 
     it_assigns :posts, :user, :forum => nil, :topic => nil, :parent => lambda { @user }
     it_renders :xml
@@ -103,7 +103,7 @@ describe PostsController, "GET #index (globally)" do
   include PostsControllerParentObjects
   include PathHelper
 
-  act! { get :index, :page => 5, :q => 'foo' }
+  act! { get :index, :page => 5 }
 
   it_assigns :posts, :user => nil, :forum => nil, :topic => nil, :parent => nil
   it_renders :template, :index
@@ -111,7 +111,7 @@ describe PostsController, "GET #index (globally)" do
   describe PostsController, "(xml)" do
     define_models
 
-    act! { get :index, :page => 5, :q => 'foo', :format => 'xml' }
+    act! { get :index, :page => 5, :format => 'xml' }
 
     it_assigns :posts, :user => nil, :forum => nil, :topic => nil, :parent => nil
     it_renders :xml
@@ -120,7 +120,7 @@ describe PostsController, "GET #index (globally)" do
   describe PostsController, "(atom)" do
     define_models
 
-    act! { get :index, :page => 5, :q => 'foo', :format => 'atom' }
+    act! { get :index, :page => 5, :format => 'atom' }
 
     it_assigns :posts, :user => nil, :forum => nil, :topic => nil, :parent => nil
     it_renders :template, :index, :format => 'atom'

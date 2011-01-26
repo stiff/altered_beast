@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     topic.resources :posts
   end
 
-  map.resources :posts, :collection => {:search => :get}
+  map.resources :posts
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,
                                      :make_admin => :put,
@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.bug_report '/bug_report',                    :controller => 'about',    :action => 'bug_report'
                                                    
   map.tag       '/tag/:tag_name',                  :controller => 'tags',     :action => 'search'
+  map.search    '/search',                         :controller => 'search',   :action => 'show'
 
   map.with_options :controller => 'posts', :action => 'monitored' do |map|
     map.formatted_monitored_posts 'users/:user_id/monitored.:format'

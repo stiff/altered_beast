@@ -26,21 +26,30 @@
     width: 320px;
   }
 
-  form{
+  .search_box {
     clear: right;
     float: right;
 
-    #search_box{
+    input.gsc-input {
       .rounded;
       background: @white;
       border:none;
       color: @darkgray + 50%;
       float: left;
       font-size: 1em;
-      height: auto; 
-      margin: 10px 0px 0px 0px; 
-      padding: 5px;
+      height: 24px; 
+      margin: 5px 5px 5px 0px; 
+      padding: 0px 3px;
       width: 250px;
+    }
+    
+    input.gsc-search-button {
+      .rounded;
+      background: @lightgray;
+      border: 0px;
+      height: 24px; 
+      margin: 5px 0px 5px 0px;
+      padding: 0px;
     }
   }
 

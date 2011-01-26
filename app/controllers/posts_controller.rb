@@ -13,7 +13,7 @@ class PostsController < SessionsController
   # /forums/1/posts
   # /forums/1/topics/1/posts
   def index
-    @posts = (@parent ? @parent.posts : current_site.posts).search(params[:q], :page => current_page, :per_page => 200)
+    @posts = (@parent ? @parent.posts : current_site.posts).search(:page => current_page, :per_page => 200)
     @users = @user ? {@user.id => @user} : User.index_from(@posts)
     respond_to do |format|
       format.html # index.html.erb
