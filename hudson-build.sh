@@ -1,8 +1,13 @@
 #!/bin/bash
 
-source /home/hudson/.profile
-source /home/hudson/.bashrc
-source /home/hudson/.rvm/scripts/rvm
+THE_USER=$1
+if [ -z $THE_USER ]; then
+  THE_USER=hudson
+fi
+
+source /home/$THE_USER/.profile
+source /home/$THE_USER/.bashrc
+source /home/$THE_USER/.rvm/scripts/rvm
 
 rvm use 1.8.7-p302 --verbose
 rvm gemset create tectura
