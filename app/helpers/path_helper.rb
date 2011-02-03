@@ -55,5 +55,9 @@ module PathHelper
   def forums_url(*args)
     root_url
   end
-
+  
+  def post_path(post, host)
+    topic_url(post.topic, :host => host, :page => post.page, :anchor => "post_#{post.id}")
+  end
+  
 end

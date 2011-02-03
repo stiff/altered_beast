@@ -1,4 +1,7 @@
 class UserMailer < ActionMailer::Base
+  
+  include PathHelper
+  
   def signup_notification(user)
     setup_email(user)
     @subject    += I18n.t 'txt.subject_activate', :default => 'Please activate your new account'
@@ -17,7 +20,7 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = root_url(:host => user.site.host)
     @body[:message]  = post.body[0..100]
     @body[:message]  += "..." if post.body.size > 100
-    @body[:url]  = topic_url(post.topic, :host => user.site.host)
+    @body[:url]  = post_path(post, user.site.host)
   end
 
   def remember_password(user)
