@@ -14,7 +14,7 @@ DOM = {};
 
 // DOMBuilder for prototype
 DOM.Builder = {
-	tagFunc : function(tag) {
+  tagFunc : function(tag) {
     return function() {
      var attrs, children;
      if (arguments.length>0) {
@@ -29,29 +29,29 @@ DOM.Builder = {
      return DOM.Builder.create(tag, attrs, children);
     };
   },
-	create : function(tag, attrs, children) {
-		attrs = attrs || {}; children = children || []; tag = tag.toLowerCase();
-		var el = new Element(tag, attrs);
-	  
-		for (var i=0; i<children.length; i++) {
-			if (typeof children[i] == 'string') 
-			  children[i] = document.createTextNode(children[i]);
-			el.appendChild(children[i]);
-		}
-		return $(el);
-	}
+  create : function(tag, attrs, children) {
+    attrs = attrs || {}; children = children || []; tag = tag.toLowerCase();
+    var el = new Element(tag, attrs);
+    
+    for (var i=0; i<children.length; i++) {
+      if (typeof children[i] == 'string') 
+        children[i] = document.createTextNode(children[i]);
+      el.appendChild(children[i]);
+    }
+    return $(el);
+  }
 };
 
 // Automatically create node builders as $tagName.
 (function() { 
-	var els = ("p|div|span|strong|em|img|table|tr|td|th|thead|tbody|tfoot|pre|code|" + 
-				     "h1|h2|h3|h4|h5|h6|ul|ol|li|form|input|textarea|legend|fieldset|" + 
-				     "select|option|blockquote|cite|br|hr|dd|dl|dt|address|a|button|abbr|acronym|" +
-				     "script|link|style|bdo|ins|del|object|param|col|colgroup|optgroup|caption|" + 
-				     "label|dfn|kbd|samp|var").split("|");
+  var els = ("p|div|span|strong|em|img|table|tr|td|th|thead|tbody|tfoot|pre|code|" + 
+             "h1|h2|h3|h4|h5|h6|ul|ol|li|form|input|textarea|legend|fieldset|" + 
+             "select|option|blockquote|cite|br|hr|dd|dl|dt|address|a|button|abbr|acronym|" +
+             "script|link|style|bdo|ins|del|object|param|col|colgroup|optgroup|caption|" + 
+             "label|dfn|kbd|samp|var").split("|");
   var el, i=0;
-	while (el = els[i++]) 
-	  window['$' + el] = DOM.Builder.tagFunc(el);
+  while (el = els[i++]) 
+    window['$' + el] = DOM.Builder.tagFunc(el);
 })();
 
 DOM.Builder.fromHTML = function(html) {
@@ -111,10 +111,12 @@ Event.addBehavior = function(rules) {
 
 Event.delegate = function(rules) {
   return function(e) {
-      var element = $(e.element());
-      for (var selector in rules)
-        if (element.match(selector)) return rules[selector].apply(this, $A(arguments));
-    }
+    for ( var selector in rules ){
+      if ( e.findElement(selector) ) {
+        return rules[selector].apply(this, $A(arguments));
+      }
+    }        
+  }
 }
 
 Object.extend(Event.addBehavior, {
@@ -304,7 +306,7 @@ Remote.Form = Behavior.create(Remote.Base, {
     var sourceElement = e.element();
     
     if (['input', 'button'].include(sourceElement.nodeName.toLowerCase()) && 
-        sourceElement.type == 'submit')
+        ['submit', 'image'].include(sourceElement.type))
       this._submitButton = sourceElement;
   },
   onsubmit : function() {
@@ -336,4 +338,3 @@ Observed = Behavior.create({
                                       new Form.Element.EventObserver(this.element, this.callback);
   }
 });
-
