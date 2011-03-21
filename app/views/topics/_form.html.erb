@@ -1,16 +1,15 @@
 <p>
 <label for="topic_title"><%= I18n.t('txt.views_topics.topic', :default => 'Name') %></label><br />
-<%= form.text_field :title, :onchange => "/*TopicForm.editNewTitle(this);*/", :class => "primary", :tabindex => 10 %>
+<%= form.text_field :title, :onchange => "TopicForm.editNewTitle(this);", :class => "primary", :tabindex => 10 %>
 
-<% for_moderators_of @forum do -%>
-<label style="margin-left:1em;">
-<%= form.check_box :sticky %> <%= I18n.t('txt.sticky', :default => 'sticky') %>
-</label>
-
-<label style="margin-left:1em;">
-<%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
-</label>
-<% end -%>
+<%= for_moderators_of @forum do %>
+  <label style="margin-left:1em;">
+  <%= form.check_box :sticky %> <%= I18n.t('txt.sticky', :default => 'sticky') %>
+  </label>
+  <label style="margin-left:1em;">
+  <%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
+  </label>
+<% end %>
 
 </p>
 <% if @topic.new_record? -%>
