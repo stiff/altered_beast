@@ -5,11 +5,11 @@
   <%= settings.text_field :display_name %>
 </p>
 
-<p>
+<div>
   <label for="user_openid_url"><%= I18n.t 'txt.views_users.openid_url_title', :default => 'Identity Url' %></label><br />
-  <p class="help"><%= I18n.t 'txt.views_users.open_id_field', :default => 'Enter your OpenID Identity Url if you know it.' %></p>
+  <p class="entryhelp"><%= I18n.t 'txt.views_users.open_id_field', :default => 'Enter your OpenID Identity Url if you know it.' %></p>
   <%= settings.text_field :openid_url %>
-</p>
+</div>
 
 <p>
   <label for="user_website"><%= I18n.t 'txt.views_users.website_title', :default => 'Website' %></label><br />

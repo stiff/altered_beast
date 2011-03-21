@@ -1,23 +1,8 @@
-<% content_for :right do %>
-
-<h5><%= I18n.t 'txt.sidebar.beast_title', :default => 'What is Beast?' %></h5>
-
-<p>
-  <%= I18n.t 'txt.sidebar.beast_desc', :default => "A small, light-weight forum in Rails with a scary name and a goal of around 500 lines of code when we're done." %>
-</p>
-
-<% if admin? %>
-<h6><%= I18n.t 'txt.admin.title', :default => 'Admin' %></h6>
-<p><%= link_to I18n.t('txt.admin.create_new_forum', :default => 'Create New Forum'), new_forum_path, :class => "utility" %></p>
-<% end %>
-
-<% end %>
-
 <h1 style="margin-top:0;"><%= I18n.t 'txt.forums', :default => 'Forums' %></h1>
 <p class="subtitle">
-<%= feed_icon_tag I18n.t('txt.recent_posts', :default => "Recent Posts"), posts_path(:format => 'atom') %>
-<%= I18n.t 'txt.count_topics', :count => current_site.topics.size, :num => number_with_delimiter(current_site.topics.size) %>,
-<%= I18n.t 'txt.count_posts',  :count => current_site.posts.size,  :num => number_with_delimiter(current_site.posts.size) %>
+  <%= feed_icon_tag I18n.t('txt.recent_posts', :default => "Recent Posts"), posts_path(:format => 'atom') %>
+  <%= I18n.t 'txt.count_topics', :count => current_site.topics.size, :num => number_with_delimiter(current_site.topics.size) %>,
+  <%= I18n.t 'txt.count_posts',  :count => current_site.posts.size,  :num => number_with_delimiter(current_site.posts.size) %>
 </p>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide forums">
@@ -71,4 +56,19 @@
 <% end %>
 </div>
 </div>
+<% end %>
+
+<% content_for :right do %>
+
+  <h5><%= I18n.t 'txt.sidebar.beast_title', :default => 'What is Beast?' %></h5>
+  
+  <p>
+    <%= I18n.t 'txt.sidebar.beast_desc', :default => "A small, light-weight forum in Rails with a scary name and a goal of around 500 lines of code when we're done." %>
+  </p>
+  
+  <% if admin? %>
+    <h6><%= I18n.t 'txt.admin.title', :default => 'Admin' %></h6>
+    <p><%= link_to I18n.t('txt.admin.create_new_forum', :default => 'Create New Forum'), new_forum_path, :class => "utility" %></p>
+  <% end %>
+
 <% end %>

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_language
-    I18n.locale = :en || I18n.default_locale
+    I18n.locale = :'pt-BR' || I18n.default_locale
   end
 
 end

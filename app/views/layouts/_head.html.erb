@@ -8,7 +8,7 @@
   <%= javascript_include_tag "prototype", "effects", "lowpro", 'rails', "application", :cache => "beast" %>
 <% unless @feed_icons.blank? -%>
   <% @feed_icons.each do |feed| -%>
-  <%= auto_discovery_link_tag :atom, feed[:url], :title => "Subscribe to '#{feed[:title]}'" %>
+  <%= auto_discovery_link_tag :atom, feed[:url], :title => I18n.t('txt.subscribe_to_feed', :default => "Subscribe to %{title}", :title => feed[:title]) %>
   <% end -%>
 <% end -%>
   <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
