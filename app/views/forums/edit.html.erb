@@ -1,12 +1,10 @@
 <div class="crumbs">
-  <%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
+  <%= link_to t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
 </div>
 
-<h1><%= I18n.t 'txt.views_forums.edit', :default => 'Edit Forum' %></h1>
+<h1><%= t 'txt.views_forums.edit', :default => 'Edit Forum' %></h1>
 
-<%= form_for :forum,
-     :url  => forum_path(@forum),
-     :html => { :method => :put } do |f| -%>
-<%= render :partial => "form", :object => f %>
-<%= submit_tag I18n.t('txt.save', :default => 'Save Forum') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), forums_path) %>
-<% end -%>
+<%= form_for :forum, :url  => forum_path(@forum), :html => { :method => :put } do |f| %>
+  <%= render :partial => "form", :object => f %>
+  <%= submit_tag t('txt.save', :default => 'Save Forum') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), forums_path) %>
+<% end %>

@@ -9,7 +9,7 @@
   <span>
     <%= t 'txt.count_topics', :count => @user.topics.size, :num => number_with_delimiter(@user.topics.size) %>,
     <%= t 'txt.count_posts', :count => @user.posts.size, :num => number_with_delimiter(@user.posts.size) %>
-    <%= t 'txt.view_users.view_all_monitored_posts', :default => "(view %{all_link} | %{monitored_link} posts)".html_safe, :all_link => link_to(t('txt.all', :default => 'all'), user_posts_path(@user)), :monitored_link => link_to(t('txt.monitored', :default => 'monitored'), "#") %><br />
+    <%= t 'txt.views_users.view_all_monitored_posts_html', :default => "(view %{all_link} | %{monitored_link} posts)".html_safe, :all_link => link_to(t('txt.all', :default => 'all'), user_posts_path(@user)), :monitored_link => link_to(t('txt.monitored', :default => 'monitored'), "#") %><br />
   </span>
 </p>
 

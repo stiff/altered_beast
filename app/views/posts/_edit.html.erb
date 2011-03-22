@@ -8,7 +8,7 @@
         <%= f.text_area :body, :rows => 10, :id => "edit_post_body", :tabindex => 1 %>
       </td>
       <td valign="top">
-        <%= link_to(I18n.t('txt.views_posts.delete', :default => 'delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
+        <%= link_to(t('txt.views_posts.delete', :default => 'delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
               :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>  
 
         <%= render :partial => "formatting" %>
@@ -17,7 +17,7 @@
     <tr>
       <td valign="bottom" style="padding-bottom:15px;">
         <%= ajax_spinner_for "editbox", "spinner_black.gif" %>
-        <%= submit_tag I18n.t('txt.save_changes', :default => 'Save Changes'), :tabindex => 2 %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'edit-cancel') %></span>
+        <%= submit_tag t('txt.save_changes', :default => 'Save Changes'), :tabindex => 2 %> <span class="button_or"><%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'cancel'), '#', :id => 'edit-cancel') %></span>
       </td>
     </tr>
   </table>

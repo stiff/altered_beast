@@ -1,15 +1,15 @@
-<h1><%= I18n.t 'txt.views_posts.edit', :default => 'Edit Post' %></h1>
+<h1><%= t 'txt.views_posts.edit', :default => 'Edit Post' %></h1>
 
 <h2><%= link_to h(@post.topic.title), forum_topic_path(@post.forum, @post.topic) %></h2>
 
-<%= link_to(I18n.t('txt.views_posts.delete', :default => 'Delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
+<%= link_to(t('txt.views_posts.delete', :default => 'Delete post'), forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page), 
       :class => "utility", :method => :delete, :confirm => I18n.t('txt.views_posts.delete_sure', :default => 'Delete this post forever?')) %>
 
 <%= render '/shared/error_messages', :target => @topic %>
-<%= form_for :post, :html => { :method => :put }, 
-     :url  => forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page) do |f| -%>
-<p id="post_body"><%= f.text_area :body %></p>
-<p><%= submit_tag I18n.t('txt.views_posts.save', :default => 'Save post') %> 
-  <%= I18n.t 'txt.or', :default => 'or' %> 
-  <%= link_to I18n.t('txt.cancel', :default => 'cancel'), forum_topic_path(@post.forum, @post.topic, :page => current_page) %></p>
-<% end -%>
+
+<%= form_for :post, :html => { :method => :put }, :url => forum_topic_post_path(@post.forum, @post.topic, @post, :page => current_page) do |f| %>
+  <p id="post_body"><%= f.text_area :body %></p>
+  <p><%= submit_tag I18n.t('txt.views_posts.save', :default => 'Save post') %> 
+  <%= t 'txt.or', :default => 'or' %> 
+  <%= link_to t('txt.cancel', :default => 'cancel'), forum_topic_path(@post.forum, @post.topic, :page => current_page) %></p>
+<% end %>
