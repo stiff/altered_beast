@@ -28,7 +28,7 @@
   <span class="arrow">&rarr;</span>
 </div>
 
-<h1 id="topic-title" style="margin-top:0.5em;"<%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
+<h1 id="topic-title" style="margin-top:0.5em;">
 
   <%= h @topic.title %>
   <% if @topic.locked? %>
@@ -162,6 +162,13 @@
   <%= link_to t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
   <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">&rarr;</span>
 </div>
+
+<%= javascript_tag(:defer => 'defer') do %>
+Event.observe(window, 'load', function() {
+  $('topic-title').observe('mouseover', function(event) { $('topic_mod').show() });
+  $('topic-title').observe('mouseout', function(event) { $('topic_mod').hide() });
+});
+<% end if logged_in? %>
 
 <% content_for :right do %>
   <h5><%= I18n.t 'txt.voices', :default => 'Voices' %></h5>
