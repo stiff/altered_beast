@@ -3,16 +3,15 @@
 
 
 <% if not @user.valid? and @user.errors.on(:login) %>
-
-<p>
-  <label for="login"><%= I18n.t 'txt.views_users.login_title', :default => 'Login' %></label></p>
-  <p class="help">
-    <strong><%=  I18n.t 'txt.views_users.change_login', :default => 'Please change your login' %>.</strong>
-    <%=  I18n.t 'txt.views_users.login_field', :default => 'Logins should start with least 2 characters and may consist of letters, numbers, or the underscore' %>.
+  <p>
+    <label for="login"><%= I18n.t 'txt.views_users.login_title', :default => 'Login' %></label></p>
+    <p class="help">
+      <strong><%=  I18n.t 'txt.views_users.change_login', :default => 'Please change your login' %>.</strong>
+      <%=  I18n.t 'txt.views_users.login_field', :default => 'Logins should start with least 2 characters and may consist of letters, numbers, or the underscore' %>.
+    </p>
+  <p>
+    <%= settings.text_field :login %>
   </p>
-<p>
-  <%= settings.text_field :login %>
-</p>
 <% end %>
 
 <p>
@@ -22,7 +21,7 @@
 
 <div>
   <label for="user_password"><%=  I18n.t 'txt.views_users.password_title', :default => 'Password' %></label><br />
-  <p class="entryhelp" style="margin-top:0.5em;"><%=  I18n.t 'txt.views_users.password_field', :default => 'Enter a new password twice to change your password. (must be longer than 5 characters)' %></p>
+  <p class="entryhelp"><%=  I18n.t 'txt.views_users.password_field', :default => 'Enter a new password twice to change your password. (must be longer than 5 characters)' %></p>
   <%= settings.password_field :password, :size => 16 %>
   <span class="entryhelp">(<%=  I18n.t 'txt.views_users.once', :default => 'once' %>)</span><br />
   <%= settings.password_field :password_confirmation, :size => 16 %>

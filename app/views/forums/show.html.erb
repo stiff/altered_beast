@@ -1,50 +1,29 @@
-<% content_for :right do %>
-
-<% unless @forum.description.blank? %>
-<%= @forum.description %>
-<hr />
-<% end %>
-
-<h5 style="margin-bottom:1.0em;"><%= I18n.t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
-
-<% unless @forum.moderators.empty? -%>
-<ul class="flat" style="margin-top:1em;">
-<% @forum.moderators.each do |user| -%>
-  <li><%= link_to h(user.display_name || user.login), user %></li>
-<% end -%>
-</ul>
-<% else -%>
-<p><%= I18n.t 'txt.views_forums.unmoderated_html', :default => 'This forum is currently unmoderated.<br />Please always be courteous.'.html_safe %></p>
-<% end -%>
-
-<% end %>
-
 <% @page_title = @forum.name %>
 
 <div class="crumbs">
-<%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
+<%= link_to t('txt.forums', :default => 'Forums'), root_path %> <span class="arrow">&rarr;</span>
 </div>
 <h1 style="margin-top:0.5em"><%= h @forum.name %></h1>
 
 <p class="subtitle">
   <%= feed_icon_tag @forum.name, forum_posts_path(@forum, :format => :atom) %> 
-  <%= I18n.t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
-  <%= I18n.t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
+  <%= t 'txt.count_topics', :count => @forum.topics.size, :num => number_with_delimiter(@forum.topics.size) %>,
+  <%= t 'txt.count_posts', :count => @forum.posts.size, :num => number_with_delimiter(@forum.posts.size) %>
 </p>
 
-<% if @topics.total_entries -%>
-<% if logged_in? %>
-<p style="float:right; margin-top:0;"><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
+<% if @topics.total_entries %>
+  <% if logged_in? %>
+    <p style="float:right; margin-top:0;"><%= link_to t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
+  <% end %>
+  <%= will_paginate @topics %>
 <% end %>
-<%= will_paginate @topics %>
-<% end -%>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide topics">
 <tr>
   <th class="la" colspan="2"><%= I18n.t 'txt.topic', :default => 'Topic' %></th>
-  <th width="1%"><%= I18n.t 'txt.posts', :default => 'Posts' %></th>
-  <th width="1%"><%= I18n.t 'txt.views', :default => 'Views' %></th>
-  <th class="la"><%= I18n.t 'txt.latest_post', :default => 'Latest post' %></th>
+  <th width="1%"><%= t 'txt.posts', :default => 'Posts' %></th>
+  <th width="1%"><%= t 'txt.views', :default => 'Views' %></th>
+  <th class="la"><%= t 'txt.latest_post', :default => 'Latest post' %></th>
 </tr>
 <% for topic in @topics %>
 <tr class="hentry">
@@ -54,7 +33,7 @@
     color = ""
     if topic.locked?
       icon = "lock"
-      post = I18n.t('txt.views_forums.comma_locked_topic', :default => ', this topic is locked.')
+      post = t('txt.views_forums.comma_locked_topic', :default => ', this topic is locked.')
       color = "darkgrey"
     end
     %>
@@ -65,21 +44,25 @@
     <% end %>
   </td>
   <td class="c2">
-    <%= I18n.t('txt.sticky', :default => ('[sticky]' + '<strong>')) if topic.sticky? %>
-    <%= topic_title_link (topic), :class => "entry-title", :rel => "bookmark" %>
-    <%= "</strong>" if topic.sticky? %>
-    <% if topic.paged? -%>
-      <small><%= link_to I18n.t('txt.goto_last_page', :default => 'last'), forum_topic_path(@forum, topic, :page => topic.last_page) %></small>
-    <% end -%>
+    <% if topic.sticky? %>
+      [<%= t('txt.sticky', :default => ('Sticky')) %>]
+      <%= topic_title_link (topic), :class => "entry-title sticky", :rel => "bookmark" %>
+    <% else %>
+      <%= topic_title_link (topic), :class => "entry-title", :rel => "bookmark" %>
+    <% end %>
+    
+    <% if topic.paged? %>
+      <small><%= link_to t('txt.goto_last_page', :default => 'last'), forum_topic_path(@forum, topic, :page => topic.last_page) %></small>
+    <% end %>
   </td>
   <td class="ca inv stat"><%= topic.posts.size %></td>
   <td class="ca inv stat"><%= number_with_delimiter(topic.hits) %></td>
   <td class="lp">
-    <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>"><%= I18n.t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted %{when} ago" %></abbr>
-    <% if topic.last_user -%>
-    <%= I18n.t 'txt.by_user_html', :default => 'by %{user}'.html_safe, :user => "<span class=\"author\"><strong class=\"fn\">#{h(topic.last_user.display_name)}</strong></span>" %>
-    <% end -%>
-    <span><%= link_to I18n.t('txt.view', :default => 'view'), forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => dom_id(topic.recent_post)) %></span>
+    <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>"><%= t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted %{when} ago" %></abbr>
+    <% if topic.last_user %>
+      <%= t 'txt.by_user_html', :default => 'by %{user}', :user => "<span class=\"author\"><strong class=\"fn\">#{h(topic.last_user.display_name)}</strong></span>" %>
+    <% end %>
+    <span><%= link_to t('txt.view', :default => 'view'), forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => dom_id(topic.recent_post)) %></span>
   </td>
 </tr>
 <% end %>
@@ -88,5 +71,26 @@
 <%= will_paginate @topics %>
 
 <% if logged_in? %>
-  <p><%= link_to I18n.t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
+  <p><%= link_to t('txt.new_topic', :default => 'New topic'), new_forum_topic_path(@forum), :class => "utility" %></p>
 <% end%>
+
+<% content_for :right do %>
+
+  <% unless @forum.description.blank? %>
+    <%= @forum.description %>
+    <hr />
+  <% end %>
+  
+  <h5 style="margin-bottom:1.0em;"><%= t 'txt.moderator', :count => @forum.moderators.size, :default => 'Moderator' %></h5>
+  
+  <% unless @forum.moderators.empty? -%>
+    <ul class="flat" style="margin-top:1em;">
+    <% @forum.moderators.each do |user| %>
+      <li><%= link_to h(user.display_name || user.login), user %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p><%= t 'txt.views_forums.unmoderated_html', :default => 'This forum is currently unmoderated.<br />Please always be courteous.' %></p>
+  <% end %>
+
+<% end %>

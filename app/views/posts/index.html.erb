@@ -1,47 +1,47 @@
-<% @page_title = search_posts_title -%>
+<% @page_title = search_posts_title %>
 
 <h1>
-<% if params[:q].blank? -%>
+<% if params[:q].blank? %>
   <%= @page_title %>
-<% else -%>
+<% else %>
   <%= t 'txt.search_results_for_searchterm', :default => "Search results for '%{searchterm}'", :searchterm => h(params[:q]) %>
-<% end -%>
+<% end %>
 </h1>
 <p class="subtitle">
   <%= feed_icon_tag @page_title, search_path(true) %>
-  <%= I18n.t 'txt.count_posts_found', :count => @posts.total_entries %>
+  <%= t 'txt.count_posts_found', :count => @posts.total_entries %>
 </p>
 
 <%= will_paginate @posts %>
 
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
 <% for post in @posts do %>
-<% unless post == @posts.first %>
-<tr class="spacer">
-  <td colspan="2">&nbsp;</td>
-</tr>
-<% end %>
-<tr class="post hentry" id="<%= dom_id post %>">
-  <td class="author vcard">
-    <div class="date">
-      <abbr class="updated" title="<%= post.created_at.xmlschema %>">
-      <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => 'posted %{when} ago' %>
-      </abbr>
-    </div>
-
-    <%= avatar_for @users[post.user_id] %>
-    <span class="fn"><%= link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user) %></span>
-    <span class="posts"><%= t 'txt.count_posts', :count => @users[post.user_id].posts.size, :num => number_with_delimiter(@users[post.user_id].posts.size) %></span>
-  </td>
-  <td class="body entry-content">
-    <p class="topic">
-      <%= t 'txt.forum', :default => 'Forum' %>: <%= link_to h(post.forum.name), forum_path(post.forum) %> &ndash;
-      <%= t 'txt.topic', :default => 'Topic' %>: <%= link_to h(post.topic.title), forum_topic_path(post.forum, post.topic) %>
-    </p>
-    
-    <%= post.body_html.html_safe %>
-  </td>
-</tr>
+  <% unless post == @posts.first %>
+    <tr class="spacer">
+      <td colspan="2">&nbsp;</td>
+    </tr>
+  <% end %>
+  <tr class="post hentry" id="<%= dom_id post %>">
+    <td class="author vcard">
+      <div class="date">
+        <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+        <%= t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => 'posted %{when} ago' %>
+        </abbr>
+      </div>
+  
+      <%= avatar_for @users[post.user_id] %>
+      <span class="fn"><%= link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user) %></span>
+      <span class="posts"><%= t 'txt.count_posts', :count => @users[post.user_id].posts.size, :num => number_with_delimiter(@users[post.user_id].posts.size) %></span>
+    </td>
+    <td class="body entry-content">
+      <p class="topic">
+        <%= t 'txt.forum', :default => 'Forum' %>: <%= link_to h(post.forum.name), forum_path(post.forum) %> &ndash;
+        <%= t 'txt.topic', :default => 'Topic' %>: <%= link_to h(post.topic.title), forum_topic_path(post.forum, post.topic) %>
+      </p>
+      
+      <%= post.body_html.html_safe %>
+    </td>
+  </tr>
 
 <% end %>
 </table>
