@@ -5,7 +5,6 @@ class User
   #  - changes forum_id if you're an admin
   #
   def post(forum, attributes)
-    attrs = attributes.to_hash.symbolize_keys
     Topic.new(attributes) do |topic|
       topic.forum = forum
       topic.user  = self
@@ -21,7 +20,7 @@ class User
       post.save
     end
   end
-  
+
   def revise(record, attributes)
     is_moderator = moderator_of?(record.forum)
     return unless record.editable_by?(self, is_moderator)
@@ -33,10 +32,11 @@ class User
     record
   end
 
-protected
-  def revise_topic(topic, attributes, is_moderator)
-    topic.title = attributes[:title] if attributes.key?(:title)
-    topic.sticky, topic.locked = attributes[:sticky], attributes[:locked] if is_moderator
-    topic.save
-  end
+  protected
+
+    def revise_topic(topic, attributes, is_moderator)
+      topic.title = attributes[:title] if attributes.key?(:title)
+      topic.sticky, topic.locked = attributes[:sticky], attributes[:locked] if is_moderator
+      topic.save
+    end
 end

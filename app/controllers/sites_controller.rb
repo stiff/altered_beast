@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_filter :admin_required
+  before_filter :find_site, :only => [:show, :edit, :update, :destroy]
 
   def index
     @sites = Site.paginate(:all, :page => current_page, :order => 'host ASC')
@@ -11,7 +12,6 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +29,6 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @site = Site.find(params[:id])
   end
 
   def create
@@ -51,7 +50,6 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.find(params[:id])
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
@@ -66,7 +64,6 @@ class SitesController < ApplicationController
   end
 
   def destroy
-    @site = Site.find(params[:id])
     @site.destroy
 
     respond_to do |format|
@@ -74,8 +71,15 @@ class SitesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def authorized?
-    @site.nil? or @site.new_record? #or current_site == Site.find(:first)
+    @site.nil? or @site.new_record? # or current_site == Site.first
   end
+
+  protected
+
+    def find_site
+      @site = Site.find(params[:id])
+    end
+
 end

@@ -36,7 +36,7 @@
       <% end %>
     </td>
     <td class="c2 vat">
-      <%= link_to h(forum.name), forum_path(forum), :class => "title" %>
+      <%= link_to forum.name, forum_path(forum), :class => "title" %>
       <div class="posts">
         <%= I18n.t 'txt.count_topics', :count => forum.topics.size, :num => number_with_delimiter(forum.topics.size) %>,
         <%= I18n.t 'txt.count_posts', :count => forum.posts.size, :num => number_with_delimiter(forum.posts.size) %>
@@ -48,11 +48,11 @@
     </td>
 
     <td class="inv lp">
-      <% if forum.recent_post -%>
+      <% if forum.recent_post %>
         <%= I18n.t 'txt.post_age', :when => time_ago_in_words(forum.recent_post.created_at), :default => "posted %{when} ago" %><br />
-        <strong><%= I18n.t 'txt.by_user', :default => 'by %{user}', :user => "#{h(forum.recent_post.user.display_name)}" %></strong>
+        <strong><%= I18n.t 'txt.by_user', :default => 'by %{user}', :user => forum.recent_post.user.display_name %></strong>
         <span>(<%= link_to I18n.t('txt.view', :default => 'view'), forum_topic_path(forum, forum.recent_post.topic, :page => forum.recent_post.topic.last_page, :anchor => dom_id(forum.recent_post)) %>)</span>
-      <% end -%>
+      <% end %>
     </td>
   </tr>
 <% end %>
@@ -62,13 +62,10 @@
   <%= link_to I18n.t('txt.show_recent_posts', :default => 'Show recent posts'), posts_path %>
 </p>
 
-<%# TODO: online_users = User.currently_online -%>
-<% if false # TODO: unless online_users.empty? %>
+<% if (online_users = User.online).length > 0 %>
 <div class="stats">
-<div class="users">
-<% unless online_users.empty? %>
-<%= 'Users online:'[:users_online] %> <%= online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " %><br />
-<% end %>
-</div>
+  <div class="users">
+    <%= I18n.t('txt.users_online', :default => 'Users online') %>: <%= (online_users.map { |u| link_to content_tag(:strong, u.display_name), user_path(u) } * ", ").html_safe %><br />
+  </div>
 </div>
 <% end %>

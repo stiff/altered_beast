@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
       end
     end
   end
-  
+
   def edit
   end
 
@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new
+    @topic = @forum.topics.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -77,12 +77,13 @@ class TopicsController < ApplicationController
     end
   end
 
-protected
-  def find_forum
-    @forum = current_site.forums.find_by_permalink(params[:forum_id])
-  end
+  protected
+
+    def find_forum
+      @forum = current_site.forums.find_by_permalink!(params[:forum_id])
+    end
   
-  def find_topic
-    @topic = @forum.topics.find_by_permalink(params[:id])
-  end
+    def find_topic
+      @topic = @forum.topics.find_by_permalink!(params[:id])
+    end
 end

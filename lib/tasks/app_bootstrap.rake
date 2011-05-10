@@ -76,7 +76,7 @@ namespace :app do
     end
     puts
 
-    mkdir_p File.join(RAILS_ROOT, 'log')
+    mkdir_p Rails.root.join('log')
 
     Rake::Task['environment'].invoke
     begin
@@ -111,7 +111,7 @@ namespace :app do
     require 'highline'
     require 'forwardable'
     @terminal = HighLine.new
-    @app_name = File.basename(RAILS_ROOT).capitalize
+    @app_name = File.basename(Rails.root).capitalize
     @restart  = false
     class << self
       extend Forwardable

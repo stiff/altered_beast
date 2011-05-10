@@ -1,41 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title><%=h @current_site && current_site.name || I18n.t('txt.beast_title', :default => 'Altered Beast') %><%= " - #{h @page_title}" if @page_title %></title>
-  <%= stylesheet_link_tag 'display' %>
-  <%= stylesheet_link_tag 'captcha' %>
-  <%= javascript_include_tag "prototype", "effects", "lowpro", 'rails', "application", :cache => "beast" %>
-<% unless @feed_icons.blank? -%>
-  <% @feed_icons.each do |feed| -%>
-  <%= auto_discovery_link_tag :atom, feed[:url], :title => "Subscribe to '#{feed[:title]}'" %>
-  <% end -%>
-<% end -%>
-  <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
-  <%= csrf_meta_tag %>
-</head>
-<body>
+<ul id="nav">
+  <li><%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path, :rel => 'home' %></li>
+  <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
+  <li id="search">
+    <%= form_tag posts_path, :method => 'get' do %>
+      <%= text_field_tag :q, params[:q], :size => 15, :id => :search_box %>
+    <% end %>
+  </li>
+  <li><%= link_to_function I18n.t('txt.search', :default => 'Search'), "#", :href => root_path, :id => 'search-link' %></li>
 
-<div id="header">
-  <ul id="nav">
-    <li><%= link_to I18n.t('txt.forums', :default => 'Forums'), root_path, :rel => 'home' %></li>
-    <li><%= link_to I18n.t('txt.users', :default => 'Users'), users_path %></li>
-    <li id="search">
-      <%= form_tag posts_path, :method => 'get' do -%>
-        <%= text_field_tag :q, params[:q], :size => 15, :id => :search_box %>
-      <% end -%>
-    </li>
-    <li><%= link_to_function I18n.t('txt.search', :default => 'Search'), "#", :href => root_path, :id => 'search-link' %></li>
-
-    <% if @current_site and logged_in? -%>
-    <li class="login"><%=  link_to current_user.display_name, user_path(current_user) %></li>
-    <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
-    <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.fullpath)) %></li>
-    <% else -%>
-    <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.fullpath)) %></li>
-    <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.fullpath)) %></li>
-    <% end -%>
-  </ul>
-  <% name = (site = @current_site || Site.first) && site.name %>
-  <h1><%= link_to name || I18n.t('txt.beast_title', :default => 'Altered Beast'), root_path %>
-</div>
+  <% if current_site and logged_in? %>
+  <li class="login"><%=  link_to current_user.display_name, user_path(current_user) %></li>
+  <li class="logout"><%= link_to I18n.t('txt.settings', :default => 'Settings'), settings_path %></li>
+  <li class="logout"><%= link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.fullpath)) %></li>
+  <% else %>
+  <li><%= link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.fullpath)) %></li>
+  <li><%= link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.fullpath)) %></li>
+  <% end %>
+</ul>
+<% name = (site = current_site || Site.first) && site.name %>
+<h1><%= link_to name || I18n.t('txt.beast_title', :default => 'Altered Beast'), root_path %>

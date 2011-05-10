@@ -131,13 +131,20 @@ describe User do
     users(:default).should be_deleted
   end
 
-protected
-  def create_user(options = {})
-    User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)).tap do |u|
-      u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
-      u.save
-    end
+  it 'finds currently online users' do
+    user = users(:default)
+    user.seen!
+    User.online.find_by_id(user.id).should_not be_nil
   end
+
+  protected
+
+    def create_user(options = {})
+      User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)).tap do |u|
+        u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
+        u.save
+      end
+    end
 end
 
 describe User, "being deleted" do

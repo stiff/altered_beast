@@ -1,49 +1,48 @@
-<% @page_title = @user.display_name -%>
+<% @page_title = @user.display_name %>
 
-<% content_for :right do -%>
+<% content_for :right do %>
 <% if admin? %>
 <% if @user.active? && !@user.suspended? %>
-  <%= form_for @user.moderatorships.build do |f| -%>
+  <%= form_for @user.moderatorships.build do |f| %>
     <h6><%= I18n.t 'txt.admin.admin_and_moderation', :default => 'Admin & Moderation' %></h6>
 
-    <% unless @user.forums.empty? -%>
+    <% if @user.forums.present? %>
 
     <p><%= I18n.t 'txt.admin.remove_moderated_forum', :default => 'This user can moderate the following forums. Click one to remove.' %></p>
 
     <ul class="flat">
-    <% @user.forums.moderatable.each do |forum| -%>
+    <% @user.forums.moderatable.each do |forum| %>
       <li>
         <%= link_to forum.name, moderatorship_path(forum.moderatorship_id), :method => :delete, :confirm => I18n.t('txt.admin.remove_user_as_moderator', :default => 'Remove user as moderator for %{forum}?', :forum => forum.name) %>
       </li>
-    <% end -%>
+    <% end %>
     </ul>
-    <% end -%>
+    <% end %>
 
-  	<% unless @user.available_forums.empty? -%>
+  	<% if @user.available_forums.present? %>
     <p>
   	<label><%= I18n.t 'txt.admin.add_as_moderator', :default => 'Add as moderator' %></label><br />
-  	<%= f.select :forum_id, @user.available_forums.collect { |forum| [forum.name, forum.id] }, :include_blank => " - " %>
+  	<%= f.collection_select :forum_id, @user.available_forums, :id, :name, :include_blank => " - " %>
   	</p>
     <p>
   		<%= f.submit I18n.t 'txt.save', :default => 'Save' %>
   		<%= f.hidden_field :user_id %>
   	</p>
-  	<% end -%>
-  <% end -%>
+  	<% end %>
+  <% end %>
 
   <p><%= link_to I18n.t('txt.admin.suspend_user_account', :default => "Suspend user account"), suspend_user_path(@user), :method => :put %></p>
 
 <% else %>
   <p><%= I18n.t 'txt.admin.user_account_is_suspended', :default => "User account is suspended" %>. <%= link_to I18n.t('txt.admin.unsuspend_user_account', :default => "Unsuspend user account"), unsuspend_user_path(@user), :method => :put %></p>
-  
 <% end %>
 <p><%= link_to I18n.t('txt.admin.edit_user_account', :default => "Edit user account"), edit_user_path(@user) %></p>
-<% end -%>
-<% end -%>
+<% end %>
+<% end %>
 
 <p style="float:right;"><%= avatar_for @user, 80 %></p> 
 
-<h1><%=h @user.display_name %> </h1>
+<h1><%= @user.display_name %></h1>
 
 <p class="subtitle">
   <%= feed_icon_tag @user.display_name, user_posts_path(:user_id => @user, :format => :rss) %>
@@ -56,8 +55,8 @@
 
 <%= @user.bio_html %>
 
-<% unless @user.website.blank? -%>
+<% unless @user.website.blank? %>
 <p><strong><%= I18n.t 'txt.website', :default => 'Website' %></strong> <%= sanitize link_to(@user.website.gsub("http://",""), "http://" + @user.website.gsub("http://","")) %>
-<% end -%>
+<% end %>
 <p><%= I18n.t 'txt.user_since', :default => 'User since %{date}', :date => @user.created_at.to_date.to_s(:long) %></p>
 
