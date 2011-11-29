@@ -1,18 +1,19 @@
-module Spec::DSL::Main
-  def describe_validations_for(model, attributes, &block)
-    describe model, "(validations)", :type => :model do
-      before :all do
-        @attributes = attributes
-      end
-      
-      before do
-        @record = model.new
-      end
-      
-      RspecOnRailsOnCrack::ValidationExampleProxy.new(self, model).instance_eval(&block)
-    end
-  end
-end
+# FIXME remove it, or fix it
+# module RSpec::DSL::Main
+#   def describe_validations_for(model, attributes, &block)
+#     describe model, "(validations)", :type => :model do
+#       before :all do
+#         @attributes = attributes
+#       end
+#       
+#       before do
+#         @record = model.new
+#       end
+#       
+#       RspecOnRailsOnCrack::ValidationExampleProxy.new(self, model).instance_eval(&block)
+#     end
+#   end
+# end
 
 module RspecOnRailsOnCrack
   class ValidationExampleProxy

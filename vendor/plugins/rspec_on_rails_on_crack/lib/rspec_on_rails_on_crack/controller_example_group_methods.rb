@@ -1,8 +1,9 @@
-module RSpec::Core::DSL
-  def describe_access_for(controller, &block)
-    RspecOnRailsOnCrack::ControllerAccessProxy.new(self, controller).instance_eval(&block)
-  end
-end
+# FIXME remove it or fix it
+# module RSpec::Core::DSL
+#   def describe_access_for(controller, &block)
+#     RspecOnRailsOnCrack::ControllerAccessProxy.new(self, controller).instance_eval(&block)
+#   end
+# end
 
 module RspecOnRailsOnCrack
   class ControllerAccessProxy
