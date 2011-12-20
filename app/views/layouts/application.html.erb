@@ -1,44 +1,37 @@
-<%= render :partial => "layouts/head" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= current_site && current_site.name || I18n.t('txt.beast_title', :default => 'Altered Beast') %><%= " - " + @page_title if @page_title %></title>
+    <%= stylesheet_link_tag %w(display captcha) %>
+    <%= javascript_include_tag %w(prototype effects lowpro rails application), :cache => "beast" %>
+    <% @feed_icons.each do |feed| %>
+    <%= auto_discovery_link_tag :atom, feed[:url], :title => "Subscribe to '#{feed[:title]}'" %>
+    <% end if @feed_icons.present? %>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml" />
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="header">
+      <%= render "layouts/head" %>
+    </div>
 
-<div id="container">
-<div id="content">
-  
-<%= content_tag 'p', h(flash[:notice]), :class => 'notice' if flash[:notice] %>
-<%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
+    <div id="container">
+      <div id="content">
+        <%= flash_messages %>
+        <%= yield %>
+      </div>
 
-<%= yield %>
-</div>
+      <div id="right">
+        <%= yield(:right) %>
+      </div>
 
-<div id="right">
-  <%= yield :right %>
-</div>
+      <br style="clear:both;" />
+    </div>
 
-<br style="clear:both;" />
-
-</div>
-
-<div id="footer">
-  <p class="disclaim">
-    <strong>
-    <% if site = @current_site || Site.first %>
-      <%= site.tagline %>
-    <% end %>
-    </strong>
-  </p>
-    <%
-    footers=[I18n.t('txt.footer_message', :default => "Two's company. Three's a forum. More's a Beast.")
-    ]
-    %>
-    <%= footers[rand(footers.size)]%>
-    </strong>
-  </p>
-  <p class="credit">
-    <%= I18n.t('txt.powered_by', :default => 'Powered by') %> <a href="http://github.com/courtenay/altered_beast/">Altered Beast</a><br />
-    &copy; 2006 - 2009 <a href="http://www.workingwithrails.com/person/5337-josh-goebel" class="subtle">Josh Goebel</a>,
-    <a href="http://blog.caboo.se">Courtenay Gasking</a> <%= I18n.t 'txt.and', :default => 'and' %> 
-    <a href="http://weblog.techno-weenie.net" class="subtle">Rick Olson</a>
-  </p>
-  <br style="clear:both;" />
-</div>
-</body>
+    <div id="footer">
+      <%= render "layouts/footer" %>
+      <br style="clear:both;" />
+    </div>
+  </body>
 </html>

@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   before_filter :admin_required, :except => [:index, :show]
+  before_filter :find_forum, :only => [:show, :edit, :update, :destroy]
 
   # GET /forums
   # GET /forums.xml
@@ -18,7 +19,6 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.xml
   def show
-    @forum = current_site.forums.find_by_permalink!(params[:id])
     (session[:forums] ||= {})[@forum.id] = Time.now.utc
     (session[:forums_page] ||= Hash.new(1))[@forum.id] = current_page if current_page > 1
 
@@ -33,7 +33,7 @@ class ForumsController < ApplicationController
   # GET /forums/new
   # GET /forums/new.xml
   def new
-    @forum = Forum.new
+    @forum = current_site.forums.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,7 +43,6 @@ class ForumsController < ApplicationController
 
   # GET /forums/1/edit
   def edit
-    @forum = current_site.forums.find_by_permalink!(params[:id])
   end
 
   # POST /forums
@@ -66,7 +65,6 @@ class ForumsController < ApplicationController
   # PUT /forums/1
   # PUT /forums/1.xml
   def update
-    @forum = current_site.forums.find_by_permalink(params[:id])
 
     respond_to do |format|
       if @forum.update_attributes(params[:forum])
@@ -83,7 +81,6 @@ class ForumsController < ApplicationController
   # DELETE /forums/1
   # DELETE /forums/1.xml
   def destroy
-    @forum = current_site.forums.find_by_permalink(params[:id])
     @forum.destroy
 
     respond_to do |format|
@@ -91,4 +88,11 @@ class ForumsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  protected
+
+    def find_forum
+      @forum = current_site.forums.find_by_permalink!(params[:id])
+    end
+
 end

@@ -1,21 +1,19 @@
-<p style="float:right; margin-top:0">
-</p>
+<%= form.error_messages %>
 
-<p id="forum_name">
+<div id="forum_name">
+  <table border="0" cellspacing="0" cellpadding="0" class="noborder nopad wide">
+    <td>
+      <label><%= I18n.t 'txt.views_forums.title', :default => 'Title' %></label><br />
+      <%= form.text_field :name, :class => "primary" %>
+    </td>
+    <td style="text-align:right">
+      <label><%= I18n.t 'txt.views_forums.position', :default => 'Position' %></label><br />
+      <%= form.text_field :position, :size => 5 %>
+    </td>
+  </table>
+</div>
 
-<table border="0" cellspacing="0" cellpadding="0" class="noborder nopad wide">
-  <td>
-    <label><%= I18n.t 'txt.views_forums.title', :default => 'Title' %></label><br />
-    <%= form.text_field :name, :class => "primary" %>
-  </td>
-  <td style="text-align:right">
-    <label><%= I18n.t 'txt.views_forums.position', :default => 'Position' %></label><br />
-    <%= form.text_field :position, :size => 5 %>
-
-  </td>
-</table>
-
-</p>
 <p id="forum_descripion">
-<label><%= I18n.t 'txt.views_forums.desc', :default => 'Description' %></label><br />
-<%= form.text_area :description, :rows => 7 %></p>
+  <label><%= I18n.t 'txt.views_forums.desc', :default => 'Description' %></label><br />
+  <%= form.text_area :description, :rows => 7 %>
+</p>

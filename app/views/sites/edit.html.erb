@@ -4,9 +4,7 @@
 
 <h1><%= link_to I18n.t('txt.views_sites.edit', :default => 'Edit site') %></h1>
 
-<% form_for :site,
-     :url  => site_path(@site),
-     :html => { :method => :put } do |f| -%>
-<%= render :partial => "form", :object => f %>
-<%= submit_tag I18n.t('txt.save_changes', :default =>'Save changes') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), sites_path) %>
-<% end -%>
+<%= form_for @site do |f| %>
+  <%= render :partial => "form", :object => f %>
+  <%= submit_tag I18n.t('txt.save_changes', :default =>'Save changes') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), sites_path) %>
+<% end %>

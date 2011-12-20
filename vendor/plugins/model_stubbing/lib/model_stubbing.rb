@@ -36,7 +36,7 @@ module ModelStubbing
     name    ||= is_a?(Class) ? self : :default
     base_name = options[:copy] || :default
     base      = name == base_name ? nil : ModelStubbing.definitions[base_name]
-    defn      = ModelStubbing.definitions[name] ||= (base && options[:copy] != false) ? base.dup : ModelStubbing::Definition.new
+    defn      = ModelStubbing.definitions[name] ||= (base && options[:copy] != false) ? base.dup : ModelStubbing::Definition.new(name)
     options   = base.options.merge(options) if base
     defn.setup_on options[:target] || self, options, &block
   end
@@ -88,4 +88,4 @@ protected
 end
 
 Test::Unit::TestCase.extend ModelStubbing::Methods
-Spec::Example::ExampleGroup.extend ModelStubbing::Methods if defined? Spec::Example::ExampleGroup
+RSpec::Core::ExampleGroup.extend ModelStubbing::Methods if defined? RSpec::Core::ExampleGroup

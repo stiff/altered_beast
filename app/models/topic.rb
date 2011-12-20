@@ -2,7 +2,6 @@ class Topic < ActiveRecord::Base
   include User::Editable
 
   before_validation :set_default_attributes, :on => :create
-  validates_presence_of :title
 
   after_create   :create_initial_post
   before_update  :check_for_moved_forum
@@ -12,12 +11,12 @@ class Topic < ActiveRecord::Base
 
   # creator of forum topic
   belongs_to :user
-  
+
   # creator of recent post
   belongs_to :last_user, :class_name => "User"
-  
+
   belongs_to :forum, :counter_cache => true
-  
+
   # forum's site, set by callback
   belongs_to :site, :counter_cache => true
 
@@ -36,7 +35,7 @@ class Topic < ActiveRecord::Base
   attr_accessible :title, :body
 
   attr_readonly :posts_count, :hits
-  
+
   has_permalink :title, :scope => :forum_id
 
   def to_s
@@ -54,7 +53,7 @@ class Topic < ActiveRecord::Base
   def paged?
     posts_count > Post.per_page
   end
-  
+
   def last_page
     [(posts_count.to_f / Post.per_page.to_f).ceil.to_i, 1].max
   end
@@ -62,51 +61,51 @@ class Topic < ActiveRecord::Base
   def update_cached_post_fields(post)
     # these fields are not accessible to mass assignment
     if remaining_post = post.frozen? ? recent_post : post
-      self.class.update_all(['last_updated_at = ?, last_user_id = ?, last_post_id = ?, posts_count = ?', 
-        remaining_post.created_at, remaining_post.user_id, remaining_post.id, posts.count], ['id = ?', id])
+      self.class.where(:id => id).update_all(:last_updated_at => remaining_post.created_at, :last_user_id => remaining_post.user_id, :last_post_id => remaining_post.id, :posts_count => posts.count)
     else
       destroy
     end
   end
-  
+
   def to_param
     permalink
   end
 
-protected
-  def create_initial_post
-    user.reply self, @body #unless locked?
-    @body = nil
-  end
-  
-  def set_default_attributes
-    self.site_id           = forum.site_id if forum_id
-    self.sticky          ||= 0
-    self.last_updated_at ||= Time.now.utc
-  end
+  protected
 
-  def check_for_moved_forum
-    old = Topic.find(id)
-    @old_forum_id = old.forum_id if old.forum_id != forum_id
-    true
-  end
-
-  def set_post_forum_id
-    return unless @old_forum_id
-    posts.update_all :forum_id => forum_id
-    Forum.update_all "posts_count = posts_count - #{posts_count}", ['id = ?', @old_forum_id]
-    Forum.update_all "posts_count = posts_count + #{posts_count}", ['id = ?', forum_id]
-  end
-  
-  def count_user_posts_for_counter_cache
-    @user_posts = posts.group_by { |p| p.user_id }
-  end
-  
-  def update_cached_forum_and_user_counts
-    Forum.update_all "posts_count = posts_count - #{posts_count}", ['id = ?', forum_id]
-    Site.update_all  "posts_count = posts_count - #{posts_count}", ['id = ?', site_id]
-    @user_posts.each do |user_id, posts|
-      User.update_all "posts_count = posts_count - #{posts.size}", ['id = ?', user_id]
+    def create_initial_post
+      user.reply self, @body # unless locked?
+      @body = nil
     end
-  end
+
+    def set_default_attributes
+      self.site_id           = forum.site_id if forum_id
+      self.sticky          ||= 0
+      self.last_updated_at ||= Time.now.utc
+    end
+
+    def check_for_moved_forum
+      old = Topic.find(id)
+      @old_forum_id = old.forum_id if old.forum_id != forum_id
+      true
+    end
+
+    def set_post_forum_id
+      return unless @old_forum_id
+      posts.update_all(:forum_id => forum_id)
+      Forum.where(:id => @old_forum_id).update_all("posts_count = posts_count - #{posts_count}")
+      Forum.where(:id => forum_id).update_all("posts_count = posts_count + #{posts_count}")
+    end
+
+    def count_user_posts_for_counter_cache
+      @user_posts = posts.group_by { |p| p.user_id }
+    end
+
+    def update_cached_forum_and_user_counts
+      Forum.where(:id => forum_id).update_all("posts_count = posts_count - #{posts_count}")
+      Site.where(:id => site_id).update_all("posts_count = posts_count - #{posts_count}")
+      @user_posts.each do |user_id, posts|
+        User.where(:id => user_id).update_all("posts_count = posts_count - #{posts.size}")
+      end
+    end
 end

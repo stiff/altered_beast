@@ -7,13 +7,13 @@ module UsersHelper
 
   # todo: cache this?
   def active_user_count
-    count = current_site.users.count(:conditions => "posts_count > 0")
+    count = current_site.users.where("posts_count > 0").count
     I18n.t 'txt.count_users_active', :count => count, :num => number_with_delimiter(count)
   end
-  
+
   # todo: cache this?
   def lurking_user_count
-    count = current_site.users.count(:conditions => "posts_count = 0")
+    count = current_site.users.where(:posts_count => 0).count
     I18n.t 'txt.count_users_lurking', :count => count, :num => number_with_delimiter(count)
   end
 
@@ -60,13 +60,13 @@ module UsersHelper
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
-  def link_to_user(user, options={})
+  def link_to_user(user, options = {})
     raise "Invalid user" unless user
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
     content_text      = options.delete(:content_text)
     content_text    ||= user.send(options.delete(:content_method))
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to h(content_text), user_path(user), options
+    link_to content_text, user_path(user), options
   end
 
   #
@@ -81,14 +81,14 @@ module UsersHelper
   #   link_to_login_with_IP :content_text => 'not signed in'
   #   # => <a href="/login" title="169.69.69.69">not signed in</a>
   #
-  def link_to_login_with_IP content_text=nil, options={}
+  def link_to_login_with_IP(content_text = nil, options = {})
     ip_addr           = request.remote_ip
     content_text    ||= ip_addr
     options.reverse_merge! :title => ip_addr
     if tag = options.delete(:tag)
-      content_tag tag, h(content_text), options
+      content_tag tag, content_text, options
     else
-      link_to h(content_text), login_path, options
+      link_to content_text, login_path, options
     end
   end
 
@@ -96,7 +96,7 @@ module UsersHelper
   # Link to the current user's page (using link_to_user) or to the login page
   # (using link_to_login_with_IP).
   #
-  def link_to_current_user(options={})
+  def link_to_current_user(options = {})
     if current_user
       link_to_user current_user, options
     else
@@ -106,5 +106,4 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
-
 end

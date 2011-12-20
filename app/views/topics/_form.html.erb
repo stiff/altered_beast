@@ -1,29 +1,28 @@
+<%= form.error_messages %>
+
 <p>
-<label for="topic_title"><%= I18n.t('txt.views_topics.topic', :default => 'Name') %></label><br />
-<%= form.text_field :title, :onchange => "TopicForm.editNewTitle(this);", :class => "primary", :tabindex => 10 %>
+  <label for="topic_title"><%= I18n.t('txt.views_topics.topic', :default => 'Name') %></label><br />
+  <%= form.text_field :title, :onchange => "/*TopicForm.editNewTitle(this);*/", :class => "primary", :tabindex => 10 %>
 
-<%= for_moderators_of @forum do %>
-  <span style="margin-left:1em;">
-    <%= form.check_box :sticky %> <%= form.label :sticky, t('txt.sticky', :default => 'sticky') %>
-  </span>
-  <span style="margin-left:1em;">
-    <%= form.check_box :locked %> <%= form.label :locked, t('txt.locked', :default => 'locked') %>
-  </span>
-<% end %>
+  <%= for_moderators_of @forum do %>
+    <label style="margin-left:1em;">
+    <%= form.check_box :sticky %> <%= I18n.t('txt.sticky', :default => 'sticky') %>
+    </label>
 
+    <label style="margin-left:1em;">
+    <%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
+    </label>
+  <% end %>
 </p>
+
 <% if @topic.new_record? %>
 <p>
 	<%= form.label :body, t('txt.views_topics.body', :default => 'Body') %><br />
 	<%= form.text_area :body, :rows => 12, :tabindex => 20 %>
 </p>
-<% end %>
-
-<% if admin? && !@topic.new_record? && forums = current_site.ordered_forums %>
-	<% if forums.size > 1 %>
-    <p id="topic_forum_id">
-      <%= form.label :forum_id, t('txt.forum', :default => 'Forum') %><br />
-      <%= form.select :forum_id, forums.map {|x| [x.name, x.id] } %></p>
-    </p>
-	<% end %>
+<% elsif admin? && (forums = current_site.ordered_forums).length > 1 %>
+<p id="topic_forum_id">
+  <label for="topic_forum_id"><%= I18n.t('txt.forum', :default => 'Forum') %></label><br />
+  <%= form.collection_select :forum_id, forums, :id, :name %></p>
+</p>
 <% end %>

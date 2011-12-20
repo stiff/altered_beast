@@ -1,7 +1,6 @@
 <h1><%= t 'txt.views_topics.edit', :default => 'Edit Topic' %></h1>
 
-<%= render '/shared/error_messages', :target => @topic %>
-<%= form_for :topic, :url  => forum_topic_path(@forum, @topic), :html => { :method => :put } do |f| %>
+<%= form_for [@forum, @topic] do |f| %>
   <%= render :partial => "form", :object => f %>
   <br />
   <%= submit_tag I18n.t('txt.save_changes', :default => 'Save changes') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), forum_topic_path) %>

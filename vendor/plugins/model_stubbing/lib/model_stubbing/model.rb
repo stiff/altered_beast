@@ -35,7 +35,7 @@ module ModelStubbing
       end
       instance_eval &block if block
     end
-    
+
     def default_name
       name = @model_class.name
       if name.respond_to?(:underscore)
@@ -82,9 +82,47 @@ module ModelStubbing
     end
     
     def stub_method_definition
-      "def #{@plural}(key, attrs = {}) self.class.definition.models[#{@plural.inspect}].retrieve_record(key, attrs) end\n
-      def new_#{@singular}(key = :default, attrs = {})  key, attrs = :default, key if key.is_a?(Hash) ; #{@plural}(key, attrs.merge(:id => :new)) end\n
-      def new_#{@singular}!(key = :default, attrs = {}) key, attrs = :default, key if key.is_a?(Hash) ; #{@plural}(key, attrs.merge(:id => :dup)) end"
+      <<-END
+      def #{@plural}(key, attrs = {})
+        klass = self.class
+        unless defined?(klass.definition) and klass.definition
+          # If we are in a subclass where define_models was called on a superclass but
+          # not on this subclass (e.g. in a nested define block) then define_models
+          # needs to be called again for this subclass in order for the teardown to
+          # happen correctly.
+          k = klass.superclass
+          name = nil
+          until k == Object or k.nil?
+            if defined?(k.definition) and k.definition
+              name = k.definition.name
+              k = nil
+            end
+          end
+          klass.module_eval { define_models name }
+          unless klass.definition_inserted
+            klass.definition.insert!
+            # Don't want to set definition_inserted to true because it will
+            # roll back at the end of the first test. The next test will
+            # correctly insert again before the transaction begins.
+          end
+          klass.definition.setup_test_run
+        end
+        klass.definition.models[#{@plural.inspect}].retrieve_record(key, attrs)
+      end
+      def new_#{@singular}(key = :default, attrs = {})
+        key, attrs = :default, key if key.is_a?(Hash)
+        #{@plural}(key, attrs.merge(:id => :new))
+      end
+      def new_#{@singular}!(key = :default, attrs = {})
+        key, attrs = :default, key if key.is_a?(Hash)
+        #{@plural}(key, attrs.merge(:id => :dup))
+      end
+      def create_#{@singular}(key = :default, attrs = {})
+        stub = new_#{@singular}(key, attrs)
+        stub.save!
+        stub
+      end
+      END
     end
 
     def inspect

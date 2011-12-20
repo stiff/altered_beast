@@ -10,14 +10,13 @@ module ForumsHelper
     return false unless logged_in? && forum.recent_topic
     return forum.recent_topic.last_updated_at > ((session[:forums] ||= {})[forum.id] || last_active)
   end
-  
+
   def last_active
     session[:last_active] ||= Time.now.utc
   end
-  
+
   # Ripe for optimization
   def voice_count
     pluralize current_site.topics.to_a.sum { |t| t.voice_count }, 'voice'
   end
-
 end

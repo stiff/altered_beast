@@ -23,18 +23,34 @@ module ModelStubbing
       end
     end
 
+    def database?
+      defined?(ActiveRecord)
+    end
+    
     def setup_fixtures
       ModelStubbing.records.clear
-      return unless self.class.definition
-      unless self.class.definition_inserted
-        self.class.definition.insert!
-        self.class.definition_inserted = true
+      if self.class.definition
+        unless self.class.definition_inserted
+          self.class.definition.insert!
+          self.class.definition_inserted = true
+        end
+        self.class.definition.setup_test_run
       end
-      self.class.definition.setup_test_run
+      if database?
+        ActiveRecord::Base.connection.increment_open_transactions
+        ActiveRecord::Base.connection.begin_db_transaction
+      end
     end
 
     def teardown_fixtures
-      self.class.definition && self.class.definition.teardown_test_run
+      if self.class.definition 
+        self.class.definition.teardown_test_run
+      end
+      if database?
+        ActiveRecord::Base.connection.rollback_db_transaction
+        ActiveRecord::Base.connection.decrement_open_transactions
+        ActiveRecord::Base.verify_active_connections!
+      end
     end
 
     def stubs(key)

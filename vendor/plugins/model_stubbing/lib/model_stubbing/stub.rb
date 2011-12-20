@@ -41,7 +41,7 @@ module ModelStubbing
     # pass :id => :new to specify you want a new record, not one in the database
     def record(attributes = {})
       this_record_key = record_key(attributes)
-      if attributes[:id] != :new && ModelStubbing.records.key?(this_record_key)
+      if attributes[:id] != :new && attributes[:id] != :dup && ModelStubbing.records.key?(this_record_key)
         ModelStubbing.records[this_record_key]
       else
         ModelStubbing.records[this_record_key] = instantiate(this_record_key, attributes)

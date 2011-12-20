@@ -4,7 +4,7 @@ module ModelStubbing
   # rspec example.
   class Definition
     attr_writer :insert, :current_time
-    attr_reader :models, :stubs, :ordered_models, :options
+    attr_reader :models, :stubs, :ordered_models, :options, :name
 
     # Sets the time that Time.now is mocked to (in UTC)
     def time(*args)
@@ -33,7 +33,8 @@ module ModelStubbing
       @models[m.name]
     end
     
-    def initialize(&block)
+    def initialize(name = nil, &block)
+      @name           = name
       @ordered_models = []
       @models         = {}
       @stubs          = {}
@@ -114,17 +115,11 @@ module ModelStubbing
     def setup_test_run
       ModelStubbing.records.clear
       ModelStubbing.stub_current_time_with(current_time) if current_time
-      return unless database?
-      ActiveRecord::Base.connection.increment_open_transactions
-      ActiveRecord::Base.connection.begin_db_transaction
     end
     
     def teardown_test_run
       ModelStubbing.records.clear
       # TODO: teardown Time.stubs(:now)
-      return unless database?
-      ActiveRecord::Base.connection.rollback_db_transaction
-      ActiveRecord::Base.verify_active_connections!
     end
     
     def database?

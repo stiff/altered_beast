@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # render new.rhtml
   def new
     @user = User.new
   end
@@ -37,12 +36,10 @@ class UsersController < ApplicationController
 
   def settings
     @user = current_user
-    current_site
     render :action => "edit"
   end
-  
+
   def edit
-    @user = find_user
   end
 
   def update
@@ -90,7 +87,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
-  
+
   def make_admin
     redirect_back_or_default('/') and return unless admin?
     @user = find_user
@@ -99,22 +96,23 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-protected
-  def find_user
-    @user = if admin?
-      current_site.all_users.find params[:id]
-    elsif params[:id] == current_user.id
-      current_user
-    else
-      current_site.users.find params[:id]
-    end or raise ActiveRecord::RecordNotFound
-  end
+  protected
 
-  def authorized?
-    admin? || params[:id].blank? || params[:id] == current_user.id.to_s
-  end
+    def find_user
+      @user = if admin?
+        current_site.all_users.find params[:id]
+      elsif params[:id] == current_user.id
+        current_user
+      else
+        current_site.users.find params[:id]
+      end or raise ActiveRecord::RecordNotFound
+    end
 
-  def render_or_redirect_for_captcha_failure
-    render :action => 'new'
-  end
+    def authorized?
+      admin? || params[:id].blank? || params[:id] == current_user.id.to_s
+    end
+
+    def render_or_redirect_for_captcha_failure
+      render :action => 'new'
+    end
 end

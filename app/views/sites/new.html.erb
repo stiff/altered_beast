@@ -4,8 +4,8 @@
 
 <h1><%= I18n.t('txt.views_sites.new', :default => 'New site') %></h1>
 
-<%= form_for :site, :url => sites_path do |f| -%>
-<p><%= I18n.t('txt.views_sites.new_desc', :default => 'Welcome to your shiny new Altered Beast forum. Please name your site!') %></p>
-<%= render :partial => "form", :object => f %>
-<%= submit_tag I18n.t('txt.create', :default =>'Create') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), sites_path) %>
-<% end -%>
+<%= form_for @site do |f| %>
+  <p><%= I18n.t('txt.views_sites.new_desc', :default => 'Welcome to your shiny new Altered Beast forum. Please name your site!') %></p>
+  <%= render :partial => "form", :object => f %>
+  <%= submit_tag I18n.t('txt.create', :default =>'Create') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), sites_path) %>
+<% end %>

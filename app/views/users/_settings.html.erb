@@ -1,7 +1,6 @@
 
 <h3><%= I18n.t 'txt.views_users.basics_title', :default => 'Basics' %></h3>
 
-
 <% if not @user.valid? and @user.errors.on(:login) %>
   <p>
     <label for="login"><%= I18n.t 'txt.views_users.login_title', :default => 'Login' %></label></p>

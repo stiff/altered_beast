@@ -4,34 +4,37 @@ class User < ActiveRecord::Base
 
   belongs_to :site, :counter_cache => true
   validates_presence_of :site_id
-  
+
   has_many :posts, :order => "#{Post.table_name}.created_at desc"
   has_many :topics, :order => "#{Topic.table_name}.created_at desc"
-  
+
   has_many :moderatorships, :dependent => :delete_all
   has_many :forums, :through => :moderatorships, :source => :forum do
     def moderatable
-      all :select => "#{Forum.table_name}.*, #{Moderatorship.table_name}.id as moderatorship_id"
+      select("#{Forum.table_name}.*, #{Moderatorship.table_name}.id as moderatorship_id")
     end
   end
-  
+
   has_many :monitorships, :dependent => :delete_all
   has_many :monitored_topics, :through => :monitorships, :source => :topic, :conditions => {"#{Monitorship.table_name}.active" => true}
-  
+
   has_permalink :login, :scope => :site_id
-  
+
   attr_readonly :posts_count, :last_seen_at
 
-  scope :named_like, lambda {|name|
-    { :conditions => ["users.display_name like ? or users.login like ?", 
-                        "#{name}%", "#{name}%"] }}
+  scope :named_like, lambda { |name| where("users.display_name like ? or users.login like ?", "#{name}%", "#{name}%") }
+  scope :online, lambda { where("users.last_seen_at >= ?", 10.minutes.ago.utc) }
 
-  def self.prefetch_from(records)
-    find(:all, :select => 'distinct *', :conditions => ['id in (?)', records.collect(&:user_id).uniq])
-  end
-  
-  def self.index_from(records)
-    prefetch_from(records).index_by(&:id)
+  class << self
+
+    def prefetch_from(records)
+      select("distinct *").where(:id => records.collect(&:user_id).uniq)
+    end
+
+    def index_from(records)
+      prefetch_from(records).index_by(&:id)
+    end
+
   end
 
   def available_forums
@@ -48,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   alias_method :to_s, :display_name
-  
+
   # this is used to keep track of the last time a user has been seen (reading a topic)
   # it is used to know when topics are new or old and which should have the green
   # activity light next to them
@@ -60,10 +63,10 @@ class User < ActiveRecord::Base
   # session based approach, but less code and less overhead.
   def seen!
     now = Time.now.utc
-    self.class.update_all ['last_seen_at = ?', now], ['id = ?', id]
-    write_attribute :last_seen_at, now
+    self.class.where(:id => id).update_all(:last_seen_at => now)
+    write_attribute(:last_seen_at, now)
   end
-  
+
   def to_param
     id.to_s # permalink || login
   end
@@ -75,11 +78,10 @@ class User < ActiveRecord::Base
   def using_openid
     self.openid_url.blank? ? false : true
   end
-  
+
   def to_xml(options = {})
     options[:except] ||= []
-    options[:except] << :email << :login_key << :login_key_expires_at << :password_hash << :openid_url << :activated << :admin
+    options[:except] += [:email, :login_key, :login_key_expires_at, :password_hash, :openid_url, :activated, :admin]
     super
   end
-
 end

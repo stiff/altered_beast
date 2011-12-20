@@ -23,7 +23,7 @@ module AuthenticatedSystem
     end
 
     def admin?
-      logged_in? && current_user.admin?
+      logged_in? && current_user.admin? || current_site.nil?
     end
     
     def moderator_of?(record)

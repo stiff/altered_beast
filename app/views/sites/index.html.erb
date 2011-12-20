@@ -23,11 +23,11 @@
     <th class="la" width="15%"><%= I18n.t 'txt.users', :default => 'Users' %></th>
     <th class="la" width="10%">&nbsp;</th>
   </tr>
-<% @sites.each do |site| -%>  
+<% @sites.each do |site| %>  
   <tr>
     <td class="c1 vat">
-      <%= link_to h(site.name), (site.default? ? root_path : root_url(:host => site.host, :port => request.port)), :class => "title" %>
-			<%= content_tag(:small, "(#{h(site.host)})") unless site.default? -%>
+      <%= link_to site.name, (site.default? ? root_path : root_url(:host => site.host, :port => request.port)), :class => "title" %>
+			<%= content_tag(:small, "(#{site.host})") unless site.default? %>
     </td>
     <td class="c2">
       <%= link_to I18n.t('txt.count_forums', :count => site.forums.count, :num => number_with_delimiter(site.forums.count)), forums_url(:host => site.host, :port => request.port) %>

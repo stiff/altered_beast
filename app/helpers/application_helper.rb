@@ -5,6 +5,12 @@ module ApplicationHelper
     link_to image_tag('feed-icon.png', :size => '14x14', :alt => I18n.t('txt.subscribe_to_feed', :default => "Subscribe to %{title}", :title => title)), url
   end
 
+  def flash_messages
+    flash.map do |name, message|
+      content_tag :p, message, :class => [:notice, name].uniq.join(' ')
+    end.join.html_safe if flash.present?
+  end
+
   def pagination(collection)
     if collection.total_entries > 1
       "<p class='pages'>" + I18n.t('txt.pages', :default => 'Pages') + ": <strong>" + 
@@ -12,7 +18,7 @@ module ApplicationHelper
       "</strong></p>"
     end
   end
-  
+
   def next_page(collection)
     unless collection.current_page == collection.total_entries or collection.total_entries == 0
       "<p style='float:right;'>" + link_to(I18n.t('txt.next_page', :default => 'next page'), { :page => collection.current_page.next }.merge(params.reject{|k,v| k=="page"})) + "</p>"
@@ -20,18 +26,18 @@ module ApplicationHelper
   end
 
   def search_posts_title
-    (params[:q].blank? ? I18n.t('txt.recent_posts', :default => 'Recent Posts') : I18n.t('txt.searching_for', :default => 'Searching for') + " '#{h params[:q]}'").tap do |title|
-      title << " " + I18n.t('txt.by_user', :default => 'by %{user}', :user => h(@user.display_name)) if @user
-      title << " " + I18n.t('txt.in_forum', :default => 'in %{forum}', :forum => h(@forum.name)) if @forum
+    (params[:q].blank? ? I18n.t('txt.recent_posts', :default => 'Recent Posts') : I18n.t('txt.searching_for', :default => 'Searching for') + " '#{params[:q]}'").tap do |title|
+      title << " " + I18n.t('txt.by_user', :default => 'by %{user}', :user => @user.display_name) if @user
+      title << " " + I18n.t('txt.in_forum', :default => 'in %{forum}', :forum => @forum.name) if @forum
     end
   end
 
   def topic_title_link(topic, options)
     if topic.title =~ /^\[([^\]]{1,15})\]((\s+)\w+.*)/
       "<span class='flag'>#{$1}</span>" + 
-      link_to(h($2.strip), forum_topic_path(@forum, topic), options)
+      link_to($2.strip, forum_topic_path(@forum, topic), options)
     else
-      link_to(h(topic.title), forum_topic_path(@forum, topic), options)
+      link_to(topic.title, forum_topic_path(@forum, topic), options)
     end
   end
 
@@ -64,5 +70,4 @@ module ApplicationHelper
   def for_moderators_of(record, &block)
     capture(&block) if moderator_of?(record)
   end
-
 end
