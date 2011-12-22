@@ -77,7 +77,7 @@
   <td class="lp">
     <abbr class="updated" title="<%= topic.last_updated_at.xmlschema %>"><%= I18n.t 'txt.post_age', :when => time_ago_in_words(topic.last_updated_at), :default => "posted %{when} ago" %></abbr>
     <% if topic.last_user %>
-    <%= I18n.t 'txt.by_user_html', :default => 'by %{user}'.html_safe, :user => "<span class=\"author\"><strong class=\"fn\">#{h(topic.last_user.display_name)}</strong></span>" %>
+    <%= I18n.t('txt.by_user_html', :default => 'by %{user}', :user => "<span class=\"author\"><strong class=\"fn\">#{h(topic.last_user.display_name)}</strong></span>").html_safe %>
     <% end %>
     <span><%= link_to I18n.t('txt.view', :default => 'view'), forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => dom_id(topic.recent_post)) %></span>
   </td>

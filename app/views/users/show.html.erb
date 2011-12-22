@@ -47,9 +47,9 @@
 <p class="subtitle">
   <%= feed_icon_tag @user.display_name, user_posts_path(:user_id => @user, :format => :rss) %>
   <span>
-    <%= t 'txt.count_topics', :count => @user.topics.size, :num => number_with_delimiter(@user.topics.size) %>,
-    <%= t 'txt.count_posts', :count => @user.posts.size, :num => number_with_delimiter(@user.posts.size) %>
-    <%= t 'txt.views_users.view_all_monitored_posts_html', :default => "(view %{all_link} | %{monitored_link} posts)".html_safe, :all_link => link_to(t('txt.all', :default => 'all'), user_posts_path(@user)), :monitored_link => link_to(t('txt.monitored', :default => 'monitored'), "#") %><br />
+    <%= I18n.t 'txt.count_topics', :count => @user.topics.size, :num => number_with_delimiter(@user.topics.size) %>,
+    <%= I18n.t 'txt.count_posts', :count => @user.posts.size, :num => number_with_delimiter(@user.posts.size) %>
+    <%= I18n.t('txt.views_users.view_all_monitored_posts_html', :default => "(view %{all_link} | %{monitored_link} posts)", :all_link => link_to(t('txt.all', :default => 'all'), user_posts_path(@user)), :monitored_link => link_to(t('txt.monitored', :default => 'monitored'), "#")).html_safe %><br />
   </span>
 </p>
 
