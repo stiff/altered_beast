@@ -1,29 +1,17 @@
 <% @page_title = @topic.title %>
 <% @monitoring = logged_in? && Monitorship.where(:user_id => current_user.id, :topic_id => @topic.id, :active => true).present? %>
 
-<% content_for :right do %>
-
-<h5><%= I18n.t 'txt.voices', :default => 'Voices' %></h5>
-<ul class="flat talking">
-<% @topic.voices.each do | user | %>
-  <li><%= link_to user.display_name, user_path(user) %></li>
-<% end %>
-</ul>
-
-
-<% end # right content %>
-
 <% if logged_in? %>
 
-<%= form_tag monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do %>
-<div>
-  <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %> 
-    onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => monitorship_path(@forum, @topic), :method => :delete %>}" />
-  <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
-  <%= hidden_field_tag '_method', 'delete' if @monitoring %>
-  <%= submit_tag :Set, :id => 'monitor_submit' %>
-</div>
-<% end %>
+  <%= form_tag monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do %>
+    <div>
+      <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %>
+             onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => monitorship_path(@forum, @topic), :method => :delete %>}"/>
+      <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? I18n.t('txt.monitoring_topic', :default => 'Monitoring topic') : I18n.t('txt.monitor_topic', :default => 'Monitor topic') %></label>
+      <%= hidden_field_tag '_method', 'delete' if @monitoring %>
+      <%= submit_tag :Set, :id => 'monitor_submit' %>
+    </div>
+  <% end %>
 
 <% end %>
 
@@ -141,8 +129,6 @@
     <%= I18n.t 'txt.views_topics.locked_topic', :default => 'This topic is locked.' %></label>
 </p>
 <% else %>
-
-<p><%= link_to I18n.t('txt.reply_to_topic', :default => 'Reply to topic'), "#reply", :class => "utility", :id => 'reply-link' %></p>
 
 <div id="reply" class="editbox">
 <div class="container">
