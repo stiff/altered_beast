@@ -78,8 +78,8 @@ class PostsController < ApplicationController
       if params[:user_id]
         @parent = @user = User.find(params[:user_id])
       elsif params[:forum_id]
-        @parent = @forum = Forum.find_by_permalink(params[:forum_id])
-        @parent = @topic = @forum.topics.find_by_permalink(params[:topic_id]) if params[:topic_id]
+        @parent = @forum = Forum.find(params[:forum_id])
+        @parent = @topic = @forum.topics.find(params[:topic_id]) if params[:topic_id]
       end
     end
 

@@ -93,9 +93,9 @@ describe TopicsController, "GET #show" do
 
 protected
   def stub_topic!
-    Forum.stub!(:find_by_permalink).with(@forum.to_param).and_return(@forum)
+    Forum.stub!(:find).with(@forum.to_param).and_return(@forum)
     @forum.stub!(:topics).and_return([])
-    @forum.topics.should_receive(:find_by_permalink).with(@topic.to_param).and_return(@topic)
+    @forum.topics.should_receive(:find).with(@topic.to_param).and_return(@topic)
   end
 end
 

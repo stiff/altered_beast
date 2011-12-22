@@ -36,7 +36,8 @@ class Topic < ActiveRecord::Base
 
   attr_readonly :posts_count, :hits
 
-  has_permalink :title, :scope => :forum_id
+  extend FriendlyId
+  friendly_id :title, :use => :scoped, :slug_column => :permalink, :scope => :forum
 
   def to_s
     title

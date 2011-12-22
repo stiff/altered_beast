@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   has_many :monitorships, :dependent => :delete_all
   has_many :monitored_topics, :through => :monitorships, :source => :topic, :conditions => {"#{Monitorship.table_name}.active" => true}
 
-  has_permalink :login, :scope => :site_id
+  extend FriendlyId
+  friendly_id :login, :use => :scoped, :slug_column => :permalink, :scope => :site
 
   attr_readonly :posts_count, :last_seen_at
 

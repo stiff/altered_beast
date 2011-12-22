@@ -7,7 +7,8 @@ class Forum < ActiveRecord::Base
 
   belongs_to :site
 
-  has_permalink :name
+  extend FriendlyId
+  friendly_id :name, :use => :slugged, :slug_column => :permalink
 
   attr_readonly :posts_count, :topics_count
 

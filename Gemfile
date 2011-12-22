@@ -9,7 +9,7 @@ gem 'RedCloth', :require => "redcloth"
 
 gem 'acts_as_list'
 gem 'acts_as_state_machine'
-gem 'permalink_fu'
+gem 'friendly_id', '~>4.0.0.rc2'
 
 group :development, :test do
   gem 'rspec-rails'
