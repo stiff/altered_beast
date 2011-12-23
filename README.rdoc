@@ -3,6 +3,7 @@
 The popular rails-based Beast forum, rewritten from the ground up with the same database and views.
 
 * updated for Rails 3
+* compatible with Ruby 1.9.3
 * full i18n (with German, English and Portuguese (Brazil) support)
 * using rspec/model_stubbing
 * added a state machine for user logins
@@ -16,12 +17,12 @@ The popular rails-based Beast forum, rewritten from the ground up with the same 
 
 Check out the code via git:
 
-    git clone git://github.com/brodock/altered_beast.git
+    git clone git://github.com/stiff/altered_beast.git
 
 
 === INSTALLATION
 
-    $ git clone git://github.com/brodock/altered_beast.git
+    $ git clone git://github.com/stiff/altered_beast.git
     $ cd altered_beast
     $ bundle install
     $ rake app:bootstrap
