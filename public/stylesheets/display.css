@@ -635,6 +635,9 @@ table.topics tr td.c1
  table.topics tr td.c2
   {	border-left:0; padding-left:2px; }
 
+table.topics a.sticky {
+  font-weight: bold;
+}
 
 table.topics tr td.c3 { border-left:0; }
 
@@ -683,6 +686,10 @@ form .help
 	font-size:0.8em;
 }
 
+p.entryhelp
+{
+  margin-top:0.5em;
+}
 span.arrow
 {
 	font-weight:normal;

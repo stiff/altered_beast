@@ -1,0 +1,342 @@
+# encoding: UTF-8
+"pt-BR":
+  # formatos de data e hora
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+      only_day: "%e"
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order:
+      - :day
+      - :month
+      - :year
+  
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+    am: ''
+    pm: ''
+
+  # Usado no Array.to_sentence
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+    select:
+      prompt: "Por favor selecione"
+
+  number:
+    format:
+      separator: ','
+      delimiter: '.'
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: '%u %n'
+        unit: 'R$'
+        separator: ','
+        delimiter: '.'
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: '.'
+
+    precision:
+      format:
+        delimiter: '.'
+
+    human:
+      format:
+        delimiter: '.'
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      # number_to_human()
+      # new in rails 3: please add to other locales
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""     
+          thousand: "mil"
+          million:
+            one: milhão
+            other: milhões
+          billion:
+            one: bilhão
+            other: bilhões
+          trillion:
+            one: trilhão
+            other: trilhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+
+  # distancia do tempo em palavras
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
+      x_seconds:
+        one: '1 segundo'
+        other: '%{count} segundos'
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de %{count} minutos'
+      x_minutes:
+        one: '1 minuto'
+        other: '%{count} minutos'
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente %{count} horas'
+      x_days:
+        one: '1 dia'
+        other: '%{count} dias'
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente %{count} meses'
+      x_months:
+        one: '1 mês'
+        other: '%{count} meses'
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente %{count} anos'
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de %{count} anos'
+      almost_x_years:
+        one: 'quase 1 ano'
+        other: 'quase %{count} anos'
+    prompts:
+      year:   "Ano"
+      month:  "Mês"
+      day:    "Dia"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundo"
+
+  helpers:
+    select:
+      prompt: "Por favor selecione"
+
+    submit:
+      create: 'Criar %{model}'
+      update: 'Atualizar %{model}'
+      submit: 'Salvar %{model}'
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    template:
+      header:
+        one: "Não foi possível gravar %{model}: 1 erro"
+        other: "Não foi possível gravar %{model}: %{count} erros."
+      body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+    messages: &errors_messages
+      inclusion: "não está incluído na lista"
+      exclusion: "não está disponível"
+      invalid: "não é válido"
+      confirmation: "não está de acordo com a confirmação"
+      accepted: "deve ser aceito"
+      empty: "não pode ficar vazio"
+      blank: "não pode ficar em branco"
+      too_long: "é muito longo (máximo: %{count} caracteres)"
+      too_short: "é muito curto (mínimo: %{count} caracteres)"
+      wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      equal_to: "deve ser igual a %{count}"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      odd: "deve ser ímpar"
+      even: "deve ser par"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar %{model}: 1 erro"
+          other: "Não foi possível gravar %{model}: %{count} erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+      messages:
+        taken: "já está em uso"
+        record_invalid: "A validação falhou: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"
+        
+  # Altered Beast
+  txt:
+    count_forums:
+      zero: "nenhum"
+      one: "1 fórum"
+      other: "%{num} fóruns"
+    count_users:
+      zero: "nenhum"
+      one: "1 usuário"
+      other: "%{num} usuários"
+    count_users_active:
+      zero: "nenhum usuário ativo"
+      one: "1 usuário ativo"
+      other: "%{num} usuários ativos"
+    count_users_lurking:
+      zero: "nenhum usuário inativo"
+      one: "1 usuário inativo"
+      other: "%{num} usuários inativos"
+    count_voices:
+      zero: "nenhum participante"
+      one: "1 participante"
+      other: "%{num} participantes"
+    count_topics:
+      zero: "nenhum tópico"
+      one: "1 tópico"
+      other: "%{num} tópicos"
+    count_posts:
+      zero: "nenhuma mensagem"
+      one: "1 mensagem"
+      other: "%{num} mensagens"
+    count_posts_found:
+      zero: "nenhuma mensagem encontrada"
+      one: "1 mensagem encontrada"
+      other: "%{count} mensagens encontradas"
+      
+    # Usuários
+    views_users:
+      admin_in_parens: "(administrador)"
+      current_status_title: "Status"
+      display_name_or_login: "Nome de exibição ou login"
+      find_a_user: "Localize um usuário"
+      name_or_login: "Nome / Login"
+      posts_title: "Mensagens"
+      search_title: "Buscar"
+      view_all_monitored_posts_html: "(ver %{all_link} | mensagens %{monitored_link})"
+    
+    # Fóruns  
+    views_forums:
+      comma_locked_topic: ", este tópico está trancado."
+      desc: "Descrição"
+      edit: "Editar Fórum"
+      new: "Novo fórum"
+      no_recent_activity: "Nenhuma atividade recente"
+      position: "Posição"
+      recent_activity: "Atividade recente"
+      title: "Título"
+      unmoderated_html: "Este fórum não está sendo moderado neste momento."
+      
+    # Tópicos
+    views_topics:
+      body: "Mensagem"
+      edit: "Editar tópico"
+      locked_topic: "Este tópico está trancado."
+      save_reply: "Salvar resposta"
+      topic: "Título"
+      topic_locked: "Tópico trancado"
+      
+    # Posts
+    views_posts:
+      delete: "Apagar mensagem"
+      delete_sure: "Remover esta mensagem permanentemente?"
+      edit: "Editar mensagem"
+      formatting_blockquote_html: "bq. <span>(citação)</span>"
+      formatting_bold: "*negrito*"
+      formatting_help: "Guia de formatação"
+      formatting_italics: "_itálico_"
+      formatting_list_html: "* ou # <span>(listas)</span>"
+      save: "Salvar mensagem"
+
+    admin:
+      admin_and_moderation: "Administração e Moderação"
+      add_as_moderator: "Permitir moderação"
+      create_new_forum: "Criar novo fórum"
+      edit_post: "Editar mensagem"
+      edit_user_account: "Editar conta do usuário"
+      remove_moderated_forum: "O usuário pode moderar os seguintes fóruns. Clique neles para remover permissão de moderação."
+      remove_user_as_moderator: "Remover permissão de moderação para '%{forum}'?"
+      suspend_user_account: "Suspender este usuário"
+      title: "Administrador"
+      unsuspend_user_account: "Reabilitar acesso do usuário" 
+      user_account_is_suspended: "Usuário está suspenso"
+
+
+    # Global
+    all: "todos"
+    by_user: "por %{user}"
+    by_user_html: "por %{user}"
+    cancel: "Cancelar"
+    create: "Criar"
+    delete: "Apagar"
+    edit: "Editar"
+    forum: "Fórum"
+    goto_last_page: "Ultima"
+    latest_post: "Última mensagem"
+    locked: "trancado"
+    moderator: "Moderador"
+    monitor_topic: "Monitorar tópico"
+    monitor_submit: "Confirmar"
+    monitored: "monitorado"
+    monitoring_topic: "Monitorando tópico"
+    new_topic: "Novo tópico"
+    no_recent_activity: "Nenhuma atividade recente"
+    or: "ou"
+    page_nr: "página %{nr}"
+    post_age: "enviado %{when} atrás"
+    post_topic: "Criar tópico"
+    posts: "Mensagens"
+    recent_activity: "Atividade recente"
+    recent_posts: "Mensagens recentes"
+    reply_to_topic: "Responder este tópico"
+    user_since: "Usuário desde %{date}"
+    save: "Salvar"
+    save_changes: "Salvar modificações"
+    search_placeholder: "Termos da pesquisa"
+    search_results_for_searchterm: "Resultados da pesquisa por '%{searchterm}'"
+    show_recent_posts: "Visualizar mensagens recentes"
+    sticky: "fixo"
+    subscribe_to_feed: "Feed de %{title}"
+    suspended_user_post: "Esta mensagem foi removida"
+    topic: "Tópico"
+    user_is_administrator: "Administrador"
+    user_is_moderator: "Moderador"
+    view: "visualizar"
+    views: "Visualizações"
+    voices: "Participantes"
+    
+    # Títulos
+    forums: "Fóruns"
+    search: "Pesquisar"
+    settings: "Configurações"
+    users: "Usuários"
+    

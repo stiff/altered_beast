@@ -1,4 +1,4 @@
-<h1><%= I18n.t 'txt.views_posts.edit', :default => 'Edit Post' %></h1>
+<h1><%= t 'txt.views_posts.edit', :default => 'Edit Post' %></h1>
 
 <h2><%= link_to @post.topic.title, forum_topic_path(@post.forum, @post.topic) %></h2>
 

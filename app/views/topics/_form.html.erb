@@ -17,7 +17,7 @@
 
 <% if @topic.new_record? %>
 <p>
-	<label for="topic_body"><%= I18n.t('txt.views_topics.body', :default => 'Body') %></label><br />
+	<%= form.label :body, t('txt.views_topics.body', :default => 'Body') %><br />
 	<%= form.text_area :body, :rows => 12, :tabindex => 20 %>
 </p>
 <% elsif admin? && (forums = current_site.ordered_forums).length > 1 %>

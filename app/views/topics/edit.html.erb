@@ -1,4 +1,4 @@
-<h1><%= I18n.t 'txt.views_topics.edit', :default => 'Edit Topic' %></h1>
+<h1><%= t 'txt.views_topics.edit', :default => 'Edit Topic' %></h1>
 
 <%= form_for [@forum, @topic] do |f| %>
   <%= render :partial => "form", :object => f %>

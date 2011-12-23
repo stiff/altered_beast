@@ -27,7 +27,7 @@
   <tr>
     <td><%= link_to user.display_name || user.login, user, :class => (user.admin? ? "admin" : nil) %>
       <span style="color:#666">
-      <%= I18n.t('txt.views_users.admin_in_parens', :default => "(admin)") if user.admin? %>
+        <%= I18n.t('txt.views_users.admin_in_parens', :default => "(admin)") if user.admin? %>
       </span>
 	  </td>
 	<% if logged_in? && current_user.admin? %>
@@ -35,7 +35,7 @@
 	<% end %>
     <td class="la">
       <% unless user.website.blank? %>
-      <%= sanitize link_to(user.website.gsub("http://",""), "http://" + user.website.gsub("http://","")) %>
+        <%= sanitize link_to(user.website.gsub("http://",""), "http://" + user.website.gsub("http://","")) %>
       <% end %>
     </td>
     <td class="ca inv"><%= user.posts.size %></td>
