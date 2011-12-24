@@ -6,11 +6,11 @@
 
   <%= for_moderators_of @forum do %>
     <label style="margin-left:1em;">
-    <%= form.check_box :sticky %> <%= I18n.t('txt.sticky', :default => 'sticky') %>
+    <%= form.check_box :sticky %> <%= form.label :sticky, I18n.t('txt.sticky', :default => 'sticky') %>
     </label>
 
     <label style="margin-left:1em;">
-    <%= form.check_box :locked %> <%= I18n.t('txt.locked', :default => 'locked') %>
+    <%= form.check_box :locked %> <%= form.label :locked, I18n.t('txt.locked', :default => 'locked') %>
     </label>
   <% end %>
 </p>
