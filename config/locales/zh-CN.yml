@@ -1,0 +1,140 @@
+"zh-CN":
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%B %e, %Y"
+      only_day: "%e"
+
+    day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    month_names: [~, 一月, 二月, 三月,四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 一月, 二月, 三月,四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    order: [ year, month, day ]
+
+  time:
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+      only_second: "%S"
+
+      datetime:
+        formats:
+          default: "%Y-%m-%dT%H:%M:%S%Z"
+
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: '半分钟'
+      less_than_x_seconds:
+        zero: '少于一秒'
+        one: '1秒'
+        other: '%{count} 秒'
+      x_seconds:
+        one: '1 秒'
+        other: '%{count} 秒'
+      less_than_x_seconds:
+        zero: 'less than a 分'
+        one: '1 分'
+        other: '%{count} 分'
+      x_seconds:
+        one: '1 分'
+        other: '%{count} 分'
+      about_x_hours:
+        one: 'about 1 小时'
+        other: '%{count} 小时'
+      x_days:
+        one: '1 天'
+        other: '%{count} 天'
+      about_x_months:
+        one: 'about 1 月'
+        other: '%{count} 月'
+      x_months:
+        one: '1 月'
+        other: '%{count} 月'
+      about_x_years:
+        one: 'about 1 年'
+        other: '%{count} 年'
+      over_x_years:
+        one: 'over 1 年'
+        other: '%{count} 年'
+
+  number:
+    format:
+      precision: 3
+      separator: '.'
+      delimiter: ','
+    currency:
+      format:
+        unit: '$'
+        precision: 2
+        format: '%u %n'
+
+  active_record:
+    error:
+      header_message: ["无法保存%{object_name}: 1 个错误", "无法保存%{object_name}: %{count} errors."]
+      message: "请检查如下表单:"
+    error_messages:
+      inclusion: "不在列表中"
+      exclusion: "不可用"
+      invalid: "不正确"
+      confirmation: "不一致"
+      accepted: "必须接受"
+      empty: "必须存在"
+      blank: "必须存在"
+      too_long: "太长了(要多于%{count} 个字)"
+      too_short: "太短了(要少于%{count} 个字)"
+      wrong_length: "长度不正确(must be %{count} characters)"
+      taken: "不可用"
+      not_a_number: "不是数字"
+      greater_than: "必须大于%{count}"
+      greater_than_or_equal_to: "必须大于或等于%{count}"
+      equal_to: "必须等于%{count}"
+      less_than: "必须小于%{count}"
+      less_than_or_equal_to: "必须小于或等于%{count}"
+      odd: "必须是奇数"
+      even: "必须是偶数"
+
+  txt:
+    count_forums:
+      zero: "无子版面"
+      one: "1个子版面"
+      other: "%{num}个子版面"
+    count_users:
+      zero: "0个用户"
+      one: "1 个用户"
+      other: "%{num} 个用户"
+    count_users_active:
+      zero: "0个活跃的用户"
+      one: "1个活跃的用户"
+      other: "%{num} 个活跃的用户"
+    count_users_lurking:
+      zero: "0个潜水中用户"
+      one: "1个潜水中用户"
+      other: "%{num} 个潜水中的用户"
+    count_voices:
+      zero: "no voices"
+      one: "1 voice"
+      other: "%{num} voices"
+    count_topics:
+      zero: "无主题"
+      one: "1个主题"
+      other: "%{num}个主题"
+    count_posts:
+      zero: "无帖子(主题 + 回复)"
+      one: "1个帖子(主题 + 回复)"
+      other: "%{num} 个帖子(主题 + 回复)"
+    count_posts_found:
+      zero: "未找到帖子"
+      one: "找到一个帖子"
+      other: "找到%{count}个帖子"
+
+    views_users:
+      email_directions: 请输入您的email, 我们会发送给您一个新的用户名。以此登录后，请重新修改密码。
+      reset_password: 重置密码
+
+
